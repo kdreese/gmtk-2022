@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/player/front_face_6_2.png" type="Texture" id=1]
+[ext_resource path="res://assets/player/front_face_3_1.png" type="Texture" id=2]
+[ext_resource path="res://assets/player/front_face_5.png" type="Texture" id=3]
+[ext_resource path="res://assets/player/front_face_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/player/front_face_2_2.png" type="Texture" id=5]
+[ext_resource path="res://assets/player/front_face_3_2.png" type="Texture" id=6]
+[ext_resource path="res://assets/player/front_face_2_1.png" type="Texture" id=7]
+[ext_resource path="res://assets/player/front_face_4.png" type="Texture" id=8]
+[ext_resource path="res://assets/player/front_face_6_1.png" type="Texture" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "6_1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "3_2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "3_1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "2_2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "6_2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "2_1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "4",
+"speed": 5.0
+} ]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "2_1"
