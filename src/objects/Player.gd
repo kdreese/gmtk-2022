@@ -1,6 +1,6 @@
+class_name Player
 extends Node2D
 
-class_name Player
 
 enum FaceState {FACE_1, FACE_2_1, FACE_2_2, FACE_3_1, FACE_3_2, FACE_4, FACE_5, FACE_6_1, FACE_6_2}
 
@@ -22,25 +22,26 @@ func _ready() -> void:
 	back_face = FaceState.FACE_5
 	bottom_face = FaceState.FACE_6_1
 	setAnim()
-	pass # Replace with function body.
-	
+
+
 # Get the rotated version of the given face.
 func rotatedFace(state: int) -> int:
 	if state == FaceState.FACE_2_1:
 		return FaceState.FACE_2_2
 	elif state == FaceState.FACE_2_2:
 		return FaceState.FACE_2_1
-	if state == FaceState.FACE_3_1:
+	elif state == FaceState.FACE_3_1:
 		return FaceState.FACE_3_2
 	elif state == FaceState.FACE_3_2:
 		return FaceState.FACE_3_1
-	if state == FaceState.FACE_6_1:
+	elif state == FaceState.FACE_6_1:
 		return FaceState.FACE_6_2
 	elif state == FaceState.FACE_6_2:
 		return FaceState.FACE_6_1
 	else:
 		# 1, 4, and 5, are rotationally symmetric
 		return state
+
 
 # Rotate the die clockwise about the X axis, which is normal to the side face.
 func rotateX() -> void:
@@ -56,6 +57,7 @@ func rotateX() -> void:
 	# Set the animation
 	setAnim()
 
+
 # Rotate the die clockwise about the Y axis, which is normal to the top face.
 func rotateY() -> void:
 	# The top and bottom faces are rotated.
@@ -68,6 +70,7 @@ func rotateY() -> void:
 	back_face = rotatedFace(backside_face)
 	backside_face = rotatedFace(temp)
 	setAnim()
+
 
 # Rotate the die clockwise about the Z axis, which is normal to the front face.
 func rotateZ() -> void:
@@ -82,12 +85,14 @@ func rotateZ() -> void:
 	side_face = temp
 	# Set the animations.
 	setAnim()
-	
+
+
 # Set the animation to match the current orienation.
 func setAnim() -> void:
-	setFaceAnim($"Front Face/AnimatedSprite", front_face)
-	setFaceAnim($"Side Face/AnimatedSprite", side_face)
-	setFaceAnim($"Top Face/AnimatedSprite", top_face)
+	setFaceAnim($FrontFace, front_face)
+	setFaceAnim($SideFace, side_face)
+	setFaceAnim($TopFace, top_face)
+
 
 # Set the animation state for a single face.
 func setFaceAnim(face: AnimatedSprite, state: int) -> void:
@@ -111,4 +116,3 @@ func setFaceAnim(face: AnimatedSprite, state: int) -> void:
 		face.play("6_2")
 	else:
 		print("Invalid state (%d) passed to setAnim()." % state)
-
