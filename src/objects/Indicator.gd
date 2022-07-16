@@ -1,22 +1,38 @@
 extends Node2D
 
 
-var starting_position: Vector2
-
 const AMPLITUDE = 5
 const FREQUENCY = 2.0
-var total_time = 0
+
+const INDICATOR_DEFAULT_STRING := "<default>"
+
+export var indicator_string := INDICATOR_DEFAULT_STRING
+
+var total_time := 0.0
+
+onready var starting_position := position
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	starting_position = position
 	total_time = -global_position.x / 120.0
-	pass
+	if indicator_string == INDICATOR_DEFAULT_STRING:
+		indicator_string = generate_indicator_string()
+	$CenterContainer/Label.text = indicator_string
+
 
 func _process(delta: float) -> void:
 	position = starting_position + Vector2(0.0, AMPLITUDE)*sin(total_time)
 	total_time += (delta * FREQUENCY)
 
+
 func hide() -> void:
 	$CenterContainer.hide()
 	$Sprite.hide()
+
+
+func generate_indicator_string() -> String:
+	var button = get_parent()
+	if button.minimum_weight == button.maximum_weight:
+		return str(button.minimum_weight)
+	return "%d-%d" % [button.minimum_weight, button.maximum_weight]
