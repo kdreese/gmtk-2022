@@ -10,24 +10,54 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "ButtonIntroLevel",
+"language": "GDScript",
+"path": "res://src/levels/ButtonIntroLevel.gd"
+}, {
+"base": "Node2D",
+"class": "ButtonTestLevel",
+"language": "GDScript",
+"path": "res://src/levels/ButtonTestLevel.gd"
+}, {
+"base": "Node2D",
+"class": "IntroLevel",
+"language": "GDScript",
+"path": "res://src/levels/IntroLevel.gd"
+}, {
+"base": "Area2D",
 "class": "LevelButton",
 "language": "GDScript",
 "path": "res://src/objects/LevelButton.gd"
+}, {
+"base": "Area2D",
+"class": "LevelEnd",
+"language": "GDScript",
+"path": "res://src/objects/LevelEnd.gd"
+}, {
+"base": "Node2D",
+"class": "MovementTestLevel",
+"language": "GDScript",
+"path": "res://src/levels/MovementTestLevel.gd"
+}, {
+"base": "Node2D",
+"class": "MovementTutorialLevel",
+"language": "GDScript",
+"path": "res://src/levels/MovementTutorialLevel.gd"
 }, {
 "base": "Node2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://src/objects/Player.gd"
-}, {
-"base": "Node2D",
-"class": "TestLevel",
-"language": "GDScript",
-"path": "res://src/levels/TestLevel.gd"
 } ]
 _global_script_class_icons={
+"ButtonIntroLevel": "",
+"ButtonTestLevel": "",
+"IntroLevel": "",
 "LevelButton": "",
-"Player": "",
-"TestLevel": ""
+"LevelEnd": "",
+"MovementTestLevel": "",
+"MovementTutorialLevel": "",
+"Player": ""
 }
 
 [application]

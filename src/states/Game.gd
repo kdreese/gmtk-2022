@@ -15,7 +15,8 @@ func _ready() -> void:
 		var tile := tile_map.get_cell(coords.x, coords.y)
 		if tile_map.tile_set.tile_get_name(tile) == "Start":
 			var player := preload("res://src/objects/Player.tscn").instance() as Node2D
-			player.connect("player_moved", self, "_on_player_move")
+			var error := player.connect("player_moved", self, "_on_player_move")
+			assert(not error)
 			player.position = tile_map.map_to_world(coords)
 			player.grid_coords = coords
 			player.tile_map = tile_map

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://resouces/TileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://src/levels/MovementTestLevel.gd" type="Script" id=2]
+[ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=3]
+
+[node name="MovementTestLevel" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="TileMap" type="TileMap" parent="."]
+mode = 1
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 64, 32 )
+format = 1
+tile_data = PoolIntArray( 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 262154, 0, 0, 262155, 2, 0, 262156, 0, 0, 262157, 0, 0 )
+
+[node name="LevelEnd" parent="." instance=ExtResource( 3 )]
+position = Vector2( 384, 224 )
+minimum_weight = 6

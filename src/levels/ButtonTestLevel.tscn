@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resouces/TileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://src/objects/LevelButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/levels/ButtonTestLevel.gd" type="Script" id=3]
+[ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=4]
+
+[node name="ButtonTestLevel" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="TileMap" type="TileMap" parent="."]
+mode = 1
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 64, 32 )
+format = 1
+tile_data = PoolIntArray( 131082, 0, 0, 131083, 7, 0, 131084, 0, 0, 131085, 7, 0, 131086, 0, 0, 131087, 7, 0, 131089, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 7, 0, 196620, 0, 0, 196621, 7, 0, 196622, 0, 0, 196623, 7, 0, 196624, 0, 0, 196625, 0, 0, 262152, 2, 0 )
+
+[node name="LevelButton" parent="." instance=ExtResource( 2 )]
+position = Vector2( 256, 208 )
+minimum_weight = 6
+
+[node name="LevelButton2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 320, 240 )
+minimum_weight = 6
+
+[node name="LevelButton3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 384, 272 )
+minimum_weight = 6
+
+[node name="LevelEnd" parent="." instance=ExtResource( 4 )]
+position = Vector2( 480, 304 )

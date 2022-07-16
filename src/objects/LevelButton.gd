@@ -1,5 +1,5 @@
 class_name LevelButton
-extends Node2D
+extends Area2D
 
 
 signal button_pressed
