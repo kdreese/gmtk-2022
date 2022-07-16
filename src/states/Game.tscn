@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/states/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/Russo_One.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://src/states/PauseMenu.gd" type="Script" id=3]
 [ext_resource path="res://assets/ui/legend.png" type="Texture" id=4]
+[ext_resource path="res://src/states/LevelComplete.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -34,6 +35,7 @@ pause_mode = 2
 script = ExtResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.392157 )
@@ -43,43 +45,96 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="V" type="VBoxContainer" parent="PauseMenu/ColorRect/C"]
-margin_left = 260.0
-margin_top = 171.0
-margin_right = 380.0
-margin_bottom = 309.0
+margin_left = 258.0
+margin_top = 163.0
+margin_right = 381.0
+margin_bottom = 316.0
 custom_constants/separation = 32
 
 [node name="PausedTitle" type="Label" parent="PauseMenu/ColorRect/C/V"]
-margin_right = 120.0
+margin_right = 123.0
 margin_bottom = 38.0
 custom_fonts/font = SubResource( 1 )
 text = "Paused"
 align = 1
 
 [node name="Buttons" type="VBoxContainer" parent="PauseMenu/ColorRect/C/V"]
-margin_left = 11.0
 margin_top = 70.0
-margin_right = 108.0
-margin_bottom = 138.0
+margin_right = 123.0
+margin_bottom = 153.0
 size_flags_horizontal = 4
 
 [node name="ResumeButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
-margin_right = 97.0
-margin_bottom = 20.0
+margin_right = 123.0
+margin_bottom = 25.0
 text = "Resume"
 
 [node name="RestartButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
-margin_top = 24.0
-margin_right = 97.0
-margin_bottom = 44.0
+margin_top = 29.0
+margin_right = 123.0
+margin_bottom = 54.0
 text = "Restart Level"
 
 [node name="ToMenuButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
-margin_top = 48.0
-margin_right = 97.0
-margin_bottom = 68.0
+margin_top = 58.0
+margin_right = 123.0
+margin_bottom = 83.0
+text = "Quit to Menu"
+
+[node name="LevelComplete" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 5 )
+
+[node name="ColorRect" type="ColorRect" parent="LevelComplete"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0.235294 )
+
+[node name="C" type="CenterContainer" parent="LevelComplete/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="V" type="VBoxContainer" parent="LevelComplete/ColorRect/C"]
+margin_left = 182.0
+margin_top = 162.0
+margin_right = 457.0
+margin_bottom = 318.0
+custom_constants/separation = 32
+
+[node name="Congratulations" type="Label" parent="LevelComplete/ColorRect/C/V"]
+margin_right = 275.0
+margin_bottom = 41.0
+text = "Congratulations!
+You finished the level in 0 moves!"
+align = 1
+
+[node name="Buttons" type="VBoxContainer" parent="LevelComplete/ColorRect/C/V"]
+margin_left = 76.0
+margin_top = 73.0
+margin_right = 199.0
+margin_bottom = 156.0
+size_flags_horizontal = 4
+
+[node name="ContinueButton" type="Button" parent="LevelComplete/ColorRect/C/V/Buttons"]
+margin_right = 123.0
+margin_bottom = 25.0
+text = "Next Level"
+
+[node name="RestartButton" type="Button" parent="LevelComplete/ColorRect/C/V/Buttons"]
+margin_top = 29.0
+margin_right = 123.0
+margin_bottom = 54.0
+text = "Restart Level"
+
+[node name="ToMenuButton" type="Button" parent="LevelComplete/ColorRect/C/V/Buttons"]
+margin_top = 58.0
+margin_right = 123.0
+margin_bottom = 83.0
 text = "Quit to Menu"
 
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/ResumeButton" to="PauseMenu" method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/RestartButton" to="PauseMenu" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/ToMenuButton" to="PauseMenu" method="_on_ToMenuButton_pressed"]
+[connection signal="pressed" from="LevelComplete/ColorRect/C/V/Buttons/ContinueButton" to="LevelComplete" method="_on_ContinueButton_pressed"]
+[connection signal="pressed" from="LevelComplete/ColorRect/C/V/Buttons/RestartButton" to="LevelComplete" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="LevelComplete/ColorRect/C/V/Buttons/ToMenuButton" to="LevelComplete" method="_on_ToMenuButton_pressed"]
