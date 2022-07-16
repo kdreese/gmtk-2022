@@ -7,8 +7,8 @@ signal button_pressed
 var unpressed_texture = preload("res://assets/objects/button.png")
 var pressed_texture = preload("res://assets/objects/button_pressed.png")
 
-export var minimum_weight: int
-export var maximum_weight: int
+export var minimum_weight: int = 1
+export var maximum_weight: int = 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
