@@ -16,14 +16,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="V" type="VBoxContainer" parent="ColorRect/C"]
-margin_left = 133.0
+margin_left = 125.0
 margin_top = 191.0
-margin_right = 507.0
+margin_right = 514.0
 margin_bottom = 288.0
 custom_constants/separation = 30
 
 [node name="G" type="GridContainer" parent="ColorRect/C/V"]
-margin_right = 374.0
+margin_right = 389.0
 margin_bottom = 42.0
 custom_constants/hseparation = 25
 columns = 3
@@ -44,7 +44,7 @@ value = 1.0
 
 [node name="MusicVolumeLabel" type="Label" parent="ColorRect/C/V/G"]
 margin_left = 289.0
-margin_right = 374.0
+margin_right = 389.0
 margin_bottom = 19.0
 text = "100%"
 
@@ -67,15 +67,15 @@ ticks_on_borders = true
 [node name="AnimationSpeedLabel" type="Label" parent="ColorRect/C/V/G"]
 margin_left = 289.0
 margin_top = 23.0
-margin_right = 374.0
+margin_right = 389.0
 margin_bottom = 42.0
-rect_min_size = Vector2( 85, 0 )
+rect_min_size = Vector2( 100, 0 )
 text = "Normal"
 
 [node name="BackButton" type="Button" parent="ColorRect/C/V"]
-margin_left = 137.0
+margin_left = 144.0
 margin_top = 72.0
-margin_right = 237.0
+margin_right = 244.0
 margin_bottom = 97.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 4

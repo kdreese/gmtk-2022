@@ -66,10 +66,15 @@ func _physics_process(_delta: float) -> void:
 
 
 func update_animation_speed() -> void:
-	$FrontFace.speed_scale = Global.animation_speed
-	$SideFace.speed_scale = Global.animation_speed
-	$TopFace.speed_scale = Global.animation_speed
-	$ExtraFace.speed_scale = Global.animation_speed
+	var new_speed := float(Global.animation_speed) * 2.0
+	if new_speed == 2.0:
+		new_speed = 3.0
+	elif new_speed == 0.0:
+		new_speed = 2.0
+	$FrontFace.speed_scale = new_speed
+	$SideFace.speed_scale = new_speed
+	$TopFace.speed_scale = new_speed
+	$ExtraFace.speed_scale = new_speed
 
 
 func get_top_face_value() -> int:
