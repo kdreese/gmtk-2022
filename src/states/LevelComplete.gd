@@ -17,6 +17,14 @@ func update(next_level_path_arg: String) -> void:
 		$ColorRect/C/V/Buttons/RestartButton.grab_focus()
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("restart"):
+		get_tree().paused = false
+		var error := get_tree().reload_current_scene()
+		assert(not error)
+		get_tree().set_input_as_handled()
+
+
 func _on_ContinueButton_pressed() -> void:
 	get_tree().paused = false
 	Global.level_path = next_level_path

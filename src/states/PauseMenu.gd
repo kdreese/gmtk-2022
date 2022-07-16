@@ -6,14 +6,14 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not $ColorRect.visible:
+		return
 	if event.is_action_pressed("escape"):
-		if get_tree().paused:
-			_on_ResumeButton_pressed()
-		else:
-			get_tree().paused = true
-			$ColorRect.show()
-			$ColorRect/C/V/Buttons/ResumeButton.grab_focus()
-			get_tree().set_input_as_handled()
+		_on_ResumeButton_pressed()
+		get_tree().set_input_as_handled()
+	elif event.is_action_pressed("restart"):
+		_on_RestartButton_pressed()
+		get_tree().set_input_as_handled()
 
 
 func _on_ResumeButton_pressed() -> void:
