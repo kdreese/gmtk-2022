@@ -58,3 +58,13 @@ func _on_LevelEnd_exit_reached_success(next_level_path: String):
 	get_tree().paused = true
 	$LevelComplete.update(next_level_path)
 	$LevelComplete/ColorRect.show()
+
+
+func _on_OptionsButton_pressed() -> void:
+	$PauseMenu/ColorRect.hide()
+	$OptionsMenu/ColorRect.show()
+
+
+func _on_OptionsMenu_options_exited() -> void:
+	level.get_node("Player").update_animation_speed()
+	$PauseMenu/ColorRect.show()

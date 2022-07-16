@@ -2,9 +2,9 @@ class_name Player
 extends Node2D
 
 
-enum FaceState {FACE_1, FACE_2_1, FACE_2_2, FACE_3_1, FACE_3_2, FACE_4, FACE_5, FACE_6_1, FACE_6_2}
+signal player_moved
 
-export var animation_speed: float = 1.0
+enum FaceState {FACE_1, FACE_2_1, FACE_2_2, FACE_3_1, FACE_3_2, FACE_4, FACE_5, FACE_6_1, FACE_6_2}
 
 var top_face: int
 var side_face: int
@@ -16,7 +16,6 @@ var backside_face: int
 var grid_coords := Vector2.ZERO
 var tile_map: TileMap
 
-signal player_moved
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,10 +26,7 @@ func _ready() -> void:
 	backside_face = FaceState.FACE_4
 	back_face = FaceState.FACE_5
 	bottom_face = FaceState.FACE_6_1
-	$FrontFace.speed_scale = animation_speed
-	$SideFace.speed_scale = animation_speed
-	$TopFace.speed_scale = animation_speed
-	$ExtraFace.speed_scale = animation_speed
+	update_animation_speed()
 	set_anim("idle")
 
 
@@ -48,6 +44,13 @@ func _physics_process(_delta: float) -> void:
 		elif Input.is_action_just_pressed("move_left"):
 			if move(Vector2(-1, 0)):
 				rotate_neg_z()
+
+
+func update_animation_speed() -> void:
+	$FrontFace.speed_scale = Global.animation_speed
+	$SideFace.speed_scale = Global.animation_speed
+	$TopFace.speed_scale = Global.animation_speed
+	$ExtraFace.speed_scale = Global.animation_speed
 
 
 func get_top_face_value() -> int:
