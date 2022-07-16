@@ -1,8 +1,11 @@
 extends Node2D
 
 
+var level: Node2D
+
+
 func _ready() -> void:
-	var level := load(Global.level_path).instance() as Node2D
+	level = load(Global.level_path).instance() as Node2D
 	var tile_map := level.get_node("TileMap") as TileMap
 
 	add_child(level)
@@ -14,4 +17,4 @@ func _ready() -> void:
 			player.position = tile_map.map_to_world(coords)
 			player.grid_coords = coords
 			player.tile_map = tile_map
-			add_child(player)
+			level.add_child(player)
