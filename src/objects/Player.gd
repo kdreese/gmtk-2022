@@ -11,6 +11,9 @@ var bottom_face: int
 var back_face: int
 var backside_face: int
 
+var grid_coords := Vector2.ZERO
+var tile_map: TileMap
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,6 +25,19 @@ func _ready() -> void:
 	back_face = FaceState.FACE_5
 	bottom_face = FaceState.FACE_6_1
 	setAnim()
+
+
+func _physics_process(_delta: float) -> void:
+	if Input.is_action_just_pressed("move_forward"):
+		rotateX()
+	elif Input.is_action_just_pressed("move_back"):
+		for _i in range(3):
+			rotateX()
+	elif Input.is_action_just_pressed("move_right"):
+		rotateZ()
+	elif Input.is_action_just_pressed("move_left"):
+		for _i in range(3):
+			rotateZ()
 
 
 # Get the rotated version of the given face.
