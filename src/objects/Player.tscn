@@ -80,6 +80,7 @@
 
 [sub_resource type="GradientTexture" id=11]
 gradient = ExtResource( 75 )
+width = 256
 
 [sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 74 )
@@ -115,6 +116,7 @@ animations = [ {
 
 [sub_resource type="GradientTexture" id=13]
 gradient = ExtResource( 76 )
+width = 256
 
 [sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 74 )
@@ -150,6 +152,7 @@ animations = [ {
 
 [sub_resource type="GradientTexture" id=12]
 gradient = ExtResource( 77 )
+width = 256
 
 [sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 74 )
@@ -184,6 +187,7 @@ animations = [ {
 } ]
 
 [sub_resource type="GradientTexture" id=14]
+width = 256
 
 [sub_resource type="ShaderMaterial" id=10]
 shader = ExtResource( 74 )
