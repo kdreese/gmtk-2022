@@ -21,9 +21,16 @@ func _ready() -> void:
 			player.tile_map = tile_map
 			level.add_child(player)
 
+	reset_move_counter()
+
+
+func update_move_counter() -> void:
+	$UI/MoveCounter.text = "Moves: %d" % moves
 
 func reset_move_counter() -> void:
 	moves = 0
+	update_move_counter()
 
 func _on_player_move():
 	moves += 1
+	update_move_counter()
