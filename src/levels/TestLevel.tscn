@@ -17,17 +17,14 @@ tile_data = PoolIntArray( 65561, 0, 0, 65562, 3, 0, 131083, 0, 0, 131084, 0, 0, 
 [node name="LevelButton" parent="." instance=ExtResource( 2 )]
 position = Vector2( 864, 576 )
 minimum_weight = 6
-maximum_weight = 6
 
 [node name="LevelButton2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 928, 608 )
 minimum_weight = 6
-maximum_weight = 6
 
 [node name="LevelButton3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 992, 640 )
 minimum_weight = 6
-maximum_weight = 6
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 936, 608 )
