@@ -18,6 +18,6 @@ func _on_button_pressed(instance: LevelButton) -> void:
 
 
 func _on_exit_reached_success() -> void:
-	Global.level_path = nextLevel
-	var error := get_tree().reload_current_scene()
-	assert(not error)
+	get_tree().paused = true
+	get_node("../LevelComplete").update(nextLevel)
+	get_node("../LevelComplete/ColorRect").show()

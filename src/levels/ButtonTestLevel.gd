@@ -1,6 +1,8 @@
 class_name ButtonTestLevel
 extends Node2D
 
+var nextLevel := "res://src/levels/ButtonTestLevel.tscn"
+
 
 func _ready() -> void:
 	var error := $LevelButton.connect("button_pressed", self, "_on_button_pressed", [$LevelButton])
@@ -26,5 +28,6 @@ func _on_button_pressed(instance: LevelButton) -> void:
 
 
 func _on_exit_reached_success() -> void:
-	var error := get_tree().change_scene("res://src/states/Menu.tscn")
-	assert(not error)
+	get_tree().paused = true
+	get_node("../LevelComplete").update(nextLevel)
+	get_node("../LevelComplete/ColorRect").show()
