@@ -3,15 +3,15 @@ extends CanvasLayer
 
 signal options_exited
 
-var animation_speed_strings := ["Slow", "Normal", "Fast", "Very Fast", "Disabled"]
+var animation_speed_strings := ["Slow", "Normal", "Fast", "Very Fast", "Hyperspeed"]
 
 
 func _ready() -> void:
-	var animation_speed_value = Global.animation_speed / 2.0
+	var animation_speed_value = Global.animation_speed
 	$ColorRect/C/V/G/AnimationSpeedSlider.value = animation_speed_value
 	_on_AnimationSpeedSlider_value_changed(animation_speed_value)
-	$ColorRect/C/V/G/MusicVolumeSlider.value = Global.music_slider_value
-	_on_MusicVolumeSlider_value_changed(Global.music_slider_value)
+	$ColorRect/C/V/G/MusicVolumeSlider.value = Global.music_volume
+	_on_MusicVolumeSlider_value_changed(Global.music_volume)
 	$ColorRect.hide()
 
 
@@ -35,6 +35,6 @@ func _on_MusicVolumeSlider_value_changed(value: float) -> void:
 
 
 func _on_AnimationSpeedSlider_value_changed(value: float) -> void:
-	Global.animation_speed = value * 2
+	Global.animation_speed = int(value)
 	var label = $ColorRect/C/V/G/AnimationSpeedLabel
 	label.text = animation_speed_strings[value]

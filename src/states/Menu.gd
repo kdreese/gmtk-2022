@@ -24,7 +24,9 @@ func _on_QuitButton_pressed() -> void:
 func _on_OptionsButton_pressed() -> void:
 	$V.hide()
 	$OptionsMenu/ColorRect.show()
+	$OptionsMenu/ColorRect/C/V/BackButton.grab_focus()
 
 
 func _on_OptionsMenu_options_exited() -> void:
 	$V.show()
+	$V/Buttons/OptionsButton.grab_focus()
