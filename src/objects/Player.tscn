@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://src/objects/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player/animations/rotate_neg_z/side_3.png" type="Texture" id=2]
@@ -25,27 +25,27 @@
 [ext_resource path="res://assets/player/animations/rotate_neg_x/side_2.png" type="Texture" id=23]
 [ext_resource path="res://assets/player/animations/rotate_neg_x/side_3.png" type="Texture" id=24]
 [ext_resource path="res://assets/player/animations/rotate_x/front_6.png" type="Texture" id=25]
-[ext_resource path="res://assets/player/animations/rotate_neg_x/front_4.png" type="Texture" id=26]
+[ext_resource path="res://assets/player/animations/rotate_x/side_5.png" type="Texture" id=26]
 [ext_resource path="res://assets/player/animations/rotate_neg_x/side_4.png" type="Texture" id=27]
 [ext_resource path="res://assets/player/animations/rotate_x/front_2.png" type="Texture" id=28]
 [ext_resource path="res://assets/player/animations/rotate_neg_z/front_2.png" type="Texture" id=29]
 [ext_resource path="res://assets/player/animations/rotate_neg_x/front_3.png" type="Texture" id=30]
-[ext_resource path="res://assets/player/animations/blank.png" type="Texture" id=31]
+[ext_resource path="res://assets/player/animations/rotate_x/side_6.png" type="Texture" id=31]
 [ext_resource path="res://assets/player/animations/rotate_neg_z/front_3.png" type="Texture" id=32]
 [ext_resource path="res://assets/player/animations/rotate_z/front_6.png" type="Texture" id=33]
-[ext_resource path="res://assets/player/animations/rotate_neg_x/front_5.png" type="Texture" id=34]
+[ext_resource path="res://assets/player/animations/rotate_x/side_4.png" type="Texture" id=34]
 [ext_resource path="res://assets/player/animations/rotate_x/front_3.png" type="Texture" id=35]
 [ext_resource path="res://assets/player/animations/rotate_x/front_4.png" type="Texture" id=36]
 [ext_resource path="res://assets/player/animations/rotate_x/front_5.png" type="Texture" id=37]
 [ext_resource path="res://assets/player/animations/rotate_z/front_5.png" type="Texture" id=38]
 [ext_resource path="res://assets/player/animations/rotate_z/front_4.png" type="Texture" id=39]
-[ext_resource path="res://assets/player/animations/rotate_neg_x/front_6.png" type="Texture" id=40]
+[ext_resource path="res://assets/player/animations/rotate_neg_z/front_4.png" type="Texture" id=40]
 [ext_resource path="res://assets/player/animations/rotate_neg_z/front_1.png" type="Texture" id=41]
-[ext_resource path="res://assets/player/animations/rotate_x/top_4.png" type="Texture" id=42]
+[ext_resource path="res://assets/player/animations/rotate_neg_x/top_4.png" type="Texture" id=42]
 [ext_resource path="res://assets/player/animations/rotate_z/side_1.png" type="Texture" id=43]
 [ext_resource path="res://assets/player/animations/rotate_z/side_2.png" type="Texture" id=44]
 [ext_resource path="res://assets/player/animations/rotate_z/side_3.png" type="Texture" id=45]
-[ext_resource path="res://assets/player/animations/rotate_z/side_4.png" type="Texture" id=46]
+[ext_resource path="res://assets/player/animations/rotate_z/top_4.png" type="Texture" id=46]
 [ext_resource path="res://assets/player/animations/rotate_neg_x/top_2.png" type="Texture" id=47]
 [ext_resource path="res://assets/player/animations/rotate_x/top_3.png" type="Texture" id=48]
 [ext_resource path="res://assets/player/animations/rotate_neg_x/top_3.png" type="Texture" id=49]
@@ -53,44 +53,38 @@
 [ext_resource path="res://assets/player/animations/rotate_neg_z/side_4.png" type="Texture" id=51]
 [ext_resource path="res://assets/player/animations/rotate_neg_z/side_5.png" type="Texture" id=52]
 [ext_resource path="res://assets/player/animations/rotate_neg_z/side_6.png" type="Texture" id=53]
-[ext_resource path="res://assets/player/animations/rotate_x/top_6.png" type="Texture" id=54]
+[ext_resource path="res://assets/player/animations/rotate_z/top_5.png" type="Texture" id=54]
 [ext_resource path="res://assets/player/animations/rotate_neg_x/side_5.png" type="Texture" id=55]
-[ext_resource path="res://assets/player/animations/rotate_z/side_6.png" type="Texture" id=56]
+[ext_resource path="res://assets/player/animations/rotate_neg_x/top_5.png" type="Texture" id=56]
 [ext_resource path="res://assets/player/animations/rotate_neg_x/side_6.png" type="Texture" id=57]
-[ext_resource path="res://assets/player/animations/rotate_z/side_5.png" type="Texture" id=58]
+[ext_resource path="res://assets/player/animations/rotate_neg_z/front_5.png" type="Texture" id=58]
 [ext_resource path="res://assets/player/animations/rotate_neg_z/top_1.png" type="Texture" id=59]
-[ext_resource path="res://assets/player/animations/rotate_neg_z/top_6.png" type="Texture" id=60]
+[ext_resource path="res://assets/player/animations/rotate_neg_z/front_6.png" type="Texture" id=60]
 [ext_resource path="res://assets/player/animations/rotate_neg_z/side_2.png" type="Texture" id=61]
 [ext_resource path="res://assets/player/animations/rotate_neg_z/extra_6.png" type="Texture" id=62]
 [ext_resource path="res://assets/player/animations/rotate_z/extra_5.png" type="Texture" id=63]
 [ext_resource path="res://assets/player/animations/rotate_z/top_1.png" type="Texture" id=64]
-[ext_resource path="res://assets/player/animations/rotate_neg_z/top_5.png" type="Texture" id=65]
+[ext_resource path="res://assets/player/animations/rotate_neg_x/top_6.png" type="Texture" id=65]
 [ext_resource path="res://assets/player/animations/rotate_z/extra_6.png" type="Texture" id=66]
 [ext_resource path="res://assets/player/animations/rotate_neg_z/extra_5.png" type="Texture" id=67]
 [ext_resource path="res://assets/player/animations/rotate_z/top_2.png" type="Texture" id=68]
 [ext_resource path="res://assets/player/animations/rotate_neg_z/top_2.png" type="Texture" id=69]
 [ext_resource path="res://assets/player/animations/rotate_neg_z/top_3.png" type="Texture" id=70]
 [ext_resource path="res://assets/player/animations/rotate_z/top_3.png" type="Texture" id=71]
-[ext_resource path="res://assets/player/animations/rotate_neg_z/top_4.png" type="Texture" id=72]
+[ext_resource path="res://assets/player/animations/rotate_z/top_6.png" type="Texture" id=72]
 [ext_resource path="res://assets/player/animations/rotate_x/extra_6.png" type="Texture" id=73]
-[ext_resource path="res://assets/player/animations/rotate_x/top_5.png" type="Texture" id=74]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 18 ), ExtResource( 30 ), ExtResource( 26 ), ExtResource( 34 ), ExtResource( 40 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 18 ), ExtResource( 30 ), null, null, null ],
 "loop": false,
 "name": "rotate_neg_x",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 41 ), ExtResource( 29 ), ExtResource( 32 ), null, null, null ],
+"frames": [ ExtResource( 41 ), ExtResource( 29 ), ExtResource( 32 ), ExtResource( 40 ), ExtResource( 58 ), ExtResource( 60 ) ],
 "loop": false,
 "name": "rotate_neg_z",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": false,
-"name": "idle",
-"speed": 0.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 28 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 25 ) ],
 "loop": false,
@@ -100,6 +94,11 @@ animations = [ {
 "frames": [ ExtResource( 20 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 39 ), ExtResource( 38 ), ExtResource( 33 ) ],
 "loop": false,
 "name": "rotate_z",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "idle",
 "speed": 5.0
 } ]
 
@@ -115,47 +114,47 @@ animations = [ {
 "name": "rotate_neg_z",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
-"loop": false,
-"name": "idle",
-"speed": 0.0
-}, {
-"frames": [ ExtResource( 4 ), ExtResource( 19 ), ExtResource( 8 ), ExtResource( 31 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 19 ), ExtResource( 8 ), ExtResource( 34 ), ExtResource( 26 ), ExtResource( 31 ) ],
 "loop": false,
 "name": "rotate_x",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 58 ), ExtResource( 56 ) ],
+"frames": [ ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), null, null, null ],
 "loop": false,
 "name": "rotate_z",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": false,
+"name": "idle",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 12 ), ExtResource( 47 ), ExtResource( 49 ), null, null, null ],
+"frames": [ ExtResource( 12 ), ExtResource( 47 ), ExtResource( 49 ), ExtResource( 42 ), ExtResource( 56 ), ExtResource( 65 ) ],
 "loop": false,
 "name": "rotate_neg_x",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 59 ), ExtResource( 69 ), ExtResource( 70 ), ExtResource( 72 ), ExtResource( 65 ), ExtResource( 60 ) ],
+"frames": [ ExtResource( 59 ), ExtResource( 69 ), ExtResource( 70 ), null, null, null ],
 "loop": false,
 "name": "rotate_neg_z",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 22 ), ExtResource( 48 ), null, null, null ],
+"loop": false,
+"name": "rotate_x",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 64 ), ExtResource( 68 ), ExtResource( 71 ), ExtResource( 46 ), ExtResource( 54 ), ExtResource( 72 ) ],
+"loop": false,
+"name": "rotate_z",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ) ],
 "loop": false,
 "name": "idle",
-"speed": 0.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 22 ), ExtResource( 48 ), ExtResource( 42 ), ExtResource( 74 ), ExtResource( 54 ) ],
-"loop": false,
-"name": "rotate_x",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 64 ), ExtResource( 68 ), ExtResource( 71 ), null, null, null ],
-"loop": false,
-"name": "rotate_z",
 "speed": 5.0
 } ]
 
@@ -171,11 +170,6 @@ animations = [ {
 "name": "rotate_neg_z",
 "speed": 5.0
 }, {
-"frames": [ null ],
-"loop": false,
-"name": "idle",
-"speed": 0.0
-}, {
 "frames": [ null, null, null, ExtResource( 13 ), ExtResource( 14 ), ExtResource( 73 ) ],
 "loop": false,
 "name": "rotate_x",
@@ -184,6 +178,11 @@ animations = [ {
 "frames": [ null, null, null, ExtResource( 21 ), ExtResource( 63 ), ExtResource( 66 ) ],
 "loop": false,
 "name": "rotate_z",
+"speed": 5.0
+}, {
+"frames": [ null ],
+"loop": false,
+"name": "idle",
 "speed": 5.0
 } ]
 
@@ -194,22 +193,27 @@ extents = Vector2( 10, 7 )
 collision_mask = 0
 monitoring = false
 script = ExtResource( 1 )
+animation_speed = 2.5
 
 [node name="FrontFace" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
+offset = Vector2( 0, -2 )
 
 [node name="SideFace" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "rotate_neg_z"
+offset = Vector2( 0, -2 )
 
 [node name="TopFace" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "rotate_neg_z"
+offset = Vector2( 0, -2 )
 
 [node name="ExtraFace" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
 animation = "rotate_neg_z"
+offset = Vector2( 0, -2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 17 )

@@ -4,6 +4,8 @@ extends Node2D
 
 enum FaceState {FACE_1, FACE_2_1, FACE_2_2, FACE_3_1, FACE_3_2, FACE_4, FACE_5, FACE_6_1, FACE_6_2}
 
+export var animation_speed: float = 1.0
+
 var top_face: int
 var side_face: int
 var front_face: int
@@ -25,22 +27,28 @@ func _ready() -> void:
 	backside_face = FaceState.FACE_4
 	back_face = FaceState.FACE_5
 	bottom_face = FaceState.FACE_6_1
+	$FrontFace.speed_scale = animation_speed
+	$SideFace.speed_scale = animation_speed
+	$TopFace.speed_scale = animation_speed
+	$ExtraFace.speed_scale = animation_speed
 	set_anim("idle")
 
 
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("move_forward"):
-		if move(Vector2(0, -1)):
-			rotate_x()
-	elif Input.is_action_just_pressed("move_back"):
-		if move(Vector2(0, 1)):
-			rotate_neg_x()
-	elif Input.is_action_just_pressed("move_right"):
-		if move(Vector2(1, 0)):
-			rotate_z()
-	elif Input.is_action_just_pressed("move_left"):
-		if move(Vector2(-1, 0)):
-			rotate_neg_z()
+	if $FrontFace.animation == "idle":
+		if Input.is_action_just_pressed("move_forward"):
+			if move(Vector2(0, -1)):
+				rotate_x()
+		elif Input.is_action_just_pressed("move_back"):
+			if move(Vector2(0, 1)):
+				rotate_neg_x()
+		elif Input.is_action_just_pressed("move_right"):
+			if move(Vector2(1, 0)):
+				rotate_z()
+		elif Input.is_action_just_pressed("move_left"):
+			if move(Vector2(-1, 0)):
+				rotate_neg_z()
+
 
 func get_top_face_value() -> int:
 	if top_face == FaceState.FACE_1:
@@ -186,6 +194,8 @@ func set_anim(animation: String) -> void:
 
 
 func _on_animation_finished() -> void:
+	if $FrontFace.animation == "idle":
+		return
 	$FrontFace.play("idle")
 	$TopFace.play("idle")
 	$SideFace.play("idle")
