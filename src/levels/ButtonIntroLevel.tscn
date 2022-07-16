@@ -22,3 +22,4 @@ minimum_weight = 6
 [node name="LevelEnd" parent="." instance=ExtResource( 4 )]
 position = Vector2( 288, 304 )
 minimum_weight = 6
+next_level_path = "res://src/levels/ButtonTestLevel.tscn"

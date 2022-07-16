@@ -5,17 +5,20 @@ var level: Node2D
 
 var moves: int
 
+
 func _ready() -> void:
 	level = load(Global.level_path).instance() as Node2D
 	var tile_map := level.get_node("TileMap") as TileMap
 
 	add_child(level)
+	var error := level.get_node("LevelEnd").connect("exit_reached_success", self, "_on_LevelEnd_exit_reached_success")
+	assert(not error)
 
 	for coords in tile_map.get_used_cells():
 		var tile := tile_map.get_cell(coords.x, coords.y)
 		if tile_map.tile_set.tile_get_name(tile) == "Start":
 			var player := preload("res://src/objects/Player.tscn").instance() as Node2D
-			var error := player.connect("player_moved", self, "_on_player_move")
+			error = player.connect("player_moved", self, "_on_player_move")
 			assert(not error)
 			player.position = tile_map.map_to_world(coords)
 			player.grid_coords = coords
@@ -28,10 +31,18 @@ func _ready() -> void:
 func update_move_counter() -> void:
 	$UI/MoveCounter.text = "Moves: %d" % moves
 
+
 func reset_move_counter() -> void:
 	moves = 0
 	update_move_counter()
 
+
 func _on_player_move():
 	moves += 1
 	update_move_counter()
+
+
+func _on_LevelEnd_exit_reached_success(next_level_path: String):
+	get_tree().paused = true
+	$LevelComplete.update(next_level_path)
+	$LevelComplete/ColorRect.show()
