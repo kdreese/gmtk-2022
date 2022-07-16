@@ -1,4 +1,4 @@
-class_name TestLevel
+class_name ButtonTestLevel
 extends Node2D
 
 
@@ -13,11 +13,11 @@ func _ready() -> void:
 
 func _on_button_pressed(instance: LevelButton) -> void:
 	if instance.name == "LevelButton":
-		$TileMap.set_cell(32, 4, $TileMap.tile_set.find_tile_by_name("GateOpen"))
-		$TileMap.set_cell(32, 5, $TileMap.tile_set.find_tile_by_name("GateOpen"))
+		$TileMap.set_cell(11, 2, $TileMap.tile_set.find_tile_by_name("GateOpen"))
+		$TileMap.set_cell(11, 3, $TileMap.tile_set.find_tile_by_name("GateOpen"))
 	elif instance.name == "LevelButton2":
-		$TileMap.set_cell(34, 4, $TileMap.tile_set.find_tile_by_name("GateOpen"))
-		$TileMap.set_cell(34, 5, $TileMap.tile_set.find_tile_by_name("GateOpen"))
+		$TileMap.set_cell(13, 2, $TileMap.tile_set.find_tile_by_name("GateOpen"))
+		$TileMap.set_cell(13, 3, $TileMap.tile_set.find_tile_by_name("GateOpen"))
 	elif instance.name == "LevelButton3":
-		$TileMap.set_cell(36, 4, $TileMap.tile_set.find_tile_by_name("GateOpen"))
-		$TileMap.set_cell(36, 5, $TileMap.tile_set.find_tile_by_name("GateOpen"))
+		$TileMap.set_cell(15, 2, $TileMap.tile_set.find_tile_by_name("GateOpen"))
+		$TileMap.set_cell(15, 3, $TileMap.tile_set.find_tile_by_name("GateOpen"))
