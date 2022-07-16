@@ -43,6 +43,28 @@ func _physics_process(_delta: float) -> void:
 			for _i in range(3):
 				rotate_z()
 
+func get_top_face_value() -> int:
+	if top_face == FaceState.FACE_1:
+		return 1
+	elif top_face == FaceState.FACE_2_1:
+		return 2
+	elif top_face == FaceState.FACE_2_2:
+		return 2
+	elif top_face == FaceState.FACE_3_1:
+		return 3
+	elif top_face == FaceState.FACE_3_2:
+		return 3
+	elif top_face == FaceState.FACE_4:
+		return 4
+	elif top_face == FaceState.FACE_5:
+		return 5
+	elif top_face == FaceState.FACE_6_1:
+		return 6
+	elif top_face == FaceState.FACE_6_2:
+		return 6
+	else:
+		print("Invalid face... how?")
+		return 0
 
 # Move the die one space
 func move(offset: Vector2) -> bool:
