@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 func _on_PlayButton_pressed() -> void:
-	Global.level_path = "res://src/levels/TestLevel2.tscn"
+	Global.level_path = "res://src/levels/TestLevel.tscn"
 	var error := get_tree().change_scene("res://src/states/Game.tscn")
 	assert(not error)
 
