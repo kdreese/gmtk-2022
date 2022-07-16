@@ -28,18 +28,12 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://src/objects/Player.gd"
-}, {
-"base": "Node2D",
-"class": "TestLevel",
-"language": "GDScript",
-"path": "res://src/levels/TestLevel.gd"
 } ]
 _global_script_class_icons={
 "ButtonIntroLevel": "",
 "ButtonTestLevel": "",
 "LevelButton": "",
-"Player": "",
-"TestLevel": ""
+"Player": ""
 }
 
 [application]
