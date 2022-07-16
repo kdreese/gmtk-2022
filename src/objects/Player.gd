@@ -4,7 +4,21 @@ extends Node2D
 
 signal player_moved
 
+
 enum FaceState {FACE_1, FACE_2_1, FACE_2_2, FACE_3_1, FACE_3_2, FACE_4, FACE_5, FACE_6_1, FACE_6_2}
+
+const PALETTES := [
+	preload("res://resouces/palettes/1.tres"),
+	preload("res://resouces/palettes/2_1.tres"),
+	preload("res://resouces/palettes/2_2.tres"),
+	preload("res://resouces/palettes/3_1.tres"),
+	preload("res://resouces/palettes/3_2.tres"),
+	preload("res://resouces/palettes/4.tres"),
+	preload("res://resouces/palettes/5.tres"),
+	preload("res://resouces/palettes/6_1.tres"),
+	preload("res://resouces/palettes/6_2.tres"),
+]
+
 
 var top_face: int
 var side_face: int
@@ -27,23 +41,28 @@ func _ready() -> void:
 	back_face = FaceState.FACE_5
 	bottom_face = FaceState.FACE_6_1
 	update_animation_speed()
+	update_palettes()
 	set_anim("idle")
 
 
 func _physics_process(_delta: float) -> void:
 	if $FrontFace.animation == "idle":
-		if Input.is_action_just_pressed("move_forward"):
+		if Input.is_action_pressed("move_forward"):
 			if move(Vector2(0, -1)):
-				rotate_x()
-		elif Input.is_action_just_pressed("move_back"):
+				$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[bottom_face]
+				set_anim("rotate_x")
+		elif Input.is_action_pressed("move_back"):
 			if move(Vector2(0, 1)):
-				rotate_neg_x()
-		elif Input.is_action_just_pressed("move_right"):
+				$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[back_face]
+				set_anim("rotate_neg_x")
+		elif Input.is_action_pressed("move_right"):
 			if move(Vector2(1, 0)):
-				rotate_z()
-		elif Input.is_action_just_pressed("move_left"):
+				$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[backside_face]
+				set_anim("rotate_z")
+		elif Input.is_action_pressed("move_left"):
 			if move(Vector2(-1, 0)):
-				rotate_neg_z()
+				$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[bottom_face]
+				set_anim("rotate_neg_z")
 
 
 func update_animation_speed() -> void:
@@ -74,7 +93,14 @@ func get_top_face_value() -> int:
 		return 6
 	else:
 		print("Invalid face... how?")
+		assert(false)
 		return 0
+
+
+func update_palettes() -> void:
+	$FrontFace.material.get_shader_param("palette").gradient = PALETTES[front_face]
+	$SideFace.material.get_shader_param("palette").gradient = PALETTES[side_face]
+	$TopFace.material.get_shader_param("palette").gradient = PALETTES[top_face]
 
 
 # Move the die one space
@@ -125,8 +151,6 @@ func rotate_x() -> void:
 	front_face = bottom_face
 	bottom_face = back_face
 	back_face = temp
-	# Set the animation
-	set_anim("rotate_x")
 
 
 # Rotate the die counter-clockwise about the X axis, which is normal to the side face.
@@ -140,8 +164,6 @@ func rotate_neg_x() -> void:
 	back_face = bottom_face
 	bottom_face = front_face
 	front_face = temp
-	# Set the animation
-	set_anim("rotate_neg_x")
 
 
 # TODO: re-write. As of now this is deprecated.
@@ -156,7 +178,6 @@ func rotate_y() -> void:
 	side_face = rotated_face(back_face)
 	back_face = rotated_face(backside_face)
 	backside_face = rotated_face(temp)
-	set_anim("idle")
 
 
 # Rotate the die clockwise about the Z axis, which is normal to the front face.
@@ -170,8 +191,6 @@ func rotate_z() -> void:
 	backside_face = bottom_face
 	bottom_face = side_face
 	side_face = temp
-	# Set the animations.
-	set_anim("rotate_z")
 
 
 # Rotate the die counter-clockwise about the Z axis, which is normal to the front face.
@@ -180,13 +199,11 @@ func rotate_neg_z() -> void:
 	front_face = rotated_face(front_face)
 	back_face = rotated_face(back_face)
 	# The rest of the faces fall into a cycle.
-	var temp: int = backside_face
+	var temp: int = top_face
 	top_face = side_face
 	side_face = bottom_face
 	bottom_face = backside_face
 	backside_face = temp
-	# Set the animations.
-	set_anim("rotate_neg_z")
 
 
 func set_anim(animation: String) -> void:
@@ -199,8 +216,17 @@ func set_anim(animation: String) -> void:
 func _on_animation_finished() -> void:
 	if $FrontFace.animation == "idle":
 		return
+	elif $FrontFace.animation == "rotate_x":
+		rotate_x()
+	elif $FrontFace.animation == "rotate_neg_x":
+		rotate_neg_x()
+	elif $FrontFace.animation == "rotate_z":
+		rotate_z()
+	elif $FrontFace.animation == "rotate_neg_z":
+		rotate_neg_z()
 	$FrontFace.play("idle")
 	$TopFace.play("idle")
 	$SideFace.play("idle")
 	$ExtraFace.play("idle")
+	update_palettes()
 	position = tile_map.map_to_world(grid_coords)
