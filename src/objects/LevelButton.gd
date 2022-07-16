@@ -27,5 +27,6 @@ func set_unpressed() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	var face_value = area.get_top_face_value()
 	if face_value >= minimum_weight and face_value <= maximum_weight:
+		$Indicator.hide()
 		set_pressed()
 		emit_signal("button_pressed")
