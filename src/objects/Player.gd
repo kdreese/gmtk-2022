@@ -24,24 +24,46 @@ func _ready() -> void:
 	backside_face = FaceState.FACE_4
 	back_face = FaceState.FACE_5
 	bottom_face = FaceState.FACE_6_1
-	setAnim()
+	set_anim()
 
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("move_forward"):
-		rotateX()
+		if move(Vector2(0, -1)):
+			rotate_x()
 	elif Input.is_action_just_pressed("move_back"):
-		for _i in range(3):
-			rotateX()
+		if move(Vector2(0, 1)):
+			for _i in range(3):
+				rotate_x()
 	elif Input.is_action_just_pressed("move_right"):
-		rotateZ()
+		if move(Vector2(1, 0)):
+			rotate_z()
 	elif Input.is_action_just_pressed("move_left"):
-		for _i in range(3):
-			rotateZ()
+		if move(Vector2(-1, 0)):
+			for _i in range(3):
+				rotate_z()
+
+
+# Move the die one space
+func move(offset: Vector2) -> bool:
+	var new_coords := grid_coords + offset
+	if is_movable(new_coords):
+		position = tile_map.map_to_world(new_coords)
+		grid_coords = new_coords
+		return true
+	return false
+
+
+# Check if the space attempting to be moved into is capable of being moved into
+func is_movable(coord: Vector2) -> bool:
+	var tile := tile_map.get_cellv(coord)
+	if tile == -1:
+		return false
+	return true
 
 
 # Get the rotated version of the given face.
-func rotatedFace(state: int) -> int:
+func rotated_face(state: int) -> int:
 	if state == FaceState.FACE_2_1:
 		return FaceState.FACE_2_2
 	elif state == FaceState.FACE_2_2:
@@ -60,10 +82,10 @@ func rotatedFace(state: int) -> int:
 
 
 # Rotate the die clockwise about the X axis, which is normal to the side face.
-func rotateX() -> void:
+func rotate_x() -> void:
 	# The side and backside faces are rotated.
-	side_face = rotatedFace(side_face)
-	backside_face = rotatedFace(backside_face)
+	side_face = rotated_face(side_face)
+	backside_face = rotated_face(backside_face)
 	# The rest of the faces fall into a cycle
 	var temp: int = top_face
 	top_face = front_face
@@ -71,28 +93,28 @@ func rotateX() -> void:
 	bottom_face = back_face
 	back_face = temp
 	# Set the animation
-	setAnim()
+	set_anim()
 
 
 # Rotate the die clockwise about the Y axis, which is normal to the top face.
-func rotateY() -> void:
+func rotate_y() -> void:
 	# The top and bottom faces are rotated.
-	top_face = rotatedFace(top_face)
-	bottom_face = rotatedFace(bottom_face)
+	top_face = rotated_face(top_face)
+	bottom_face = rotated_face(bottom_face)
 	# Because of the way the pictures are structured, this is no longer a simple cycle.
 	var temp: int = front_face
-	front_face = rotatedFace(side_face)
-	side_face = rotatedFace(back_face)
-	back_face = rotatedFace(backside_face)
-	backside_face = rotatedFace(temp)
-	setAnim()
+	front_face = rotated_face(side_face)
+	side_face = rotated_face(back_face)
+	back_face = rotated_face(backside_face)
+	backside_face = rotated_face(temp)
+	set_anim()
 
 
 # Rotate the die clockwise about the Z axis, which is normal to the front face.
-func rotateZ() -> void:
+func rotate_z() -> void:
 	# The front and back faces are rotated.
-	front_face = rotatedFace(front_face)
-	back_face = rotatedFace(back_face)
+	front_face = rotated_face(front_face)
+	back_face = rotated_face(back_face)
 	# The rest of the faces fall into a cycle.
 	var temp: int = top_face
 	top_face = backside_face
@@ -100,18 +122,18 @@ func rotateZ() -> void:
 	bottom_face = side_face
 	side_face = temp
 	# Set the animations.
-	setAnim()
+	set_anim()
 
 
 # Set the animation to match the current orienation.
-func setAnim() -> void:
-	setFaceAnim($FrontFace, front_face)
-	setFaceAnim($SideFace, side_face)
-	setFaceAnim($TopFace, top_face)
+func set_anim() -> void:
+	set_face_anim($FrontFace, front_face)
+	set_face_anim($SideFace, side_face)
+	set_face_anim($TopFace, top_face)
 
 
 # Set the animation state for a single face.
-func setFaceAnim(face: AnimatedSprite, state: int) -> void:
+func set_face_anim(face: AnimatedSprite, state: int) -> void:
 	if state == FaceState.FACE_1:
 		face.play("1")
 	elif state == FaceState.FACE_2_1:
