@@ -14,6 +14,7 @@ var animation_speed = 2.0
 
 var audio_stream: AudioStreamPlayer
 
+
 func _ready() -> void:
 	audio_stream = AudioStreamPlayer.new()
 	audio_stream.stream = bg_music
@@ -26,4 +27,4 @@ func _ready() -> void:
 func set_music_volume(volume: float) -> void:
 	# Volume is given as a percent, so change that to dB.
 	music_slider_value = volume
-	audio_stream.volume_db = MAX_VOLUME_DB + (log(volume) / log(1.1))
+	audio_stream.volume_db = MAX_VOLUME_DB + (20 * log(volume) / log(10))

@@ -6,6 +6,7 @@ func _ready() -> void:
 		$V/Buttons/QuitButton.hide()
 	$V/Buttons/PlayButton.grab_focus()
 
+
 func _on_PlayButton_pressed() -> void:
 	Global.level_path = "res://src/levels/IntroLevel.tscn"
 	var error := get_tree().change_scene("res://src/states/Game.tscn")

@@ -26,7 +26,7 @@ func _ready() -> void:
 	backside_face = FaceState.FACE_4
 	back_face = FaceState.FACE_5
 	bottom_face = FaceState.FACE_6_1
-	set_animation_speed()
+	update_animation_speed()
 	set_anim("idle")
 
 
@@ -46,7 +46,7 @@ func _physics_process(_delta: float) -> void:
 				rotate_neg_z()
 
 
-func set_animation_speed() -> void:
+func update_animation_speed() -> void:
 	$FrontFace.speed_scale = Global.animation_speed
 	$SideFace.speed_scale = Global.animation_speed
 	$TopFace.speed_scale = Global.animation_speed

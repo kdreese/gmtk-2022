@@ -66,5 +66,5 @@ func _on_OptionsButton_pressed() -> void:
 
 
 func _on_OptionsMenu_options_exited() -> void:
-	level.get_node("Player").set_animation_speed()
+	level.get_node("Player").update_animation_speed()
 	$PauseMenu/ColorRect.show()
