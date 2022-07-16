@@ -25,40 +25,41 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="V" type="VBoxContainer" parent="PauseMenu/ColorRect/C"]
-margin_left = 258.0
-margin_top = 163.0
-margin_right = 381.0
-margin_bottom = 316.0
+margin_left = 260.0
+margin_top = 171.0
+margin_right = 380.0
+margin_bottom = 309.0
 custom_constants/separation = 32
 
 [node name="PausedTitle" type="Label" parent="PauseMenu/ColorRect/C/V"]
-margin_right = 123.0
+margin_right = 120.0
 margin_bottom = 38.0
 custom_fonts/font = SubResource( 1 )
 text = "Paused"
 align = 1
 
 [node name="Buttons" type="VBoxContainer" parent="PauseMenu/ColorRect/C/V"]
+margin_left = 11.0
 margin_top = 70.0
-margin_right = 123.0
-margin_bottom = 153.0
+margin_right = 108.0
+margin_bottom = 138.0
 size_flags_horizontal = 4
 
 [node name="ResumeButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
-margin_right = 123.0
-margin_bottom = 25.0
+margin_right = 97.0
+margin_bottom = 20.0
 text = "Resume"
 
 [node name="RestartButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
-margin_top = 29.0
-margin_right = 123.0
-margin_bottom = 54.0
+margin_top = 24.0
+margin_right = 97.0
+margin_bottom = 44.0
 text = "Restart Level"
 
 [node name="ToMenuButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
-margin_top = 58.0
-margin_right = 123.0
-margin_bottom = 83.0
+margin_top = 48.0
+margin_right = 97.0
+margin_bottom = 68.0
 text = "Quit to Menu"
 
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/ResumeButton" to="PauseMenu" method="_on_ResumeButton_pressed"]
