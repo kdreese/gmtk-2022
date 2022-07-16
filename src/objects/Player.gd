@@ -79,7 +79,7 @@ func rotateY() -> void:
 	# The top and bottom faces are rotated.
 	top_face = rotatedFace(top_face)
 	bottom_face = rotatedFace(bottom_face)
-	# Because of the way the pictures are structure, this is no longer a simple cycle.
+	# Because of the way the pictures are structured, this is no longer a simple cycle.
 	var temp: int = front_face
 	front_face = rotatedFace(side_face)
 	side_face = rotatedFace(back_face)
