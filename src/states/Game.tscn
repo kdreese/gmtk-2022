@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/states/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/Russo_One.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://src/states/PauseMenu.gd" type="Script" id=3]
 [ext_resource path="res://assets/ui/legend.png" type="Texture" id=4]
 [ext_resource path="res://src/states/LevelComplete.gd" type="Script" id=5]
+[ext_resource path="res://src/states/Options.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -46,9 +47,9 @@ anchor_bottom = 1.0
 
 [node name="V" type="VBoxContainer" parent="PauseMenu/ColorRect/C"]
 margin_left = 258.0
-margin_top = 163.0
+margin_top = 149.0
 margin_right = 381.0
-margin_bottom = 316.0
+margin_bottom = 331.0
 custom_constants/separation = 32
 
 [node name="PausedTitle" type="Label" parent="PauseMenu/ColorRect/C/V"]
@@ -61,7 +62,7 @@ align = 1
 [node name="Buttons" type="VBoxContainer" parent="PauseMenu/ColorRect/C/V"]
 margin_top = 70.0
 margin_right = 123.0
-margin_bottom = 153.0
+margin_bottom = 182.0
 size_flags_horizontal = 4
 
 [node name="ResumeButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
@@ -75,10 +76,16 @@ margin_right = 123.0
 margin_bottom = 54.0
 text = "Restart Level"
 
-[node name="ToMenuButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
+[node name="OptionsButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
 margin_top = 58.0
 margin_right = 123.0
 margin_bottom = 83.0
+text = "Options"
+
+[node name="ToMenuButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
+margin_top = 87.0
+margin_right = 123.0
+margin_bottom = 112.0
 text = "Quit to Menu"
 
 [node name="LevelComplete" type="CanvasLayer" parent="."]
@@ -86,6 +93,7 @@ pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="LevelComplete"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 1, 1, 1, 0.235294 )
@@ -132,9 +140,13 @@ margin_right = 123.0
 margin_bottom = 83.0
 text = "Quit to Menu"
 
+[node name="OptionsMenu" parent="." instance=ExtResource( 6 )]
+
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/ResumeButton" to="PauseMenu" method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/RestartButton" to="PauseMenu" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/ToMenuButton" to="PauseMenu" method="_on_ToMenuButton_pressed"]
 [connection signal="pressed" from="LevelComplete/ColorRect/C/V/Buttons/ContinueButton" to="LevelComplete" method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="LevelComplete/ColorRect/C/V/Buttons/RestartButton" to="LevelComplete" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="LevelComplete/ColorRect/C/V/Buttons/ToMenuButton" to="LevelComplete" method="_on_ToMenuButton_pressed"]
+[connection signal="options_exited" from="OptionsMenu" to="." method="_on_OptionsMenu_options_exited"]
