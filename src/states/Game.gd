@@ -28,6 +28,18 @@ func _ready() -> void:
 	reset_move_counter()
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("escape"):
+		get_tree().paused = true
+		$PauseMenu/ColorRect.show()
+		$PauseMenu/ColorRect/C/V/Buttons/ResumeButton.grab_focus()
+		get_tree().set_input_as_handled()
+	elif event.is_action_pressed("restart"):
+		var error := get_tree().reload_current_scene()
+		assert(not error)
+		get_tree().set_input_as_handled()
+
+
 func update_move_counter() -> void:
 	$UI/MoveCounter.text = "Moves: %d" % moves
 
