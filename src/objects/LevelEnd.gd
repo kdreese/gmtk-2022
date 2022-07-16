@@ -14,5 +14,6 @@ func _on_LevelEnd_area_entered(area: Area2D) -> void:
 	var face_value = area.get_top_face_value()
 	if face_value >= minimum_weight and face_value <= maximum_weight:
 		emit_signal("exit_reached_success", next_level_path)
+		$Indicator.hide()
 	else:
 		emit_signal("exit_reached_incomplete")
