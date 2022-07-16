@@ -5,7 +5,7 @@ const MAX_VOLUME_DB = -6.0
 
 var level_path: String
 
-var bg_music = preload("res://assets/sound/Xetator.wav")
+var bg_music = preload("res://assets/sound/Xetator.ogg")
 
 # Options
 var music_slider_value = 1.0
