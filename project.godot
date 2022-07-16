@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://src/objects/Player.gd"
+}, {
+"base": "Node2D",
+"class": "TestLevel",
+"language": "GDScript",
+"path": "res://src/levels/TestLevel.gd"
 } ]
 _global_script_class_icons={
 "LevelButton": "",
-"Player": ""
+"Player": "",
+"TestLevel": ""
 }
 
 [application]
@@ -87,6 +93,11 @@ escape={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Buttons"
 
 [physics]
 
