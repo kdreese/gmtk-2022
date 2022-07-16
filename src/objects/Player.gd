@@ -14,6 +14,7 @@ var backside_face: int
 var grid_coords := Vector2.ZERO
 var tile_map: TileMap
 
+signal player_moved
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -72,6 +73,7 @@ func move(offset: Vector2) -> bool:
 	if is_movable(new_coords):
 		position = tile_map.map_to_world(new_coords)
 		grid_coords = new_coords
+		emit_signal("player_moved")
 		return true
 	return false
 

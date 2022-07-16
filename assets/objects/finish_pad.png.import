@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/end_tile.png-3f4e53dd5f9060f635459a4448106923.stex"
+path="res://.import/finish_pad.png-8211d7dfe0e558003f92ba35a7ab05a2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/end_tile.png"
-dest_files=[ "res://.import/end_tile.png-3f4e53dd5f9060f635459a4448106923.stex" ]
+source_file="res://assets/objects/finish_pad.png"
+dest_files=[ "res://.import/finish_pad.png-8211d7dfe0e558003f92ba35a7ab05a2.stex" ]
 
 [params]
 

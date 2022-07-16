@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/ui/Russo_One.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/states/Menu.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 1 )
+
+[node name="Menu" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="V" type="VBoxContainer" parent="."]
+margin_left = 229.0
+margin_top = 162.0
+margin_right = 411.0
+margin_bottom = 318.0
+custom_constants/separation = 32
+
+[node name="Title" type="Label" parent="V"]
+margin_right = 182.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 1 )
+text = "Xetator"
+
+[node name="Buttons" type="VBoxContainer" parent="V"]
+margin_left = 62.0
+margin_top = 88.0
+margin_right = 119.0
+margin_bottom = 156.0
+size_flags_horizontal = 4
+
+[node name="PlayButton" type="Button" parent="V/Buttons"]
+margin_right = 57.0
+margin_bottom = 20.0
+text = "Play"
+
+[node name="CreditsButton" type="Button" parent="V/Buttons"]
+margin_top = 24.0
+margin_right = 57.0
+margin_bottom = 44.0
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="V/Buttons"]
+margin_top = 48.0
+margin_right = 57.0
+margin_bottom = 68.0
+text = "Quit"
+
+[connection signal="pressed" from="V/Buttons/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="V/Buttons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="V/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
