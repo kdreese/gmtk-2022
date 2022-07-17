@@ -29,3 +29,4 @@ minimum_weight = 6
 
 [node name="LevelEnd" parent="." instance=ExtResource( 4 )]
 position = Vector2( 480, 304 )
+level_name = "Level 6"
