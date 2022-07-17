@@ -3,7 +3,7 @@ extends Node
 
 const MAX_VOLUME_DB := -6.0
 const SAVE_FILE_PATH := "user://config.cfg"
-const FIRST_LEVEL_PATH = "res://src/levels/IntroLevel.tscn"
+const FIRST_LEVEL_PATH := "res://src/levels/IntroLevel.tscn"
 
 const BG_MUSIC = preload("res://assets/sound/Xetator.ogg")
 
