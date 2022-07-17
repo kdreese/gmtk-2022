@@ -9,8 +9,7 @@ var button1_wires := [
 	Vector3(15, 0, 0),
 	Vector3(15, -1, 0),
 	Vector3(14, -1, 1),
-	Vector3(13, -1, 1),
-
+	Vector3(13, -1, 1)
 ]
 var button2_wires := [
 	Vector3(13, 1, 0),
