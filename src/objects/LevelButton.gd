@@ -10,6 +10,7 @@ var pressed_texture = preload("res://assets/objects/button_pressed.png")
 export var minimum_weight: int = 1
 export var maximum_weight: int = 6
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Set the initial state to unpressed.

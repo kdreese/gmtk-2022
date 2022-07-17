@@ -8,6 +8,7 @@ signal exit_reached_incomplete
 export var minimum_weight: int = 1
 export var maximum_weight: int = 6
 export var next_level_path: String = ""
+export var level_name: String = ""
 
 
 func _on_LevelEnd_area_entered(area: Area2D) -> void:

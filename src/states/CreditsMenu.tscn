@@ -1,0 +1,313 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/ui/Russo_One.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/states/CreditsMenu.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 36
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 22
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 11
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 8
+font_data = ExtResource( 1 )
+
+[node name="CreditsMenu" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="V" type="VBoxContainer" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="ColorRect/V"]
+margin_left = 225.0
+margin_right = 399.0
+margin_bottom = 56.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 1 )
+text = "Credits"
+align = 1
+
+[node name="S" type="ScrollContainer" parent="ColorRect/V"]
+margin_top = 60.0
+margin_right = 624.0
+margin_bottom = 464.0
+size_flags_vertical = 3
+
+[node name="V" type="VBoxContainer" parent="ColorRect/V/S"]
+margin_right = 612.0
+margin_bottom = 2102.0
+size_flags_horizontal = 3
+custom_constants/separation = 24
+
+[node name="Us" type="GridContainer" parent="ColorRect/V/S/V"]
+margin_right = 612.0
+margin_bottom = 117.0
+columns = 3
+
+[node name="HearstName" type="Label" parent="ColorRect/V/S/V/Us"]
+margin_right = 201.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 5 )
+text = "Terry Hearst"
+align = 1
+
+[node name="MooreName" type="Label" parent="ColorRect/V/S/V/Us"]
+margin_left = 205.0
+margin_right = 406.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 5 )
+text = "Andrew Moore"
+align = 1
+
+[node name="ReeseName" type="Label" parent="ColorRect/V/S/V/Us"]
+margin_left = 410.0
+margin_right = 611.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 5 )
+text = "Kyle Reese"
+align = 1
+
+[node name="HearstCredits" type="Label" parent="ColorRect/V/S/V/Us"]
+margin_top = 43.0
+margin_right = 201.0
+margin_bottom = 106.0
+text = "Programming
+Puzzle Design
+Sounds (maybe)"
+align = 1
+
+[node name="MooreCredits" type="Label" parent="ColorRect/V/S/V/Us"]
+margin_left = 205.0
+margin_top = 32.0
+margin_right = 406.0
+margin_bottom = 117.0
+text = "Programming
+Puzzle Design
+Art/Graphics
+Music"
+align = 1
+
+[node name="ReeseCredits" type="Label" parent="ColorRect/V/S/V/Us"]
+margin_left = 410.0
+margin_top = 54.0
+margin_right = 611.0
+margin_bottom = 95.0
+text = "Programming
+Puzzle Design"
+align = 1
+
+[node name="LicensesTitle" type="Label" parent="ColorRect/V/S/V"]
+margin_top = 141.0
+margin_right = 612.0
+margin_bottom = 183.0
+custom_fonts/font = SubResource( 6 )
+text = "Licenses"
+align = 1
+
+[node name="Godot" type="VBoxContainer" parent="ColorRect/V/S/V"]
+margin_top = 207.0
+margin_right = 612.0
+margin_bottom = 562.0
+custom_constants/separation = 8
+
+[node name="Title" type="Label" parent="ColorRect/V/S/V/Godot"]
+margin_right = 612.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 2 )
+text = "Godot Engine"
+align = 1
+
+[node name="Description" type="Label" parent="ColorRect/V/S/V/Godot"]
+margin_top = 35.0
+margin_right = 612.0
+margin_bottom = 355.0
+custom_fonts/font = SubResource( 3 )
+text = "This game uses Godot Engine, available under the following license:
+
+Copyright (c) 2007-2022 Juan Linietsky, Ariel Manzur. Copyright (c) 2014-2022 Godot Engine contributors.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+autowrap = true
+
+[node name="FreeType" type="VBoxContainer" parent="ColorRect/V/S/V"]
+margin_top = 586.0
+margin_right = 612.0
+margin_bottom = 652.0
+custom_constants/separation = 8
+
+[node name="Title" type="Label" parent="ColorRect/V/S/V/FreeType"]
+margin_right = 612.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 2 )
+text = "FreeType"
+align = 1
+
+[node name="Description" type="Label" parent="ColorRect/V/S/V/FreeType"]
+margin_top = 35.0
+margin_right = 612.0
+margin_bottom = 66.0
+custom_fonts/font = SubResource( 3 )
+text = "Portions of this software are copyright © 1996-2020 The FreeType Project (www.freetype.org). All rights reserved."
+autowrap = true
+
+[node name="ENet" type="VBoxContainer" parent="ColorRect/V/S/V"]
+margin_top = 676.0
+margin_right = 612.0
+margin_bottom = 997.0
+custom_constants/separation = 8
+
+[node name="Title" type="Label" parent="ColorRect/V/S/V/ENet"]
+margin_right = 612.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 2 )
+text = "ENet"
+align = 1
+
+[node name="Description" type="Label" parent="ColorRect/V/S/V/ENet"]
+margin_top = 35.0
+margin_right = 612.0
+margin_bottom = 321.0
+custom_fonts/font = SubResource( 3 )
+text = "Copyright (c) 2002-2020 Lee Salzman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+autowrap = true
+
+[node name="MbedTLS" type="VBoxContainer" parent="ColorRect/V/S/V"]
+margin_top = 1021.0
+margin_right = 612.0
+margin_bottom = 1240.0
+custom_constants/separation = 8
+
+[node name="Title" type="Label" parent="ColorRect/V/S/V/MbedTLS"]
+margin_right = 612.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 2 )
+text = "Mbed TLS"
+align = 1
+
+[node name="Description" type="Label" parent="ColorRect/V/S/V/MbedTLS"]
+margin_top = 35.0
+margin_right = 612.0
+margin_bottom = 219.0
+custom_fonts/font = SubResource( 3 )
+text = "Copyright The Mbed TLS Contributors
+
+Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."
+autowrap = true
+
+[node name="RussoOne" type="VBoxContainer" parent="ColorRect/V/S/V"]
+margin_top = 1264.0
+margin_right = 612.0
+margin_bottom = 2102.0
+custom_constants/separation = 8
+
+[node name="Title" type="Label" parent="ColorRect/V/S/V/RussoOne"]
+margin_right = 612.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 2 )
+text = "Russo One"
+align = 1
+
+[node name="Description" type="Label" parent="ColorRect/V/S/V/RussoOne"]
+margin_top = 35.0
+margin_right = 612.0
+margin_bottom = 838.0
+custom_fonts/font = SubResource( 4 )
+text = "Copyright (c) 2011-2012, Jovanny Lemonad (jovanny.ru), with Reserved Font Name \"Russo\"
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide development of collaborative font projects, to support the font creation efforts of academic and linguistic communities, and to provide a free and open framework in which fonts may be shared and improved in partnership with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and redistributed freely as long as they are not sold by themselves. The fonts, including any derivative works, can be bundled, embedded, redistributed and/or sold with any software provided that any reserved names are not used by derivative works. The fonts and derivatives, however, cannot be released under any other type of license. The requirement for fonts to remain under this license does not apply to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+\"Font Software\" refers to the set of files released by the Copyright Holder(s) under this license and clearly marked as such. This may include source files, build scripts and documentation.
+
+\"Reserved Font Name\" refers to any names specified as such after the copyright statement(s).
+
+\"Original Version\" refers to the collection of Font Software components as distributed by the Copyright Holder(s).
+
+\"Modified Version\" refers to any derivative made by adding to, deleting, or substituting -- in part or in whole -- any of the components of the Original Version, by changing formats or by porting the Font Software to a new environment.
+
+\"Author\" refers to any designer, engineer, programmer, technical writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining a copy of the Font Software, to use, study, copy, merge, embed, modify, redistribute, and sell modified and unmodified copies of the Font Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components, in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled, redistributed and/or sold with any software, provided that each copy contains the above copyright notice and this license. These can be included either as stand-alone text files, human-readable headers or in the appropriate machine-readable metadata fields within text or binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font Name(s) unless explicit written permission is granted by the corresponding Copyright Holder. This restriction only applies to the primary font name as presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font Software shall not be used to promote, endorse or advertise any Modified Version, except to acknowledge the contribution(s) of the Copyright Holder(s) and the Author(s) or with their explicit written permission.
+
+5) The Font Software, modified or unmodified, in part or in whole, must be distributed entirely under this license, and must not be distributed under any other license. The requirement for fonts to remain under this license does not apply to any document created using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE."
+autowrap = true
+
+[node name="BackButton" type="Button" parent="ColorRect"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 92.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 80, 0 )
+text = "Back"
+
+[connection signal="pressed" from="ColorRect/BackButton" to="." method="_on_BackButton_pressed"]

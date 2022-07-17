@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://resouces/TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://src/objects/LevelButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/levels/ButtonTestLevel.gd" type="Script" id=3]
 [ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/objects/Gate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://resouces/WireTileSet.tres" type="TileSet" id=6]
 
 [node name="ButtonTestLevel" type="Node2D"]
 script = ExtResource( 3 )
@@ -13,7 +15,14 @@ mode = 1
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 64, 32 )
 format = 1
-tile_data = PoolIntArray( 131082, 0, 0, 131083, 7, 0, 131084, 0, 0, 131085, 7, 0, 131086, 0, 0, 131087, 7, 0, 131089, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 7, 0, 196620, 0, 0, 196621, 7, 0, 196622, 0, 0, 196623, 7, 0, 196624, 0, 0, 196625, 0, 0, 262152, 2, 0 )
+tile_data = PoolIntArray( 131082, 0, 0, 131084, 0, 0, 131086, 0, 0, 131089, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196620, 0, 0, 196622, 0, 0, 196624, 0, 0, 196625, 0, 0, 262152, 2, 0 )
+
+[node name="WireTileMap" type="TileMap" parent="."]
+mode = 1
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 64, 32 )
+format = 1
+tile_data = PoolIntArray( 131082, 536870926, 0, 131084, 14, 0, 131086, 13, 0, 196618, 1610612743, 0, 196620, 1610612743, 0, 196622, 536870919, 0 )
 
 [node name="LevelButton" parent="." instance=ExtResource( 2 )]
 position = Vector2( 256, 208 )
@@ -29,3 +38,19 @@ minimum_weight = 6
 
 [node name="LevelEnd" parent="." instance=ExtResource( 4 )]
 position = Vector2( 480, 304 )
+next_level_path = "res://src/levels/TestLevel.tscn"
+
+[node name="Gate" parent="." instance=ExtResource( 5 )]
+position = Vector2( 288, 216 )
+
+[node name="Gate2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 256, 232 )
+
+[node name="Gate3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 352, 248 )
+
+[node name="Gate4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 320, 264 )
+
+[node name="Gate5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 384, 296 )

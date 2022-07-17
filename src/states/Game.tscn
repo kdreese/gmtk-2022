@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/ui/legend.png" type="Texture" id=4]
 [ext_resource path="res://src/states/LevelComplete.gd" type="Script" id=5]
 [ext_resource path="res://assets/ui/textbox.png" type="Texture" id=6]
-[ext_resource path="res://src/states/Options.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/states/OptionsMenu.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -74,9 +74,9 @@ anchor_bottom = 1.0
 
 [node name="V" type="VBoxContainer" parent="PauseMenu/ColorRect/C"]
 margin_left = 258.0
-margin_top = 149.0
+margin_top = 134.0
 margin_right = 381.0
-margin_bottom = 331.0
+margin_bottom = 345.0
 custom_constants/separation = 32
 
 [node name="PausedTitle" type="Label" parent="PauseMenu/ColorRect/C/V"]

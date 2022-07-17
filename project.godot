@@ -9,12 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
+"base": "Level",
 "class": "ButtonIntroLevel",
 "language": "GDScript",
 "path": "res://src/levels/ButtonIntroLevel.gd"
 }, {
-"base": "Node2D",
+"base": "Level",
 "class": "ButtonTestLevel",
 "language": "GDScript",
 "path": "res://src/levels/ButtonTestLevel.gd"
@@ -23,6 +23,11 @@ _global_script_classes=[ {
 "class": "DangerButtonLevel",
 "language": "GDScript",
 "path": "res://src/levels/DangerButtonLevel.gd"
+}, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://src/levels/Level.gd"
 }, {
 "base": "Area2D",
 "class": "LevelButton",
@@ -48,6 +53,7 @@ _global_script_class_icons={
 "ButtonIntroLevel": "",
 "ButtonTestLevel": "",
 "DangerButtonLevel": "",
+"Level": "",
 "LevelButton": "",
 "LevelEnd": "",
 "OptimizationLevel": "",
