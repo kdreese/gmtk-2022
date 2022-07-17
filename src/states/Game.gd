@@ -15,6 +15,7 @@ func _ready() -> void:
 	assert(not error)
 
 	$UI/V/LevelName.text = level.get_node("LevelEnd").level_name
+	$UI/Textbox/MessageText.text = level.level_text
 
 	for coords in tile_map.get_used_cells():
 		var tile := tile_map.get_cell(coords.x, coords.y)

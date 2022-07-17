@@ -33,6 +33,7 @@ position = Vector2( 288, 304 )
 minimum_weight = 6
 next_level_path = "res://src/levels/ButtonTestLevel.tscn"
 level_name = "Gate"
+level_text = "This button won't activate unless you're in the right orientation. Once pressed, buttons stay pressed forever."
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
 position = Vector2( 320, 296 )
