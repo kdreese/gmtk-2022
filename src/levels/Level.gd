@@ -78,6 +78,8 @@ func invert_wire(grid_coords: Vector2, on_bottom: bool = true) -> void:
 		new_tile_idx = SPUR_ON
 	elif tile_idx == ELBOW_DOWN_OFF:
 		new_tile_idx = ELBOW_DOWN_ON
+	elif tile_idx == ELBOW_DOWN_ON:
+		new_tile_idx = ELBOW_DOWN_OFF
 	else:
 		return
 
