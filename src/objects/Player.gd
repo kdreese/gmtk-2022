@@ -235,3 +235,4 @@ func _on_animation_finished() -> void:
 	$ExtraFace.play("idle")
 	update_palettes()
 	position = tile_map.map_to_world(grid_coords)
+	$MoveSound.play()

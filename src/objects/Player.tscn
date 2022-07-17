@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://src/objects/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player/animations/rotate_neg_z/side_3.png" type="Texture" id=2]
@@ -77,6 +77,7 @@
 [ext_resource path="res://resouces/palettes/2_1.tres" type="Gradient" id=75]
 [ext_resource path="res://resouces/palettes/3_2.tres" type="Gradient" id=76]
 [ext_resource path="res://resouces/palettes/1.tres" type="Gradient" id=77]
+[ext_resource path="res://assets/sound/move.wav" type="AudioStream" id=78]
 
 [sub_resource type="GradientTexture" id=11]
 gradient = ExtResource( 75 )
@@ -88,14 +89,9 @@ shader_param/palette = SubResource( 11 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 18 ), ExtResource( 30 ), null, null, null ],
+"frames": [ ExtResource( 3 ) ],
 "loop": false,
-"name": "rotate_neg_x",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 41 ), ExtResource( 29 ), ExtResource( 32 ), ExtResource( 40 ), ExtResource( 58 ), ExtResource( 60 ) ],
-"loop": false,
-"name": "rotate_neg_z",
+"name": "idle",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 28 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 25 ) ],
@@ -108,9 +104,14 @@ animations = [ {
 "name": "rotate_z",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 18 ), ExtResource( 30 ), null, null, null ],
 "loop": false,
-"name": "idle",
+"name": "rotate_neg_x",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 41 ), ExtResource( 29 ), ExtResource( 32 ), ExtResource( 40 ), ExtResource( 58 ), ExtResource( 60 ) ],
+"loop": false,
+"name": "rotate_neg_z",
 "speed": 5.0
 } ]
 
@@ -124,14 +125,9 @@ shader_param/palette = SubResource( 13 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 9 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 27 ), ExtResource( 55 ), ExtResource( 57 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": false,
-"name": "rotate_neg_x",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 61 ), ExtResource( 2 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ) ],
-"loop": false,
-"name": "rotate_neg_z",
+"name": "idle",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 19 ), ExtResource( 8 ), ExtResource( 34 ), ExtResource( 26 ), ExtResource( 31 ) ],
@@ -144,9 +140,14 @@ animations = [ {
 "name": "rotate_z",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 27 ), ExtResource( 55 ), ExtResource( 57 ) ],
 "loop": false,
-"name": "idle",
+"name": "rotate_neg_x",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 61 ), ExtResource( 2 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ) ],
+"loop": false,
+"name": "rotate_neg_z",
 "speed": 5.0
 } ]
 
@@ -160,14 +161,9 @@ shader_param/palette = SubResource( 12 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 12 ), ExtResource( 47 ), ExtResource( 49 ), ExtResource( 42 ), ExtResource( 56 ), ExtResource( 65 ) ],
+"frames": [ ExtResource( 11 ) ],
 "loop": false,
-"name": "rotate_neg_x",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 59 ), ExtResource( 69 ), ExtResource( 70 ), null, null, null ],
-"loop": false,
-"name": "rotate_neg_z",
+"name": "idle",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ), ExtResource( 22 ), ExtResource( 48 ), null, null, null ],
@@ -180,9 +176,14 @@ animations = [ {
 "name": "rotate_z",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 12 ), ExtResource( 47 ), ExtResource( 49 ), ExtResource( 42 ), ExtResource( 56 ), ExtResource( 65 ) ],
 "loop": false,
-"name": "idle",
+"name": "rotate_neg_x",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 59 ), ExtResource( 69 ), ExtResource( 70 ), null, null, null ],
+"loop": false,
+"name": "rotate_neg_z",
 "speed": 5.0
 } ]
 
@@ -195,14 +196,9 @@ shader_param/palette = SubResource( 14 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ null, null, null, ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"frames": [ null ],
 "loop": false,
-"name": "rotate_neg_x",
-"speed": 5.0
-}, {
-"frames": [ null, null, null, ExtResource( 50 ), ExtResource( 67 ), ExtResource( 62 ) ],
-"loop": false,
-"name": "rotate_neg_z",
+"name": "idle",
 "speed": 5.0
 }, {
 "frames": [ null, null, null, ExtResource( 13 ), ExtResource( 14 ), ExtResource( 73 ) ],
@@ -215,9 +211,14 @@ animations = [ {
 "name": "rotate_z",
 "speed": 5.0
 }, {
-"frames": [ null ],
+"frames": [ null, null, null, ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": false,
-"name": "idle",
+"name": "rotate_neg_x",
+"speed": 5.0
+}, {
+"frames": [ null, null, null, ExtResource( 50 ), ExtResource( 67 ), ExtResource( 62 ) ],
+"loop": false,
+"name": "rotate_neg_z",
 "speed": 5.0
 } ]
 
@@ -257,5 +258,9 @@ offset = Vector2( 0, -2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 17 )
 shape = SubResource( 4 )
+
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 0, 17 )
+stream = ExtResource( 78 )
 
 [connection signal="animation_finished" from="FrontFace" to="." method="_on_animation_finished"]
