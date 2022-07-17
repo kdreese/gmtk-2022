@@ -18,3 +18,4 @@ tile_data = PoolIntArray( -65524, 0, 0, -65523, 6, 0, 12, 0, 0, 13, 6, 0, 65548,
 position = Vector2( 416, 176 )
 next_level_path = "res://src/levels/MovementTutorialLevel.tscn"
 level_name = "Introduction"
+level_text = "Mr. Pip, Good morning Mr. Pip. Thank you for complying with this mandatory inspection. Please proceed to the ending pad."

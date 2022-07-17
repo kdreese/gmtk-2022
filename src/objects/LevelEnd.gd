@@ -5,10 +5,11 @@ extends Area2D
 signal exit_reached_success
 signal exit_reached_incomplete
 
-export var minimum_weight: int = 1
-export var maximum_weight: int = 6
-export var next_level_path: String = ""
-export var level_name: String = ""
+export var minimum_weight := 1
+export var maximum_weight := 6
+export var next_level_path := ""
+export var level_name := ""
+export var level_text := ""
 
 
 func _ready() -> void:

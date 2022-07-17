@@ -20,3 +20,4 @@ minimum_weight = 5
 maximum_weight = 5
 next_level_path = "res://src/levels/CycleTrapLevel.tscn"
 level_name = "Lopsided Patterns"
+level_text = "That's it from me, if there are any new elements, I will explain them."
