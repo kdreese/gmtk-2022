@@ -1,13 +1,13 @@
 extends Node2D
 
 
-var level: Node2D
+var level: Level
 
 var moves: int
 
 
 func _ready() -> void:
-	level = load(Global.level_path).instance() as Node2D
+	level = load(Global.level_path).instance() as Level
 	var tile_map := level.get_node("TileMap") as TileMap
 
 	add_child(level)
@@ -52,6 +52,7 @@ func reset_move_counter() -> void:
 func _on_player_move():
 	moves += 1
 	update_move_counter()
+	level.handle_player_move()
 
 
 func _on_LevelEnd_exit_reached_success(next_level_path: String):
