@@ -69,6 +69,7 @@ func _on_NextButton_pressed() -> void:
 	$ColorRect/PrevButton.show()
 	if len(level_names) < (page_idx + 1) * 9:
 		$ColorRect/NextButton.hide()
+	buttons[0].grab_focus()
 
 
 func _on_PrevButton_pressed() -> void:
@@ -77,3 +78,4 @@ func _on_PrevButton_pressed() -> void:
 	$ColorRect/NextButton.show()
 	if page_idx == 0:
 		$ColorRect/PrevButton.hide()
+	buttons[0].grab_focus()
