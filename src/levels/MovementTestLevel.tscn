@@ -17,5 +17,5 @@ tile_data = PoolIntArray( 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65
 [node name="LevelEnd" parent="." instance=ExtResource( 3 )]
 position = Vector2( 384, 224 )
 minimum_weight = 6
-next_level_path = "res://src/levels/ButtonIntroLevel.tscn"
+next_level_path = "res://src/levels/CycleTeachLevel.tscn"
 level_name = "Level 3"

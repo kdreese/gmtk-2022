@@ -32,7 +32,8 @@ minimum_weight = 6
 position = Vector2( 224, 112 )
 minimum_weight = 3
 maximum_weight = 3
-level_name = "Test Level"
+next_level_path = "res://src/levels/OptimizationLevel.tscn"
+level_name = "Level 8"
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
 position = Vector2( 288, 152 )

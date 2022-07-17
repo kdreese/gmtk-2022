@@ -2,8 +2,6 @@ extends Level
 
 
 func _ready() -> void:
-	var error := $LevelButton.connect("button_pressed", self, "_on_button_pressed", [$LevelButton])
-	assert(not error)
 	$Gate2.open()
 
 

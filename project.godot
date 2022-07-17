@@ -9,16 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Level",
-"class": "ButtonIntroLevel",
-"language": "GDScript",
-"path": "res://src/levels/ButtonIntroLevel.gd"
-}, {
-"base": "Level",
-"class": "ButtonTestLevel",
-"language": "GDScript",
-"path": "res://src/levels/ButtonTestLevel.gd"
-}, {
 "base": "Node2D",
 "class": "Level",
 "language": "GDScript",
@@ -40,8 +30,6 @@ _global_script_classes=[ {
 "path": "res://src/objects/Player.gd"
 } ]
 _global_script_class_icons={
-"ButtonIntroLevel": "",
-"ButtonTestLevel": "",
 "Level": "",
 "LevelButton": "",
 "LevelEnd": "",
