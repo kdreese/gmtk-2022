@@ -17,7 +17,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Gate" type="Node2D"]
+[node name="Gate" type="Node2D" groups=["Gates"]]
 z_index = 1
 script = ExtResource( 3 )
 

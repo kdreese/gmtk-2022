@@ -11,10 +11,6 @@ var tiles := [
 ]
 
 
-func handle_player_move():
-	$Gate.update_z_index(get_node("Player").grid_coords)
-
-
 func _on_LevelButton_button_pressed() -> void:
 	$Gate.open()
 	invert_wires(tiles)

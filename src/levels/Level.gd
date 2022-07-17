@@ -1,6 +1,7 @@
 class_name Level
 extends Node2D
 
+
 enum {
 	X_ON = 0,
 	X_OFF,
@@ -20,8 +21,10 @@ enum {
 	ELBOW_DOWN_ON
 }
 
-func handle_player_move():
-	pass
+
+func handle_player_move(grid_coords: Vector2) -> void:
+	for gate in get_tree().get_nodes_in_group("Gates"):
+		gate.update_z_index(grid_coords)
 
 
 func invert_wire(grid_coords: Vector2, on_bottom: bool = true) -> void:

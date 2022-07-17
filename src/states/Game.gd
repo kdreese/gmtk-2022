@@ -51,10 +51,10 @@ func reset_move_counter() -> void:
 	update_move_counter()
 
 
-func _on_player_move():
+func _on_player_move(grid_coords: Vector2):
 	moves += 1
 	update_move_counter()
-	level.handle_player_move()
+	level.handle_player_move(grid_coords)
 
 
 func _on_LevelEnd_exit_reached_success(next_level_path: String):

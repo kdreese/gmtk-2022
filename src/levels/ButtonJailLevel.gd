@@ -1,5 +1,6 @@
 extends Level
 
+
 var toggle_wires := [
 	Vector2(12, 3),
 	Vector2(12, 4)
