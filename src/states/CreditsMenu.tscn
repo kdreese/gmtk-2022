@@ -1,10 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/ui/Russo_One.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/states/CreditsMenu.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 24
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 36
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -27,14 +35,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.392157 )
 
-[node name="BackButton" type="Button" parent="ColorRect"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 92.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 80, 0 )
-text = "Back"
-
 [node name="V" type="VBoxContainer" parent="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -45,8 +45,10 @@ margin_bottom = -8.0
 size_flags_vertical = 3
 
 [node name="Title" type="Label" parent="ColorRect/V"]
-margin_right = 624.0
+margin_left = 225.0
+margin_right = 399.0
 margin_bottom = 56.0
+size_flags_horizontal = 4
 custom_fonts/font = SubResource( 1 )
 text = "Credits"
 align = 1
@@ -59,13 +61,82 @@ size_flags_vertical = 3
 
 [node name="V" type="VBoxContainer" parent="ColorRect/V/S"]
 margin_right = 612.0
-margin_bottom = 1895.0
+margin_bottom = 2102.0
 size_flags_horizontal = 3
 custom_constants/separation = 24
 
-[node name="Godot" type="VBoxContainer" parent="ColorRect/V/S/V"]
+[node name="Us" type="GridContainer" parent="ColorRect/V/S/V"]
 margin_right = 612.0
-margin_bottom = 355.0
+margin_bottom = 117.0
+columns = 3
+
+[node name="HearstName" type="Label" parent="ColorRect/V/S/V/Us"]
+margin_right = 201.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 5 )
+text = "Terry Hearst"
+align = 1
+
+[node name="MooreName" type="Label" parent="ColorRect/V/S/V/Us"]
+margin_left = 205.0
+margin_right = 406.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 5 )
+text = "Andrew Moore"
+align = 1
+
+[node name="ReeseName" type="Label" parent="ColorRect/V/S/V/Us"]
+margin_left = 410.0
+margin_right = 611.0
+margin_bottom = 28.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 5 )
+text = "Kyle Reese"
+align = 1
+
+[node name="HearstCredits" type="Label" parent="ColorRect/V/S/V/Us"]
+margin_top = 43.0
+margin_right = 201.0
+margin_bottom = 106.0
+text = "Programming
+Puzzle Design
+Sounds (maybe)"
+align = 1
+
+[node name="MooreCredits" type="Label" parent="ColorRect/V/S/V/Us"]
+margin_left = 205.0
+margin_top = 32.0
+margin_right = 406.0
+margin_bottom = 117.0
+text = "Programming
+Puzzle Design
+Art/Graphics
+Music"
+align = 1
+
+[node name="ReeseCredits" type="Label" parent="ColorRect/V/S/V/Us"]
+margin_left = 410.0
+margin_top = 54.0
+margin_right = 611.0
+margin_bottom = 95.0
+text = "Programming
+Puzzle Design"
+align = 1
+
+[node name="LicensesTitle" type="Label" parent="ColorRect/V/S/V"]
+margin_top = 141.0
+margin_right = 612.0
+margin_bottom = 183.0
+custom_fonts/font = SubResource( 6 )
+text = "Licenses"
+align = 1
+
+[node name="Godot" type="VBoxContainer" parent="ColorRect/V/S/V"]
+margin_top = 207.0
+margin_right = 612.0
+margin_bottom = 562.0
 custom_constants/separation = 8
 
 [node name="Title" type="Label" parent="ColorRect/V/S/V/Godot"]
@@ -92,9 +163,9 @@ THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 autowrap = true
 
 [node name="FreeType" type="VBoxContainer" parent="ColorRect/V/S/V"]
-margin_top = 379.0
+margin_top = 586.0
 margin_right = 612.0
-margin_bottom = 445.0
+margin_bottom = 652.0
 custom_constants/separation = 8
 
 [node name="Title" type="Label" parent="ColorRect/V/S/V/FreeType"]
@@ -113,9 +184,9 @@ text = "Portions of this software are copyright © 1996-2020 The FreeType Projec
 autowrap = true
 
 [node name="ENet" type="VBoxContainer" parent="ColorRect/V/S/V"]
-margin_top = 469.0
+margin_top = 676.0
 margin_right = 612.0
-margin_bottom = 790.0
+margin_bottom = 997.0
 custom_constants/separation = 8
 
 [node name="Title" type="Label" parent="ColorRect/V/S/V/ENet"]
@@ -140,9 +211,9 @@ THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 autowrap = true
 
 [node name="MbedTLS" type="VBoxContainer" parent="ColorRect/V/S/V"]
-margin_top = 814.0
+margin_top = 1021.0
 margin_right = 612.0
-margin_bottom = 1033.0
+margin_bottom = 1240.0
 custom_constants/separation = 8
 
 [node name="Title" type="Label" parent="ColorRect/V/S/V/MbedTLS"]
@@ -167,9 +238,9 @@ Unless required by applicable law or agreed to in writing, software distributed 
 autowrap = true
 
 [node name="RussoOne" type="VBoxContainer" parent="ColorRect/V/S/V"]
-margin_top = 1057.0
+margin_top = 1264.0
 margin_right = 612.0
-margin_bottom = 1895.0
+margin_bottom = 2102.0
 custom_constants/separation = 8
 
 [node name="Title" type="Label" parent="ColorRect/V/S/V/RussoOne"]
@@ -230,5 +301,13 @@ This license becomes null and void if any of the above conditions are not met.
 DISCLAIMER
 THE FONT SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE."
 autowrap = true
+
+[node name="BackButton" type="Button" parent="ColorRect"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 92.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 80, 0 )
+text = "Back"
 
 [connection signal="pressed" from="ColorRect/BackButton" to="." method="_on_BackButton_pressed"]
