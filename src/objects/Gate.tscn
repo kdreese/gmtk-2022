@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/tiles/open_gate_tile.png" type="Texture" id=1]
-[ext_resource path="res://assets/tiles/closed_gate_tile.png" type="Texture" id=2]
+[ext_resource path="res://assets/objects/open_gate.png" type="Texture" id=1]
+[ext_resource path="res://assets/objects/closed_gate.png" type="Texture" id=2]
 [ext_resource path="res://src/objects/Gate.gd" type="Script" id=3]
 
 [sub_resource type="SpriteFrames" id=1]
