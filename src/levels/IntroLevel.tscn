@@ -12,7 +12,7 @@ mode = 1
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 64, 32 )
 format = 1
-tile_data = PoolIntArray( -65524, 0, 0, 12, 0, 0, 65548, 0, 0, 131084, 0, 0, 196620, 0, 0, 262156, 0, 0, 327692, 2, 0 )
+tile_data = PoolIntArray( -65524, 0, 0, -65523, 6, 0, 12, 0, 0, 13, 6, 0, 65548, 0, 0, 65549, 6, 0, 131084, 0, 0, 131085, 6, 0, 196620, 0, 0, 196621, 6, 0, 262156, 0, 0, 262157, 6, 0, 327692, 2, 0, 327693, 6, 0, 393228, 536870918, 0 )
 
 [node name="LevelEnd" parent="." instance=ExtResource( 2 )]
 position = Vector2( 416, 176 )
