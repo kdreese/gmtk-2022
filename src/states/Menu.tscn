@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/ui/Russo_One.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/states/Menu.gd" type="Script" id=2]
 [ext_resource path="res://src/states/Options.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/states/LevelSelect.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -15,11 +16,13 @@ script = ExtResource( 2 )
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
 
+[node name="LevelSelect" parent="." instance=ExtResource( 4 )]
+
 [node name="V" type="VBoxContainer" parent="."]
 margin_left = 229.0
-margin_top = 140.0
+margin_top = 125.0
 margin_right = 411.0
-margin_bottom = 340.0
+margin_bottom = 354.0
 custom_constants/separation = 32
 
 [node name="Title" type="Label" parent="V"]
@@ -29,37 +32,45 @@ custom_fonts/font = SubResource( 1 )
 text = "Xetator"
 
 [node name="Buttons" type="VBoxContainer" parent="V"]
-margin_left = 53.0
+margin_left = 34.0
 margin_top = 88.0
-margin_right = 128.0
-margin_bottom = 200.0
+margin_right = 147.0
+margin_bottom = 229.0
 size_flags_horizontal = 4
 
 [node name="PlayButton" type="Button" parent="V/Buttons"]
-margin_right = 75.0
+margin_right = 113.0
 margin_bottom = 25.0
 text = "Play"
 
 [node name="OptionsButton" type="Button" parent="V/Buttons"]
 margin_top = 29.0
-margin_right = 75.0
+margin_right = 113.0
 margin_bottom = 54.0
 text = "Options"
 
-[node name="CreditsButton" type="Button" parent="V/Buttons"]
+[node name="LevelSelectButton" type="Button" parent="V/Buttons"]
 margin_top = 58.0
-margin_right = 75.0
+margin_right = 113.0
 margin_bottom = 83.0
+text = "Select Level"
+
+[node name="CreditsButton" type="Button" parent="V/Buttons"]
+margin_top = 87.0
+margin_right = 113.0
+margin_bottom = 112.0
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="V/Buttons"]
-margin_top = 87.0
-margin_right = 75.0
-margin_bottom = 112.0
+margin_top = 116.0
+margin_right = 113.0
+margin_bottom = 141.0
 text = "Quit"
 
 [connection signal="options_exited" from="OptionsMenu" to="." method="_on_OptionsMenu_options_exited"]
+[connection signal="level_select_exited" from="LevelSelect" to="." method="_on_LevelSelect_level_select_exited"]
 [connection signal="pressed" from="V/Buttons/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="V/Buttons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="V/Buttons/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed"]
 [connection signal="pressed" from="V/Buttons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="V/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
