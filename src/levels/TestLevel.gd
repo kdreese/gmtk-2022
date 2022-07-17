@@ -1,21 +1,17 @@
-extends Node2D
+extends Level
 
-gates := [Vector2(9, 0)]
 
 func _ready() -> void:
 	var error := $LevelButton.connect("button_pressed", self, "_on_button_pressed", [$LevelButton])
 	assert(not error)
+	$Gate2.open()
 
 
-
-func calc_z_index() -> void:
-	var player = get_parent().get_node("Player") as Player
-	var grid_coords = player.grid_coords
-	for gate in gates:
-		if player.x > gate.x or player.y > gate.y:
-			$TileMap.
+func handle_player_move():
+	for gate in [$Gate, $Gate2]:
+		gate.update_z_index(get_node("Player").grid_coords)
 
 
 func _on_LevelButton_button_pressed() -> void:
-	$TileMap.set_cell(9, 0, $TileMap.tile_set.find_tile_by_name("GateOpen"))
-	$TileMap.set_cell(13, 0, $TileMap.tile_set.find_tile_by_name("GateClosed"))
+	$Gate.open()
+	$Gate2.close()

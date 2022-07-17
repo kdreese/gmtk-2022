@@ -1,5 +1,5 @@
 class_name ButtonIntroLevel
-extends Node2D
+extends Level
 
 
 func _ready() -> void:
@@ -7,6 +7,10 @@ func _ready() -> void:
 	assert(not error)
 
 
+func handle_player_move():
+	$Gate.update_z_index(get_node("Player").grid_coords)
+
+
 func _on_button_pressed(instance: LevelButton) -> void:
 	if instance.name == "LevelButton":
-		$TileMap.set_cell(14, 4, $TileMap.tile_set.find_tile_by_name("GateOpen"))
+		$Gate.open()
