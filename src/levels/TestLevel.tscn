@@ -15,30 +15,30 @@ mode = 1
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 64, 32 )
 format = 1
-tile_data = PoolIntArray( -262132, 0, 0, -262131, 6, 0, -196596, 0, 0, -196595, 6, 0, -131060, 0, 0, -131059, 6, 0, -65524, 0, 0, -65523, 7, 0, 7, 0, 0, 8, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 6, 0, 65543, 536870918, 0, 65544, 536870918, 0, 65545, 536870918, 0, 65546, 536870918, 0, 65547, 536870918, 0, 65548, 536870919, 0, 65549, 0, 0, 65550, 0, 0, 65551, 2, 0, 65552, 6, 0, 131085, 536870918, 0, 131086, 536870918, 0, 131087, 536870918, 0 )
+tile_data = PoolIntArray( -65523, 536870912, 0, -65522, 6, 0, 13, 0, 0, 14, 6, 0, 65549, 0, 0, 65550, 6, 0, 131085, 536870912, 0, 131086, 6, 0, 196616, 0, 0, 196617, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196623, 0, 0, 196624, 0, 0, 196625, 6, 0, 262152, 536870918, 0, 262153, 536870918, 0, 262154, 536870918, 0, 262155, 536870918, 0, 262156, 536870918, 0, 262157, 536870918, 0, 262158, 0, 0, 262159, 0, 0, 262160, 2, 0, 262161, 6, 0, 327694, 536870918, 0, 327695, 536870918, 0, 327696, 536870918, 0 )
 
 [node name="WireTileMap" type="TileMap" parent="."]
 mode = 1
 tile_set = ExtResource( 6 )
 cell_size = Vector2( 64, 32 )
 format = 1
-tile_data = PoolIntArray( -262132, 13, 0, -196596, 5, 0, -131060, 5, 0, -65524, 5, 0, 10, 536870917, 0, 11, 536870917, 0, 12, 536870915, 0 )
+tile_data = PoolIntArray( -65523, 13, 0, 13, 5, 0, 65549, 5, 0, 131085, 5, 0, 196619, 536870917, 0, 196620, 536870917, 0, 196621, 536870915, 0 )
 
 [node name="LevelButton" parent="." instance=ExtResource( 2 )]
-position = Vector2( 512, 144 )
+position = Vector2( 448, 208 )
 minimum_weight = 6
 
 [node name="LevelEnd" parent="." instance=ExtResource( 3 )]
-position = Vector2( 224, 112 )
+position = Vector2( 160, 176 )
 minimum_weight = 3
 maximum_weight = 3
 next_level_path = "res://src/levels/OptimizationLevel.tscn"
 level_name = "Level 8"
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
-position = Vector2( 288, 152 )
+position = Vector2( 224, 216 )
 
 [node name="Gate2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 416, 216 )
+position = Vector2( 352, 280 )
 
 [connection signal="button_pressed" from="LevelButton" to="." method="_on_LevelButton_button_pressed"]

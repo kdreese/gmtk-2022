@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://resouces/TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://src/objects/LevelButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/levels/OptimizationLevel.gd" type="Script" id=4]
 [ext_resource path="res://src/objects/Gate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://resouces/WireTileSet.tres" type="TileSet" id=6]
 
 [node name="OptimizationLevel" type="Node2D"]
 script = ExtResource( 4 )
@@ -15,6 +16,13 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 64, 32 )
 format = 1
 tile_data = PoolIntArray( -131060, 0, 0, -65524, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131086, 0, 0, 196618, 0, 0, 196619, 2, 0, 196620, 0, 0, 196622, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262158, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0 )
+
+[node name="WireTileMap" type="TileMap" parent="."]
+mode = 1
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 64, 32 )
+format = 1
+tile_data = PoolIntArray( 65548, 536870919, 0, 65549, 536870917, 0, 65550, 536870917, 0, 65551, 1073741837, 0 )
 
 [node name="LevelButton" parent="." instance=ExtResource( 2 )]
 position = Vector2( 448, 272 )
