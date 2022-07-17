@@ -16,22 +16,22 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="V" type="VBoxContainer" parent="."]
-margin_left = 229.0
+margin_left = 174.0
 margin_top = 125.0
-margin_right = 411.0
+margin_right = 466.0
 margin_bottom = 354.0
 custom_constants/separation = 32
 
 [node name="Title" type="Label" parent="V"]
-margin_right = 182.0
+margin_right = 292.0
 margin_bottom = 56.0
 custom_fonts/font = SubResource( 1 )
-text = "Xetator"
+text = "Unweighted"
 
 [node name="Buttons" type="VBoxContainer" parent="V"]
-margin_left = 34.0
+margin_left = 89.0
 margin_top = 88.0
-margin_right = 147.0
+margin_right = 202.0
 margin_bottom = 229.0
 size_flags_horizontal = 4
 
