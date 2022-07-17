@@ -121,9 +121,9 @@ func move(offset: Vector2) -> bool:
 # Check if the space attempting to be moved into is capable of being moved into
 func is_movable(coord: Vector2) -> bool:
 	var tile := tile_map.get_cellv(coord)
-	if tile == -1 or tile == tile_map.tile_set.find_tile_by_name("GateClosed"):
+	if tile == -1:
 		return false
-	return true
+	return tile_map.tile_set.tile_get_name(tile) in ["Base", "Start"]
 
 
 # Get the rotated version of the given face.
