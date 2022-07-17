@@ -33,6 +33,7 @@ position = Vector2( 352, 224 )
 [node name="LevelEnd" parent="." instance=ExtResource( 1 )]
 position = Vector2( 448, 128 )
 minimum_weight = 6
+next_level_path = "res://src/levels/ButtonJailLevel.tscn"
 level_name = "Level 12"
 
 [connection signal="toggled" from="Toggle" to="." method="_on_Toggle_toggled"]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://resouces/TileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://src/objects/Gate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/objects/Toggle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/objects/LevelButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/levels/ButtonJailLevel.gd" type="Script" id=6]
+[ext_resource path="res://resouces/WireTileSet.tres" type="TileSet" id=7]
+
+[node name="ButtonJailLevel" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="TileMap" type="TileMap" parent="."]
+mode = 1
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 64, 32 )
+format = 1
+tile_data = PoolIntArray( 12, 0, 0, 13, 0, 0, 14, 2, 0, 15, 6, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 6, 0, 131080, 0, 0, 131081, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 131087, 6, 0, 196616, 536870918, 0, 196617, 536870918, 0, 196618, 536870918, 0, 196619, 536870918, 0, 196620, 0, 0, 196621, 3, 0, 196622, 536870918, 0, 262156, 0, 0, 262157, 6, 0, 327693, 6, 0, 393228, 0, 0, 393229, 6, 0, 458764, 536870918, 0 )
+
+[node name="WireTileMap" type="TileMap" parent="."]
+mode = 1
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 64, 32 )
+format = 1
+tile_data = PoolIntArray( 196618, 1610612741, 0, 196620, 13, 0, 262154, 1610612741, 0, 262156, 5, 0, 327690, 1610612741, 0, 393226, 1610612743, 0, 393227, 1073741829, 0, 393228, 1073741837, 0 )
+
+[node name="Gate" parent="." instance=ExtResource( 2 )]
+position = Vector2( 224, 280 )
+
+[node name="Gate2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 256, 200 )
+
+[node name="LevelButton" parent="." instance=ExtResource( 5 )]
+position = Vector2( 192, 304 )
+minimum_weight = 3
+maximum_weight = 3
+
+[node name="Toggle" parent="." instance=ExtResource( 3 )]
+position = Vector2( 288, 256 )
+minimum_weight = 6
+
+[node name="LevelEnd" parent="." instance=ExtResource( 4 )]
+position = Vector2( 192, 160 )
+minimum_weight = 3
+maximum_weight = 3
+level_name = "Level 13"
+
+[connection signal="button_pressed" from="LevelButton" to="." method="_on_LevelButton_button_pressed"]
+[connection signal="toggled" from="Toggle" to="." method="_on_Toggle_toggled"]
