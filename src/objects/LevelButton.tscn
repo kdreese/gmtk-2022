@@ -24,6 +24,8 @@ position = Vector2( 0, -0.5 )
 shape = SubResource( 1 )
 
 [node name="PressedSound" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
 stream = ExtResource( 4 )
+bus = "SoundsBus"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

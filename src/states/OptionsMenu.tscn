@@ -22,9 +22,9 @@ anchor_bottom = 1.0
 
 [node name="V" type="VBoxContainer" parent="ColorRect/C"]
 margin_left = 125.0
-margin_top = 148.0
+margin_top = 137.0
 margin_right = 514.0
-margin_bottom = 331.0
+margin_bottom = 343.0
 custom_constants/separation = 30
 
 [node name="Title" type="Label" parent="ColorRect/C/V"]
@@ -37,16 +37,16 @@ align = 1
 [node name="G" type="GridContainer" parent="ColorRect/C/V"]
 margin_top = 86.0
 margin_right = 389.0
-margin_bottom = 128.0
+margin_bottom = 151.0
 custom_constants/hseparation = 25
 columns = 3
 
-[node name="Label" type="Label" parent="ColorRect/C/V/G"]
+[node name="SoundVolumeNameLabel" type="Label" parent="ColorRect/C/V/G"]
 margin_right = 139.0
 margin_bottom = 19.0
-text = "Music Volume"
+text = "Sound Volume"
 
-[node name="MusicVolumeSlider" type="HSlider" parent="ColorRect/C/V/G"]
+[node name="SoundVolumeSlider" type="HSlider" parent="ColorRect/C/V/G"]
 margin_left = 164.0
 margin_right = 264.0
 margin_bottom = 16.0
@@ -55,23 +55,46 @@ max_value = 1.0
 step = 0.05
 value = 1.0
 
-[node name="MusicVolumeLabel" type="Label" parent="ColorRect/C/V/G"]
+[node name="SoundVolumeLabel" type="Label" parent="ColorRect/C/V/G"]
 margin_left = 289.0
 margin_right = 389.0
 margin_bottom = 19.0
 text = "100%"
 
-[node name="Label2" type="Label" parent="ColorRect/C/V/G"]
+[node name="MusicVolumeNameLabel" type="Label" parent="ColorRect/C/V/G"]
 margin_top = 23.0
 margin_right = 139.0
 margin_bottom = 42.0
-text = "Animation Speed"
+text = "Music Volume"
 
-[node name="AnimationSpeedSlider" type="HSlider" parent="ColorRect/C/V/G"]
+[node name="MusicVolumeSlider" type="HSlider" parent="ColorRect/C/V/G"]
 margin_left = 164.0
 margin_top = 23.0
 margin_right = 264.0
 margin_bottom = 39.0
+rect_min_size = Vector2( 100, 0 )
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="MusicVolumeLabel" type="Label" parent="ColorRect/C/V/G"]
+margin_left = 289.0
+margin_top = 23.0
+margin_right = 389.0
+margin_bottom = 42.0
+text = "100%"
+
+[node name="AnimationNameLabel" type="Label" parent="ColorRect/C/V/G"]
+margin_top = 46.0
+margin_right = 139.0
+margin_bottom = 65.0
+text = "Animation Speed"
+
+[node name="AnimationSpeedSlider" type="HSlider" parent="ColorRect/C/V/G"]
+margin_left = 164.0
+margin_top = 46.0
+margin_right = 264.0
+margin_bottom = 62.0
 max_value = 4.0
 value = 1.0
 tick_count = 5
@@ -79,21 +102,22 @@ ticks_on_borders = true
 
 [node name="AnimationSpeedLabel" type="Label" parent="ColorRect/C/V/G"]
 margin_left = 289.0
-margin_top = 23.0
+margin_top = 46.0
 margin_right = 389.0
-margin_bottom = 42.0
+margin_bottom = 65.0
 rect_min_size = Vector2( 100, 0 )
 text = "Normal"
 
 [node name="BackButton" type="Button" parent="ColorRect/C/V"]
 margin_left = 144.0
-margin_top = 158.0
+margin_top = 181.0
 margin_right = 244.0
-margin_bottom = 183.0
+margin_bottom = 206.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 4
 text = "Back"
 
+[connection signal="value_changed" from="ColorRect/C/V/G/SoundVolumeSlider" to="." method="_on_SoundVolumeSlider_value_changed"]
 [connection signal="value_changed" from="ColorRect/C/V/G/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
 [connection signal="value_changed" from="ColorRect/C/V/G/AnimationSpeedSlider" to="." method="_on_AnimationSpeedSlider_value_changed"]
 [connection signal="pressed" from="ColorRect/C/V/BackButton" to="." method="_on_BackButton_pressed"]

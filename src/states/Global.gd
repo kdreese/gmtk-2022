@@ -10,6 +10,7 @@ const BG_MUSIC = preload("res://assets/sound/Xetator.ogg")
 var level_path: String
 
 # Options
+var sound_volume := 1.0
 var music_volume := 0.5
 var animation_speed := 1
 
@@ -21,7 +22,7 @@ func _ready() -> void:
 	audio_stream = AudioStreamPlayer.new()
 	audio_stream.stream = BG_MUSIC
 	audio_stream.pause_mode = Node.PAUSE_MODE_PROCESS
-	update_music_volume()
+	update_volumes()
 	audio_stream.play()
 	add_child(audio_stream)
 
@@ -32,9 +33,20 @@ func _notification(what: int) -> void:
 		get_tree().quit()
 
 
-func update_music_volume() -> void:
+func update_volumes() -> void:
 	# Volume is given as a percent, so change that to dB.
+	var sounds_bus_index := AudioServer.get_bus_index("SoundsBus")
+	AudioServer.set_bus_volume_db(sounds_bus_index, MAX_VOLUME_DB + (20 * log(sound_volume) / log(10)))
 	audio_stream.volume_db = MAX_VOLUME_DB + (20 * log(music_volume) / log(10))
+
+
+func set_sound_volume(new_volume: float) -> void:
+	sound_volume = new_volume
+	if sound_volume < 0.0:
+		sound_volume = 0.0
+	elif sound_volume > 1.0:
+		sound_volume = 1.0
+	update_volumes()
 
 
 func set_music_volume(new_volume: float) -> void:
@@ -43,7 +55,7 @@ func set_music_volume(new_volume: float) -> void:
 		music_volume = 0.0
 	elif music_volume > 1.0:
 		music_volume = 1.0
-	update_music_volume()
+	update_volumes()
 
 
 func load_config() -> void:
@@ -58,6 +70,15 @@ func load_config() -> void:
 	if typeof(config) != TYPE_DICTIONARY:
 		print("Save file corrupt")
 		return
+
+	if "sound_volume" in config:
+		var new_volume = config["sound_volume"]
+		if typeof(new_volume) == TYPE_REAL or typeof(new_volume) == TYPE_INT:
+			sound_volume = float(new_volume)
+			if sound_volume < 0.0:
+				sound_volume = 0.0
+			elif sound_volume > 1.0:
+				sound_volume = 1.0
 
 	if "music_volume" in config:
 		var new_volume = config["music_volume"]
@@ -80,6 +101,7 @@ func load_config() -> void:
 
 func save_config() -> void:
 	var config := {
+		"sound_volume": sound_volume,
 		"music_volume": music_volume,
 		"animation_speed": animation_speed,
 	}

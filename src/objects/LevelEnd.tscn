@@ -24,5 +24,6 @@ position = Vector2( 0, -75 )
 [node name="FinishSound" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 4 )
+bus = "SoundsBus"
 
 [connection signal="area_entered" from="." to="." method="_on_LevelEnd_area_entered"]

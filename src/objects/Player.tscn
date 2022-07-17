@@ -260,7 +260,9 @@ position = Vector2( 0, 17 )
 shape = SubResource( 4 )
 
 [node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
 position = Vector2( 0, 17 )
 stream = ExtResource( 78 )
+bus = "SoundsBus"
 
 [connection signal="animation_finished" from="FrontFace" to="." method="_on_animation_finished"]

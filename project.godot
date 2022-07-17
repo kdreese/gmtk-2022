@@ -54,6 +54,10 @@ config/name="gmtk-2022"
 run/main_scene="res://src/states/Menu.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+default_bus_layout="res://resouces/default_bus_layout.tres"
+
 [autoload]
 
 Global="*res://src/states/Global.gd"
