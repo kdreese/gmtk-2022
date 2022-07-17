@@ -14,6 +14,7 @@ var page_idx := 0
 func _ready() -> void:
 	# Hide this node, to start.
 	$ColorRect.hide()
+	load_levels()
 
 
 func load_levels() -> void:

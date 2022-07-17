@@ -15,7 +15,6 @@ func _on_PlayButton_pressed() -> void:
 
 func _on_LevelSelectButton_pressed() -> void:
 	$V.hide()
-	$LevelSelect.load_levels()
 	$LevelSelect.display()
 	$LevelSelect/ColorRect.show()
 	$LevelSelect/ColorRect/G.get_children()[0].grab_focus()
