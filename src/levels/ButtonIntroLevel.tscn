@@ -36,3 +36,5 @@ level_name = "Level 6"
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
 position = Vector2( 320, 296 )
+
+[connection signal="button_pressed" from="LevelButton" to="." method="_on_LevelButton_button_pressed"]

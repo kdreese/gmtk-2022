@@ -31,24 +31,29 @@ func load_levels() -> void:
 	for idx in range(num_buttons):
 		var button = Button.new()
 		button.rect_min_size = Vector2(120, 90)
-		button.text = level_names[idx]
 		var error = button.connect("pressed", self, "_on_level_button_pressed", [idx])
 		assert(not error)
-		$ColorRect/C/V/G.add_child(button)
+		$ColorRect/G.add_child(button)
+		buttons.push_back(button)
 
 	if len(level_names) <= 9:
-		$ColorRect/C/V/H/NextButton.hide()
+		$ColorRect/NextButton.hide()
 
-	$ColorRect/C/V/H/PrevButton.hide()
+	$ColorRect/PrevButton.hide()
 
 
 func display() -> void:
+	var num_levels_to_show = min(len(level_names) - (9 * page_idx), 9)
 	for idx in range(len(buttons)):
-		buttons[idx].text = level_names[9 * page_idx + idx]
+		if idx < num_levels_to_show:
+			buttons[idx].text = level_names[9 * page_idx + idx]
+			buttons[idx].visible = true
+		else:
+			buttons[idx].visible = false
 
 
 func _on_level_button_pressed(idx: int) -> void:
-	Global.level_path = level_paths[idx]
+	Global.level_path = level_paths[9 * page_idx + idx]
 	var error := get_tree().change_scene("res://src/states/Game.tscn")
 	assert(not error)
 
@@ -56,3 +61,19 @@ func _on_level_button_pressed(idx: int) -> void:
 func _on_BackButton_pressed() -> void:
 	$ColorRect.hide()
 	emit_signal("level_select_exited")
+
+
+func _on_NextButton_pressed() -> void:
+	page_idx += 1
+	display()
+	$ColorRect/PrevButton.show()
+	if len(level_names) < (page_idx + 1) * 9:
+		$ColorRect/NextButton.hide()
+
+
+func _on_PrevButton_pressed() -> void:
+	page_idx -= 1
+	display()
+	$ColorRect/NextButton.show()
+	if page_idx == 0:
+		$ColorRect/PrevButton.hide()

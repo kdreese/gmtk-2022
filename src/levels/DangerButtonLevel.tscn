@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://resouces/TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://src/objects/LevelButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/levels/DangerButtonLevel.gd" type="Script" id=4]
 [ext_resource path="res://src/objects/Gate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://resouces/WireTileSet.tres" type="TileSet" id=6]
 
 [node name="DangerButtonLevel" type="Node2D"]
 script = ExtResource( 4 )
@@ -14,7 +15,14 @@ mode = 1
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 64, 32 )
 format = 1
-tile_data = PoolIntArray( -327668, 0, 0, -262132, 0, 0, 12, 0, 0, 65548, 0, 0, 131084, 0, 0, 196620, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 393227, 0, 0, 393228, 2, 0, 393229, 0, 0 )
+tile_data = PoolIntArray( -327668, 0, 0, -327667, 6, 0, -262132, 0, 0, -262131, 6, 0, -196595, 6, 0, -131059, 6, 0, -65523, 6, 0, 12, 0, 0, 13, 6, 0, 65548, 0, 0, 65549, 6, 0, 131084, 0, 0, 131085, 6, 0, 196620, 0, 0, 196621, 7, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 262158, 6, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 6, 0, 393227, 0, 0, 393228, 2, 0, 393229, 0, 0, 393230, 6, 0, 458763, 536870918, 0, 458764, 536870918, 0, 458765, 536870918, 0 )
+
+[node name="WireTileMap" type="TileMap" parent="."]
+mode = 1
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 64, 32 )
+format = 1
+tile_data = PoolIntArray( -196595, 7, 0, -131059, 11, 0, -131058, 1073741831, 0, -65523, 11, 0, -65522, 1610612747, 0, -65521, 1073741831, 0, 12, 536870925, 0, 13, 1073741838, 0, 14, 5, 0, 15, 5, 0, 65548, 536870925, 0, 65549, 536870917, 0, 65550, 1073741838, 0, 65551, 1610612741, 0, 131084, 536870925, 0, 131085, 536870917, 0, 131086, 1073741829, 0, 131087, 1073741838, 0 )
 
 [node name="LevelButton" parent="." instance=ExtResource( 2 )]
 position = Vector2( 320, 240 )
@@ -31,6 +39,7 @@ minimum_weight = 6
 
 [node name="LevelEnd" parent="." instance=ExtResource( 3 )]
 position = Vector2( 544, 112 )
+next_level_path = "res://src/levels/TwoPathsLevel.tscn"
 level_name = "Level 10"
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]

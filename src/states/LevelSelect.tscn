@@ -23,49 +23,42 @@ custom_fonts/font = SubResource( 1 )
 text = "Level Select"
 align = 1
 
-[node name="C" type="CenterContainer" parent="ColorRect"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="V" type="VBoxContainer" parent="ColorRect/C"]
-margin_left = 160.0
-margin_top = 222.0
-margin_right = 480.0
-margin_bottom = 257.0
-custom_constants/separation = 10
-
-[node name="G" type="GridContainer" parent="ColorRect/C/V"]
-margin_right = 320.0
+[node name="G" type="GridContainer" parent="ColorRect"]
+margin_left = 130.0
+margin_top = 80.0
+margin_right = 510.0
+margin_bottom = 80.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 10
 columns = 3
 
-[node name="H" type="HBoxContainer" parent="ColorRect/C/V"]
-margin_top = 10.0
-margin_right = 320.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 320, 0 )
-alignment = 1
-
-[node name="PrevButton" type="Button" parent="ColorRect/C/V/H"]
-margin_left = 27.0
-margin_right = 76.0
-margin_bottom = 25.0
+[node name="PrevButton" type="Button" parent="ColorRect"]
+margin_left = 104.0
+margin_top = 392.0
+margin_right = 204.0
+margin_bottom = 417.0
+rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 6
 text = "Prev"
 
-[node name="BackButton" type="Button" parent="ColorRect/C/V/H"]
-margin_left = 134.0
-margin_right = 186.0
-margin_bottom = 25.0
+[node name="BackButton" type="Button" parent="ColorRect"]
+margin_left = 271.0
+margin_top = 392.0
+margin_right = 371.0
+margin_bottom = 417.0
+rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 6
 text = "Back"
 
-[node name="NextButton" type="Button" parent="ColorRect/C/V/H"]
-margin_left = 243.0
-margin_right = 293.0
-margin_bottom = 25.0
+[node name="NextButton" type="Button" parent="ColorRect"]
+margin_left = 440.0
+margin_top = 392.0
+margin_right = 540.0
+margin_bottom = 417.0
+rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 6
 text = "Next"
 
-[connection signal="pressed" from="ColorRect/C/V/H/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="ColorRect/PrevButton" to="." method="_on_PrevButton_pressed"]
+[connection signal="pressed" from="ColorRect/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="ColorRect/NextButton" to="." method="_on_NextButton_pressed"]
