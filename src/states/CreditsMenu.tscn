@@ -102,7 +102,7 @@ margin_right = 201.0
 margin_bottom = 106.0
 text = "Programming
 Puzzle Design
-Sounds (maybe)"
+Sound Effects"
 align = 1
 
 [node name="MooreCredits" type="Label" parent="ColorRect/V/S/V/Us"]
