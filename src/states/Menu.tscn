@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/ui/Russo_One.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/states/Menu.gd" type="Script" id=2]
@@ -40,17 +40,17 @@ margin_right = 113.0
 margin_bottom = 25.0
 text = "Play"
 
-[node name="OptionsButton" type="Button" parent="V/Buttons"]
+[node name="LevelSelectButton" type="Button" parent="V/Buttons"]
 margin_top = 29.0
 margin_right = 113.0
 margin_bottom = 54.0
-text = "Options"
+text = "Select Level"
 
-[node name="LevelSelectButton" type="Button" parent="V/Buttons"]
+[node name="OptionsButton" type="Button" parent="V/Buttons"]
 margin_top = 58.0
 margin_right = 113.0
 margin_bottom = 83.0
-text = "Select Level"
+text = "Options"
 
 [node name="CreditsButton" type="Button" parent="V/Buttons"]
 margin_top = 87.0
@@ -71,8 +71,8 @@ text = "Quit"
 [node name="LevelSelect" parent="." instance=ExtResource( 5 )]
 
 [connection signal="pressed" from="V/Buttons/PlayButton" to="." method="_on_PlayButton_pressed"]
-[connection signal="pressed" from="V/Buttons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="V/Buttons/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed"]
+[connection signal="pressed" from="V/Buttons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="V/Buttons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="V/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="options_exited" from="OptionsMenu" to="." method="_on_OptionsMenu_options_exited"]
