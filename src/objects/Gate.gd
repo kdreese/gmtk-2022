@@ -4,6 +4,7 @@ extends Node2D
 var tile_map: TileMap
 var grid_coords: Vector2
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tile_map = get_parent().get_node("TileMap")
@@ -26,7 +27,7 @@ func open() -> void:
 	tile_map.set_cellv(grid_coords, tile_map.tile_set.find_tile_by_name("Base"))
 
 
-func	 close() -> void:
+func close() -> void:
 	$AnimatedSprite.play("closed")
 	$AnimatedSprite.offset.y -= 8
 	tile_map.set_cellv(grid_coords, -1)
