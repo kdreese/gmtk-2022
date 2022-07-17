@@ -16,7 +16,6 @@ func _ready() -> void:
 
 	$UI/V/LevelName.text = level.get_node("LevelEnd").level_name
 	var level_text = level.get_node("LevelEnd").level_text
-	print(level_text)
 	$UI/Textbox/MessageText.text = level_text
 	if level_text != "":
 		$UI/Textbox.show()
