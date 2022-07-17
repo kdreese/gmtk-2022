@@ -14,6 +14,8 @@ func _ready() -> void:
 	var error := level.get_node("LevelEnd").connect("exit_reached_success", self, "_on_LevelEnd_exit_reached_success")
 	assert(not error)
 
+	$UI/V/LevelName.text = level.get_node("LevelEnd").level_name
+
 	for coords in tile_map.get_used_cells():
 		var tile := tile_map.get_cell(coords.x, coords.y)
 		if tile_map.tile_set.tile_get_name(tile) == "Start":
@@ -41,7 +43,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func update_move_counter() -> void:
-	$UI/MoveCounter.text = "Moves: %d" % moves
+	$UI/V/MoveCounter.text = "Moves: %d" % moves
 
 
 func reset_move_counter() -> void:
