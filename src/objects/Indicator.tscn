@@ -20,6 +20,7 @@ margin_bottom = 20.0
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="CenterContainer"]
+modulate = Color( 1, 1, 1, 0.501961 )
 margin_left = 20.0
 margin_top = 1.0
 margin_right = 20.0
@@ -28,6 +29,7 @@ custom_fonts/font = SubResource( 1 )
 align = 1
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.498039 )
 position = Vector2( 0, 32 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
