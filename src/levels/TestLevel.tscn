@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://resouces/TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://src/objects/LevelButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/levels/TestLevel.gd" type="Script" id=4]
 [ext_resource path="res://src/objects/Gate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://resouces/WireTileSet.tres" type="TileSet" id=6]
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource( 4 )
@@ -14,7 +15,14 @@ mode = 1
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 64, 32 )
 format = 1
-tile_data = PoolIntArray( -262132, 0, 0, -196596, 0, 0, -131060, 0, 0, -65524, 0, 0, 7, 0, 0, 8, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 65549, 0, 0, 65550, 0, 0, 65551, 2, 0 )
+tile_data = PoolIntArray( -262132, 0, 0, -262131, 6, 0, -196596, 0, 0, -196595, 6, 0, -131060, 0, 0, -131059, 6, 0, -65524, 0, 0, -65523, 7, 0, 7, 0, 0, 8, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 6, 0, 65543, 536870918, 0, 65544, 536870918, 0, 65545, 536870918, 0, 65546, 536870918, 0, 65547, 536870918, 0, 65548, 536870919, 0, 65549, 0, 0, 65550, 0, 0, 65551, 2, 0, 65552, 6, 0, 131085, 536870918, 0, 131086, 536870918, 0, 131087, 536870918, 0 )
+
+[node name="WireTileMap" type="TileMap" parent="."]
+mode = 1
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 64, 32 )
+format = 1
+tile_data = PoolIntArray( -262132, 13, 0, -196596, 5, 0, -131060, 5, 0, -65524, 5, 0, 10, 536870917, 0, 11, 536870917, 0, 12, 536870915, 0 )
 
 [node name="LevelButton" parent="." instance=ExtResource( 2 )]
 position = Vector2( 512, 144 )
