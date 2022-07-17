@@ -16,7 +16,7 @@ mode = 1
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 64, 32 )
 format = 1
-tile_data = PoolIntArray( -131063, 1610612736, 0, -65527, 1610612736, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 15, 0, 0, 16, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 327691, 2, 0 )
+tile_data = PoolIntArray( -131063, 1610612736, 0, -131062, 6, 0, -65527, 1610612736, 0, -65526, 6, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 15, 0, 0, 16, 0, 0, 17, 6, 0, 65545, 536870918, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 536870915, 0, 65550, 536870918, 0, 65551, 536870918, 0, 65552, 536870918, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 6, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 6, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 6, 0, 327690, 536870918, 0, 327691, 2, 0, 327692, 536870915, 0, 393227, 536870918, 0 )
 
 [node name="WireTileMap" type="TileMap" parent="."]
 mode = 1
@@ -27,6 +27,8 @@ tile_data = PoolIntArray( -131063, 536870925, 0, -131062, 1073741829, 0, -131061
 
 [node name="LevelEnd" parent="." instance=ExtResource( 1 )]
 position = Vector2( 512, 256 )
+next_level_path = "res://src/levels/TwoPathsLevel.tscn"
+level_name = "One Door Opens"
 
 [node name="Gate" parent="." instance=ExtResource( 2 )]
 position = Vector2( 416, 216 )
@@ -38,7 +40,7 @@ position = Vector2( 448, 232 )
 position = Vector2( 288, 152 )
 
 [node name="Toggle" parent="." instance=ExtResource( 6 )]
-position = Vector2( 352, 192 )
+position = Vector2( 320, 240 )
 
 [node name="LevelButton" parent="." instance=ExtResource( 7 )]
 position = Vector2( 352, 128 )
