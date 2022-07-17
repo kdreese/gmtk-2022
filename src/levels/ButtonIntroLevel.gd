@@ -1,4 +1,3 @@
-class_name ButtonIntroLevel
 extends Level
 
 

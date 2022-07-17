@@ -1,4 +1,3 @@
-class_name ButtonTestLevel
 extends Level
 
 

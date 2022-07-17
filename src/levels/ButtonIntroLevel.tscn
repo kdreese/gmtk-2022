@@ -24,7 +24,7 @@ minimum_weight = 6
 position = Vector2( 288, 304 )
 minimum_weight = 6
 next_level_path = "res://src/levels/ButtonTestLevel.tscn"
-level_name = "Level 4"
+level_name = "Level 6"
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
 position = Vector2( 320, 296 )

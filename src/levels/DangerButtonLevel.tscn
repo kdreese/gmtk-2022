@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://resouces/TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://src/objects/LevelButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/levels/DangerButtonLevel.gd" type="Script" id=4]
+[ext_resource path="res://src/objects/Gate.tscn" type="PackedScene" id=5]
 
 [node name="DangerButtonLevel" type="Node2D"]
 script = ExtResource( 4 )
@@ -13,7 +14,7 @@ mode = 1
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 64, 32 )
 format = 1
-tile_data = PoolIntArray( -327668, 0, 0, -262132, 0, 0, -196596, 7, 0, -131060, 6, 0, -65524, 7, 0, 12, 0, 0, 65548, 0, 0, 131084, 0, 0, 196620, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 393227, 0, 0, 393228, 2, 0, 393229, 0, 0 )
+tile_data = PoolIntArray( -327668, 0, 0, -262132, 0, 0, 12, 0, 0, 65548, 0, 0, 131084, 0, 0, 196620, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 393227, 0, 0, 393228, 2, 0, 393229, 0, 0 )
 
 [node name="LevelButton" parent="." instance=ExtResource( 2 )]
 position = Vector2( 320, 240 )
@@ -30,3 +31,17 @@ minimum_weight = 6
 
 [node name="LevelEnd" parent="." instance=ExtResource( 3 )]
 position = Vector2( 544, 112 )
+level_name = "Level 10"
+
+[node name="Gate" parent="." instance=ExtResource( 5 )]
+position = Vector2( 480, 152 )
+
+[node name="Gate2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 448, 168 )
+
+[node name="Gate3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 416, 184 )
+
+[connection signal="button_pressed" from="LevelButton" to="." method="_on_LevelButton_button_pressed"]
+[connection signal="button_pressed" from="LevelButton2" to="." method="_on_LevelButton2_button_pressed"]
+[connection signal="button_pressed" from="LevelButton3" to="." method="_on_LevelButton3_button_pressed"]
