@@ -2,8 +2,9 @@
 
 [ext_resource path="res://assets/ui/Russo_One.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/states/Menu.gd" type="Script" id=2]
-[ext_resource path="res://src/states/Options.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/states/LevelSelect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/states/OptionsMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/states/CreditsMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/states/LevelSelect.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -13,10 +14,6 @@ font_data = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-
-[node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
-
-[node name="LevelSelect" parent="." instance=ExtResource( 4 )]
 
 [node name="V" type="VBoxContainer" parent="."]
 margin_left = 229.0
@@ -67,10 +64,17 @@ margin_right = 113.0
 margin_bottom = 141.0
 text = "Quit"
 
-[connection signal="options_exited" from="OptionsMenu" to="." method="_on_OptionsMenu_options_exited"]
-[connection signal="level_select_exited" from="LevelSelect" to="." method="_on_LevelSelect_level_select_exited"]
+[node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
+
+[node name="CreditsMenu" parent="." instance=ExtResource( 4 )]
+
+[node name="LevelSelect" parent="." instance=ExtResource( 5 )]
+
 [connection signal="pressed" from="V/Buttons/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="V/Buttons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="V/Buttons/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed"]
 [connection signal="pressed" from="V/Buttons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="V/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="options_exited" from="OptionsMenu" to="." method="_on_OptionsMenu_options_exited"]
+[connection signal="credits_exiting" from="CreditsMenu" to="." method="_on_CreditsMenu_credits_exiting"]
+[connection signal="level_select_exited" from="LevelSelect" to="." method="_on_LevelSelect_level_select_exited"]
