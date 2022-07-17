@@ -18,9 +18,14 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not $ColorRect.visible:
 		return
-	if event.is_action_pressed("escape"):
+	if event.is_action_pressed("ui_cancel"):
 		_on_BackButton_pressed()
 		get_tree().set_input_as_handled()
+
+
+func show_menu() -> void:
+	$ColorRect.show()
+	$ColorRect/C/V/BackButton.grab_focus()
 
 
 func _on_BackButton_pressed() -> void:
