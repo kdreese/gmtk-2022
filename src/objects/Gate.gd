@@ -38,3 +38,4 @@ func toggle() -> void:
 		open()
 	else:
 		close()
+

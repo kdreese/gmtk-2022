@@ -36,6 +36,7 @@ position = Vector2( 448, 144 )
 [node name="LevelEnd" parent="." instance=ExtResource( 5 )]
 position = Vector2( 64, 160 )
 maximum_weight = 1
+next_level_path = "res://src/levels/ToggleIntroLevel.tscn"
 level_name = "Level 11"
 
 [node name="Gate" parent="." instance=ExtResource( 6 )]
