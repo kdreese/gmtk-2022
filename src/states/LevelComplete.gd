@@ -13,6 +13,7 @@ func update(next_level_path_arg: String) -> void:
 	next_level_path = next_level_path_arg
 	$ColorRect/C/V/Buttons/ContinueButton.grab_focus()
 	if next_level_path.length() == 0:
+		$ColorRect/C/V/YouWinLabel.show()
 		$ColorRect/C/V/Buttons/ContinueButton.hide()
 		$ColorRect/C/V/Buttons/RestartButton.grab_focus()
 

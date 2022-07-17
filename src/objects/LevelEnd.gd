@@ -9,7 +9,7 @@ export var minimum_weight := 1
 export var maximum_weight := 6
 export var next_level_path := ""
 export var level_name := ""
-export var level_text := ""
+export(String, MULTILINE) var level_text = ""
 
 
 func _ready() -> void:

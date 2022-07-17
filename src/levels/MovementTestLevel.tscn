@@ -19,4 +19,6 @@ position = Vector2( 384, 224 )
 minimum_weight = 6
 next_level_path = "res://src/levels/CycleTeachLevel.tscn"
 level_name = "Free Reign"
-level_text = "That arrow is telling you you need to have that face on top or the end pad won't let you through."
+level_text = "If you can pass all of our tests, you will prove that you are an unweighted die.
+
+For example, that arrow is telling you you need to have that face on top or the end pad won't let you through."

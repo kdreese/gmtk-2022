@@ -2,6 +2,7 @@ extends Level
 
 
 var button1_wires := [
+	Vector3(12, 2, 0),
 	Vector3(13, 2, 0),
 	Vector3(14, 2, 0),
 	Vector3(15, 2, 0),
@@ -12,6 +13,7 @@ var button1_wires := [
 	Vector3(13, -1, 1)
 ]
 var button2_wires := [
+	Vector3(12, 1, 0),
 	Vector3(13, 1, 0),
 	Vector3(14, 1, 0),
 	Vector3(14, 0, 0),
@@ -20,6 +22,7 @@ var button2_wires := [
 	Vector3(13, -2, 1)
 ]
 var button3_wires := [
+	Vector3(12, 0, 0),
 	Vector3(13, 0, 0),
 	Vector3(13, -1, 0),
 	Vector3(13, -2, 0),

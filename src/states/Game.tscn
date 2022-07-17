@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/states/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/Russo_One.ttf" type="DynamicFontData" id=2]
@@ -17,6 +17,10 @@ size = 40
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 32
 font_data = ExtResource( 2 )
 
@@ -184,10 +188,9 @@ pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="LevelComplete"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 1, 1, 1, 0.235294 )
+color = Color( 0, 0, 0, 0.392157 )
 
 [node name="C" type="CenterContainer" parent="LevelComplete/ColorRect"]
 anchor_right = 1.0
@@ -199,6 +202,15 @@ margin_top = 162.0
 margin_right = 457.0
 margin_bottom = 318.0
 custom_constants/separation = 32
+
+[node name="YouWinLabel" type="Label" parent="LevelComplete/ColorRect/C/V"]
+visible = false
+margin_right = 331.0
+margin_bottom = 79.0
+custom_fonts/font = SubResource( 4 )
+text = "You win! Thanks for
+playing Unweighted!"
+align = 1
 
 [node name="Congratulations" type="Label" parent="LevelComplete/ColorRect/C/V"]
 margin_right = 275.0

@@ -18,4 +18,4 @@ tile_data = PoolIntArray( 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 6, 0, 6554
 position = Vector2( 320, 224 )
 next_level_path = "res://src/levels/MovementTestLevel.tscn"
 level_name = "Spiral"
-level_text = "You have been arrested on suspicion of violating Legal Code 1379.42, or the \"No Rigged Dice Rule\""
+level_text = "You have been arrested on suspicion of violating Legal Code 1379.42, or the \"No Weighted Dice Rule.\""

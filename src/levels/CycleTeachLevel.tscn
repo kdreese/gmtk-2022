@@ -20,4 +20,6 @@ minimum_weight = 5
 maximum_weight = 5
 next_level_path = "res://src/levels/CycleTrapLevel.tscn"
 level_name = "Lopsided Patterns"
-level_text = "That's it from me, if there are any new elements, I will explain them."
+level_text = "Press R on keyboard or RB on controller to restart the current test. Escape or Start will bring up the pause menu.
+
+That's it from me, if there are any new elements, I will explain them."

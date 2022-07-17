@@ -66,6 +66,7 @@ func _on_LevelEnd_exit_reached_success(next_level_path: String):
 	get_tree().paused = true
 	$LevelComplete.update(next_level_path)
 	$LevelComplete/ColorRect.show()
+	$UI/Textbox.hide()
 
 
 func _on_OptionsButton_pressed() -> void:
