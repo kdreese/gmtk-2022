@@ -36,7 +36,5 @@ func generate_indicator_string() -> String:
 	if button.minimum_weight == button.maximum_weight:
 		return str(button.minimum_weight)
 	elif button.maximum_weight == 6:
-		if button.minimum_weight == 1:
-			return "Any"
 		return "%d+" % button.minimum_weight
 	return "%d-%d" % [button.minimum_weight, button.maximum_weight]

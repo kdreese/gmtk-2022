@@ -31,3 +31,10 @@ func close() -> void:
 	$AnimatedSprite.play("closed")
 	$AnimatedSprite.offset.y -= 8
 	tile_map.set_cellv(grid_coords, -1)
+
+
+func toggle() -> void:
+	if $AnimatedSprite.animation == "closed":
+		open()
+	else:
+		close()
