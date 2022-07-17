@@ -1,6 +1,6 @@
-# Xedator
+# Xetator
 
-Xedator is our submission for the 48 hour [GMTK Game Jam 2022](https://itch.io/jam/gmtk-jam-2022), following the theme "Roll of the Dice". You can play it online at https://kdreese.itch.io/xedator, give it a shot!
+Xetator is our submission for the 48 hour [GMTK Game Jam 2022](https://itch.io/jam/gmtk-jam-2022), following the theme "Roll of the Dice". You can play it online at https://kdreese.itch.io/xetator, give it a shot!
 
 ## Requirements
 
