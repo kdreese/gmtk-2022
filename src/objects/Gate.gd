@@ -22,12 +22,17 @@ func update_z_index(player_position: Vector2):
 
 
 func open() -> void:
+	if $AnimatedSprite.animation == "open":
+		return
 	$AnimatedSprite.play("open")
 	$AnimatedSprite.offset.y += 8
 	tile_map.set_cellv(grid_coords, tile_map.tile_set.find_tile_by_name("Base"))
+	z_index = 1
 
 
 func close() -> void:
+	if $AnimatedSprite.animation == "closed":
+		return
 	$AnimatedSprite.play("closed")
 	$AnimatedSprite.offset.y -= 8
 	tile_map.set_cellv(grid_coords, -1)
