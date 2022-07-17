@@ -55,3 +55,7 @@ position = Vector2( 320, 264 )
 
 [node name="Gate5" parent="." instance=ExtResource( 5 )]
 position = Vector2( 384, 296 )
+
+[connection signal="button_pressed" from="LevelButton" to="." method="_on_LevelButton_button_pressed"]
+[connection signal="button_pressed" from="LevelButton2" to="." method="_on_LevelButton2_button_pressed"]
+[connection signal="button_pressed" from="LevelButton3" to="." method="_on_LevelButton3_button_pressed"]
