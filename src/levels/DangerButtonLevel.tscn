@@ -39,8 +39,7 @@ minimum_weight = 6
 
 [node name="LevelEnd" parent="." instance=ExtResource( 3 )]
 position = Vector2( 544, 112 )
-next_level_path = "res://src/levels/TwoPathsLevel.tscn"
-level_name = "Level 10"
+level_name = "Hail Mary"
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
 position = Vector2( 480, 152 )

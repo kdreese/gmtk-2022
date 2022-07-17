@@ -44,7 +44,8 @@ minimum_weight = 6
 position = Vector2( 192, 160 )
 minimum_weight = 3
 maximum_weight = 3
-level_name = "Level 13"
+next_level_path = "res://src/levels/TestLevel.tscn"
+level_name = "Behind Closed Bars"
 
 [connection signal="button_pressed" from="LevelButton" to="." method="_on_LevelButton_button_pressed"]
 [connection signal="toggled" from="Toggle" to="." method="_on_Toggle_toggled"]

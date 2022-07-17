@@ -19,4 +19,4 @@ position = Vector2( 416, 176 )
 minimum_weight = 5
 maximum_weight = 5
 next_level_path = "res://src/levels/CycleTrapLevel.tscn"
-level_name = "Level 4"
+level_name = "Lopsided Patterns"

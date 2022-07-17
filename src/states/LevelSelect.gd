@@ -31,6 +31,7 @@ func load_levels() -> void:
 	for idx in range(num_buttons):
 		var button = Button.new()
 		button.rect_min_size = Vector2(120, 90)
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var error = button.connect("pressed", self, "_on_level_button_pressed", [idx])
 		assert(not error)
 		$ColorRect/G.add_child(button)
