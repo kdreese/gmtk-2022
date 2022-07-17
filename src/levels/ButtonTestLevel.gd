@@ -13,11 +13,10 @@ func _ready() -> void:
 
 func _on_button_pressed(instance: LevelButton) -> void:
 	if instance.name == "LevelButton":
-		$TileMap.set_cell(11, 2, $TileMap.tile_set.find_tile_by_name("GateOpen"))
-		$TileMap.set_cell(11, 3, $TileMap.tile_set.find_tile_by_name("GateOpen"))
+		$Gate.open()
+		$Gate2.open()
 	elif instance.name == "LevelButton2":
-		$TileMap.set_cell(13, 2, $TileMap.tile_set.find_tile_by_name("GateOpen"))
-		$TileMap.set_cell(13, 3, $TileMap.tile_set.find_tile_by_name("GateOpen"))
+		$Gate2.open()
+		$Gate4.open()
 	elif instance.name == "LevelButton3":
-		$TileMap.set_cell(15, 2, $TileMap.tile_set.find_tile_by_name("GateOpen"))
-		$TileMap.set_cell(15, 3, $TileMap.tile_set.find_tile_by_name("GateOpen"))
+		$Gate5.open()
