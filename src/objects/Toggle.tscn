@@ -37,5 +37,6 @@ position = Vector2( 0, -72 )
 
 [node name="PressedSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
+bus = "SoundsBus"
 
 [connection signal="area_entered" from="." to="." method="_on_Toggle_area_entered"]
