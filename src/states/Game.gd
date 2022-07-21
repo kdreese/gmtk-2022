@@ -80,6 +80,7 @@ func _on_LevelEnd_exit_reached_success(next_level_path: String):
 	$CanvasLayer/LevelComplete.update_text(next_level_path)
 	$CanvasLayer/LevelComplete.show()
 	hide_ui()
+	Autosplitter.send_data("split")
 
 
 func _on_OptionsMenu_options_exited() -> void:
