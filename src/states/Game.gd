@@ -70,8 +70,7 @@ func _on_LevelEnd_exit_reached_success(next_level_path: String):
 
 func _on_OptionsButton_pressed() -> void:
 	$PauseMenu/ColorRect.hide()
-	$OptionsMenu/ColorRect.show()
-	$OptionsMenu/ColorRect/C/V/BackButton.grab_focus()
+	$PauseMenu/OptionsMenu.show_menu()
 
 
 func _on_OptionsMenu_options_exited() -> void:

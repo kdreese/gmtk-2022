@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends ColorRect
 
 
 signal level_select_exited
@@ -10,10 +10,7 @@ var buttons := []
 var page_idx := 0
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Hide this node, to start.
-	$ColorRect.hide()
 	load_levels()
 
 
@@ -35,13 +32,19 @@ func load_levels() -> void:
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var error = button.connect("pressed", self, "_on_level_button_pressed", [idx])
 		assert(not error)
-		$ColorRect/G.add_child(button)
+		$G.add_child(button)
 		buttons.push_back(button)
 
 	if len(level_names) <= 9:
-		$ColorRect/NextButton.hide()
+		$NextButton.hide()
 
-	$ColorRect/PrevButton.hide()
+	$PrevButton.hide()
+
+
+func show_menu() -> void:
+	display()
+	show()
+	$G.get_children()[0].grab_focus()
 
 
 func display() -> void:
@@ -61,23 +64,23 @@ func _on_level_button_pressed(idx: int) -> void:
 
 
 func _on_BackButton_pressed() -> void:
-	$ColorRect.hide()
+	hide()
 	emit_signal("level_select_exited")
 
 
 func _on_NextButton_pressed() -> void:
 	page_idx += 1
 	display()
-	$ColorRect/PrevButton.show()
+	$PrevButton.show()
 	if len(level_names) < (page_idx + 1) * 9:
-		$ColorRect/NextButton.hide()
+		$NextButton.hide()
 	buttons[0].grab_focus()
 
 
 func _on_PrevButton_pressed() -> void:
 	page_idx -= 1
 	display()
-	$ColorRect/NextButton.show()
+	$NextButton.show()
 	if page_idx == 0:
-		$ColorRect/PrevButton.hide()
+		$PrevButton.hide()
 	buttons[0].grab_focus()

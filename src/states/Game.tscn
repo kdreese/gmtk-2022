@@ -183,11 +183,15 @@ margin_right = 123.0
 margin_bottom = 112.0
 text = "Quit to Menu"
 
+[node name="OptionsMenu" parent="PauseMenu" instance=ExtResource( 7 )]
+visible = false
+
 [node name="LevelComplete" type="CanvasLayer" parent="."]
 pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="LevelComplete"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.392157 )
@@ -243,13 +247,11 @@ margin_right = 123.0
 margin_bottom = 83.0
 text = "Quit to Menu"
 
-[node name="OptionsMenu" parent="." instance=ExtResource( 7 )]
-
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/ResumeButton" to="PauseMenu" method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/RestartButton" to="PauseMenu" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/ToMenuButton" to="PauseMenu" method="_on_ToMenuButton_pressed"]
+[connection signal="options_exited" from="PauseMenu/OptionsMenu" to="." method="_on_OptionsMenu_options_exited"]
 [connection signal="pressed" from="LevelComplete/ColorRect/C/V/Buttons/ContinueButton" to="LevelComplete" method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="LevelComplete/ColorRect/C/V/Buttons/RestartButton" to="LevelComplete" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="LevelComplete/ColorRect/C/V/Buttons/ToMenuButton" to="LevelComplete" method="_on_ToMenuButton_pressed"]
-[connection signal="options_exited" from="OptionsMenu" to="." method="_on_OptionsMenu_options_exited"]

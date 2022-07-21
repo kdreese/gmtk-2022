@@ -15,19 +15,17 @@ func _on_PlayButton_pressed() -> void:
 
 func _on_LevelSelectButton_pressed() -> void:
 	$V.hide()
-	$LevelSelect.display()
-	$LevelSelect/ColorRect.show()
-	$LevelSelect/ColorRect/G.get_children()[0].grab_focus()
+	$Canvas/LevelSelect.show_menu()
 
 
 func _on_OptionsButton_pressed() -> void:
 	$V.hide()
-	$OptionsMenu.show_menu()
+	$Canvas/OptionsMenu.show_menu()
 
 
 func _on_CreditsButton_pressed() -> void:
 	$V.hide()
-	$CreditsMenu.show_menu()
+	$Canvas/CreditsMenu.show_menu()
 
 
 func _on_QuitButton_pressed() -> void:

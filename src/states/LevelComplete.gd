@@ -4,10 +4,6 @@ extends CanvasLayer
 var next_level_path: String
 
 
-func _ready() -> void:
-	$ColorRect.hide()
-
-
 func update(next_level_path_arg: String) -> void:
 	$ColorRect/C/V/Congratulations.text = "Congratulations!\nYou finished the level in %d moves!" % get_parent().moves
 	next_level_path = next_level_path_arg

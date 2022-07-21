@@ -27,15 +27,13 @@ font_data = ExtResource( 1 )
 size = 8
 font_data = ExtResource( 1 )
 
-[node name="CreditsMenu" type="CanvasLayer"]
-script = ExtResource( 2 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="CreditsMenu" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.392157 )
+script = ExtResource( 2 )
 
-[node name="V" type="VBoxContainer" parent="ColorRect"]
+[node name="V" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
@@ -44,7 +42,7 @@ margin_right = -8.0
 margin_bottom = -8.0
 size_flags_vertical = 3
 
-[node name="Title" type="Label" parent="ColorRect/V"]
+[node name="Title" type="Label" parent="V"]
 margin_left = 225.0
 margin_right = 399.0
 margin_bottom = 56.0
@@ -53,24 +51,24 @@ custom_fonts/font = SubResource( 1 )
 text = "Credits"
 align = 1
 
-[node name="S" type="ScrollContainer" parent="ColorRect/V"]
+[node name="S" type="ScrollContainer" parent="V"]
 margin_top = 60.0
 margin_right = 624.0
 margin_bottom = 464.0
 size_flags_vertical = 3
 
-[node name="V" type="VBoxContainer" parent="ColorRect/V/S"]
+[node name="V" type="VBoxContainer" parent="V/S"]
 margin_right = 612.0
 margin_bottom = 2124.0
 size_flags_horizontal = 3
 custom_constants/separation = 24
 
-[node name="Us" type="GridContainer" parent="ColorRect/V/S/V"]
+[node name="Us" type="GridContainer" parent="V/S/V"]
 margin_right = 612.0
 margin_bottom = 139.0
 columns = 3
 
-[node name="HearstName" type="Label" parent="ColorRect/V/S/V/Us"]
+[node name="HearstName" type="Label" parent="V/S/V/Us"]
 margin_right = 201.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
@@ -78,7 +76,7 @@ custom_fonts/font = SubResource( 5 )
 text = "Terry Hearst"
 align = 1
 
-[node name="MooreName" type="Label" parent="ColorRect/V/S/V/Us"]
+[node name="MooreName" type="Label" parent="V/S/V/Us"]
 margin_left = 205.0
 margin_right = 406.0
 margin_bottom = 28.0
@@ -87,7 +85,7 @@ custom_fonts/font = SubResource( 5 )
 text = "Andrew Moore"
 align = 1
 
-[node name="ReeseName" type="Label" parent="ColorRect/V/S/V/Us"]
+[node name="ReeseName" type="Label" parent="V/S/V/Us"]
 margin_left = 410.0
 margin_right = 611.0
 margin_bottom = 28.0
@@ -96,7 +94,7 @@ custom_fonts/font = SubResource( 5 )
 text = "Kyle Reese"
 align = 1
 
-[node name="HearstCredits" type="Label" parent="ColorRect/V/S/V/Us"]
+[node name="HearstCredits" type="Label" parent="V/S/V/Us"]
 margin_top = 43.0
 margin_right = 201.0
 margin_bottom = 128.0
@@ -106,7 +104,7 @@ Sound Effects
 Writing"
 align = 1
 
-[node name="MooreCredits" type="Label" parent="ColorRect/V/S/V/Us"]
+[node name="MooreCredits" type="Label" parent="V/S/V/Us"]
 margin_left = 205.0
 margin_top = 32.0
 margin_right = 406.0
@@ -118,7 +116,7 @@ Music
 Writing"
 align = 1
 
-[node name="ReeseCredits" type="Label" parent="ColorRect/V/S/V/Us"]
+[node name="ReeseCredits" type="Label" parent="V/S/V/Us"]
 margin_left = 410.0
 margin_top = 54.0
 margin_right = 611.0
@@ -128,7 +126,7 @@ Puzzle Design
 Art/Graphics"
 align = 1
 
-[node name="LicensesTitle" type="Label" parent="ColorRect/V/S/V"]
+[node name="LicensesTitle" type="Label" parent="V/S/V"]
 margin_top = 163.0
 margin_right = 612.0
 margin_bottom = 205.0
@@ -136,20 +134,20 @@ custom_fonts/font = SubResource( 6 )
 text = "Licenses"
 align = 1
 
-[node name="Godot" type="VBoxContainer" parent="ColorRect/V/S/V"]
+[node name="Godot" type="VBoxContainer" parent="V/S/V"]
 margin_top = 229.0
 margin_right = 612.0
 margin_bottom = 584.0
 custom_constants/separation = 8
 
-[node name="Title" type="Label" parent="ColorRect/V/S/V/Godot"]
+[node name="Title" type="Label" parent="V/S/V/Godot"]
 margin_right = 612.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 2 )
 text = "Godot Engine"
 align = 1
 
-[node name="Description" type="Label" parent="ColorRect/V/S/V/Godot"]
+[node name="Description" type="Label" parent="V/S/V/Godot"]
 margin_top = 35.0
 margin_right = 612.0
 margin_bottom = 355.0
@@ -165,20 +163,20 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
 autowrap = true
 
-[node name="FreeType" type="VBoxContainer" parent="ColorRect/V/S/V"]
+[node name="FreeType" type="VBoxContainer" parent="V/S/V"]
 margin_top = 608.0
 margin_right = 612.0
 margin_bottom = 674.0
 custom_constants/separation = 8
 
-[node name="Title" type="Label" parent="ColorRect/V/S/V/FreeType"]
+[node name="Title" type="Label" parent="V/S/V/FreeType"]
 margin_right = 612.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 2 )
 text = "FreeType"
 align = 1
 
-[node name="Description" type="Label" parent="ColorRect/V/S/V/FreeType"]
+[node name="Description" type="Label" parent="V/S/V/FreeType"]
 margin_top = 35.0
 margin_right = 612.0
 margin_bottom = 66.0
@@ -186,20 +184,20 @@ custom_fonts/font = SubResource( 3 )
 text = "Portions of this software are copyright © 1996-2020 The FreeType Project (www.freetype.org). All rights reserved."
 autowrap = true
 
-[node name="ENet" type="VBoxContainer" parent="ColorRect/V/S/V"]
+[node name="ENet" type="VBoxContainer" parent="V/S/V"]
 margin_top = 698.0
 margin_right = 612.0
 margin_bottom = 1019.0
 custom_constants/separation = 8
 
-[node name="Title" type="Label" parent="ColorRect/V/S/V/ENet"]
+[node name="Title" type="Label" parent="V/S/V/ENet"]
 margin_right = 612.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 2 )
 text = "ENet"
 align = 1
 
-[node name="Description" type="Label" parent="ColorRect/V/S/V/ENet"]
+[node name="Description" type="Label" parent="V/S/V/ENet"]
 margin_top = 35.0
 margin_right = 612.0
 margin_bottom = 321.0
@@ -213,20 +211,20 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
 autowrap = true
 
-[node name="MbedTLS" type="VBoxContainer" parent="ColorRect/V/S/V"]
+[node name="MbedTLS" type="VBoxContainer" parent="V/S/V"]
 margin_top = 1043.0
 margin_right = 612.0
 margin_bottom = 1262.0
 custom_constants/separation = 8
 
-[node name="Title" type="Label" parent="ColorRect/V/S/V/MbedTLS"]
+[node name="Title" type="Label" parent="V/S/V/MbedTLS"]
 margin_right = 612.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 2 )
 text = "Mbed TLS"
 align = 1
 
-[node name="Description" type="Label" parent="ColorRect/V/S/V/MbedTLS"]
+[node name="Description" type="Label" parent="V/S/V/MbedTLS"]
 margin_top = 35.0
 margin_right = 612.0
 margin_bottom = 219.0
@@ -240,20 +238,20 @@ http://www.apache.org/licenses/LICENSE-2.0
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."
 autowrap = true
 
-[node name="RussoOne" type="VBoxContainer" parent="ColorRect/V/S/V"]
+[node name="RussoOne" type="VBoxContainer" parent="V/S/V"]
 margin_top = 1286.0
 margin_right = 612.0
 margin_bottom = 2124.0
 custom_constants/separation = 8
 
-[node name="Title" type="Label" parent="ColorRect/V/S/V/RussoOne"]
+[node name="Title" type="Label" parent="V/S/V/RussoOne"]
 margin_right = 612.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 2 )
 text = "Russo One"
 align = 1
 
-[node name="Description" type="Label" parent="ColorRect/V/S/V/RussoOne"]
+[node name="Description" type="Label" parent="V/S/V/RussoOne"]
 margin_top = 35.0
 margin_right = 612.0
 margin_bottom = 838.0
@@ -305,7 +303,7 @@ DISCLAIMER
 THE FONT SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE."
 autowrap = true
 
-[node name="BackButton" type="Button" parent="ColorRect"]
+[node name="BackButton" type="Button" parent="."]
 margin_left = 12.0
 margin_top = 12.0
 margin_right = 92.0
@@ -313,4 +311,4 @@ margin_bottom = 37.0
 rect_min_size = Vector2( 80, 0 )
 text = "Back"
 
-[connection signal="pressed" from="ColorRect/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
