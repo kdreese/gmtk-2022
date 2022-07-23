@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/states/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/Russo_One.ttf" type="DynamicFontData" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/ui/restart_icon.png" type="Texture" id=8]
 [ext_resource path="res://assets/ui/exit_icon.png" type="Texture" id=9]
 [ext_resource path="res://assets/ui/options_icon.png" type="Texture" id=10]
+[ext_resource path="res://assets/tiles/background.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=3]
 size = 24
@@ -273,6 +274,15 @@ margin_top = 58.0
 margin_right = 123.0
 margin_bottom = 83.0
 text = "Quit to Menu"
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 11 )
+stretch_mode = 2
 
 [connection signal="pressed" from="UI/H/MenuButton" to="." method="_on_MenuButton_pressed"]
 [connection signal="pressed" from="UI/H/OptionsButton" to="." method="_on_OptionsButton_pressed"]

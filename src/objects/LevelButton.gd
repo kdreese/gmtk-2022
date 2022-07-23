@@ -31,7 +31,7 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	var face_value = area.get_top_face_value()
 	if face_value >= minimum_weight and face_value <= maximum_weight:
-		$Indicator.hide()
+		remove_child($Indicator)
 		set_pressed()
 		emit_signal("button_pressed")
 		$PressedSound.play()

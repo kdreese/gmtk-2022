@@ -38,6 +38,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
 		get_tree().paused = true
+		hide_ui()
 		$PauseMenu/ColorRect.show()
 		$PauseMenu/ColorRect/C/V/Buttons/ResumeButton.grab_focus()
 		get_tree().set_input_as_handled()
@@ -62,17 +63,38 @@ func _on_player_move(grid_coords: Vector2):
 	level.handle_player_move(grid_coords)
 
 
+func hide_ui():
+	$UI/Legend.hide()
+	$UI/H.hide()
+	$UI/V.hide()
+	$UI/Textbox.hide()
+	for element in get_tree().get_nodes_in_group("UI Elements"):
+		element.hide()
+
+
+func show_ui():
+	$UI/Legend.show()
+	$UI/H.show()
+	$UI/V.show()
+	if $UI/Textbox/MessageText.text != "":
+		$UI/Textbox.show()
+	for element in get_tree().get_nodes_in_group("UI Elements"):
+		element.show()
+
+
 func _on_LevelEnd_exit_reached_success(next_level_path: String):
 	get_tree().paused = true
 	$LevelComplete.update(next_level_path)
 	$LevelComplete/ColorRect.show()
-	$UI/Textbox.hide()
+	hide_ui()
+
 
 func _on_OptionsMenu_options_exited() -> void:
 	level.get_node("Player").update_animation_speed()
 	if options_return_to_game:
 		# We came from the game scene, so un-pause the game.
 		get_tree().paused = false
+		show_ui()
 	else:
 		$PauseMenu/ColorRect.show()
 		$PauseMenu/ColorRect/C/V/Buttons/OptionsButton.grab_focus()
@@ -87,6 +109,7 @@ func _on_MenuButton_pressed() -> void:
 func _on_OptionsButton_pressed() -> void:
 	get_tree().paused = true
 	options_return_to_game = true
+	hide_ui()
 	$PauseMenu/OptionsMenu.show_menu()
 
 

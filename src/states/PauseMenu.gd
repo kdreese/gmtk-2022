@@ -19,6 +19,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_ResumeButton_pressed() -> void:
 	get_tree().paused = false
 	$ColorRect.hide()
+	get_parent().show_ui()
 
 
 func _on_RestartButton_pressed() -> void:

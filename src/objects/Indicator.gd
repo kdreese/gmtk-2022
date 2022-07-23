@@ -31,6 +31,13 @@ func hide() -> void:
 	$Sprite.hide()
 
 
+func show() -> void:
+	if get_parent().minimum_weight == 1 and get_parent().maximum_weight == 6:
+		return
+	$CenterContainer.show()
+	$Sprite.show()
+
+
 func generate_indicator_string() -> String:
 	var button = get_parent()
 	if button.minimum_weight == button.maximum_weight:
