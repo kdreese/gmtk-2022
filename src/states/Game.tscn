@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/states/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/Russo_One.ttf" type="DynamicFontData" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://src/states/LevelComplete.gd" type="Script" id=5]
 [ext_resource path="res://assets/ui/textbox.png" type="Texture" id=6]
 [ext_resource path="res://src/states/OptionsMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/ui/restart_icon.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/exit_icon.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/options_icon.png" type="Texture" id=10]
 
 [sub_resource type="DynamicFont" id=3]
 size = 24
@@ -125,6 +128,30 @@ margin_right = -32.0
 margin_bottom = -32.0
 text = "This is a test message let's see how long we can make this text for the test"
 autowrap = true
+
+[node name="H" type="HBoxContainer" parent="UI"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.75, 0.75 )
+
+[node name="MenuButton" type="TextureButton" parent="UI/H"]
+margin_right = 64.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 9 )
+
+[node name="OptionsButton" type="TextureButton" parent="UI/H"]
+margin_left = 68.0
+margin_right = 132.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 10 )
+
+[node name="RestartButton" type="TextureButton" parent="UI/H"]
+margin_left = 136.0
+margin_right = 200.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 8 )
 
 [node name="PauseMenu" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -247,9 +274,12 @@ margin_right = 123.0
 margin_bottom = 83.0
 text = "Quit to Menu"
 
+[connection signal="pressed" from="UI/H/MenuButton" to="." method="_on_MenuButton_pressed"]
+[connection signal="pressed" from="UI/H/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="UI/H/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/ResumeButton" to="PauseMenu" method="_on_ResumeButton_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/RestartButton" to="PauseMenu" method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/OptionsButton" to="." method="_on_PauseMenu_OptionsButton_pressed"]
 [connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/ToMenuButton" to="PauseMenu" method="_on_ToMenuButton_pressed"]
 [connection signal="options_exited" from="PauseMenu/OptionsMenu" to="." method="_on_OptionsMenu_options_exited"]
 [connection signal="pressed" from="LevelComplete/ColorRect/C/V/Buttons/ContinueButton" to="LevelComplete" method="_on_ContinueButton_pressed"]

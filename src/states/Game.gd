@@ -67,13 +67,32 @@ func _on_LevelEnd_exit_reached_success(next_level_path: String):
 	$LevelComplete/ColorRect.show()
 	$UI/Textbox.hide()
 
+func _on_OptionsMenu_options_exited(source: String) -> void:
+	level.get_node("Player").update_animation_speed()
+	if source == "pause_menu":
+		$PauseMenu/ColorRect.show()
+		$PauseMenu/ColorRect/C/V/Buttons/OptionsButton.grab_focus()
+	else:
+		# We came from the game scene, so un-pause the game.
+		get_tree().paused = false
+
+
+func _on_MenuButton_pressed() -> void:
+	# Go back to the main menu.
+	var error := get_tree().change_scene("res://src/states/Menu.tscn")
+	assert(not error)
+
 
 func _on_OptionsButton_pressed() -> void:
+	get_tree().paused = true
+	$PauseMenu/OptionsMenu.show_menu("main")
+
+
+func _on_PauseMenu_OptionsButton_pressed() -> void:
 	$PauseMenu/ColorRect.hide()
-	$PauseMenu/OptionsMenu.show_menu()
+	$PauseMenu/OptionsMenu.show_menu("pause_menu")
 
 
-func _on_OptionsMenu_options_exited() -> void:
-	level.get_node("Player").update_animation_speed()
-	$PauseMenu/ColorRect.show()
-	$PauseMenu/ColorRect/C/V/Buttons/OptionsButton.grab_focus()
+func _on_RestartButton_pressed() -> void:
+	var error := get_tree().reload_current_scene()
+	assert(not error)
