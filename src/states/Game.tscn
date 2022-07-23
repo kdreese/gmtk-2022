@@ -35,35 +35,44 @@ script = ExtResource( 1 )
 position = Vector2( 320, 240 )
 current = true
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="V" type="VBoxContainer" parent="UI"]
+[node name="UI" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="V" type="VBoxContainer" parent="CanvasLayer/UI"]
 anchor_right = 1.0
 margin_top = 30.0
+margin_bottom = 82.0
 custom_constants/separation = 5
 
-[node name="LevelName" type="Label" parent="UI/V"]
+[node name="LevelName" type="Label" parent="CanvasLayer/UI/V"]
 margin_right = 640.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 3 )
 align = 1
 
-[node name="MoveCounter" type="Label" parent="UI/V"]
+[node name="MoveCounter" type="Label" parent="CanvasLayer/UI/V"]
 margin_top = 33.0
 margin_right = 640.0
 margin_bottom = 52.0
 align = 1
 
-[node name="Legend" type="TextureRect" parent="UI"]
+[node name="Legend" type="TextureRect" parent="CanvasLayer/UI"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -165.0
-margin_right = 239.0
+margin_left = -162.0
+margin_top = 2.01948e-28
+margin_right = 242.0
 margin_bottom = 250.0
 rect_scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="D" type="Label" parent="UI/Legend"]
+[node name="D" type="Label" parent="CanvasLayer/UI/Legend"]
 margin_left = 250.0
 margin_top = 162.5
 margin_right = 350.0
@@ -74,7 +83,7 @@ text = "D"
 align = 1
 valign = 1
 
-[node name="A" type="Label" parent="UI/Legend"]
+[node name="A" type="Label" parent="CanvasLayer/UI/Legend"]
 margin_left = 50.0
 margin_top = 62.5
 margin_right = 150.0
@@ -85,7 +94,7 @@ text = "A"
 align = 1
 valign = 1
 
-[node name="W" type="Label" parent="UI/Legend"]
+[node name="W" type="Label" parent="CanvasLayer/UI/Legend"]
 margin_left = 247.5
 margin_top = 62.5
 margin_right = 347.5
@@ -96,7 +105,7 @@ text = "W"
 align = 1
 valign = 1
 
-[node name="S" type="Label" parent="UI/Legend"]
+[node name="S" type="Label" parent="CanvasLayer/UI/Legend"]
 margin_left = 147.5
 margin_top = 112.5
 margin_right = 247.5
@@ -107,7 +116,7 @@ text = "S"
 align = 1
 valign = 1
 
-[node name="Textbox" type="TextureRect" parent="UI"]
+[node name="Textbox" type="TextureRect" parent="CanvasLayer/UI"]
 visible = false
 self_modulate = Color( 1, 1, 1, 0.392157 )
 anchor_left = 0.5
@@ -115,127 +124,129 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -320.0
-margin_top = -180.0
+margin_top = -174.0
 margin_right = 320.0
+margin_bottom = -14.0
+size_flags_horizontal = 4
 texture = ExtResource( 6 )
 stretch_mode = 4
 
-[node name="MessageText" type="Label" parent="UI/Textbox"]
+[node name="MessageText" type="Label" parent="CanvasLayer/UI/Textbox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 32.0
-margin_top = 32.0
+margin_top = 22.0
 margin_right = -32.0
-margin_bottom = -32.0
+margin_bottom = -22.0
 text = "This is a test message let's see how long we can make this text for the test"
 autowrap = true
 
-[node name="H" type="HBoxContainer" parent="UI"]
+[node name="H" type="HBoxContainer" parent="CanvasLayer/UI"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 220.0
+margin_bottom = 84.0
 rect_scale = Vector2( 0.75, 0.75 )
 
-[node name="MenuButton" type="TextureButton" parent="UI/H"]
+[node name="MenuButton" type="TextureButton" parent="CanvasLayer/UI/H"]
 margin_right = 64.0
 margin_bottom = 64.0
+hint_tooltip = "Quit to Menu"
 texture_normal = ExtResource( 9 )
 
-[node name="OptionsButton" type="TextureButton" parent="UI/H"]
+[node name="OptionsButton" type="TextureButton" parent="CanvasLayer/UI/H"]
 margin_left = 68.0
 margin_right = 132.0
 margin_bottom = 64.0
+hint_tooltip = "Options"
 texture_normal = ExtResource( 10 )
 
-[node name="RestartButton" type="TextureButton" parent="UI/H"]
+[node name="RestartButton" type="TextureButton" parent="CanvasLayer/UI/H"]
 margin_left = 136.0
 margin_right = 200.0
 margin_bottom = 64.0
+hint_tooltip = "Restart Level"
 texture_normal = ExtResource( 8 )
 
-[node name="PauseMenu" type="CanvasLayer" parent="."]
+[node name="PauseMenu" type="ColorRect" parent="CanvasLayer"]
 pause_mode = 2
-script = ExtResource( 3 )
-
-[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.392157 )
+script = ExtResource( 3 )
 
-[node name="C" type="CenterContainer" parent="PauseMenu/ColorRect"]
+[node name="C" type="CenterContainer" parent="CanvasLayer/PauseMenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="V" type="VBoxContainer" parent="PauseMenu/ColorRect/C"]
+[node name="V" type="VBoxContainer" parent="CanvasLayer/PauseMenu/C"]
 margin_left = 258.0
 margin_top = 149.0
 margin_right = 381.0
 margin_bottom = 331.0
 custom_constants/separation = 32
 
-[node name="PausedTitle" type="Label" parent="PauseMenu/ColorRect/C/V"]
+[node name="PausedTitle" type="Label" parent="CanvasLayer/PauseMenu/C/V"]
 margin_right = 123.0
 margin_bottom = 38.0
 custom_fonts/font = SubResource( 1 )
 text = "Paused"
 align = 1
 
-[node name="Buttons" type="VBoxContainer" parent="PauseMenu/ColorRect/C/V"]
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/PauseMenu/C/V"]
 margin_top = 70.0
 margin_right = 123.0
 margin_bottom = 182.0
 size_flags_horizontal = 4
 
-[node name="ResumeButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu/C/V/Buttons"]
 margin_right = 123.0
 margin_bottom = 25.0
 text = "Resume"
 
-[node name="RestartButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
+[node name="RestartButton" type="Button" parent="CanvasLayer/PauseMenu/C/V/Buttons"]
 margin_top = 29.0
 margin_right = 123.0
 margin_bottom = 54.0
 text = "Restart Level"
 
-[node name="OptionsButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
+[node name="OptionsButton" type="Button" parent="CanvasLayer/PauseMenu/C/V/Buttons"]
 margin_top = 58.0
 margin_right = 123.0
 margin_bottom = 83.0
 text = "Options"
 
-[node name="ToMenuButton" type="Button" parent="PauseMenu/ColorRect/C/V/Buttons"]
+[node name="ToMenuButton" type="Button" parent="CanvasLayer/PauseMenu/C/V/Buttons"]
 margin_top = 87.0
 margin_right = 123.0
 margin_bottom = 112.0
 text = "Quit to Menu"
 
-[node name="OptionsMenu" parent="PauseMenu" instance=ExtResource( 7 )]
+[node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource( 7 )]
+pause_mode = 2
 visible = false
 
-[node name="LevelComplete" type="CanvasLayer" parent="."]
+[node name="LevelComplete" type="ColorRect" parent="CanvasLayer"]
 pause_mode = 2
-script = ExtResource( 5 )
-
-[node name="ColorRect" type="ColorRect" parent="LevelComplete"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.392157 )
+script = ExtResource( 5 )
 
-[node name="C" type="CenterContainer" parent="LevelComplete/ColorRect"]
+[node name="C" type="CenterContainer" parent="CanvasLayer/LevelComplete"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="V" type="VBoxContainer" parent="LevelComplete/ColorRect/C"]
+[node name="V" type="VBoxContainer" parent="CanvasLayer/LevelComplete/C"]
 margin_left = 182.0
 margin_top = 162.0
 margin_right = 457.0
 margin_bottom = 318.0
 custom_constants/separation = 32
 
-[node name="YouWinLabel" type="Label" parent="LevelComplete/ColorRect/C/V"]
+[node name="YouWinLabel" type="Label" parent="CanvasLayer/LevelComplete/C/V"]
 visible = false
 margin_right = 331.0
 margin_bottom = 79.0
@@ -244,32 +255,32 @@ text = "You win! Thanks for
 playing Unweighted!"
 align = 1
 
-[node name="Congratulations" type="Label" parent="LevelComplete/ColorRect/C/V"]
+[node name="Congratulations" type="Label" parent="CanvasLayer/LevelComplete/C/V"]
 margin_right = 275.0
 margin_bottom = 41.0
 text = "Congratulations!
 You finished the level in 0 moves!"
 align = 1
 
-[node name="Buttons" type="VBoxContainer" parent="LevelComplete/ColorRect/C/V"]
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/LevelComplete/C/V"]
 margin_left = 76.0
 margin_top = 73.0
 margin_right = 199.0
 margin_bottom = 156.0
 size_flags_horizontal = 4
 
-[node name="ContinueButton" type="Button" parent="LevelComplete/ColorRect/C/V/Buttons"]
+[node name="ContinueButton" type="Button" parent="CanvasLayer/LevelComplete/C/V/Buttons"]
 margin_right = 123.0
 margin_bottom = 25.0
 text = "Next Level"
 
-[node name="RestartButton" type="Button" parent="LevelComplete/ColorRect/C/V/Buttons"]
+[node name="RestartButton" type="Button" parent="CanvasLayer/LevelComplete/C/V/Buttons"]
 margin_top = 29.0
 margin_right = 123.0
 margin_bottom = 54.0
 text = "Restart Level"
 
-[node name="ToMenuButton" type="Button" parent="LevelComplete/ColorRect/C/V/Buttons"]
+[node name="ToMenuButton" type="Button" parent="CanvasLayer/LevelComplete/C/V/Buttons"]
 margin_top = 58.0
 margin_right = 123.0
 margin_bottom = 83.0
@@ -284,14 +295,14 @@ anchor_bottom = 1.0
 texture = ExtResource( 11 )
 stretch_mode = 2
 
-[connection signal="pressed" from="UI/H/MenuButton" to="." method="_on_MenuButton_pressed"]
-[connection signal="pressed" from="UI/H/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="pressed" from="UI/H/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/ResumeButton" to="PauseMenu" method="_on_ResumeButton_pressed"]
-[connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/RestartButton" to="PauseMenu" method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/OptionsButton" to="." method="_on_PauseMenu_OptionsButton_pressed"]
-[connection signal="pressed" from="PauseMenu/ColorRect/C/V/Buttons/ToMenuButton" to="PauseMenu" method="_on_ToMenuButton_pressed"]
-[connection signal="options_exited" from="PauseMenu/OptionsMenu" to="." method="_on_OptionsMenu_options_exited"]
-[connection signal="pressed" from="LevelComplete/ColorRect/C/V/Buttons/ContinueButton" to="LevelComplete" method="_on_ContinueButton_pressed"]
-[connection signal="pressed" from="LevelComplete/ColorRect/C/V/Buttons/RestartButton" to="LevelComplete" method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="LevelComplete/ColorRect/C/V/Buttons/ToMenuButton" to="LevelComplete" method="_on_ToMenuButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/H/MenuButton" to="." method="_on_MenuButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/H/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/H/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/C/V/Buttons/ResumeButton" to="CanvasLayer/PauseMenu" method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/C/V/Buttons/RestartButton" to="CanvasLayer/PauseMenu" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/C/V/Buttons/OptionsButton" to="." method="_on_PauseMenu_OptionsButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/C/V/Buttons/ToMenuButton" to="CanvasLayer/PauseMenu" method="_on_ToMenuButton_pressed"]
+[connection signal="options_exited" from="CanvasLayer/OptionsMenu" to="." method="_on_OptionsMenu_options_exited"]
+[connection signal="pressed" from="CanvasLayer/LevelComplete/C/V/Buttons/ContinueButton" to="CanvasLayer/LevelComplete" method="_on_ContinueButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/LevelComplete/C/V/Buttons/RestartButton" to="CanvasLayer/LevelComplete" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/LevelComplete/C/V/Buttons/ToMenuButton" to="CanvasLayer/LevelComplete" method="_on_ToMenuButton_pressed"]

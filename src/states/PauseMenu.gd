@@ -1,12 +1,12 @@
-extends CanvasLayer
+extends ColorRect
 
 
 func _ready() -> void:
-	$ColorRect.hide()
+	hide()
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not $ColorRect.visible:
+	if not visible:
 		return
 	if event.is_action_pressed("escape") or event.is_action_pressed("ui_cancel"):
 		_on_ResumeButton_pressed()
@@ -18,8 +18,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_ResumeButton_pressed() -> void:
 	get_tree().paused = false
-	$ColorRect.hide()
-	get_parent().show_ui()
+	hide()
+	get_node("../..").show_ui()
 
 
 func _on_RestartButton_pressed() -> void:

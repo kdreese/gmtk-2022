@@ -32,8 +32,6 @@ func hide() -> void:
 
 
 func show() -> void:
-	if get_parent().minimum_weight == 1 and get_parent().maximum_weight == 6:
-		return
 	$CenterContainer.show()
 	$Sprite.show()
 
