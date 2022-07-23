@@ -5,7 +5,6 @@ signal options_exited
 
 var animation_speed_strings := ["Slow", "Normal", "Fast", "Very Fast", "Hyperspeed"]
 
-var source : String
 
 func _ready() -> void:
 	var animation_speed_value = Global.animation_speed
@@ -25,15 +24,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().set_input_as_handled()
 
 
-func show_menu(source: String) -> void:
+func show_menu() -> void:
 	show()
 	$C/V/BackButton.grab_focus()
-	source = source
 
 
 func _on_BackButton_pressed() -> void:
 	hide()
-	emit_signal("options_exited", source)
+	emit_signal("options_exited")
 
 
 func _on_SoundVolumeSlider_value_changed(value: float) -> void:

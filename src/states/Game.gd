@@ -4,6 +4,7 @@ extends Node2D
 var level: Level
 
 var moves: int
+var options_return_to_game: bool
 
 
 func _ready() -> void:
@@ -67,14 +68,14 @@ func _on_LevelEnd_exit_reached_success(next_level_path: String):
 	$LevelComplete/ColorRect.show()
 	$UI/Textbox.hide()
 
-func _on_OptionsMenu_options_exited(source: String) -> void:
+func _on_OptionsMenu_options_exited() -> void:
 	level.get_node("Player").update_animation_speed()
-	if source == "pause_menu":
-		$PauseMenu/ColorRect.show()
-		$PauseMenu/ColorRect/C/V/Buttons/OptionsButton.grab_focus()
-	else:
+	if options_return_to_game:
 		# We came from the game scene, so un-pause the game.
 		get_tree().paused = false
+	else:
+		$PauseMenu/ColorRect.show()
+		$PauseMenu/ColorRect/C/V/Buttons/OptionsButton.grab_focus()
 
 
 func _on_MenuButton_pressed() -> void:
@@ -85,12 +86,14 @@ func _on_MenuButton_pressed() -> void:
 
 func _on_OptionsButton_pressed() -> void:
 	get_tree().paused = true
-	$PauseMenu/OptionsMenu.show_menu("main")
+	options_return_to_game = true
+	$PauseMenu/OptionsMenu.show_menu()
 
 
 func _on_PauseMenu_OptionsButton_pressed() -> void:
+	options_return_to_game = false
 	$PauseMenu/ColorRect.hide()
-	$PauseMenu/OptionsMenu.show_menu("pause_menu")
+	$PauseMenu/OptionsMenu.show_menu()
 
 
 func _on_RestartButton_pressed() -> void:
