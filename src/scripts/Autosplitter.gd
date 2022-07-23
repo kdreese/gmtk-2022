@@ -1,20 +1,13 @@
 extends Node
 
 
-const PORT := 5678
-
 var server: WebSocketServer
 var peers := []
 
 
 func _ready() -> void:
 	server = WebSocketServer.new()
-	var error := server.listen(PORT)
-	if error:
-		print("Error starting websocket, autosplitter will not run")
-		return
-	print("Websocket listening on %s:%d" % [server.bind_ip, PORT])
-	error = server.connect("client_close_request", self, "_on_server_client_close_request")
+	var error := server.connect("client_close_request", self, "_on_server_client_close_request")
 	assert(not error)
 	error = server.connect("client_connected", self, "_on_server_client_connected")
 	assert(not error)
@@ -23,6 +16,26 @@ func _ready() -> void:
 	error = server.connect("data_received", self, "_on_server_data_received")
 	assert(not error)
 	pause_mode = Node.PAUSE_MODE_PROCESS
+
+
+func start() -> void:
+	if server.is_listening():
+		return
+	var error := server.listen(Global.autosplitter_port)
+	if error:
+		print("Error starting websocket, autosplitter will not run")
+		return
+	Global.autosplitter_enabled = true
+	print("Websocket listening on %s:%d" % [server.bind_ip, Global.autosplitter_port])
+
+
+func stop() -> void:
+	if not server.is_listening():
+		return
+	server.stop()
+	peers = []
+	Global.autosplitter_enabled = false
+	print("Server stopped")
 
 
 func send_data(data: String) -> void:

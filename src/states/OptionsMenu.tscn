@@ -19,9 +19,9 @@ anchor_bottom = 1.0
 
 [node name="V" type="VBoxContainer" parent="C"]
 margin_left = 125.0
-margin_top = 137.0
+margin_top = 90.0
 margin_right = 514.0
-margin_bottom = 343.0
+margin_bottom = 389.0
 custom_constants/separation = 30
 
 [node name="Title" type="Label" parent="C/V"]
@@ -42,6 +42,7 @@ columns = 3
 margin_right = 139.0
 margin_bottom = 19.0
 text = "Sound Volume"
+align = 2
 
 [node name="SoundVolumeSlider" type="HSlider" parent="C/V/G"]
 margin_left = 164.0
@@ -63,6 +64,7 @@ margin_top = 23.0
 margin_right = 139.0
 margin_bottom = 42.0
 text = "Music Volume"
+align = 2
 
 [node name="MusicVolumeSlider" type="HSlider" parent="C/V/G"]
 margin_left = 164.0
@@ -86,6 +88,7 @@ margin_top = 46.0
 margin_right = 139.0
 margin_bottom = 65.0
 text = "Animation Speed"
+align = 2
 
 [node name="AnimationSpeedSlider" type="HSlider" parent="C/V/G"]
 margin_left = 164.0
@@ -105,11 +108,56 @@ margin_bottom = 65.0
 rect_min_size = Vector2( 100, 0 )
 text = "Normal"
 
+[node name="V" type="VBoxContainer" parent="C/V"]
+margin_top = 181.0
+margin_right = 389.0
+margin_bottom = 244.0
+
+[node name="AutosplitterLabel" type="Label" parent="C/V/V"]
+margin_right = 389.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 100, 0 )
+text = "LiveSplit One Autosplitter"
+align = 1
+
+[node name="H" type="HBoxContainer" parent="C/V/V"]
+margin_top = 23.0
+margin_right = 389.0
+margin_bottom = 63.0
+alignment = 1
+
+[node name="AutosplitterEnabledCheck" type="CheckButton" parent="C/V/V/H"]
+margin_left = 50.0
+margin_right = 195.0
+margin_bottom = 40.0
+focus_neighbour_right = NodePath("../AutosplitterPortSpinBox")
+text = "Enabled"
+align = 1
+
+[node name="Label" type="Label" parent="C/V/V/H"]
+margin_left = 199.0
+margin_top = 10.0
+margin_right = 249.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 50, 0 )
+text = "Port"
+align = 2
+
+[node name="AutosplitterPortSpinBox" type="SpinBox" parent="C/V/V/H"]
+margin_left = 253.0
+margin_top = 5.0
+margin_right = 339.0
+margin_bottom = 34.0
+focus_neighbour_left = NodePath("../AutosplitterEnabledCheck")
+size_flags_vertical = 4
+max_value = 65535.0
+value = 5678.0
+
 [node name="BackButton" type="Button" parent="C/V"]
 margin_left = 144.0
-margin_top = 181.0
+margin_top = 274.0
 margin_right = 244.0
-margin_bottom = 206.0
+margin_bottom = 299.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 4
 text = "Back"
@@ -117,4 +165,6 @@ text = "Back"
 [connection signal="value_changed" from="C/V/G/SoundVolumeSlider" to="." method="_on_SoundVolumeSlider_value_changed"]
 [connection signal="value_changed" from="C/V/G/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
 [connection signal="value_changed" from="C/V/G/AnimationSpeedSlider" to="." method="_on_AnimationSpeedSlider_value_changed"]
+[connection signal="toggled" from="C/V/V/H/AutosplitterEnabledCheck" to="." method="_on_AutosplitterEnabledCheck_toggled"]
+[connection signal="value_changed" from="C/V/V/H/AutosplitterPortSpinBox" to="." method="_on_AutosplitterPortSpinBox_value_changed"]
 [connection signal="pressed" from="C/V/BackButton" to="." method="_on_BackButton_pressed"]
