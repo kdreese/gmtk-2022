@@ -8,7 +8,7 @@ export var maximum_weight: int = 6
 
 func _ready() -> void:
 	if minimum_weight == 1 and maximum_weight == 6:
-		$Indicator.hide()
+		$Indicator.queue_free()
 
 
 func _on_Toggle_area_entered(area: Area2D) -> void:

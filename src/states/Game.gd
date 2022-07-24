@@ -15,11 +15,11 @@ func _ready() -> void:
 	var error := level.get_node("LevelEnd").connect("exit_reached_success", self, "_on_LevelEnd_exit_reached_success")
 	assert(not error)
 
-	$UI/V/LevelName.text = level.get_node("LevelEnd").level_name
+	$CanvasLayer/UI/V/LevelName.text = level.get_node("LevelEnd").level_name
 	var level_text = level.get_node("LevelEnd").level_text
-	$UI/Textbox/MessageText.text = level_text
+	$CanvasLayer/UI/Textbox/MessageText.text = level_text
 	if level_text != "":
-		$UI/Textbox.show()
+		$CanvasLayer/UI/Textbox.show()
 
 	for coords in tile_map.get_used_cells():
 		var tile := tile_map.get_cell(coords.x, coords.y)
@@ -38,8 +38,9 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
 		get_tree().paused = true
-		$PauseMenu/ColorRect.show()
-		$PauseMenu/ColorRect/C/V/Buttons/ResumeButton.grab_focus()
+		hide_ui()
+		$CanvasLayer/PauseMenu.show()
+		$CanvasLayer/PauseMenu/C/V/Buttons/ResumeButton.grab_focus()
 		get_tree().set_input_as_handled()
 	elif event.is_action_pressed("restart"):
 		var error := get_tree().reload_current_scene()
@@ -48,7 +49,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func update_move_counter() -> void:
-	$UI/V/MoveCounter.text = "Moves: %d" % moves
+	$CanvasLayer/UI/V/MoveCounter.text = "Moves: %d" % moves
 
 
 func reset_move_counter() -> void:
@@ -62,20 +63,34 @@ func _on_player_move(grid_coords: Vector2):
 	level.handle_player_move(grid_coords)
 
 
+func hide_ui():
+	$CanvasLayer/UI.hide()
+	for element in get_tree().get_nodes_in_group("UI Elements"):
+		element.hide()
+
+
+func show_ui():
+	$CanvasLayer/UI.show()
+	for element in get_tree().get_nodes_in_group("UI Elements"):
+		element.show()
+
+
 func _on_LevelEnd_exit_reached_success(next_level_path: String):
 	get_tree().paused = true
-	$LevelComplete.update(next_level_path)
-	$LevelComplete/ColorRect.show()
-	$UI/Textbox.hide()
+	$CanvasLayer/LevelComplete.update_text(next_level_path)
+	$CanvasLayer/LevelComplete.show()
+	hide_ui()
+
 
 func _on_OptionsMenu_options_exited() -> void:
 	level.get_node("Player").update_animation_speed()
 	if options_return_to_game:
 		# We came from the game scene, so un-pause the game.
 		get_tree().paused = false
+		show_ui()
 	else:
-		$PauseMenu/ColorRect.show()
-		$PauseMenu/ColorRect/C/V/Buttons/OptionsButton.grab_focus()
+		$CanvasLayer/PauseMenu.show()
+		$CanvasLayer/PauseMenu/C/V/Buttons/OptionsButton.grab_focus()
 
 
 func _on_MenuButton_pressed() -> void:
@@ -87,13 +102,14 @@ func _on_MenuButton_pressed() -> void:
 func _on_OptionsButton_pressed() -> void:
 	get_tree().paused = true
 	options_return_to_game = true
-	$PauseMenu/OptionsMenu.show_menu()
+	hide_ui()
+	$CanvasLayer/OptionsMenu.show_menu()
 
 
 func _on_PauseMenu_OptionsButton_pressed() -> void:
 	options_return_to_game = false
-	$PauseMenu/ColorRect.hide()
-	$PauseMenu/OptionsMenu.show_menu()
+	$CanvasLayer/PauseMenu.hide()
+	$CanvasLayer/OptionsMenu.show_menu()
 
 
 func _on_RestartButton_pressed() -> void:
