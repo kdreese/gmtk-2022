@@ -11,6 +11,7 @@ func _ready() -> void:
 func _on_PlayButton_pressed() -> void:
 	var error := get_tree().change_scene("res://src/states/Game.tscn")
 	assert(not error)
+	Autosplitter.send_data("start")
 
 
 func _on_LevelSelectButton_pressed() -> void:

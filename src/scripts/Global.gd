@@ -14,6 +14,9 @@ var sound_volume := 1.0
 var music_volume := 0.5
 var animation_speed := 1
 
+var autosplitter_enabled := false
+var autosplitter_port := 5678
+
 var audio_stream: AudioStreamPlayer
 
 
@@ -98,6 +101,21 @@ func load_config() -> void:
 			elif animation_speed > 4:
 				animation_speed = 4
 
+	if OS.get_name() != "HTML5":
+		if "autosplitter_enabled" in config:
+			var new_autosplitter_enabled = config["autosplitter_enabled"]
+			if typeof(new_autosplitter_enabled) == TYPE_BOOL:
+				autosplitter_enabled = new_autosplitter_enabled
+
+		if "autosplitter_port" in config:
+			var new_port = config["autosplitter_port"]
+			if typeof(new_port) == TYPE_INT:
+				autosplitter_port = new_port
+				if autosplitter_port < 0:
+					autosplitter_port = 0
+				elif autosplitter_port > 65535:
+					autosplitter_port = 65535
+
 
 func save_config() -> void:
 	var config := {
@@ -105,6 +123,10 @@ func save_config() -> void:
 		"music_volume": music_volume,
 		"animation_speed": animation_speed,
 	}
+
+	if OS.get_name() != "HTML5":
+		config["autosplitter_enabled"] = autosplitter_enabled
+		config["autosplitter_port"] = autosplitter_port
 
 	var file := File.new()
 	var error := file.open(SAVE_FILE_PATH, File.WRITE)

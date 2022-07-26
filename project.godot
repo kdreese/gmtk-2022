@@ -48,7 +48,8 @@ default_bus_layout="res://resouces/default_bus_layout.tres"
 
 [autoload]
 
-Global="*res://src/states/Global.gd"
+Global="*res://src/scripts/Global.gd"
+Autosplitter="*res://src/scripts/Autosplitter.gd"
 
 [display]
 

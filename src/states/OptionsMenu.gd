@@ -7,13 +7,14 @@ var animation_speed_strings := ["Slow", "Normal", "Fast", "Very Fast", "Hyperspe
 
 
 func _ready() -> void:
-	var animation_speed_value = Global.animation_speed
 	$C/V/G/SoundVolumeSlider.value = Global.sound_volume
-	_on_SoundVolumeSlider_value_changed(Global.sound_volume)
 	$C/V/G/MusicVolumeSlider.value = Global.music_volume
-	_on_MusicVolumeSlider_value_changed(Global.music_volume)
-	$C/V/G/AnimationSpeedSlider.value = animation_speed_value
-	_on_AnimationSpeedSlider_value_changed(animation_speed_value)
+	$C/V/G/AnimationSpeedSlider.value = Global.animation_speed
+	if OS.get_name() == "HTML5":
+		$C/V/V.hide()
+	else:
+		$C/V/V/H/AutosplitterEnabledCheck.pressed = Global.autosplitter_enabled
+		$C/V/V/H/AutosplitterPortSpinBox.value = Global.autosplitter_port
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -47,3 +48,19 @@ func _on_MusicVolumeSlider_value_changed(value: float) -> void:
 func _on_AnimationSpeedSlider_value_changed(value: float) -> void:
 	Global.animation_speed = int(value)
 	$C/V/G/AnimationSpeedLabel.text = animation_speed_strings[value]
+
+
+func _on_AutosplitterEnabledCheck_toggled(button_pressed: bool) -> void:
+	if button_pressed:
+		$C/V/V/H/AutosplitterPortSpinBox.editable = false
+		Autosplitter.start()
+		if not Global.autosplitter_enabled:
+			$C/V/V/H/AutosplitterEnabledCheck.pressed = false
+	else:
+		$C/V/V/H/AutosplitterPortSpinBox.editable = true
+		Autosplitter.stop()
+
+
+func _on_AutosplitterPortSpinBox_value_changed(float_value: float) -> void:
+	var value := int(float_value)
+	Global.autosplitter_port = value
