@@ -43,8 +43,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		$CanvasLayer/PauseMenu/C/V/Buttons/ResumeButton.grab_focus()
 		get_tree().set_input_as_handled()
 	elif event.is_action_pressed("restart"):
-		var error := get_tree().reload_current_scene()
-		assert(not error)
+		restart()
 		get_tree().set_input_as_handled()
 
 
@@ -113,6 +112,6 @@ func _on_PauseMenu_OptionsButton_pressed() -> void:
 	$CanvasLayer/OptionsMenu.show_menu()
 
 
-func _on_RestartButton_pressed() -> void:
+func restart() -> void:
 	var error := get_tree().reload_current_scene()
 	assert(not error)

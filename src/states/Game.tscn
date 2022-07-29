@@ -297,9 +297,9 @@ stretch_mode = 2
 
 [connection signal="pressed" from="CanvasLayer/UI/H/MenuButton" to="." method="_on_MenuButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/H/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/H/RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/PauseMenu/C/V/Buttons/ResumeButton" to="CanvasLayer/PauseMenu" method="_on_ResumeButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/PauseMenu/C/V/Buttons/RestartButton" to="CanvasLayer/PauseMenu" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/H/RestartButton" to="." method="restart"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/C/V/Buttons/ResumeButton" to="CanvasLayer/PauseMenu" method="resume"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/C/V/Buttons/RestartButton" to="CanvasLayer/PauseMenu" method="restart"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/C/V/Buttons/OptionsButton" to="." method="_on_PauseMenu_OptionsButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/C/V/Buttons/ToMenuButton" to="CanvasLayer/PauseMenu" method="_on_ToMenuButton_pressed"]
 [connection signal="options_exited" from="CanvasLayer/OptionsMenu" to="." method="_on_OptionsMenu_options_exited"]
