@@ -9,6 +9,7 @@
 [ext_resource path="res://src/objects/LevelButton.tscn" type="PackedScene" id=7]
 
 [node name="SomeKindaToggleLevel" type="Node2D"]
+position = Vector2( -32, 64 )
 script = ExtResource( 5 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -44,6 +45,8 @@ position = Vector2( 320, 240 )
 
 [node name="LevelButton" parent="." instance=ExtResource( 7 )]
 position = Vector2( 352, 128 )
+minimum_weight = 2
+maximum_weight = 2
 
 [connection signal="toggled" from="Toggle" to="." method="_on_Toggle_toggled"]
 [connection signal="button_pressed" from="LevelButton" to="." method="_on_LevelButton_button_pressed"]
