@@ -1,27 +1,28 @@
-extends CanvasLayer
+extends ColorRect
 
 
 func _ready() -> void:
-	$ColorRect.hide()
+	hide()
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not $ColorRect.visible:
+	if not visible:
 		return
 	if event.is_action_pressed("escape") or event.is_action_pressed("ui_cancel"):
-		_on_ResumeButton_pressed()
+		resume()
 		get_tree().set_input_as_handled()
 	elif event.is_action_pressed("restart"):
-		_on_RestartButton_pressed()
+		restart()
 		get_tree().set_input_as_handled()
 
 
-func _on_ResumeButton_pressed() -> void:
+func resume() -> void:
 	get_tree().paused = false
-	$ColorRect.hide()
+	hide()
+	get_node("../..").show_ui()
 
 
-func _on_RestartButton_pressed() -> void:
+func restart() -> void:
 	get_tree().paused = false
 	var error := get_tree().reload_current_scene()
 	assert(not error)
@@ -29,5 +30,6 @@ func _on_RestartButton_pressed() -> void:
 
 func _on_ToMenuButton_pressed() -> void:
 	get_tree().paused = false
+	Autosplitter.send_data("reset")
 	var error := get_tree().change_scene("res://src/states/Menu.tscn")
 	assert(not error)

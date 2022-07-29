@@ -1,21 +1,17 @@
-extends CanvasLayer
+extends ColorRect
 
 
 var next_level_path: String
 
 
-func _ready() -> void:
-	$ColorRect.hide()
-
-
-func update(next_level_path_arg: String) -> void:
-	$ColorRect/C/V/Congratulations.text = "Congratulations!\nYou finished the level in %d moves!" % get_parent().moves
+func update_text(next_level_path_arg: String) -> void:
+	$C/V/Congratulations.text = "Congratulations!\nYou finished the level in %d moves!" % get_node("../..").moves
 	next_level_path = next_level_path_arg
-	$ColorRect/C/V/Buttons/ContinueButton.grab_focus()
+	$C/V/Buttons/ContinueButton.grab_focus()
 	if next_level_path.length() == 0:
-		$ColorRect/C/V/YouWinLabel.show()
-		$ColorRect/C/V/Buttons/ContinueButton.hide()
-		$ColorRect/C/V/Buttons/RestartButton.grab_focus()
+		$C/V/YouWinLabel.show()
+		$C/V/Buttons/ContinueButton.hide()
+		$C/V/Buttons/RestartButton.grab_focus()
 
 
 func _unhandled_input(event: InputEvent) -> void:

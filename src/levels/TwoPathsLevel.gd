@@ -32,6 +32,7 @@ var button3_wires := [
 	Vector3(8, -3, 0),
 	Vector3(9, -3, 0),
 	Vector3(10, -3, 0),
+	Vector3(11, -3, 0),
 ]
 
 

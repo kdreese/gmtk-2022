@@ -8,7 +8,7 @@
 size = 32
 font_data = ExtResource( 2 )
 
-[node name="Indicator" type="Node2D"]
+[node name="Indicator" type="Node2D" groups=["UI Elements"]]
 z_index = 5
 script = ExtResource( 3 )
 
