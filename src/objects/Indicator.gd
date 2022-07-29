@@ -26,16 +26,6 @@ func _process(delta: float) -> void:
 	total_time += (delta * FREQUENCY)
 
 
-func hide() -> void:
-	$CenterContainer.hide()
-	$Sprite.hide()
-
-
-func show() -> void:
-	$CenterContainer.show()
-	$Sprite.show()
-
-
 func generate_indicator_string() -> String:
 	var button = get_parent()
 	if button.minimum_weight == button.maximum_weight:
