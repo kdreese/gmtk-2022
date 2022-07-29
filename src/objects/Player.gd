@@ -36,10 +36,10 @@ func _ready() -> void:
 	# Initialize the state of the die to be 1 facing up, with 2 and 3 visible.
 	top_face = FaceState.FACE_1
 	front_face = FaceState.FACE_2_1
-	side_face = FaceState.FACE_3_1
+	side_face = FaceState.FACE_3_2
 	backside_face = FaceState.FACE_4
 	back_face = FaceState.FACE_5
-	bottom_face = FaceState.FACE_6_1
+	bottom_face = FaceState.FACE_6_2
 	update_animation_speed()
 	update_palettes()
 	set_anim("idle")

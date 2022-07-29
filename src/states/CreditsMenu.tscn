@@ -59,13 +59,19 @@ size_flags_vertical = 3
 
 [node name="V" type="VBoxContainer" parent="V/S"]
 margin_right = 612.0
-margin_bottom = 2124.0
+margin_bottom = 2322.0
 size_flags_horizontal = 3
 custom_constants/separation = 24
 
-[node name="Us" type="GridContainer" parent="V/S/V"]
+[node name="Spacer1" type="Control" parent="V/S/V"]
 margin_right = 612.0
-margin_bottom = 139.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 0, 75 )
+
+[node name="Us" type="GridContainer" parent="V/S/V"]
+margin_top = 99.0
+margin_right = 612.0
+margin_bottom = 238.0
 columns = 3
 
 [node name="HearstName" type="Label" parent="V/S/V/Us"]
@@ -126,18 +132,24 @@ Puzzle Design
 Art/Graphics"
 align = 1
 
-[node name="LicensesTitle" type="Label" parent="V/S/V"]
-margin_top = 163.0
+[node name="Spacer2" type="Control" parent="V/S/V"]
+margin_top = 262.0
 margin_right = 612.0
-margin_bottom = 205.0
+margin_bottom = 337.0
+rect_min_size = Vector2( 0, 75 )
+
+[node name="LicensesTitle" type="Label" parent="V/S/V"]
+margin_top = 361.0
+margin_right = 612.0
+margin_bottom = 403.0
 custom_fonts/font = SubResource( 6 )
 text = "Licenses"
 align = 1
 
 [node name="Godot" type="VBoxContainer" parent="V/S/V"]
-margin_top = 229.0
+margin_top = 427.0
 margin_right = 612.0
-margin_bottom = 584.0
+margin_bottom = 782.0
 custom_constants/separation = 8
 
 [node name="Title" type="Label" parent="V/S/V/Godot"]
@@ -164,9 +176,9 @@ THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 autowrap = true
 
 [node name="FreeType" type="VBoxContainer" parent="V/S/V"]
-margin_top = 608.0
+margin_top = 806.0
 margin_right = 612.0
-margin_bottom = 674.0
+margin_bottom = 872.0
 custom_constants/separation = 8
 
 [node name="Title" type="Label" parent="V/S/V/FreeType"]
@@ -185,9 +197,9 @@ text = "Portions of this software are copyright © 1996-2020 The FreeType Projec
 autowrap = true
 
 [node name="ENet" type="VBoxContainer" parent="V/S/V"]
-margin_top = 698.0
+margin_top = 896.0
 margin_right = 612.0
-margin_bottom = 1019.0
+margin_bottom = 1217.0
 custom_constants/separation = 8
 
 [node name="Title" type="Label" parent="V/S/V/ENet"]
@@ -212,9 +224,9 @@ THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 autowrap = true
 
 [node name="MbedTLS" type="VBoxContainer" parent="V/S/V"]
-margin_top = 1043.0
+margin_top = 1241.0
 margin_right = 612.0
-margin_bottom = 1262.0
+margin_bottom = 1460.0
 custom_constants/separation = 8
 
 [node name="Title" type="Label" parent="V/S/V/MbedTLS"]
@@ -239,9 +251,9 @@ Unless required by applicable law or agreed to in writing, software distributed 
 autowrap = true
 
 [node name="RussoOne" type="VBoxContainer" parent="V/S/V"]
-margin_top = 1286.0
+margin_top = 1484.0
 margin_right = 612.0
-margin_bottom = 2124.0
+margin_bottom = 2322.0
 custom_constants/separation = 8
 
 [node name="Title" type="Label" parent="V/S/V/RussoOne"]

@@ -31,7 +31,7 @@ maximum_weight = 1
 [node name="LevelButton2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 352, 224 )
 minimum_weight = 2
-maximum_weight = 4
+maximum_weight = 2
 
 [node name="LevelButton3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 384, 208 )

@@ -5,6 +5,7 @@
 [ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=3]
 
 [node name="MovementTestLevel" type="Node2D"]
+position = Vector2( 32, -32 )
 script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
