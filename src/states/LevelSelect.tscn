@@ -40,6 +40,7 @@ margin_top = 400.0
 margin_right = -116.0
 margin_bottom = 425.0
 rect_min_size = Vector2( 100, 0 )
+focus_neighbour_right = NodePath("../BackButton")
 size_flags_horizontal = 6
 text = "Prev"
 
@@ -51,6 +52,8 @@ margin_top = 400.0
 margin_right = 51.0
 margin_bottom = 425.0
 rect_min_size = Vector2( 100, 0 )
+focus_neighbour_left = NodePath("../PrevButton")
+focus_neighbour_right = NodePath("../NextButton")
 size_flags_horizontal = 6
 text = "Back"
 
@@ -62,6 +65,7 @@ margin_top = 400.0
 margin_right = 220.0
 margin_bottom = 425.0
 rect_min_size = Vector2( 100, 0 )
+focus_neighbour_left = NodePath("../BackButton")
 size_flags_horizontal = 6
 text = "Next"
 
