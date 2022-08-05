@@ -6,6 +6,14 @@ var button2_wires := [Vector2(12, 2), Vector2(12, 3)]
 var button3_wires := [Vector2(14, 2), Vector2(14, 3)]
 
 
+func _ready() -> void:
+	$Gate.init(false)
+	$Gate2.init(false)
+	$Gate3.init(false)
+	$Gate4.init(false)
+	$Gate5.init(false)
+
+
 func _on_LevelButton_button_pressed() -> void:
 	$Gate.open()
 	$Gate2.open()

@@ -31,7 +31,9 @@ var button3_wires := [
 
 
 func _ready() -> void:
-	$Gate2.open()
+	$Gate.init(false)
+	$Gate2.init(true)
+	$Gate3.init(false)
 
 
 func _on_LevelButton_button_pressed() -> void:

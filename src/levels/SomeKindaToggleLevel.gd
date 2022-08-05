@@ -24,7 +24,10 @@ const TOGGLE_WIRES = [
 
 
 func _ready() -> void:
-	$Gate2.open()
+	$Gate.init(false)
+	$Gate2.init(true)
+	$Gate3.init(false)
+
 
 
 func _on_Toggle_toggled() -> void:
