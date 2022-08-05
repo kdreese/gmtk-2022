@@ -8,17 +8,17 @@ var options_return_to_game: bool
 
 
 func _ready() -> void:
-	level = load(Global.level_path).instance() as Level
+	var level_info: Dictionary = Global.LEVELS[Global.current_level_idx]
+	level = load(level_info["path"]).instance() as Level
 	var tile_map := level.get_node("TileMap") as TileMap
 
 	add_child(level)
 	var error := level.get_node("LevelEnd").connect("exit_reached_success", self, "_on_LevelEnd_exit_reached_success")
 	assert(not error)
 
-	$CanvasLayer/UI/V/LevelName.text = level.get_node("LevelEnd").level_name
-	var level_text = level.get_node("LevelEnd").level_text
-	$CanvasLayer/UI/Textbox/MessageText.text = level_text
-	if level_text != "":
+	$CanvasLayer/UI/V/LevelName.text = level_info["name"]
+	if "text" in level_info:
+		$CanvasLayer/UI/Textbox/MessageText.text = level_info["text"]
 		$CanvasLayer/UI/Textbox.show()
 
 	for coords in tile_map.get_used_cells():
@@ -74,9 +74,9 @@ func show_ui():
 		element.show()
 
 
-func _on_LevelEnd_exit_reached_success(next_level_path: String):
+func _on_LevelEnd_exit_reached_success():
 	get_tree().paused = true
-	$CanvasLayer/LevelComplete.update_text(next_level_path)
+	$CanvasLayer/LevelComplete.update_text()
 	$CanvasLayer/LevelComplete.show()
 	hide_ui()
 	Autosplitter.send_data("split")

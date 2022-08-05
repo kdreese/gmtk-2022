@@ -37,8 +37,6 @@ position = Vector2( 448, 144 )
 [node name="LevelEnd" parent="." instance=ExtResource( 5 )]
 position = Vector2( 64, 160 )
 maximum_weight = 1
-next_level_path = "res://src/levels/DangerButtonLevel.tscn"
-level_name = "Greed"
 
 [node name="Gate" parent="." instance=ExtResource( 6 )]
 position = Vector2( 96, 184 )

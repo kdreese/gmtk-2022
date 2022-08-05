@@ -39,8 +39,6 @@ minimum_weight = 6
 
 [node name="LevelEnd" parent="." instance=ExtResource( 3 )]
 position = Vector2( 544, 112 )
-level_name = "Hail Mary"
-level_text = "This is our last test for you. If you can pass it, you have truly proven yourself to be an unweighted die."
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
 position = Vector2( 480, 152 )

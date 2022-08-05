@@ -34,8 +34,6 @@ maximum_weight = 5
 position = Vector2( 448, 160 )
 minimum_weight = 4
 maximum_weight = 4
-next_level_path = "res://src/levels/ToggleIntroLevel.tscn"
-level_name = "Optimization"
 
 [node name="Gate" parent="." instance=ExtResource( 5 )]
 position = Vector2( 384, 200 )

@@ -3,11 +3,77 @@ extends Node
 
 const MAX_VOLUME_DB := -6.0
 const SAVE_FILE_PATH := "user://config.cfg"
-const FIRST_LEVEL_PATH := "res://src/levels/IntroLevel.tscn"
-
 const BG_MUSIC = preload("res://assets/sound/Xetator.ogg")
 
-var level_path: String
+const LEVELS = [
+	{
+		"name": "Introduction",
+		"path": "res://src/levels/IntroLevel.tscn",
+		"text": "Mr. Pip, Good morning Mr. Pip. Thank you for complying with this mandatory inspection. Please proceed to the ending pad.",
+	},
+	{
+		"name": "Spiral",
+		"path": "res://src/levels/MovementTutorialLevel.tscn",
+		"text": "You have been arrested on suspicion of violating Legal Code 1379.42, or the \"No Weighted Dice Rule.\"",
+	},
+	{
+		"name": "Free Reign",
+		"path": "res://src/levels/MovementTestLevel.tscn",
+		"text": "If you can pass all of our tests, you will prove that you are an unweighted die.\n\nFor example, that arrow is telling you you need to have that face on top or the end pad won\'t let you through.",
+	},
+	{
+		"name": "Lopsided Patterns",
+		"path": "res://src/levels/CycleTeachLevel.tscn",
+		"text": "Press R on keyboard or RB on controller to restart the current test. Escape or Start will bring up the pause menu.\n\nThat\'s it from me, if there are any new elements, I will explain them.",
+	},
+	{
+		"name": "Reverse Engineering",
+		"path": "res://src/levels/CycleTrapLevel.tscn",
+	},
+	{
+		"name": "Gate",
+		"path": "res://src/levels/ButtonIntroLevel.tscn",
+		"text": "This button won\'t activate unless you\'re in the right orientation. Once pressed, buttons stay pressed forever.",
+	},
+	{
+		"name": "Between Two Points",
+		"path": "res://src/levels/ButtonTestLevel.tscn",
+	},
+	{
+		"name": "Optimization",
+		"path": "res://src/levels/OptimizationLevel.tscn",
+	},
+	{
+		"name": "On Again Off Again",
+		"path": "res://src/levels/ToggleIntroLevel.tscn",
+		"text": "This is a toggle. It can be hit multiple times.",
+	},
+	{
+		"name": "Behind Closed Bars",
+		"path": "res://src/levels/ButtonJailLevel.tscn",
+	},
+	{
+		"name": "Commitment",
+		"path": "res://src/levels/TestLevel.tscn",
+	},
+	{
+		"name": "One Door Opens",
+		"path": "res://src/levels/SomeKindaToggleLevel.tscn",
+	},
+	{
+		"name": "Greed",
+		"path": "res://src/levels/TwoPathsLevel.tscn",
+	},
+	{
+		"name": "Hail Mary",
+		"path": "res://src/levels/DangerButtonLevel.tscn",
+		"text": "This is our last test for you. If you can pass it, you have truly proven yourself to be an unweighted die.",
+	},
+]
+
+const NUM_LEVELS := len(LEVELS)
+
+var current_level_idx: int
 
 # Options
 var sound_volume := 1.0
