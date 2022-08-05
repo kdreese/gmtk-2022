@@ -3,6 +3,8 @@ extends ColorRect
 
 signal level_select_exited
 
+const LevelSelectButton = preload("res://src/states/LevelSelectButton.tscn")
+
 var page_idx := 0
 
 
@@ -14,8 +16,7 @@ func create_menu() -> void:
 	# We will have at most 9 buttons.
 	var num_buttons := min(9, Global.NUM_LEVELS)
 	for idx in range(num_buttons):
-		var button := Button.new()
-		button.rect_min_size = Vector2(120, 90)
+		var button := LevelSelectButton.instance()
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		var error := button.connect("pressed", self, "_on_level_button_pressed", [idx])
 		assert(not error)
@@ -39,7 +40,9 @@ func display() -> void:
 	for idx in range($G.get_child_count()):
 		var button: Button = $G.get_child(idx)
 		if idx < num_levels_to_show:
-			button.text = Global.LEVELS[9 * page_idx + idx]["name"]
+			var texture: Texture = load(Global.LEVELS[9 * page_idx + idx]["thumbnail"])
+			button.find_node("Thumbnail").texture = texture
+			button.find_node("Title").text = Global.LEVELS[9 * page_idx + idx]["name"]
 			button.visible = true
 		else:
 			button.visible = false
