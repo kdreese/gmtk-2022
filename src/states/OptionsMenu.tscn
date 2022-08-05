@@ -19,9 +19,9 @@ anchor_bottom = 1.0
 
 [node name="V" type="VBoxContainer" parent="C"]
 margin_left = 125.0
-margin_top = 90.0
+margin_top = 76.0
 margin_right = 514.0
-margin_bottom = 389.0
+margin_bottom = 404.0
 custom_constants/separation = 30
 
 [node name="Title" type="Label" parent="C/V"]
@@ -34,7 +34,7 @@ align = 1
 [node name="G" type="GridContainer" parent="C/V"]
 margin_top = 86.0
 margin_right = 389.0
-margin_bottom = 151.0
+margin_bottom = 180.0
 custom_constants/hseparation = 25
 columns = 3
 
@@ -108,10 +108,29 @@ margin_bottom = 65.0
 rect_min_size = Vector2( 100, 0 )
 text = "Normal"
 
-[node name="V" type="VBoxContainer" parent="C/V"]
-margin_top = 181.0
+[node name="FullscreenLabel" type="Label" parent="C/V/G"]
+margin_top = 72.0
+margin_right = 139.0
+margin_bottom = 91.0
+text = "Windowed Mode"
+align = 2
+
+[node name="FullscreenOptionButton" type="OptionButton" parent="C/V/G"]
+margin_left = 164.0
+margin_top = 69.0
+margin_right = 264.0
+margin_bottom = 94.0
+
+[node name="FullscreenSpacer" type="Control" parent="C/V/G"]
+margin_left = 289.0
+margin_top = 69.0
 margin_right = 389.0
-margin_bottom = 244.0
+margin_bottom = 94.0
+
+[node name="V" type="VBoxContainer" parent="C/V"]
+margin_top = 210.0
+margin_right = 389.0
+margin_bottom = 273.0
 
 [node name="AutosplitterLabel" type="Label" parent="C/V/V"]
 margin_right = 389.0
@@ -155,9 +174,9 @@ value = 5678.0
 
 [node name="BackButton" type="Button" parent="C/V"]
 margin_left = 144.0
-margin_top = 274.0
+margin_top = 303.0
 margin_right = 244.0
-margin_bottom = 299.0
+margin_bottom = 328.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 4
 text = "Back"
@@ -165,6 +184,7 @@ text = "Back"
 [connection signal="value_changed" from="C/V/G/SoundVolumeSlider" to="." method="_on_SoundVolumeSlider_value_changed"]
 [connection signal="value_changed" from="C/V/G/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
 [connection signal="value_changed" from="C/V/G/AnimationSpeedSlider" to="." method="_on_AnimationSpeedSlider_value_changed"]
+[connection signal="item_selected" from="C/V/G/FullscreenOptionButton" to="." method="_on_FullscreenOptionsButton_item_selected"]
 [connection signal="toggled" from="C/V/V/H/AutosplitterEnabledCheck" to="." method="_on_AutosplitterEnabledCheck_toggled"]
 [connection signal="value_changed" from="C/V/V/H/AutosplitterPortSpinBox" to="." method="_on_AutosplitterPortSpinBox_value_changed"]
-[connection signal="pressed" from="C/V/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="C/V/BackButton" to="." method="close_menu"]
