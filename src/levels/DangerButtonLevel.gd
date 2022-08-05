@@ -30,12 +30,6 @@ var button3_wires := [
 ]
 
 
-func _ready() -> void:
-	$Gate.init(false)
-	$Gate2.init(true)
-	$Gate3.init(false)
-
-
 func _on_LevelButton_button_pressed() -> void:
 	$Gate3.open()
 	invert_wires_3(button1_wires)

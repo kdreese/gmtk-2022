@@ -18,20 +18,20 @@ animations = [ {
 "name": "close",
 "speed": 20.0
 }, {
-"frames": [ ExtResource( 11 ) ],
-"loop": true,
-"name": "opened",
-"speed": 5.0
+"frames": [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "open",
+"speed": 20.0
 }, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "closed",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 11 ) ],
-"loop": false,
-"name": "open",
-"speed": 20.0
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "opened",
+"speed": 5.0
 } ]
 
 [node name="Gate" type="Node2D" groups=["Gates"]]

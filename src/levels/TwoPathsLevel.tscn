@@ -49,6 +49,7 @@ position = Vector2( 416, 152 )
 
 [node name="Gate4" parent="." instance=ExtResource( 6 )]
 position = Vector2( 416, 184 )
+is_open = true
 
 [connection signal="button_pressed" from="LevelButton" to="." method="_on_LevelButton_button_pressed"]
 [connection signal="button_pressed" from="LevelButton2" to="." method="_on_LevelButton2_button_pressed"]

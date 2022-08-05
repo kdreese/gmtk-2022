@@ -36,14 +36,6 @@ var button3_wires := [
 ]
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	$Gate.init(false)
-	$Gate2.init(false)
-	$Gate3.init(false)
-	$Gate4.init(true)
-
-
 func _on_LevelButton_button_pressed() -> void:
 	$Gate3.open()
 	invert_wires_3(button1_wires)

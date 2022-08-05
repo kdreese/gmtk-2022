@@ -4,22 +4,18 @@ extends Node2D
 var tile_map: TileMap
 var grid_coords: Vector2
 
-var is_open: bool
+export var is_open: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tile_map = get_parent().get_node("TileMap")
 	grid_coords = tile_map.world_to_map(position)
-
-
-func init(open: bool = false) -> void:
-	if open:
+	if is_open:
 		$AnimatedSprite.play("opened")
 		tile_map.set_cellv(grid_coords, tile_map.tile_set.find_tile_by_name("Base"))
 	else:
 		$AnimatedSprite.play("closed")
-	is_open = open
-
+		tile_map.set_cellv(grid_coords, -1)
 
 
 func update_z_index(player_position: Vector2):

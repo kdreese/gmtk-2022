@@ -11,11 +11,6 @@ var wires := [
 ]
 
 
-func _ready() -> void:
-	$Gate.init(false)
-	$Gate2.init(true)
-
-
 func _on_LevelButton_button_pressed() -> void:
 	$Gate.open()
 	$Gate2.close()

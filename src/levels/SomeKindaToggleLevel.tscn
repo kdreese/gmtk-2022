@@ -34,6 +34,7 @@ position = Vector2( 416, 216 )
 
 [node name="Gate2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 448, 232 )
+is_open = true
 
 [node name="Gate3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 288, 152 )

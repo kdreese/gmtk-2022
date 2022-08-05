@@ -11,10 +11,6 @@ var tiles := [
 ]
 
 
-func _ready() -> void:
-	$Gate.init(false)
-
-
 func _on_LevelButton_button_pressed() -> void:
 	$Gate.open()
 	invert_wires(tiles)

@@ -15,11 +15,6 @@ var button_wires := [
 ]
 
 
-func _ready() -> void:
-	$Gate.init(false)
-	$Gate2.init(false)
-
-
 func _on_Toggle_toggled() -> void:
 	$Gate.toggle()
 	invert_wires(toggle_wires)
