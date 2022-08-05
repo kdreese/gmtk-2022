@@ -38,7 +38,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="gmtk-2022"
+config/name="Unweighted"
 run/main_scene="res://src/states/Menu.tscn"
 config/icon="res://icon.png"
 
