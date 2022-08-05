@@ -5,7 +5,7 @@ func _ready() -> void:
 	if OS.get_name() == "HTML5":
 		$V/Buttons/QuitButton.hide()
 	$V/Buttons/PlayButton.grab_focus()
-	Global.level_path = Global.FIRST_LEVEL_PATH
+	Global.current_level_idx = 0
 
 
 func _on_PlayButton_pressed() -> void:

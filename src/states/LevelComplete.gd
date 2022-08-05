@@ -1,14 +1,10 @@
 extends ColorRect
 
 
-var next_level_path: String
-
-
-func update_text(next_level_path_arg: String) -> void:
+func update_text() -> void:
 	$C/V/Congratulations.text = "Congratulations!\nYou finished the level in %d moves!" % get_node("../..").moves
-	next_level_path = next_level_path_arg
 	$C/V/Buttons/ContinueButton.grab_focus()
-	if next_level_path.length() == 0:
+	if Global.current_level_idx >= Global.NUM_LEVELS - 1:
 		$C/V/YouWinLabel.show()
 		$C/V/Buttons/ContinueButton.hide()
 		$C/V/Buttons/RestartButton.grab_focus()
@@ -24,7 +20,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_ContinueButton_pressed() -> void:
 	get_tree().paused = false
-	Global.level_path = next_level_path
+	Global.current_level_idx += 1
 	var error := get_tree().reload_current_scene()
 	assert(not error)
 

@@ -18,5 +18,3 @@ tile_data = PoolIntArray( 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 6, 0, 6554
 position = Vector2( 384, 288 )
 minimum_weight = 5
 maximum_weight = 5
-next_level_path = "res://src/levels/ButtonIntroLevel.tscn"
-level_name = "Reverse Engineering"
