@@ -104,16 +104,23 @@ func _ready() -> void:
 	load_config()
 	audio_stream = AudioStreamPlayer.new()
 	audio_stream.stream = BG_MUSIC
-	audio_stream.pause_mode = Node.PAUSE_MODE_PROCESS
 	update_volumes()
 	audio_stream.play()
 	add_child(audio_stream)
+	pause_mode = Node.PAUSE_MODE_PROCESS
 
 
 func _notification(what: int) -> void:
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 		save_config()
 		get_tree().quit()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_fullscreen"):
+		OS.window_fullscreen = not OS.window_fullscreen
+		save_config()
+		get_tree().set_input_as_handled()
 
 
 func update_volumes() -> void:
@@ -181,6 +188,11 @@ func load_config() -> void:
 			elif animation_speed > 4:
 				animation_speed = 4
 
+	if "window_fullscreen" in config:
+		var new_fullscreen = config["window_fullscreen"]
+		if typeof(new_fullscreen) == TYPE_BOOL:
+			OS.window_fullscreen = new_fullscreen
+
 	if OS.get_name() != "HTML5":
 		if "autosplitter_enabled" in config:
 			var new_autosplitter_enabled = config["autosplitter_enabled"]
@@ -202,6 +214,7 @@ func save_config() -> void:
 		"sound_volume": sound_volume,
 		"music_volume": music_volume,
 		"animation_speed": animation_speed,
+		"window_fullscreen": OS.window_fullscreen,
 	}
 
 	if OS.get_name() != "HTML5":

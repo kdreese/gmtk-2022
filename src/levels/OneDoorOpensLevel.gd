@@ -23,10 +23,6 @@ const TOGGLE_WIRES = [
 ]
 
 
-func _ready() -> void:
-	$Gate2.open()
-
-
 func _on_Toggle_toggled() -> void:
 	$Gate.toggle()
 	$Gate2.toggle()
