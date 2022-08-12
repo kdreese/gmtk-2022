@@ -5,7 +5,7 @@
 [ext_resource path="res://src/objects/Toggle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/objects/LevelButton.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/levels/ButtonJailLevel.gd" type="Script" id=6]
+[ext_resource path="res://src/levels/BehindClosedBarsLevel.gd" type="Script" id=6]
 [ext_resource path="res://resouces/WireTileSet.tres" type="TileSet" id=7]
 
 [node name="ButtonJailLevel" type="Node2D"]
