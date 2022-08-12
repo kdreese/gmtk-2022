@@ -4,7 +4,7 @@
 [ext_resource path="res://src/objects/Gate.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resouces/TileSet.tres" type="TileSet" id=3]
 [ext_resource path="res://resouces/WireTileSet.tres" type="TileSet" id=4]
-[ext_resource path="res://src/levels/SomeKindaToggleLevel.gd" type="Script" id=5]
+[ext_resource path="res://src/levels/OneDoorOpensLevel.gd" type="Script" id=5]
 [ext_resource path="res://src/objects/Toggle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/objects/LevelButton.tscn" type="PackedScene" id=7]
 

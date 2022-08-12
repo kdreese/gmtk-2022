@@ -1,0 +1,24 @@
+[gd_scene format=2]
+
+[node name="LevelSelectButton" type="Button"]
+margin_right = 128.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 128, 96 )
+
+[node name="Thumbnail" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -25.0
+expand = true
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -19.0
+rect_min_size = Vector2( 0, 20 )
+align = 1
