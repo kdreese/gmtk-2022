@@ -1,8 +1,13 @@
 extends Node
 
 
+signal timer_updated
+
 var server: WebSocketServer
 var peers := []
+
+var speedrun_is_running := false
+var speedrun_timer: float
 
 
 func _ready() -> void:
@@ -48,7 +53,38 @@ func send_data(data: String) -> void:
 			print("Error sending packet")
 
 
-func _process(_delta: float) -> void:
+func run_start() -> void:
+	speedrun_is_running = true
+	speedrun_timer = 0.0
+	send_data("initgametime")
+	send_data("start")
+	send_data("setgametime 0.0")
+
+
+func run_reset() -> void:
+	speedrun_is_running = false
+	send_data("reset")
+
+
+func run_split() -> void:
+	send_data("setgametime %s" % speedrun_timer)
+	send_data("split")
+
+
+func run_finish() -> void:
+	emit_signal("timer_updated", true)
+	speedrun_is_running = false
+
+
+func run_delta(delta: float) -> void:
+	speedrun_timer += delta
+	send_data("setgametime %s" % speedrun_timer)
+
+
+func _process(delta: float) -> void:
+	if speedrun_is_running:
+		run_delta(delta)
+		emit_signal("timer_updated")
 	if server.is_listening():
 		server.poll()
 

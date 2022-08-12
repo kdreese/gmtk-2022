@@ -6,6 +6,8 @@ var level: Level
 var moves: int
 var options_return_to_game: bool
 
+onready var speedrun_timer: Label = $"%SpeedrunTimer"
+
 
 func _ready() -> void:
 	var level_info: Dictionary = Global.LEVELS[Global.current_level_idx]
@@ -34,6 +36,10 @@ func _ready() -> void:
 
 	reset_move_counter()
 
+	update_timer()
+	error = Autosplitter.connect("timer_updated", self, "update_timer")
+	assert(not error)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("escape"):
@@ -56,6 +62,26 @@ func reset_move_counter() -> void:
 	update_move_counter()
 
 
+func update_timer(final_time := false) -> void:
+	var should_show_timer := Autosplitter.speedrun_is_running and Global.speedrun_timer_enabled
+	if not should_show_timer == speedrun_timer.visible:
+		speedrun_timer.visible = should_show_timer
+
+	var minutes := floor(Autosplitter.speedrun_timer / 60.0) as int
+	var non_minutes := fmod(Autosplitter.speedrun_timer, 60.0)
+	var seconds := floor(non_minutes) as int
+	var non_seconds := fmod(non_minutes, 1.0)
+	var milliseconds := floor(non_seconds * 1000) as int
+
+	var time_str = "%02d.%03d" % [seconds, milliseconds]
+	if minutes > 0:
+		time_str = "%d:%s" % [minutes, time_str]
+	if final_time:
+		time_str = "%s Final Time" % time_str
+
+	speedrun_timer.text = time_str
+
+
 func _on_player_move(grid_coords: Vector2):
 	moves += 1
 	update_move_counter()
@@ -76,10 +102,10 @@ func show_ui():
 
 func _on_LevelEnd_exit_reached_success():
 	get_tree().paused = true
+	Autosplitter.run_split()
 	$CanvasLayer/LevelComplete.update_text()
 	$CanvasLayer/LevelComplete.show()
 	hide_ui()
-	Autosplitter.send_data("split")
 
 
 func _on_OptionsMenu_options_exited() -> void:
@@ -94,7 +120,7 @@ func _on_OptionsMenu_options_exited() -> void:
 
 
 func _on_MenuButton_pressed() -> void:
-	# Go back to the main menu.
+	Autosplitter.run_reset()
 	var error := get_tree().change_scene("res://src/states/Menu.tscn")
 	assert(not error)
 

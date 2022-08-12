@@ -94,6 +94,7 @@ var sound_volume := 1.0
 var music_volume := 0.5
 var animation_speed := 1
 
+var speedrun_timer_enabled := false
 var autosplitter_enabled := false
 var autosplitter_port := 5678
 
@@ -193,6 +194,11 @@ func load_config() -> void:
 		if typeof(new_fullscreen) == TYPE_BOOL:
 			OS.window_fullscreen = new_fullscreen
 
+	if "speedrun_timer_enabled" in config:
+		var new_speedrun = config["speedrun_timer_enabled"]
+		if typeof(new_speedrun) == TYPE_BOOL:
+			speedrun_timer_enabled = new_speedrun
+
 	if OS.get_name() != "HTML5":
 		if "autosplitter_enabled" in config:
 			var new_autosplitter_enabled = config["autosplitter_enabled"]
@@ -215,6 +221,7 @@ func save_config() -> void:
 		"music_volume": music_volume,
 		"animation_speed": animation_speed,
 		"window_fullscreen": OS.window_fullscreen,
+		"speedrun_timer_enabled": speedrun_timer_enabled
 	}
 
 	if OS.get_name() != "HTML5":
