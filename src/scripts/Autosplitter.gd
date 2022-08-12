@@ -7,7 +7,8 @@ var server: WebSocketServer
 var peers := []
 
 var speedrun_is_running := false
-var speedrun_timer: float
+var run_started_time: int
+var speedrun_time: float
 
 
 func _ready() -> void:
@@ -55,7 +56,8 @@ func send_data(data: String) -> void:
 
 func run_start() -> void:
 	speedrun_is_running = true
-	speedrun_timer = 0.0
+	run_started_time = Time.get_ticks_usec()
+	speedrun_time = 0.0
 	send_data("initgametime")
 	send_data("start")
 	send_data("setgametime 0.0")
@@ -67,7 +69,7 @@ func run_reset() -> void:
 
 
 func run_split() -> void:
-	send_data("setgametime %s" % speedrun_timer)
+	run_delta()
 	send_data("split")
 
 
@@ -76,14 +78,14 @@ func run_finish() -> void:
 	speedrun_is_running = false
 
 
-func run_delta(delta: float) -> void:
-	speedrun_timer += delta
-	send_data("setgametime %s" % speedrun_timer)
+func run_delta() -> void:
+	speedrun_time = (Time.get_ticks_usec() - run_started_time) / 1000000.0
+	send_data("setgametime %s" % speedrun_time)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if speedrun_is_running:
-		run_delta(delta)
+		run_delta()
 		emit_signal("timer_updated")
 	if server.is_listening():
 		server.poll()

@@ -67,8 +67,8 @@ func update_timer(final_time := false) -> void:
 	if not should_show_timer == speedrun_timer.visible:
 		speedrun_timer.visible = should_show_timer
 
-	var minutes := floor(Autosplitter.speedrun_timer / 60.0) as int
-	var non_minutes := fmod(Autosplitter.speedrun_timer, 60.0)
+	var minutes := floor(Autosplitter.speedrun_time / 60.0) as int
+	var non_minutes := fmod(Autosplitter.speedrun_time, 60.0)
 	var seconds := floor(non_minutes) as int
 	var non_seconds := fmod(non_minutes, 1.0)
 	var milliseconds := floor(non_seconds * 1000) as int
