@@ -6,6 +6,7 @@ func _ready() -> void:
 		$V/Buttons/QuitButton.hide()
 	$V/Buttons/PlayButton.grab_focus()
 	Global.current_level_idx = 0
+#	get_tree().get_root().set_transparent_background(true)		# Transparent background for screenshots
 
 
 func _on_PlayButton_pressed() -> void:

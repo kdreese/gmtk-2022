@@ -33,6 +33,13 @@ func _ready() -> void:
 			level.add_child(player)
 
 	reset_move_counter()
+#	hide_ui()		# Code chunk allows for taking screenshots of levels
+#
+#	yield(get_tree().create_timer(0.5), "timeout")
+#	var img = get_viewport().get_texture().get_data()
+#	img.convert(Image.FORMAT_RGBA8)
+#	img.flip_y()
+#	img.save_png("user://screenshots/%s.png" % level_info["name"].to_lower())
 
 
 func _unhandled_input(event: InputEvent) -> void:
