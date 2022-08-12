@@ -48,7 +48,6 @@ func send_data(data: String) -> void:
 	if not server.is_listening():
 		return
 	for id in peers:
-		print("Sending data to peer %d: %s" % [id, data])
 		var error := server.get_peer(id).put_packet(data.to_ascii())
 		if error:
 			print("Error sending packet")
