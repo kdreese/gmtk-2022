@@ -50,6 +50,8 @@ func display() -> void:
 
 func _on_level_button_pressed(idx: int) -> void:
 	Global.current_level_idx = 9 * page_idx + idx
+	if Global.current_level_idx == 0:
+		Autosplitter.run_start()
 	var error := get_tree().change_scene("res://src/states/Game.tscn")
 	assert(not error)
 

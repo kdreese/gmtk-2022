@@ -5,22 +5,37 @@ signal options_exited
 
 var animation_speed_strings := ["Slow", "Normal", "Fast", "Very Fast", "Hyperspeed"]
 
-onready var fullscreen_option_button: OptionButton = $C/V/G/FullscreenOptionButton
+onready var back_button: Button = $"%BackButton"
+
+onready var sound_volume_slider: HSlider = $"%SoundVolumeSlider"
+onready var music_volume_slider: HSlider = $"%MusicVolumeSlider"
+onready var animation_speed_slider: HSlider = $"%AnimationSpeedSlider"
+onready var fullscreen_option_button: OptionButton = $"%FullscreenOptionButton"
+
+onready var sound_volume_label: Label = $"%SoundVolumeLabel"
+onready var music_volume_label: Label = $"%MusicVolumeLabel"
+onready var animation_speed_label: Label = $"%AnimationSpeedLabel"
+
+onready var speedrun_timer_check: CheckButton = $"%SpeedrunTimerCheck"
+onready var livesplit_settings: HBoxContainer = $"%LivesplitSettings"
+onready var autosplitter_enabled_check: CheckButton = $"%AutosplitterEnabledCheck"
+onready var autosplitter_port_spin_box: SpinBox = $"%AutosplitterPortSpinBox"
 
 
 func _ready() -> void:
 	fullscreen_option_button.add_item("Windowed")
 	fullscreen_option_button.add_item("Fullscreen")
 
-	$C/V/G/SoundVolumeSlider.value = Global.sound_volume
-	$C/V/G/MusicVolumeSlider.value = Global.music_volume
-	$C/V/G/AnimationSpeedSlider.value = Global.animation_speed
+	sound_volume_slider.value = Global.sound_volume
+	music_volume_slider.value = Global.music_volume
+	animation_speed_slider.value = Global.animation_speed
 	fullscreen_option_button.select(1 if OS.window_fullscreen else 0)
+	speedrun_timer_check.pressed = Global.speedrun_timer_enabled
 	if OS.get_name() == "HTML5":
-		$C/V/V.hide()
+		livesplit_settings.hide()
 	else:
-		$C/V/V/H/AutosplitterEnabledCheck.pressed = Global.autosplitter_enabled
-		$C/V/V/H/AutosplitterPortSpinBox.value = Global.autosplitter_port
+		autosplitter_enabled_check.pressed = Global.autosplitter_enabled
+		autosplitter_port_spin_box.value = Global.autosplitter_port
 
 
 func _process(_delta: float) -> void:
@@ -38,7 +53,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func show_menu() -> void:
 	show()
-	$C/V/BackButton.grab_focus()
+	back_button.grab_focus()
 
 
 func close_menu() -> void:
@@ -49,31 +64,35 @@ func close_menu() -> void:
 
 func _on_SoundVolumeSlider_value_changed(value: float) -> void:
 	Global.set_sound_volume(value)
-	$C/V/G/SoundVolumeLabel.text = "%d%%" % (value * 100)
+	sound_volume_label.text = "%d%%" % (value * 100)
 
 
 func _on_MusicVolumeSlider_value_changed(value: float) -> void:
 	Global.set_music_volume(value)
-	$C/V/G/MusicVolumeLabel.text = "%d%%" % (value * 100)
+	music_volume_label.text = "%d%%" % (value * 100)
 
 
 func _on_AnimationSpeedSlider_value_changed(value: float) -> void:
 	Global.animation_speed = int(value)
-	$C/V/G/AnimationSpeedLabel.text = animation_speed_strings[value]
+	animation_speed_label.text = animation_speed_strings[value]
 
 
 func _on_FullscreenOptionsButton_item_selected(index: int) -> void:
 	OS.window_fullscreen = (index == 1)
 
 
+func _on_SpeedrunTimerCheck_toggled(button_pressed: bool) -> void:
+	Global.speedrun_timer_enabled = button_pressed
+
+
 func _on_AutosplitterEnabledCheck_toggled(button_pressed: bool) -> void:
 	if button_pressed:
-		$C/V/V/H/AutosplitterPortSpinBox.editable = false
+		autosplitter_port_spin_box.editable = false
 		Autosplitter.start()
 		if not Global.autosplitter_enabled:
-			$C/V/V/H/AutosplitterEnabledCheck.pressed = false
+			autosplitter_enabled_check.pressed = false
 	else:
-		$C/V/V/H/AutosplitterPortSpinBox.editable = true
+		autosplitter_port_spin_box.editable = true
 		Autosplitter.stop()
 
 

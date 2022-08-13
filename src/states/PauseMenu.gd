@@ -30,6 +30,6 @@ func restart() -> void:
 
 func _on_ToMenuButton_pressed() -> void:
 	get_tree().paused = false
-	Autosplitter.send_data("reset")
+	Autosplitter.run_reset()
 	var error := get_tree().change_scene("res://src/states/Menu.tscn")
 	assert(not error)

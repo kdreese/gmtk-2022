@@ -8,6 +8,7 @@ func update_text() -> void:
 		$C/V/YouWinLabel.show()
 		$C/V/Buttons/ContinueButton.hide()
 		$C/V/Buttons/RestartButton.grab_focus()
+		Autosplitter.run_finish()
 
 
 func _unhandled_input(event: InputEvent) -> void:
