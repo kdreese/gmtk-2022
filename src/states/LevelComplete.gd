@@ -34,5 +34,6 @@ func _on_RestartButton_pressed() -> void:
 
 func _on_ToMenuButton_pressed() -> void:
 	get_tree().paused = false
+	Autosplitter.run_reset()
 	var error := get_tree().change_scene("res://src/states/Menu.tscn")
 	assert(not error)
