@@ -103,9 +103,9 @@ func show_ui():
 func _on_LevelEnd_exit_reached_success():
 	get_tree().paused = true
 	Autosplitter.run_split()
-	Global.update_best_scores(moves)
-	$CanvasLayer/LevelComplete.update_text()
+	$CanvasLayer/LevelComplete.update_text(moves)
 	$CanvasLayer/LevelComplete.show()
+	Global.update_best_scores(moves)
 	hide_ui()
 
 
