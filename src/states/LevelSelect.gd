@@ -40,9 +40,17 @@ func display() -> void:
 	for idx in range($G.get_child_count()):
 		var button: Button = $G.get_child(idx)
 		if idx < num_levels_to_show:
-			var texture: Texture = load(Global.LEVELS[9 * page_idx + idx]["thumbnail"])
+			var level_idx := 9 * page_idx + idx
+			var texture: Texture
+			if level_idx != 0 and Global.best_scores[level_idx - 1] < 0:
+				button.disabled = true
+				texture = load("res://assets/level_thumbnails/level_locked.png")
+				button.find_node("Title").text = "???"
+			else:
+				button.disabled = false
+				texture = load(Global.LEVELS[level_idx]["thumbnail"])
+				button.find_node("Title").text = Global.LEVELS[level_idx]["name"]
 			button.find_node("Thumbnail").texture = texture
-			button.find_node("Title").text = Global.LEVELS[9 * page_idx + idx]["name"]
 			button.visible = true
 		else:
 			button.visible = false

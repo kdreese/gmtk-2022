@@ -88,6 +88,7 @@ const LEVELS = [
 const NUM_LEVELS := len(LEVELS)
 
 var current_level_idx: int
+var best_scores := []
 
 # Options
 var sound_volume := 1.0
@@ -102,6 +103,8 @@ var audio_stream: AudioStreamPlayer
 
 
 func _ready() -> void:
+	for _idx in range(NUM_LEVELS):
+		best_scores.append(-1)
 	load_config()
 	audio_stream = AudioStreamPlayer.new()
 	audio_stream.stream = BG_MUSIC
@@ -149,6 +152,11 @@ func set_music_volume(new_volume: float) -> void:
 	update_volumes()
 
 
+func update_best_scores(new_score: int) -> void:
+	if new_score < best_scores[current_level_idx] or best_scores[current_level_idx] < 0:
+		best_scores[current_level_idx] = new_score
+
+
 func load_config() -> void:
 	var file := File.new()
 	var error := file.open(SAVE_FILE_PATH, File.READ)
@@ -161,6 +169,13 @@ func load_config() -> void:
 	if typeof(config) != TYPE_DICTIONARY:
 		print("Save file corrupt")
 		return
+
+	if "best_scores" in config:
+		var new_best_scores = config["best_scores"]
+		if typeof(new_best_scores) == TYPE_ARRAY:
+			for idx in range(min(new_best_scores.size(), NUM_LEVELS)):
+				if typeof(new_best_scores[idx]) == TYPE_REAL or typeof(new_best_scores[idx]) == TYPE_INT:
+					best_scores[idx] = int(new_best_scores[idx])
 
 	if "sound_volume" in config:
 		var new_volume = config["sound_volume"]
@@ -217,6 +232,7 @@ func load_config() -> void:
 
 func save_config() -> void:
 	var config := {
+		"best_scores": best_scores,
 		"sound_volume": sound_volume,
 		"music_volume": music_volume,
 		"animation_speed": animation_speed,
