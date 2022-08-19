@@ -155,6 +155,7 @@ func set_music_volume(new_volume: float) -> void:
 func update_best_scores(new_score: int) -> void:
 	if new_score < best_scores[current_level_idx] or best_scores[current_level_idx] < 0:
 		best_scores[current_level_idx] = new_score
+		save_config()
 
 
 func load_config() -> void:
