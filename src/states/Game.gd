@@ -103,7 +103,7 @@ func show_ui():
 func _on_LevelEnd_exit_reached_success():
 	get_tree().paused = true
 	Autosplitter.run_split()
-	$CanvasLayer/LevelComplete.update_text()
+	$CanvasLayer/LevelComplete.update_text(moves)
 	$CanvasLayer/LevelComplete.show()
 	hide_ui()
 
