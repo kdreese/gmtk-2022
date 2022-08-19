@@ -45,7 +45,7 @@ const LEVELS = [
 		"path": "res://src/levels/GateLevel.tscn",
 		"text": "This button won\'t activate unless you\'re in the right orientation. Once pressed, buttons stay pressed forever.",
 		"thumbnail": "res://assets/level_thumbnails/gate.png",
-		"perfect_score": 19,
+		"perfect_score": 17,
 	},
 	{
 		"name": "Between Two Points",
