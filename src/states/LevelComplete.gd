@@ -3,12 +3,11 @@ extends ColorRect
 
 func update_text(moves: int) -> void:
 	var level_info: Dictionary = Global.LEVELS[Global.current_level_idx]
-	$C/V/Congratulations.text = "Congratulations! You finished %s.\nYour score: %d      Author score: %d" % \
-			[level_info.name, moves, level_info.author_score]
-	if moves < level_info.author_score:
-		$C/V/Congratulations.text += "\nWow, you beat the author score!\nLet us know your solution."
-	elif moves == level_info.author_score:
-		$C/V/Congratulations.text += "\nYou got the author score!"
+	$C/V/Congratulations.text = "Congratulations! You finished %s.\nYour score: %d" % [level_info.name, moves]
+	if moves < level_info.perfect_score:
+		$C/V/Congratulations.text += "\nWow, you beat the perfect score of %d!\nTell us how you did it on our itch page." % level_info.perfect_score
+	elif moves == level_info.perfect_score:
+		$C/V/Congratulations.text += "\nYou got the perfect score of %d!" % level_info.perfect_score
 	$C/V/Buttons/ContinueButton.grab_focus()
 	if Global.current_level_idx >= Global.NUM_LEVELS - 1:
 		$C/V/YouWinLabel.show()
