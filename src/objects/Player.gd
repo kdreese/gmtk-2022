@@ -45,6 +45,18 @@ func _ready() -> void:
 	set_anim("idle")
 
 
+func _process(_delta: float) -> void:
+	var view_hidden_vector := Input.get_vector("view_hidden_x_neg", "view_hidden_x_pos", "view_hidden_y_neg", "view_hidden_y_pos")
+	if view_hidden_vector.length() > 0:
+		var view_hidden_angle := view_hidden_vector.angle()
+		if view_hidden_angle >= -PI / 2 and view_hidden_angle < PI / 6:
+			pass	# View back face function
+		if view_hidden_angle >= PI / 6 and view_hidden_angle < 5 * PI / 6:
+			pass	# View left face function
+		if view_hidden_angle >= 5 * PI / 6 or view_hidden_angle < -PI / 2:
+			pass	# View bottom face function
+
+
 func _physics_process(_delta: float) -> void:
 	if $FrontFace.animation == "idle":
 		if Input.is_action_pressed("move_forward"):
@@ -236,3 +248,15 @@ func _on_animation_finished() -> void:
 	update_palettes()
 	position = tile_map.map_to_world(grid_coords)
 	$MoveSound.play()
+
+
+func _on_BackFace_mouse_entered() -> void:
+	pass # View back face function
+
+
+func _on_BackSideFace_mouse_entered() -> void:
+	pass # View left face function
+
+
+func _on_BottomFace_mouse_entered() -> void:
+	pass # View bottom face function

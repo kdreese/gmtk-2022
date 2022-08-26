@@ -265,4 +265,22 @@ position = Vector2( 0, 17 )
 stream = ExtResource( 78 )
 bus = "SoundsBus"
 
+[node name="BackFace" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BackFace"]
+polygon = PoolVector2Array( 0, -32, 32, -16, 32, 16, 0, 0 )
+
+[node name="BackSideFace" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BackSideFace"]
+polygon = PoolVector2Array( 0, -32, -32, -16, -32, 16, 0, 0 )
+
+[node name="BottomFace" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BottomFace"]
+polygon = PoolVector2Array( 0, 32, 32, 16, 0, 0, -32, 16 )
+
 [connection signal="animation_finished" from="FrontFace" to="." method="_on_animation_finished"]
+[connection signal="mouse_entered" from="BackFace" to="." method="_on_BackFace_mouse_entered"]
+[connection signal="mouse_entered" from="BackSideFace" to="." method="_on_BackSideFace_mouse_entered"]
+[connection signal="mouse_entered" from="BottomFace" to="." method="_on_BottomFace_mouse_entered"]
