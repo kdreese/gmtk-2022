@@ -37,16 +37,16 @@ var button3_wires := [
 
 
 func _on_LevelButton_button_pressed() -> void:
-	$Gate3.open()
+	$YSort/Gate3.open()
 	invert_wires_3(button1_wires)
 
 
 func _on_LevelButton2_button_pressed() -> void:
-	$Gate4.close()
-	$Gate2.open()
+	$YSort/Gate4.close()
+	$YSort/Gate2.open()
 	invert_wires_3(button2_wires)
 
 
 func _on_LevelButton3_button_pressed() -> void:
-	$Gate.open()
+	$YSort/Gate.open()
 	invert_wires_3(button3_wires)

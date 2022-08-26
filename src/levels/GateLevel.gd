@@ -12,5 +12,5 @@ var tiles := [
 
 
 func _on_LevelButton_button_pressed() -> void:
-	$Gate.open()
+	$YSort/Gate.open()
 	invert_wires(tiles)

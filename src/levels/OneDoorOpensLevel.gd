@@ -24,12 +24,12 @@ const TOGGLE_WIRES = [
 
 
 func _on_Toggle_toggled() -> void:
-	$Gate.toggle()
-	$Gate2.toggle()
-	$Gate3.toggle()
+	$YSort/Gate.toggle()
+	$YSort/Gate2.toggle()
+	$YSort/Gate3.toggle()
 	invert_wires(TOGGLE_WIRES)
 
 
 func _on_LevelButton_button_pressed() -> void:
-	$Gate.toggle()
+	$YSort/Gate.toggle()
 	invert_wires(LEVELBUTTON_WIRES)

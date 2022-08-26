@@ -18,22 +18,11 @@ func _ready() -> void:
 		tile_map.set_cellv(grid_coords, -1)
 
 
-func update_z_index(player_position: Vector2):
-	if not is_open:
-		if player_position.x > grid_coords.x or player_position.y > grid_coords.y:
-			z_index = 1
-		else:
-			z_index = 3
-	else:
-		z_index = 1
-
-
 func open() -> void:
 	if is_open:
 		return
 	$AnimatedSprite.play("open")
 	tile_map.set_cellv(grid_coords, tile_map.tile_set.find_tile_by_name("Base"))
-	z_index = 1
 	is_open = true
 
 

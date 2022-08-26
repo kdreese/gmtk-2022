@@ -113,7 +113,7 @@ func move(offset: Vector2) -> bool:
 	var new_coords := grid_coords + offset
 	if is_movable(new_coords):
 		grid_coords = new_coords
-		emit_signal("player_moved", grid_coords)
+		emit_signal("player_moved")
 		return true
 	return false
 

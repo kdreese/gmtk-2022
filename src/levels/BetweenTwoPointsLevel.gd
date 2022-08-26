@@ -7,16 +7,16 @@ var button3_wires := [Vector2(14, 2), Vector2(14, 3)]
 
 
 func _on_LevelButton_button_pressed() -> void:
-	$Gate.open()
-	$Gate2.open()
+	$YSort/Gate.open()
+	$YSort/Gate2.open()
 	invert_wires(button1_wires)
 
 
 func _on_LevelButton2_button_pressed() -> void:
-	$Gate3.open()
-	$Gate4.open()
+	$YSort/Gate3.open()
+	$YSort/Gate4.open()
 	invert_wires(button2_wires)
 
 func _on_LevelButton3_button_pressed() -> void:
-	$Gate5.open()
+	$YSort/Gate5.open()
 	invert_wires(button3_wires)

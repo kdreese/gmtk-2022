@@ -15,8 +15,19 @@ func _ready() -> void:
 	var tile_map := level.get_node("TileMap") as TileMap
 
 	add_child(level)
-	var error := level.get_node("LevelEnd").connect("exit_reached_success", self, "_on_LevelEnd_exit_reached_success")
-	assert(not error)
+
+	# Put objects in the a YSort node
+	var y_sort := YSort.new()
+	y_sort.name = "YSort"
+	for object in get_tree().get_nodes_in_group("YSortObjects"):
+		var node := object as Node2D
+		node.get_parent().remove_child(node)
+		y_sort.add_child(node)
+	level.add_child(y_sort)
+
+	for level_end in get_tree().get_nodes_in_group("LevelEnds"):
+		var error := (level_end as Node2D).connect("exit_reached_success", self, "_on_LevelEnd_exit_reached_success")
+		assert(not error)
 
 	$CanvasLayer/UI/V/LevelName.text = level_info["name"]
 	if "text" in level_info:
@@ -27,17 +38,17 @@ func _ready() -> void:
 		var tile := tile_map.get_cell(coords.x, coords.y)
 		if tile_map.tile_set.tile_get_name(tile) == "Start":
 			var player := preload("res://src/objects/Player.tscn").instance() as Node2D
-			error = player.connect("player_moved", self, "_on_player_move")
+			var error := player.connect("player_moved", self, "_on_player_move")
 			assert(not error)
 			player.position = tile_map.map_to_world(coords)
 			player.grid_coords = coords
 			player.tile_map = tile_map
-			level.add_child(player)
+			y_sort.add_child(player)
 
 	reset_move_counter()
 
 	update_timer()
-	error = Autosplitter.connect("timer_updated", self, "update_timer")
+	var error := Autosplitter.connect("timer_updated", self, "update_timer")
 	assert(not error)
 
 
@@ -82,10 +93,9 @@ func update_timer(final_time := false) -> void:
 	speedrun_timer.text = time_str
 
 
-func _on_player_move(grid_coords: Vector2):
+func _on_player_move():
 	moves += 1
 	update_move_counter()
-	level.handle_player_move(grid_coords)
 
 
 func hide_ui():
@@ -110,7 +120,8 @@ func _on_LevelEnd_exit_reached_success():
 
 
 func _on_OptionsMenu_options_exited() -> void:
-	level.get_node("Player").update_animation_speed()
+	for player in get_tree().get_nodes_in_group("Players"):
+		player.update_animation_speed()
 	if options_return_to_game:
 		# We came from the game scene, so un-pause the game.
 		get_tree().paused = false

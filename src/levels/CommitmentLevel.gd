@@ -12,6 +12,6 @@ var wires := [
 
 
 func _on_LevelButton_button_pressed() -> void:
-	$Gate.open()
-	$Gate2.close()
+	$YSort/Gate.open()
+	$YSort/Gate2.close()
 	invert_wires(wires)

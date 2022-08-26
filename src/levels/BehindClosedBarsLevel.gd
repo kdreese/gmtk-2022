@@ -16,10 +16,10 @@ var button_wires := [
 
 
 func _on_Toggle_toggled() -> void:
-	$Gate.toggle()
+	$YSort/Gate.toggle()
 	invert_wires(toggle_wires)
 
 
 func _on_LevelButton_button_pressed() -> void:
-	$Gate2.open()
+	$YSort/Gate2.open()
 	invert_wires(button_wires)
