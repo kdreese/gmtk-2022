@@ -8,7 +8,7 @@
 [ext_resource path="res://src/objects/Toggle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/objects/LevelButton.tscn" type="PackedScene" id=7]
 
-[node name="SomeKindaToggleLevel" type="Node2D"]
+[node name="OneDoorOpensLevel" type="Node2D"]
 position = Vector2( -32, 64 )
 script = ExtResource( 5 )
 

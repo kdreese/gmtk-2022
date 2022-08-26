@@ -4,7 +4,7 @@
 [ext_resource path="res://src/levels/Level.gd" type="Script" id=2]
 [ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=3]
 
-[node name="MovementTestLevel" type="Node2D"]
+[node name="FreeReignLevel" type="Node2D"]
 position = Vector2( 32, -32 )
 script = ExtResource( 2 )
 

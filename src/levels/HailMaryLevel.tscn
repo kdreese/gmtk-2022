@@ -7,7 +7,7 @@
 [ext_resource path="res://src/objects/Gate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://resouces/WireTileSet.tres" type="TileSet" id=6]
 
-[node name="DangerButtonLevel" type="Node2D"]
+[node name="HailMaryLevel" type="Node2D"]
 script = ExtResource( 4 )
 
 [node name="TileMap" type="TileMap" parent="."]
