@@ -19,6 +19,9 @@ const PALETTES := [
 	preload("res://resouces/palettes/6_2.tres"),
 ]
 
+const DEFAULT_FACE_OFFSET := Vector2(0, -2.0)
+
+const TRANSPARENT_FACE_COLOR := Color(1, 1, 1, 0.1)
 
 var top_face: int
 var side_face: int
@@ -26,6 +29,10 @@ var front_face: int
 var bottom_face: int
 var back_face: int
 var backside_face: int
+
+var back_visible := false
+var backside_visible := false
+var bottom_visible := false
 
 var grid_coords := Vector2.ZERO
 var tile_map: TileMap
@@ -46,19 +53,32 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	# Called every frame, used for showing the hidden face, if applicable.
+	if $FrontFace.animation != "idle":
+		# If any animation is going on, do not show a hidden face.
+		return
 	var view_hidden_vector := Input.get_vector("view_hidden_x_neg", "view_hidden_x_pos", "view_hidden_y_neg", "view_hidden_y_pos")
+	# Joystick has preference over mouse.
 	if view_hidden_vector.length() > 0:
 		var view_hidden_angle := view_hidden_vector.angle()
 		if view_hidden_angle >= -PI / 2 and view_hidden_angle < PI / 6:
-			pass	# View back face function
+			show_back_face()
 		if view_hidden_angle >= PI / 6 and view_hidden_angle < 5 * PI / 6:
-			pass	# View left face function
+			show_backside_face()
 		if view_hidden_angle >= 5 * PI / 6 or view_hidden_angle < -PI / 2:
-			pass	# View bottom face function
+			show_bottom_face()
+	elif back_visible:
+		show_back_face()
+	elif backside_visible:
+		show_backside_face()
+	elif bottom_visible:
+		show_bottom_face()
+	else:
+		reset_view()
 
 
 func _physics_process(_delta: float) -> void:
-	if $FrontFace.animation == "idle":
+	if $FrontFace.animation == "idle" and $ExtraFace.animation == "idle":
 		if Input.is_action_pressed("move_forward"):
 			if move(Vector2(0, -1)):
 				$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[bottom_face]
@@ -75,6 +95,42 @@ func _physics_process(_delta: float) -> void:
 			if move(Vector2(-1, 0)):
 				$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[bottom_face]
 				set_anim("rotate_neg_z")
+
+
+func show_bottom_face() -> void:
+	$FrontFace.modulate = TRANSPARENT_FACE_COLOR
+	$SideFace.modulate = TRANSPARENT_FACE_COLOR
+	$TopFace.modulate = TRANSPARENT_FACE_COLOR
+	$ExtraFace.play("bottom")
+	$ExtraFace.offset = DEFAULT_FACE_OFFSET + Vector2(0, 32)
+	$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[rotated_face(bottom_face)]
+
+
+func show_backside_face() -> void:
+	$FrontFace.modulate = TRANSPARENT_FACE_COLOR
+	$SideFace.modulate = TRANSPARENT_FACE_COLOR
+	$TopFace.modulate = TRANSPARENT_FACE_COLOR
+	$ExtraFace.play("backside")
+	$ExtraFace.offset = DEFAULT_FACE_OFFSET
+	$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[backside_face]
+
+
+func show_back_face() -> void:
+	$FrontFace.modulate = TRANSPARENT_FACE_COLOR
+	$SideFace.modulate = TRANSPARENT_FACE_COLOR
+	$TopFace.modulate = TRANSPARENT_FACE_COLOR
+	$ExtraFace.play("back")
+	$ExtraFace.offset = DEFAULT_FACE_OFFSET
+	$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[back_face]
+
+
+func reset_view() -> void:
+	$FrontFace.modulate = Color(1, 1, 1, 1)
+	$SideFace.modulate = Color(1, 1, 1, 1)
+	$TopFace.modulate = Color(1, 1, 1, 1)
+	if $ExtraFace.animation in ["back", "backside", "bottom"]:
+		$ExtraFace.play("idle")
+	$ExtraFace.offset = DEFAULT_FACE_OFFSET
 
 
 func update_animation_speed() -> void:
@@ -251,12 +307,24 @@ func _on_animation_finished() -> void:
 
 
 func _on_BackFace_mouse_entered() -> void:
-	pass # View back face function
+	back_visible = true
+
+
+func _on_BackFace_mouse_exited() -> void:
+	back_visible = false
 
 
 func _on_BackSideFace_mouse_entered() -> void:
-	pass # View left face function
+	backside_visible = true
+
+
+func _on_BackSideFace_mouse_exited() -> void:
+	backside_visible = false
 
 
 func _on_BottomFace_mouse_entered() -> void:
-	pass # View bottom face function
+	bottom_visible = true
+
+
+func _on_BottomFace_mouse_exited() -> void:
+	bottom_visible = false

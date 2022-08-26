@@ -196,6 +196,21 @@ shader_param/palette = SubResource( 14 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
+"frames": [ ExtResource( 73 ) ],
+"loop": false,
+"name": "back",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 62 ) ],
+"loop": false,
+"name": "backside",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": false,
+"name": "bottom",
+"speed": 5.0
+}, {
 "frames": [ null ],
 "loop": false,
 "name": "idle",
@@ -251,8 +266,9 @@ offset = Vector2( 0, -2 )
 
 [node name="ExtraFace" type="AnimatedSprite" parent="."]
 material = SubResource( 10 )
+z_index = -1
 frames = SubResource( 5 )
-animation = "rotate_neg_z"
+animation = "idle"
 offset = Vector2( 0, -2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -266,21 +282,33 @@ stream = ExtResource( 78 )
 bus = "SoundsBus"
 
 [node name="BackFace" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BackFace"]
 polygon = PoolVector2Array( 0, -32, 32, -16, 32, 16, 0, 0 )
 
 [node name="BackSideFace" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BackSideFace"]
 polygon = PoolVector2Array( 0, -32, -32, -16, -32, 16, 0, 0 )
 
 [node name="BottomFace" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BottomFace"]
 polygon = PoolVector2Array( 0, 32, 32, 16, 0, 0, -32, 16 )
 
 [connection signal="animation_finished" from="FrontFace" to="." method="_on_animation_finished"]
 [connection signal="mouse_entered" from="BackFace" to="." method="_on_BackFace_mouse_entered"]
+[connection signal="mouse_exited" from="BackFace" to="." method="_on_BackFace_mouse_exited"]
 [connection signal="mouse_entered" from="BackSideFace" to="." method="_on_BackSideFace_mouse_entered"]
+[connection signal="mouse_exited" from="BackSideFace" to="." method="_on_BackSideFace_mouse_exited"]
 [connection signal="mouse_entered" from="BottomFace" to="." method="_on_BottomFace_mouse_entered"]
+[connection signal="mouse_exited" from="BottomFace" to="." method="_on_BottomFace_mouse_exited"]

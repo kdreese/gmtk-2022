@@ -30,13 +30,14 @@ const LEVELS = [
 	{
 		"name": "Lopsided Patterns",
 		"path": "res://src/levels/LopsidedPatternsLevel.tscn",
-		"text": "Press R on keyboard or RB on controller to restart the current test. Escape or Start will bring up the pause menu.\n\nThat\'s it from me, if there are any new elements, I will explain them.",
+		"text": "Press R on keyboard or RB on controller to restart the current test. Escape or Start will bring up the pause menu.",
 		"thumbnail": "res://assets/level_thumbnails/lopsided_patterns.png",
 		"perfect_score": 13,
 	},
 	{
 		"name": "Reverse Engineering",
 		"path": "res://src/levels/ReverseEngineeringLevel.tscn",
+		"text": "If you're feeling disoriented, you can hover the mouse over yourself or use the right analog stick on the controller to view sides that are obscured from view.",
 		"thumbnail": "res://assets/level_thumbnails/reverse_engineering.png",
 		"perfect_score": 15,
 	},
@@ -56,6 +57,7 @@ const LEVELS = [
 	{
 		"name": "Optimization",
 		"path": "res://src/levels/OptimizationLevel.tscn",
+		"text": "Here's a fun fact to distract you from your cruel and unusual punishment:\n\nDid you know that the opposite sides of a die add up to 7?",
 		"thumbnail": "res://assets/level_thumbnails/optimization.png",
 		"perfect_score": 16,
 	},

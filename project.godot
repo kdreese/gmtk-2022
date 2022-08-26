@@ -145,6 +145,7 @@ view_hidden_y_pos={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Buttons"
+2d_physics/layer_3="Mouse Hover"
 
 [physics]
 
