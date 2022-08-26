@@ -59,6 +59,10 @@ window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 
+[global]
+
+collision=false
+
 [gui]
 
 theme/custom_font="res://resouces/DefaultFont.tres"
@@ -145,6 +149,7 @@ view_hidden_y_pos={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Buttons"
+2d_physics/layer_3="Mouse Hover"
 
 [physics]
 
