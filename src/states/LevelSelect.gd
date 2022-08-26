@@ -46,12 +46,15 @@ func display() -> void:
 				button.disabled = true
 				texture = load("res://assets/level_thumbnails/level_locked.png")
 				button.find_node("Title").text = "???"
+				button.find_node("PerfectScore").hide()
 			else:
 				button.disabled = false
 				texture = load(Global.LEVELS[level_idx]["thumbnail"])
 				button.find_node("Title").text = Global.LEVELS[level_idx]["name"]
-				if Global.best_scores[level_idx] <= Global.LEVELS[level_idx]["perfect_score"]:
+				if Global.best_scores[level_idx] <= Global.LEVELS[level_idx]["perfect_score"] and Global.best_scores[level_idx] >= 0:
 					button.find_node("PerfectScore").show()
+				else:
+					button.find_node("PerfectScore").hide()
 			button.find_node("Thumbnail").texture = texture
 			button.visible = true
 		else:
