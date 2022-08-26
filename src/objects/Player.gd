@@ -49,11 +49,11 @@ func _process(_delta: float) -> void:
 	var view_hidden_vector := Input.get_vector("view_hidden_x_neg", "view_hidden_x_pos", "view_hidden_y_neg", "view_hidden_y_pos")
 	if view_hidden_vector.length() > 0:
 		var view_hidden_angle := view_hidden_vector.angle()
-		if view_hidden_angle >= -PI / 2 and view_hidden_angle < PI / 3:
+		if view_hidden_angle >= -PI / 2 and view_hidden_angle < PI / 6:
 			pass	# View back face function
-		if view_hidden_angle >= PI / 3 and view_hidden_angle < 2 * PI / 3:
+		if view_hidden_angle >= PI / 6 and view_hidden_angle < 5 * PI / 6:
 			pass	# View left face function
-		if view_hidden_angle >= 2 * PI / 3 or view_hidden_angle < -PI / 2:
+		if view_hidden_angle >= 5 * PI / 6 or view_hidden_angle < -PI / 2:
 			pass	# View bottom face function
 
 
