@@ -3,6 +3,7 @@ extends Node2D
 
 
 signal player_moved
+signal should_update_z_index
 
 
 enum FaceState {FACE_1, FACE_2_1, FACE_2_2, FACE_3_1, FACE_3_2, FACE_4, FACE_5, FACE_6_1, FACE_6_2}
@@ -83,6 +84,7 @@ func _physics_process(_delta: float) -> void:
 			if move(Vector2(0, -1)):
 				$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[bottom_face]
 				set_anim("rotate_x")
+				emit_signal("should_update_z_index", grid_coords)
 		elif Input.is_action_pressed("move_back"):
 			if move(Vector2(0, 1)):
 				$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[back_face]
@@ -95,6 +97,7 @@ func _physics_process(_delta: float) -> void:
 			if move(Vector2(-1, 0)):
 				$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[bottom_face]
 				set_anim("rotate_neg_z")
+				emit_signal("should_update_z_index", grid_coords)
 
 
 func show_bottom_face() -> void:
@@ -181,7 +184,7 @@ func move(offset: Vector2) -> bool:
 	var new_coords := grid_coords + offset
 	if is_movable(new_coords):
 		grid_coords = new_coords
-		emit_signal("player_moved", grid_coords)
+		emit_signal("player_moved")
 		return true
 	return false
 
@@ -303,6 +306,7 @@ func _on_animation_finished() -> void:
 	$ExtraFace.play("idle")
 	update_palettes()
 	position = tile_map.map_to_world(grid_coords)
+	emit_signal("should_update_z_index", grid_coords)
 	$MoveSound.play()
 
 

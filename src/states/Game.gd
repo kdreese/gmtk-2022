@@ -29,6 +29,8 @@ func _ready() -> void:
 			var player := preload("res://src/objects/Player.tscn").instance() as Node2D
 			error = player.connect("player_moved", self, "_on_player_move")
 			assert(not error)
+			error = player.connect("should_update_z_index", self, "_on_player_should_update_z_index")
+			assert(not error)
 			player.position = tile_map.map_to_world(coords)
 			player.grid_coords = coords
 			player.tile_map = tile_map
@@ -91,9 +93,12 @@ func update_timer(final_time := false) -> void:
 	speedrun_timer.text = time_str
 
 
-func _on_player_move(grid_coords: Vector2):
+func _on_player_move() -> void:
 	moves += 1
 	update_move_counter()
+
+
+func _on_player_should_update_z_index(grid_coords: Vector2) -> void:
 	level.handle_player_move(grid_coords)
 
 
