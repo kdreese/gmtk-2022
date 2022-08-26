@@ -8,6 +8,7 @@ export var is_open: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	update_animation_speed()
 	tile_map = get_parent().get_node("TileMap")
 	grid_coords = tile_map.world_to_map(position)
 	if is_open:
@@ -16,6 +17,10 @@ func _ready() -> void:
 	else:
 		$AnimatedSprite.play("closed")
 		tile_map.set_cellv(grid_coords, -1)
+
+
+func update_animation_speed() -> void:
+	$AnimatedSprite.speed_scale = (0.5 * pow(float(Global.animation_speed), 2.0)) + 0.5
 
 
 func update_z_index(player_position: Vector2):

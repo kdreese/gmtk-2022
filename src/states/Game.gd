@@ -111,6 +111,8 @@ func _on_LevelEnd_exit_reached_success():
 
 func _on_OptionsMenu_options_exited() -> void:
 	level.get_node("Player").update_animation_speed()
+	for gate in get_tree().get_nodes_in_group("Gates"):
+		gate.update_animation_speed()
 	if options_return_to_game:
 		# We came from the game scene, so un-pause the game.
 		get_tree().paused = false
