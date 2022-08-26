@@ -117,6 +117,10 @@ var audio_stream: AudioStreamPlayer
 
 
 func _ready() -> void:
+	if OS.get_name() != "HTML5":
+		var window_size_multiplier := ceil(OS.get_screen_size().x / (2 * 640))
+		OS.window_size *= window_size_multiplier
+		OS.center_window()
 	for _idx in range(NUM_LEVELS):
 		best_scores.append(-1)
 	load_config()

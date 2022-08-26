@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/states/Game.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/Russo_One.ttf" type="DynamicFontData" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/ui/exit_icon.png" type="Texture" id=9]
 [ext_resource path="res://assets/ui/options_icon.png" type="Texture" id=10]
 [ext_resource path="res://assets/tiles/background.png" type="Texture" id=11]
+[ext_resource path="res://assets/ui/perfect_score.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=3]
 size = 24
@@ -62,6 +63,34 @@ margin_top = 33.0
 margin_right = 640.0
 margin_bottom = 52.0
 align = 1
+
+[node name="H" type="HBoxContainer" parent="CanvasLayer/UI/V"]
+margin_left = 320.0
+margin_top = 57.0
+margin_right = 320.0
+margin_bottom = 76.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BestMove" type="Label" parent="CanvasLayer/UI/V/H"]
+unique_name_in_owner = true
+margin_bottom = 19.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Star" type="TextureRect" parent="CanvasLayer/UI/V/H"]
+unique_name_in_owner = true
+visible = false
+margin_left = 59.0
+margin_top = 2.0
+margin_right = 74.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 15, 15 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 1
 
 [node name="Legend" type="TextureRect" parent="CanvasLayer/UI"]
 anchor_left = 1.0

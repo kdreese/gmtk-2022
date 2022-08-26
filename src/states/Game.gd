@@ -35,6 +35,15 @@ func _ready() -> void:
 			level.add_child(player)
 
 	reset_move_counter()
+	var best_score = Global.best_scores[Global.current_level_idx]
+	if best_score != -1:
+		$"%BestMove".text = "Best: %d" % best_score
+		if best_score == Global.LEVELS[Global.current_level_idx]["perfect_score"]:
+			$"%Star".show()
+		else:
+			$"%Star".hide()
+	else:
+		$CanvasLayer/UI/V/H.hide()
 
 	update_timer()
 	error = Autosplitter.connect("timer_updated", self, "update_timer")
