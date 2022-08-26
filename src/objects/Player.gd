@@ -64,9 +64,9 @@ func _process(_delta: float) -> void:
 		if view_hidden_angle >= -PI / 2 and view_hidden_angle < PI / 6:
 			show_back_face()
 		if view_hidden_angle >= PI / 6 and view_hidden_angle < 5 * PI / 6:
-			show_backside_face()
-		if view_hidden_angle >= 5 * PI / 6 or view_hidden_angle < -PI / 2:
 			show_bottom_face()
+		if view_hidden_angle >= 5 * PI / 6 or view_hidden_angle < -PI / 2:
+			show_backside_face()
 	elif back_visible:
 		show_back_face()
 	elif backside_visible:
