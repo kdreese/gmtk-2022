@@ -20,6 +20,7 @@ func _ready() -> void:
 
 
 func update_animation_speed() -> void:
+	# Use quadratic to make it feel smoother.
 	$AnimatedSprite.speed_scale = (0.5 * pow(float(Global.animation_speed), 2.0)) + 0.5
 
 
