@@ -4,7 +4,7 @@
 [ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/levels/Level.gd" type="Script" id=3]
 
-[node name="IntroLevel" type="Node2D"]
+[node name="IntroductionLevel" type="Node2D"]
 position = Vector2( 0, -32 )
 script = ExtResource( 3 )
 

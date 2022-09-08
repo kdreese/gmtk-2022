@@ -39,8 +39,10 @@ func open() -> void:
 		return
 	$AnimatedSprite.play("open")
 	tile_map.set_cellv(grid_coords, tile_map.tile_set.find_tile_by_name("Base"))
-	z_index = 1
 	is_open = true
+	while $AnimatedSprite.frame <= 4:
+		yield($AnimatedSprite, "frame_changed")
+	z_index = 1
 
 
 func close() -> void:
