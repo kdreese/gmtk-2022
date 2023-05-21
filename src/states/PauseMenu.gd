@@ -10,10 +10,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("escape") or event.is_action_pressed("ui_cancel"):
 		resume()
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("restart"):
 		restart()
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 
 
 func resume() -> void:
@@ -31,5 +31,5 @@ func restart() -> void:
 func _on_ToMenuButton_pressed() -> void:
 	get_tree().paused = false
 	Autosplitter.run_reset()
-	var error := get_tree().change_scene("res://src/states/Menu.tscn")
+	var error := get_tree().change_scene_to_file("res://src/states/Menu.tscn")
 	assert(not error)

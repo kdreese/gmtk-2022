@@ -120,22 +120,27 @@ var audio_stream: AudioStreamPlayer
 
 func _ready() -> void:
 	if OS.get_name() != "HTML5":
-		var window_size_multiplier := ceil(OS.get_screen_size().x / (2 * 640))
-		OS.window_size *= window_size_multiplier
-		OS.center_window()
+		@warning_ignore("integer_division")
+		var window_size_multiplier := DisplayServer.screen_get_size().x / (2 * 640)
+		get_window().size *= window_size_multiplier
+		#OS.center_window() # the lines below do this
+		var screen_id := get_window().current_screen
+		var screen_center := DisplayServer.screen_get_position(screen_id) \
+				+ DisplayServer.screen_get_size(screen_id) / 2
+		get_window().position = screen_center - get_window().size / 2
 	for _idx in range(NUM_LEVELS):
 		best_scores.append(-1)
 	load_config()
 	audio_stream = AudioStreamPlayer.new()
 	audio_stream.stream = BG_MUSIC
 	update_volumes()
-	audio_stream.play()
 	add_child(audio_stream)
-	pause_mode = Node.PAUSE_MODE_PROCESS
+	audio_stream.play()
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 
 func _notification(what: int) -> void:
-	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		save_config()
 		get_tree().quit()
 
@@ -144,9 +149,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_fullscreen"):
 		if OS.get_name() == "HTML5":
 			return
-		OS.window_fullscreen = not OS.window_fullscreen
+		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (not ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))) else Window.MODE_WINDOWED
 		save_config()
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 
 
 func update_volumes() -> void:
@@ -181,28 +186,31 @@ func update_best_scores(new_score: int) -> void:
 
 
 func load_config() -> void:
-	var file := File.new()
-	var error := file.open(SAVE_FILE_PATH, File.READ)
-	if error:
-		print("Error opening save file")
+	var file := FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
+	var error := FileAccess.get_open_error()
+	if error == ERR_FILE_NOT_FOUND:
+		print("No config file found, using default settings")
 		return
-	var config = str2var(file.get_as_text())
+	if error:
+		push_warning("Error opening save file, using default settings")
+		return
+	var config = str_to_var(file.get_as_text())
 	file.close()
 
 	if typeof(config) != TYPE_DICTIONARY:
-		print("Save file corrupt")
+		push_warning("Save file corrupt, using default settings")
 		return
 
 	if "best_scores" in config:
 		var new_best_scores = config["best_scores"]
 		if typeof(new_best_scores) == TYPE_ARRAY:
 			for idx in range(min(new_best_scores.size(), NUM_LEVELS)):
-				if typeof(new_best_scores[idx]) == TYPE_REAL or typeof(new_best_scores[idx]) == TYPE_INT:
+				if typeof(new_best_scores[idx]) == TYPE_FLOAT or typeof(new_best_scores[idx]) == TYPE_INT:
 					best_scores[idx] = int(new_best_scores[idx])
 
 	if "sound_volume" in config:
 		var new_volume = config["sound_volume"]
-		if typeof(new_volume) == TYPE_REAL or typeof(new_volume) == TYPE_INT:
+		if typeof(new_volume) == TYPE_FLOAT or typeof(new_volume) == TYPE_INT:
 			sound_volume = float(new_volume)
 			if sound_volume < 0.0:
 				sound_volume = 0.0
@@ -211,7 +219,7 @@ func load_config() -> void:
 
 	if "music_volume" in config:
 		var new_volume = config["music_volume"]
-		if typeof(new_volume) == TYPE_REAL or typeof(new_volume) == TYPE_INT:
+		if typeof(new_volume) == TYPE_FLOAT or typeof(new_volume) == TYPE_INT:
 			music_volume = float(new_volume)
 			if music_volume < 0.0:
 				music_volume = 0.0
@@ -220,7 +228,7 @@ func load_config() -> void:
 
 	if "animation_speed" in config:
 		var new_speed = config["animation_speed"]
-		if typeof(new_speed) == TYPE_REAL or typeof(new_speed) == TYPE_INT:
+		if typeof(new_speed) == TYPE_FLOAT or typeof(new_speed) == TYPE_INT:
 			animation_speed = int(new_speed)
 			if animation_speed < 0:
 				animation_speed = 0
@@ -230,7 +238,7 @@ func load_config() -> void:
 	if "window_fullscreen" in config:
 		var new_fullscreen = config["window_fullscreen"]
 		if typeof(new_fullscreen) == TYPE_BOOL:
-			OS.window_fullscreen = new_fullscreen
+			get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (new_fullscreen) else Window.MODE_WINDOWED
 
 	if "speedrun_timer_enabled" in config:
 		var new_speedrun = config["speedrun_timer_enabled"]
@@ -259,7 +267,7 @@ func save_config() -> void:
 		"sound_volume": sound_volume,
 		"music_volume": music_volume,
 		"animation_speed": animation_speed,
-		"window_fullscreen": OS.window_fullscreen,
+		"window_fullscreen": ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN)),
 		"speedrun_timer_enabled": speedrun_timer_enabled
 	}
 
@@ -267,11 +275,20 @@ func save_config() -> void:
 		config["autosplitter_enabled"] = autosplitter_enabled
 		config["autosplitter_port"] = autosplitter_port
 
-	var file := File.new()
-	var error := file.open(SAVE_FILE_PATH, File.WRITE)
-	if error:
-		print("Error while writing save file")
+	var file := FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
+	if not file:
+		push_error("Could not open config file for writing!")
 		return
 
-	file.store_line(var2str(config))
+	file.store_line(var_to_str(config))
 	file.close()
+
+
+# TileSet.find_tile_by_name doesn't exist in Godot 4, so I'm implementing a version here.
+# Returns a source id from a given TileSet with the matching resource_name.
+func find_source_id_by_name(tile_set: TileSet, tile_name: String) -> int:
+	for source_id in range(tile_set.get_source_count()):
+		var source := tile_set.get_source(source_id)
+		if source.resource_name == tile_name:
+			return source_id
+	return -1

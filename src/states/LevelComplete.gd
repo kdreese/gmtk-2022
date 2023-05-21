@@ -28,7 +28,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().paused = false
 		var error := get_tree().reload_current_scene()
 		assert(not error)
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 
 
 func _on_ContinueButton_pressed() -> void:
@@ -47,5 +47,5 @@ func _on_RestartButton_pressed() -> void:
 func _on_ToMenuButton_pressed() -> void:
 	get_tree().paused = false
 	Autosplitter.run_reset()
-	var error := get_tree().change_scene("res://src/states/Menu.tscn")
+	var error := get_tree().change_scene_to_file("res://src/states/Menu.tscn")
 	assert(not error)

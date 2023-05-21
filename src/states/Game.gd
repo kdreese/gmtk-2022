@@ -6,16 +6,16 @@ var level: Level
 var moves: int
 var options_return_to_game: bool
 
-onready var speedrun_timer: Label = $"%SpeedrunTimer"
+@onready var speedrun_timer: Label = $"%SpeedrunTimer"
 
 
 func _ready() -> void:
 	var level_info: Dictionary = Global.LEVELS[Global.current_level_idx]
-	level = load(level_info["path"]).instance() as Level
+	level = load(level_info["path"]).instantiate() as Level
 	var tile_map := level.get_node("TileMap") as TileMap
 
 	add_child(level)
-	var error := level.get_node("LevelEnd").connect("exit_reached_success", self, "_on_LevelEnd_exit_reached_success")
+	var error := level.get_node("LevelEnd").connect("exit_reached_success", Callable(self, "_on_LevelEnd_exit_reached_success"))
 	assert(not error)
 
 	$CanvasLayer/UI/V/LevelName.text = level_info["name"]
@@ -23,15 +23,17 @@ func _ready() -> void:
 		$CanvasLayer/UI/Textbox/MessageText.text = level_info["text"]
 		$CanvasLayer/UI/Textbox.show()
 
-	for coords in tile_map.get_used_cells():
-		var tile := tile_map.get_cell(coords.x, coords.y)
-		if tile_map.tile_set.tile_get_name(tile) == "Start":
-			var player := preload("res://src/objects/Player.tscn").instance() as Node2D
-			error = player.connect("player_moved", self, "_on_player_move")
+	for coords in tile_map.get_used_cells(0):
+		var tile_source_id := tile_map.get_cell_source_id(0, coords)
+		var source := tile_map.tile_set.get_source(tile_source_id)
+		var tile_name := source.resource_name
+		if tile_name == "Start":
+			var player := preload("res://src/objects/Player.tscn").instantiate() as Node2D
+			error = player.connect("player_moved", Callable(self, "_on_player_move"))
 			assert(not error)
-			error = player.connect("should_update_z_index", self, "_on_player_should_update_z_index")
+			error = player.connect("should_update_z_index", Callable(self, "_on_player_should_update_z_index"))
 			assert(not error)
-			player.position = tile_map.map_to_world(coords)
+			player.position = tile_map.map_to_local(coords)
 			player.grid_coords = coords
 			player.tile_map = tile_map
 			level.add_child(player)
@@ -48,7 +50,7 @@ func _ready() -> void:
 		$CanvasLayer/UI/V/H.hide()
 
 	update_timer()
-	error = Autosplitter.connect("timer_updated", self, "update_timer")
+	error = Autosplitter.connect("timer_updated", Callable(self, "update_timer"))
 	assert(not error)
 
 
@@ -58,10 +60,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		hide_ui()
 		$CanvasLayer/PauseMenu.show()
 		$CanvasLayer/PauseMenu/C/V/Buttons/ResumeButton.grab_focus()
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("restart"):
 		restart()
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 
 
 func update_move_counter() -> void:
@@ -124,7 +126,9 @@ func _on_LevelEnd_exit_reached_success():
 
 
 func _on_OptionsMenu_options_exited() -> void:
-	level.get_node("Player").update_animation_speed()
+	var player := level.get_node_or_null("Player")
+	if player:
+		player.update_animation_speed()
 	for gate in get_tree().get_nodes_in_group("Gates"):
 		gate.update_animation_speed()
 	if options_return_to_game:
@@ -138,7 +142,7 @@ func _on_OptionsMenu_options_exited() -> void:
 
 func _on_MenuButton_pressed() -> void:
 	Autosplitter.run_reset()
-	var error := get_tree().change_scene("res://src/states/Menu.tscn")
+	var error := get_tree().change_scene_to_file("res://src/states/Menu.tscn")
 	assert(not error)
 
 

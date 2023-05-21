@@ -5,8 +5,8 @@ extends Area2D
 signal exit_reached_success
 signal exit_reached_incomplete
 
-export var minimum_weight := 1
-export var maximum_weight := 6
+@export var minimum_weight := 1
+@export var maximum_weight := 6
 
 
 func _ready() -> void:

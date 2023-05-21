@@ -82,20 +82,20 @@ func _physics_process(_delta: float) -> void:
 	if $FrontFace.animation == "idle" and $ExtraFace.animation == "idle":
 		if Input.is_action_pressed("move_forward"):
 			if move(Vector2(0, -1)):
-				$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[bottom_face]
+				$ExtraFace.material.get_shader_parameter("palette").gradient = PALETTES[bottom_face]
 				set_anim("rotate_x")
 				emit_signal("should_update_z_index", grid_coords)
 		elif Input.is_action_pressed("move_back"):
 			if move(Vector2(0, 1)):
-				$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[back_face]
+				$ExtraFace.material.get_shader_parameter("palette").gradient = PALETTES[back_face]
 				set_anim("rotate_neg_x")
 		elif Input.is_action_pressed("move_right"):
 			if move(Vector2(1, 0)):
-				$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[backside_face]
+				$ExtraFace.material.get_shader_parameter("palette").gradient = PALETTES[backside_face]
 				set_anim("rotate_z")
 		elif Input.is_action_pressed("move_left"):
 			if move(Vector2(-1, 0)):
-				$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[bottom_face]
+				$ExtraFace.material.get_shader_parameter("palette").gradient = PALETTES[bottom_face]
 				set_anim("rotate_neg_z")
 				emit_signal("should_update_z_index", grid_coords)
 
@@ -106,7 +106,7 @@ func show_bottom_face() -> void:
 	$TopFace.modulate = TRANSPARENT_FACE_COLOR
 	$ExtraFace.play("bottom")
 	$ExtraFace.offset = DEFAULT_FACE_OFFSET + Vector2(0, 32)
-	$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[rotated_face(bottom_face)]
+	$ExtraFace.material.get_shader_parameter("palette").gradient = PALETTES[rotated_face(bottom_face)]
 
 
 func show_backside_face() -> void:
@@ -115,7 +115,7 @@ func show_backside_face() -> void:
 	$TopFace.modulate = TRANSPARENT_FACE_COLOR
 	$ExtraFace.play("backside")
 	$ExtraFace.offset = DEFAULT_FACE_OFFSET
-	$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[backside_face]
+	$ExtraFace.material.get_shader_parameter("palette").gradient = PALETTES[backside_face]
 
 
 func show_back_face() -> void:
@@ -124,7 +124,7 @@ func show_back_face() -> void:
 	$TopFace.modulate = TRANSPARENT_FACE_COLOR
 	$ExtraFace.play("back")
 	$ExtraFace.offset = DEFAULT_FACE_OFFSET
-	$ExtraFace.material.get_shader_param("palette").gradient = PALETTES[back_face]
+	$ExtraFace.material.get_shader_parameter("palette").gradient = PALETTES[back_face]
 
 
 func reset_view() -> void:
@@ -168,15 +168,14 @@ func get_top_face_value() -> int:
 	elif top_face == FaceState.FACE_6_2:
 		return 6
 	else:
-		print("Invalid face... how?")
-		assert(false)
+		assert(false, "Invalid face... how?")
 		return 0
 
 
 func update_palettes() -> void:
-	$FrontFace.material.get_shader_param("palette").gradient = PALETTES[front_face]
-	$SideFace.material.get_shader_param("palette").gradient = PALETTES[side_face]
-	$TopFace.material.get_shader_param("palette").gradient = PALETTES[top_face]
+	$FrontFace.material.get_shader_parameter("palette").gradient = PALETTES[front_face]
+	$SideFace.material.get_shader_parameter("palette").gradient = PALETTES[side_face]
+	$TopFace.material.get_shader_parameter("palette").gradient = PALETTES[top_face]
 
 
 # Move the die one space
@@ -191,10 +190,11 @@ func move(offset: Vector2) -> bool:
 
 # Check if the space attempting to be moved into is capable of being moved into
 func is_movable(coord: Vector2) -> bool:
-	var tile := tile_map.get_cellv(coord)
-	if tile == -1:
+	var tile_source_id := tile_map.get_cell_source_id(0, coord)
+	if tile_source_id == -1:
 		return false
-	return tile_map.tile_set.tile_get_name(tile) in ["Base", "Start"]
+	var tile_name = tile_map.tile_set.get_source(tile_source_id).resource_name
+	return tile_name in ["Base", "Start"]
 
 
 # Get the rotated version of the given face.
@@ -305,7 +305,7 @@ func _on_animation_finished() -> void:
 	$SideFace.play("idle")
 	$ExtraFace.play("idle")
 	update_palettes()
-	position = tile_map.map_to_world(grid_coords)
+	position = tile_map.map_to_local(grid_coords)
 	emit_signal("should_update_z_index", grid_coords)
 	$MoveSound.play()
 

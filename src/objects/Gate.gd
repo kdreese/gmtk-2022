@@ -4,24 +4,25 @@ extends Node2D
 var tile_map: TileMap
 var grid_coords: Vector2
 
-export var is_open: bool
+@export var is_open: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_animation_speed()
 	tile_map = get_parent().get_node("TileMap")
-	grid_coords = tile_map.world_to_map(position)
+	grid_coords = tile_map.local_to_map(position)
 	if is_open:
-		$AnimatedSprite.play("opened")
-		tile_map.set_cellv(grid_coords, tile_map.tile_set.find_tile_by_name("Base"))
+		$AnimatedSprite2D.play("opened")
+		var base_source_id := Global.find_source_id_by_name(tile_map.tile_set, "Base")
+		tile_map.set_cell(0, grid_coords, base_source_id, Vector2i.ZERO)
 	else:
-		$AnimatedSprite.play("closed")
-		tile_map.set_cellv(grid_coords, -1)
+		$AnimatedSprite2D.play("closed")
+		tile_map.set_cell(0, grid_coords, -1)
 
 
 func update_animation_speed() -> void:
 	# Use quadratic to make it feel smoother.
-	$AnimatedSprite.speed_scale = (0.5 * pow(float(Global.animation_speed), 2.0)) + 0.5
+	$AnimatedSprite2D.speed_scale = (0.5 * pow(float(Global.animation_speed), 2.0)) + 0.5
 
 
 func update_z_index(player_position: Vector2):
@@ -37,19 +38,20 @@ func update_z_index(player_position: Vector2):
 func open() -> void:
 	if is_open:
 		return
-	$AnimatedSprite.play("open")
-	tile_map.set_cellv(grid_coords, tile_map.tile_set.find_tile_by_name("Base"))
+	$AnimatedSprite2D.play("open")
+	var base_source_id := Global.find_source_id_by_name(tile_map.tile_set, "Base")
+	tile_map.set_cell(0, grid_coords, base_source_id, Vector2i.ZERO)
 	is_open = true
-	while $AnimatedSprite.frame <= 4:
-		yield($AnimatedSprite, "frame_changed")
+	while $AnimatedSprite2D.frame <= 4:
+		await $AnimatedSprite2D.frame_changed
 	z_index = 1
 
 
 func close() -> void:
 	if not is_open:
 		return
-	$AnimatedSprite.play("close")
-	tile_map.set_cellv(grid_coords, -1)
+	$AnimatedSprite2D.play("close")
+	tile_map.set_cell(0, grid_coords, -1)
 	is_open = false
 
 

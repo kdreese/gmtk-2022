@@ -14,11 +14,11 @@ func _ready() -> void:
 
 func create_menu() -> void:
 	# We will have at most 9 buttons.
-	var num_buttons := min(9, Global.NUM_LEVELS)
+	var num_buttons := mini(9, Global.NUM_LEVELS)
 	for idx in range(num_buttons):
-		var button := LevelSelectButton.instance()
+		var button := LevelSelectButton.instantiate()
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		var error := button.connect("pressed", self, "_on_level_button_pressed", [idx])
+		var error := button.connect("pressed", Callable(self, "_on_level_button_pressed").bind(idx))
 		assert(not error)
 		$G.add_child(button)
 
@@ -36,26 +36,26 @@ func show_menu() -> void:
 
 
 func display() -> void:
-	var num_levels_to_show := min(Global.NUM_LEVELS - 9 * page_idx, 9)
+	var num_levels_to_show := mini(Global.NUM_LEVELS - 9 * page_idx, 9)
 	for idx in range($G.get_child_count()):
 		var button: Button = $G.get_child(idx)
 		if idx < num_levels_to_show:
 			var level_idx := 9 * page_idx + idx
-			var texture: Texture
+			var texture: Texture2D
 			if level_idx != 0 and Global.best_scores[level_idx - 1] < 0:
 				button.disabled = true
 				texture = load("res://assets/level_thumbnails/level_locked.png")
-				button.find_node("Title").text = "???"
-				button.find_node("PerfectScore").hide()
+				button.find_child("Title").text = "???"
+				button.find_child("PerfectScore").hide()
 			else:
 				button.disabled = false
 				texture = load(Global.LEVELS[level_idx]["thumbnail"])
-				button.find_node("Title").text = Global.LEVELS[level_idx]["name"]
+				button.find_child("Title").text = Global.LEVELS[level_idx]["name"]
 				if Global.best_scores[level_idx] <= Global.LEVELS[level_idx]["perfect_score"] and Global.best_scores[level_idx] >= 0:
-					button.find_node("PerfectScore").show()
+					button.find_child("PerfectScore").show()
 				else:
-					button.find_node("PerfectScore").hide()
-			button.find_node("Thumbnail").texture = texture
+					button.find_child("PerfectScore").hide()
+			button.find_child("Thumbnail").texture = texture
 			button.visible = true
 		else:
 			button.visible = false
@@ -65,7 +65,7 @@ func _on_level_button_pressed(idx: int) -> void:
 	Global.current_level_idx = 9 * page_idx + idx
 	if Global.current_level_idx == 0:
 		Autosplitter.run_start()
-	var error := get_tree().change_scene("res://src/states/Game.tscn")
+	var error := get_tree().change_scene_to_file("res://src/states/Game.tscn")
 	assert(not error)
 
 

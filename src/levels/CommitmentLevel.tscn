@@ -1,43 +1,44 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://pctotl40lvew"]
 
-[ext_resource path="res://resouces/TileSet.tres" type="TileSet" id=1]
-[ext_resource path="res://src/objects/LevelButton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/levels/CommitmentLevel.gd" type="Script" id=4]
-[ext_resource path="res://src/objects/Gate.tscn" type="PackedScene" id=5]
-[ext_resource path="res://resouces/WireTileSet.tres" type="TileSet" id=6]
+[ext_resource type="TileSet" uid="uid://dqydij0582jko" path="res://resouces/TileSet.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://dybtco1hth3g" path="res://src/objects/LevelButton.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://lwy5y5jokgu6" path="res://src/objects/LevelEnd.tscn" id="3"]
+[ext_resource type="Script" path="res://src/levels/CommitmentLevel.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://cbb5m7jc12bfr" path="res://src/objects/Gate.tscn" id="5"]
+[ext_resource type="TileSet" uid="uid://bkewpejsnoeiv" path="res://resouces/WireTileSet.tres" id="6"]
 
 [node name="CommitmentLevel" type="Node2D"]
-script = ExtResource( 4 )
+position = Vector2(-32, 0)
+script = ExtResource("4")
 
 [node name="TileMap" type="TileMap" parent="."]
-mode = 1
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 64, 32 )
-format = 1
-tile_data = PoolIntArray( -65523, 536870912, 0, -65522, 6, 0, 13, 0, 0, 14, 6, 0, 65549, 0, 0, 65550, 6, 0, 131085, 536870912, 0, 131086, 6, 0, 196616, 0, 0, 196617, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196623, 0, 0, 196624, 0, 0, 196625, 6, 0, 262152, 536870918, 0, 262153, 536870918, 0, 262154, 536870918, 0, 262155, 536870918, 0, 262156, 536870918, 0, 262157, 536870918, 0, 262158, 0, 0, 262159, 0, 0, 262160, 2, 0, 262161, 6, 0, 327694, 536870918, 0, 327695, 536870918, 0, 327696, 536870918, 0 )
+y_sort_enabled = true
+tile_set = ExtResource("1")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(262160, 1, 0, 196624, 0, 0, 196623, 0, 0, 196622, 0, 0, 262158, 0, 0, 262159, 0, 0, 196621, 0, 0, 131085, 0, 0, 65549, 0, 0, 13, 0, 0, -65523, 0, 0, 196620, 0, 0, 196619, 0, 0, 196618, 0, 0, 196617, 0, 0, 196616, 0, 0, 262161, 131074, 0, 196625, 131074, 0, 65550, 131074, 0, 14, 131074, 0, -65522, 131074, 0, 327696, 131074, 65536, 327695, 131074, 65536, 327694, 131074, 65536, 262156, 131074, 65536, 262155, 131074, 65536, 262154, 131074, 65536, 262153, 131074, 65536, 262152, 131074, 65536, 262157, 2, 65537, 131086, 2, 1)
 
 [node name="WireTileMap" type="TileMap" parent="."]
-mode = 1
-tile_set = ExtResource( 6 )
-cell_size = Vector2( 64, 32 )
-format = 1
-tile_data = PoolIntArray( -65523, 13, 0, 13, 5, 0, 65549, 5, 0, 131085, 5, 0, 196619, 536870917, 0, 196620, 536870917, 0, 196621, 536870915, 0 )
+y_sort_enabled = true
+tile_set = ExtResource("6")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(13, 5, 0, 65549, 5, 0, 131085, 5, 0, 196620, 5, 65536, 196619, 5, 65536, -65523, 13, 0, 196621, 3, 65536)
 
-[node name="LevelButton" parent="." instance=ExtResource( 2 )]
-position = Vector2( 448, 208 )
+[node name="LevelButton" parent="." instance=ExtResource("2")]
+position = Vector2(480, 208)
 minimum_weight = 6
 
-[node name="LevelEnd" parent="." instance=ExtResource( 3 )]
-position = Vector2( 160, 176 )
+[node name="LevelEnd" parent="." instance=ExtResource("3")]
+position = Vector2(192, 176)
 minimum_weight = 3
 maximum_weight = 3
 
-[node name="Gate" parent="." instance=ExtResource( 5 )]
-position = Vector2( 224, 216 )
+[node name="Gate" parent="." instance=ExtResource("5")]
+position = Vector2(256, 216)
 
-[node name="Gate2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 352, 280 )
+[node name="Gate2" parent="." instance=ExtResource("5")]
+position = Vector2(384, 280)
 is_open = true
 
 [connection signal="button_pressed" from="LevelButton" to="." method="_on_LevelButton_button_pressed"]

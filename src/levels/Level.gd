@@ -13,12 +13,12 @@ enum {
 	ELBOW_SIDE_OFF,
 	CROSS_TOP_ON,
 	CROSS_BOTTOM_ON,
-	CROSS_BOTH_ON
-	CROSS_BOTH_OFF
-	SPUR_ON
-	SPUR_OFF
+	CROSS_BOTH_ON,
+	CROSS_BOTH_OFF,
+	SPUR_ON,
+	SPUR_OFF,
 	ELBOW_DOWN_OFF,
-	ELBOW_DOWN_ON
+	ELBOW_DOWN_ON,
 }
 
 
@@ -33,8 +33,8 @@ func invert_wire(grid_coords: Vector2, on_bottom: bool = true) -> void:
 		return
 
 	# Get the new tile index.
-	var new_tile_idx
-	var tile_idx = wire_tile_map.get_cellv(grid_coords)
+	var new_tile_idx: int
+	var tile_idx := wire_tile_map.get_cell_source_id(0, grid_coords)
 	if tile_idx == -1:
 		return
 	elif tile_idx == X_ON:
@@ -87,10 +87,9 @@ func invert_wire(grid_coords: Vector2, on_bottom: bool = true) -> void:
 		return
 
 	# Set the cell.
-	var flip_x = wire_tile_map.is_cell_x_flipped(grid_coords.x, grid_coords.y)
-	var flip_y = wire_tile_map.is_cell_y_flipped(grid_coords.x, grid_coords.y)
-	var transpose = wire_tile_map.is_cell_transposed(grid_coords.x, grid_coords.y)
-	wire_tile_map.set_cellv(grid_coords, new_tile_idx, flip_x, flip_y, transpose)
+	var atlas_coords := wire_tile_map.get_cell_atlas_coords(0, grid_coords)
+	var alternative_tile := wire_tile_map.get_cell_alternative_tile(0, grid_coords)
+	wire_tile_map.set_cell(0, grid_coords, new_tile_idx, atlas_coords, alternative_tile)
 
 
 func invert_wires(coords_list: Array) -> void:

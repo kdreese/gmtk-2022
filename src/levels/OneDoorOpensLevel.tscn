@@ -1,49 +1,49 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://dxromuk6o7uys"]
 
-[ext_resource path="res://src/objects/LevelEnd.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/objects/Gate.tscn" type="PackedScene" id=2]
-[ext_resource path="res://resouces/TileSet.tres" type="TileSet" id=3]
-[ext_resource path="res://resouces/WireTileSet.tres" type="TileSet" id=4]
-[ext_resource path="res://src/levels/OneDoorOpensLevel.gd" type="Script" id=5]
-[ext_resource path="res://src/objects/Toggle.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/objects/LevelButton.tscn" type="PackedScene" id=7]
+[ext_resource type="PackedScene" uid="uid://lwy5y5jokgu6" path="res://src/objects/LevelEnd.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cbb5m7jc12bfr" path="res://src/objects/Gate.tscn" id="2"]
+[ext_resource type="TileSet" uid="uid://dqydij0582jko" path="res://resouces/TileSet.tres" id="3"]
+[ext_resource type="TileSet" uid="uid://bkewpejsnoeiv" path="res://resouces/WireTileSet.tres" id="4"]
+[ext_resource type="Script" path="res://src/levels/OneDoorOpensLevel.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://bs6xla4hn1qd4" path="res://src/objects/Toggle.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://dybtco1hth3g" path="res://src/objects/LevelButton.tscn" id="7"]
 
 [node name="OneDoorOpensLevel" type="Node2D"]
-position = Vector2( -32, 64 )
-script = ExtResource( 5 )
+position = Vector2(-64, 64)
+script = ExtResource("5")
 
 [node name="TileMap" type="TileMap" parent="."]
-mode = 1
-tile_set = ExtResource( 3 )
-cell_size = Vector2( 64, 32 )
-format = 1
-tile_data = PoolIntArray( -131063, 1610612736, 0, -131062, 6, 0, -65527, 1610612736, 0, -65526, 6, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 15, 0, 0, 16, 0, 0, 17, 6, 0, 65545, 536870918, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 536870915, 0, 65550, 536870918, 0, 65551, 536870918, 0, 65552, 536870918, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 6, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 6, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 6, 0, 327690, 536870918, 0, 327691, 2, 0, 327692, 536870915, 0, 393227, 536870918, 0 )
+y_sort_enabled = true
+tile_set = ExtResource("3")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(327691, 1, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 9, 0, 0, -65527, 0, 0, -131063, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 65549, 2, 0, 65550, 131074, 65536, 65551, 131074, 65536, 65552, 131074, 65536, 327692, 2, 0, 131085, 131074, 0, 196621, 131074, 0, 262157, 131074, 0, -65526, 2, 1, -131062, 131074, 0, 17, 131074, 0, 393227, 131074, 65536, 327690, 2, 65537, 65545, 2, 65537)
 
 [node name="WireTileMap" type="TileMap" parent="."]
-mode = 1
-tile_set = ExtResource( 4 )
-cell_size = Vector2( 64, 32 )
-format = 1
-tile_data = PoolIntArray( -131063, 536870925, 0, -131062, 1073741829, 0, -131061, 1073741829, 0, -131060, 1073741829, 0, -131059, 1073741831, 0, -65523, 1610612741, 0, 10, 7, 0, 65546, 5, 0, 65549, 1610612739, 0, 65550, 1610612750, 0, 131082, 536870919, 0, 131083, 1073741829, 0, 131084, 536870917, 0, 131085, 1073741838, 0 )
+y_sort_enabled = true
+tile_set = ExtResource("4")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(-131063, 13, 65536, -131062, 5, 65536, -131061, 5, 65536, -131060, 5, 65536, -65523, 5, 0, 65546, 5, 0, 131083, 5, 65536, 131084, 5, 65536, 10, 7, 0, -131059, 7, 0, 131082, 7, 65536, 131085, 14, 131072, 65550, 14, 131072, 65549, 3, 196608)
 
-[node name="LevelEnd" parent="." instance=ExtResource( 1 )]
-position = Vector2( 512, 256 )
+[node name="LevelEnd" parent="." instance=ExtResource("1")]
+position = Vector2(544, 256)
 
-[node name="Gate" parent="." instance=ExtResource( 2 )]
-position = Vector2( 416, 216 )
+[node name="Gate" parent="." instance=ExtResource("2")]
+position = Vector2(448, 216)
 
-[node name="Gate2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 448, 232 )
+[node name="Gate2" parent="." instance=ExtResource("2")]
+position = Vector2(480, 232)
 is_open = true
 
-[node name="Gate3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 288, 152 )
+[node name="Gate3" parent="." instance=ExtResource("2")]
+position = Vector2(320, 152)
 
-[node name="Toggle" parent="." instance=ExtResource( 6 )]
-position = Vector2( 320, 240 )
+[node name="Toggle" parent="." instance=ExtResource("6")]
+position = Vector2(352, 240)
 
-[node name="LevelButton" parent="." instance=ExtResource( 7 )]
-position = Vector2( 352, 128 )
+[node name="LevelButton" parent="." instance=ExtResource("7")]
+position = Vector2(384, 128)
 minimum_weight = 2
 maximum_weight = 2
 

@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 func _on_PlayButton_pressed() -> void:
-	var error := get_tree().change_scene("res://src/states/Game.tscn")
+	var error := get_tree().change_scene_to_file("res://src/states/Game.tscn")
 	assert(not error)
 	Autosplitter.run_start()
 
@@ -30,7 +30,7 @@ func _on_CreditsButton_pressed() -> void:
 
 
 func _on_QuitButton_pressed() -> void:
-	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
+	get_tree().get_root().propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 
 
 func _on_LevelSelect_level_select_exited() -> void:

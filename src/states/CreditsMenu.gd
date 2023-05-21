@@ -22,7 +22,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("ui_cancel"):
 		_on_BackButton_pressed()
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 
 
 func _on_BackButton_pressed() -> void:

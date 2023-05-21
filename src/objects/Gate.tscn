@@ -1,43 +1,103 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=12 format=3 uid="uid://cbb5m7jc12bfr"]
 
-[ext_resource path="res://assets/objects/gate_0.png" type="Texture" id=1]
-[ext_resource path="res://src/objects/Gate.gd" type="Script" id=3]
-[ext_resource path="res://assets/objects/gate_1.png" type="Texture" id=4]
-[ext_resource path="res://assets/objects/gate_2.png" type="Texture" id=5]
-[ext_resource path="res://assets/objects/gate_3.png" type="Texture" id=6]
-[ext_resource path="res://assets/objects/gate_4.png" type="Texture" id=7]
-[ext_resource path="res://assets/objects/gate_7.png" type="Texture" id=8]
-[ext_resource path="res://assets/objects/gate_6.png" type="Texture" id=9]
-[ext_resource path="res://assets/objects/gate_5.png" type="Texture" id=10]
-[ext_resource path="res://assets/objects/gate_8.png" type="Texture" id=11]
+[ext_resource type="Texture2D" uid="uid://bueriwldj70x7" path="res://assets/objects/gate_0.png" id="1"]
+[ext_resource type="Script" path="res://src/objects/Gate.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://b8wlrxc44yhom" path="res://assets/objects/gate_1.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cfyotcknvlc5m" path="res://assets/objects/gate_2.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://mtuejay4eym6" path="res://assets/objects/gate_3.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://3njlpqxfqfm3" path="res://assets/objects/gate_4.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://ce6hpvhgjixp6" path="res://assets/objects/gate_7.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://7fxrwo26gp6" path="res://assets/objects/gate_6.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://cyc3d1pemrl7h" path="res://assets/objects/gate_5.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://b6ofhs82g2yy0" path="res://assets/objects/gate_8.png" id="11"]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 11 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 1 ) ],
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
 "loop": false,
-"name": "close",
+"name": &"close",
 "speed": 20.0
 }, {
-"frames": [ ExtResource( 1 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
 "loop": true,
-"name": "closed",
+"name": &"closed",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 11 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}],
 "loop": false,
-"name": "open",
+"name": &"open",
 "speed": 20.0
 }, {
-"frames": [ ExtResource( 11 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11")
+}],
 "loop": true,
-"name": "opened",
+"name": &"opened",
 "speed": 5.0
-} ]
+}]
 
 [node name="Gate" type="Node2D" groups=["Gates"]]
 z_index = 1
-script = ExtResource( 3 )
+script = ExtResource("3")
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
-animation = "opened"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("1")
+animation = &"opened"

@@ -6,11 +6,11 @@ const FREQUENCY = 2.0
 
 const INDICATOR_DEFAULT_STRING := "<default>"
 
-export var indicator_string := INDICATOR_DEFAULT_STRING
+@export var indicator_string := INDICATOR_DEFAULT_STRING
 
 var total_time := 0.0
 
-onready var starting_position := position
+@onready var starting_position := position
 
 
 # Called when the node enters the scene tree for the first time.

@@ -1,244 +1,183 @@
-[gd_resource type="TileSet" load_steps=17 format=2]
+[gd_resource type="TileSet" load_steps=33 format=3 uid="uid://bkewpejsnoeiv"]
 
-[ext_resource path="res://assets/tiles/elbow_side_off.png" type="Texture" id=1]
-[ext_resource path="res://assets/tiles/x_on.png" type="Texture" id=2]
-[ext_resource path="res://assets/tiles/t_on.png" type="Texture" id=3]
-[ext_resource path="res://assets/tiles/straight_off.png" type="Texture" id=4]
-[ext_resource path="res://assets/tiles/cross_top_on.png" type="Texture" id=5]
-[ext_resource path="res://assets/tiles/t_off.png" type="Texture" id=6]
-[ext_resource path="res://assets/tiles/x_off.png" type="Texture" id=7]
-[ext_resource path="res://assets/tiles/cross_both_off.png" type="Texture" id=8]
-[ext_resource path="res://assets/tiles/cross_both_on.png" type="Texture" id=9]
-[ext_resource path="res://assets/tiles/cross_bottom_on.png" type="Texture" id=10]
-[ext_resource path="res://assets/tiles/spur_off.png" type="Texture" id=11]
-[ext_resource path="res://assets/tiles/spur_on.png" type="Texture" id=12]
-[ext_resource path="res://assets/tiles/elbow_down_on.png" type="Texture" id=13]
-[ext_resource path="res://assets/tiles/straight_on.png" type="Texture" id=14]
-[ext_resource path="res://assets/tiles/elbow_down_off.png" type="Texture" id=15]
-[ext_resource path="res://assets/tiles/elbow_side_on.png" type="Texture" id=16]
+[ext_resource type="Texture2D" uid="uid://r4s5tbbfaxvs" path="res://assets/tiles/elbow_side_off.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b5wublpyhb855" path="res://assets/tiles/x_on.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cl0wda5nvqeag" path="res://assets/tiles/t_on.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bhb4u8f6o3aok" path="res://assets/tiles/straight_off.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://d23m5rk5h8uoo" path="res://assets/tiles/cross_top_on.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://b1ccox0s86xl2" path="res://assets/tiles/t_off.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://cjy2d8oygcyhc" path="res://assets/tiles/x_off.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://bb13akekcrws0" path="res://assets/tiles/cross_both_off.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://ci2qwn51m8kr" path="res://assets/tiles/cross_both_on.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://c3rlmvxxgyi58" path="res://assets/tiles/cross_bottom_on.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://b2lcdqsxws7i2" path="res://assets/tiles/spur_off.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://cao74bedtm8iv" path="res://assets/tiles/spur_on.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://bdhgn3whtoqhq" path="res://assets/tiles/elbow_down_on.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://1oyl1h1n2m5x" path="res://assets/tiles/straight_on.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://bowmc75bkew02" path="res://assets/tiles/elbow_down_off.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://dxbe21hlal4kc" path="res://assets/tiles/elbow_side_on.png" id="16"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hv6p3"]
+texture = ExtResource("2")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yg7dc"]
+texture = ExtResource("7")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h42gk"]
+texture = ExtResource("9")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e2337"]
+texture = ExtResource("8")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1pgub"]
+texture = ExtResource("12")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8ukty"]
+texture = ExtResource("11")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_apbop"]
+texture = ExtResource("15")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/2 = 2
+0:0/2/flip_v = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8e2t7"]
+texture = ExtResource("13")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/2 = 2
+0:0/2/flip_v = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s82mi"]
+texture = ExtResource("3")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3shua"]
+texture = ExtResource("6")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+0:0/2 = 2
+0:0/2/flip_v = true
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/flip_v = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xlxi4"]
+texture = ExtResource("14")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vt4ak"]
+texture = ExtResource("4")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_obcbt"]
+texture = ExtResource("16")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqwh6"]
+texture = ExtResource("1")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tmn5u"]
+texture = ExtResource("5")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rqua5"]
+texture = ExtResource("10")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/flip_h = true
 
 [resource]
-0/name = "x_on.png 0"
-0/texture = ExtResource( 2 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 64, 32 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-1/name = "x_off.png 1"
-1/texture = ExtResource( 7 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 0, 0, 64, 32 )
-1/tile_mode = 0
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
-2/name = "t_on.png 2"
-2/texture = ExtResource( 3 )
-2/tex_offset = Vector2( 0, 0 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 0, 0, 64, 32 )
-2/tile_mode = 0
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
-2/z_index = 0
-3/name = "t_off.png 3"
-3/texture = ExtResource( 6 )
-3/tex_offset = Vector2( 0, 0 )
-3/modulate = Color( 1, 1, 1, 1 )
-3/region = Rect2( 0, 0, 64, 32 )
-3/tile_mode = 0
-3/occluder_offset = Vector2( 0, 0 )
-3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( 0, 0 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape_one_way = false
-3/shape_one_way_margin = 0.0
-3/shapes = [  ]
-3/z_index = 0
-4/name = "straight_on.png 4"
-4/texture = ExtResource( 14 )
-4/tex_offset = Vector2( 0, 0 )
-4/modulate = Color( 1, 1, 1, 1 )
-4/region = Rect2( 0, 0, 64, 32 )
-4/tile_mode = 0
-4/occluder_offset = Vector2( 0, 0 )
-4/navigation_offset = Vector2( 0, 0 )
-4/shape_offset = Vector2( 0, 0 )
-4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-4/shape_one_way = false
-4/shape_one_way_margin = 0.0
-4/shapes = [  ]
-4/z_index = 0
-5/name = "straight_off.png 5"
-5/texture = ExtResource( 4 )
-5/tex_offset = Vector2( 0, 0 )
-5/modulate = Color( 1, 1, 1, 1 )
-5/region = Rect2( 0, 0, 64, 32 )
-5/tile_mode = 0
-5/occluder_offset = Vector2( 0, 0 )
-5/navigation_offset = Vector2( 0, 0 )
-5/shape_offset = Vector2( 0, 0 )
-5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-5/shape_one_way = false
-5/shape_one_way_margin = 0.0
-5/shapes = [  ]
-5/z_index = 0
-6/name = "elbow_on.png 6"
-6/texture = ExtResource( 16 )
-6/tex_offset = Vector2( 0, 0 )
-6/modulate = Color( 1, 1, 1, 1 )
-6/region = Rect2( 0, 0, 64, 32 )
-6/tile_mode = 0
-6/occluder_offset = Vector2( 0, 0 )
-6/navigation_offset = Vector2( 0, 0 )
-6/shape_offset = Vector2( 0, 0 )
-6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-6/shape_one_way = false
-6/shape_one_way_margin = 0.0
-6/shapes = [  ]
-6/z_index = 0
-7/name = "elbow_off.png 7"
-7/texture = ExtResource( 1 )
-7/tex_offset = Vector2( 0, 0 )
-7/modulate = Color( 1, 1, 1, 1 )
-7/region = Rect2( 0, 0, 64, 32 )
-7/tile_mode = 0
-7/occluder_offset = Vector2( 0, 0 )
-7/navigation_offset = Vector2( 0, 0 )
-7/shape_offset = Vector2( 0, 0 )
-7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-7/shape_one_way = false
-7/shape_one_way_margin = 0.0
-7/shapes = [  ]
-7/z_index = 0
-8/name = "cross_top_on.png 8"
-8/texture = ExtResource( 5 )
-8/tex_offset = Vector2( 0, 0 )
-8/modulate = Color( 1, 1, 1, 1 )
-8/region = Rect2( 0, 0, 64, 32 )
-8/tile_mode = 0
-8/occluder_offset = Vector2( 0, 0 )
-8/navigation_offset = Vector2( 0, 0 )
-8/shape_offset = Vector2( 0, 0 )
-8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-8/shape_one_way = false
-8/shape_one_way_margin = 0.0
-8/shapes = [  ]
-8/z_index = 0
-9/name = "cross_bottom_on.png 9"
-9/texture = ExtResource( 10 )
-9/tex_offset = Vector2( 0, 0 )
-9/modulate = Color( 1, 1, 1, 1 )
-9/region = Rect2( 0, 0, 64, 32 )
-9/tile_mode = 0
-9/occluder_offset = Vector2( 0, 0 )
-9/navigation_offset = Vector2( 0, 0 )
-9/shape_offset = Vector2( 0, 0 )
-9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-9/shape_one_way = false
-9/shape_one_way_margin = 0.0
-9/shapes = [  ]
-9/z_index = 0
-10/name = "cross_both_on.png 10"
-10/texture = ExtResource( 9 )
-10/tex_offset = Vector2( 0, 0 )
-10/modulate = Color( 1, 1, 1, 1 )
-10/region = Rect2( 0, 0, 64, 32 )
-10/tile_mode = 0
-10/occluder_offset = Vector2( 0, 0 )
-10/navigation_offset = Vector2( 0, 0 )
-10/shape_offset = Vector2( 0, 0 )
-10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-10/shape_one_way = false
-10/shape_one_way_margin = 0.0
-10/shapes = [  ]
-10/z_index = 0
-11/name = "cross_both_off.png 11"
-11/texture = ExtResource( 8 )
-11/tex_offset = Vector2( 0, 0 )
-11/modulate = Color( 1, 1, 1, 1 )
-11/region = Rect2( 0, 0, 64, 32 )
-11/tile_mode = 0
-11/occluder_offset = Vector2( 0, 0 )
-11/navigation_offset = Vector2( 0, 0 )
-11/shape_offset = Vector2( 0, 0 )
-11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-11/shape_one_way = false
-11/shape_one_way_margin = 0.0
-11/shapes = [  ]
-11/z_index = 0
-12/name = "spur_on.png 12"
-12/texture = ExtResource( 12 )
-12/tex_offset = Vector2( 0, 0 )
-12/modulate = Color( 1, 1, 1, 1 )
-12/region = Rect2( 0, 0, 64, 32 )
-12/tile_mode = 0
-12/occluder_offset = Vector2( 0, 0 )
-12/navigation_offset = Vector2( 0, 0 )
-12/shape_offset = Vector2( 0, 0 )
-12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-12/shape_one_way = false
-12/shape_one_way_margin = 0.0
-12/shapes = [  ]
-12/z_index = 0
-13/name = "spur_off.png 13"
-13/texture = ExtResource( 11 )
-13/tex_offset = Vector2( 0, 0 )
-13/modulate = Color( 1, 1, 1, 1 )
-13/region = Rect2( 0, 0, 64, 32 )
-13/tile_mode = 0
-13/occluder_offset = Vector2( 0, 0 )
-13/navigation_offset = Vector2( 0, 0 )
-13/shape_offset = Vector2( 0, 0 )
-13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-13/shape_one_way = false
-13/shape_one_way_margin = 0.0
-13/shapes = [  ]
-13/z_index = 0
-14/name = "elbow_down_off.png 14"
-14/texture = ExtResource( 15 )
-14/tex_offset = Vector2( 0, 0 )
-14/modulate = Color( 1, 1, 1, 1 )
-14/region = Rect2( 0, 0, 64, 32 )
-14/tile_mode = 0
-14/occluder_offset = Vector2( 0, 0 )
-14/navigation_offset = Vector2( 0, 0 )
-14/shape_offset = Vector2( 0, 0 )
-14/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-14/shape_one_way = false
-14/shape_one_way_margin = 0.0
-14/shapes = [  ]
-14/z_index = 0
-15/name = "elbow_down_on.png 15"
-15/texture = ExtResource( 13 )
-15/tex_offset = Vector2( 0, 0 )
-15/modulate = Color( 1, 1, 1, 1 )
-15/region = Rect2( 0, 0, 64, 32 )
-15/tile_mode = 0
-15/occluder_offset = Vector2( 0, 0 )
-15/navigation_offset = Vector2( 0, 0 )
-15/shape_offset = Vector2( 0, 0 )
-15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-15/shape_one_way = false
-15/shape_one_way_margin = 0.0
-15/shapes = [  ]
-15/z_index = 0
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(64, 32)
+sources/0 = SubResource("TileSetAtlasSource_hv6p3")
+sources/1 = SubResource("TileSetAtlasSource_yg7dc")
+sources/2 = SubResource("TileSetAtlasSource_s82mi")
+sources/3 = SubResource("TileSetAtlasSource_3shua")
+sources/4 = SubResource("TileSetAtlasSource_xlxi4")
+sources/5 = SubResource("TileSetAtlasSource_vt4ak")
+sources/6 = SubResource("TileSetAtlasSource_obcbt")
+sources/7 = SubResource("TileSetAtlasSource_yqwh6")
+sources/8 = SubResource("TileSetAtlasSource_tmn5u")
+sources/9 = SubResource("TileSetAtlasSource_rqua5")
+sources/10 = SubResource("TileSetAtlasSource_h42gk")
+sources/11 = SubResource("TileSetAtlasSource_e2337")
+sources/12 = SubResource("TileSetAtlasSource_1pgub")
+sources/13 = SubResource("TileSetAtlasSource_8ukty")
+sources/14 = SubResource("TileSetAtlasSource_apbop")
+sources/15 = SubResource("TileSetAtlasSource_8e2t7")

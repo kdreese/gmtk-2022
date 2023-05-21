@@ -2,8 +2,8 @@ extends Area2D
 
 signal toggled
 
-export var minimum_weight: int = 1
-export var maximum_weight: int = 6
+@export var minimum_weight: int = 1
+@export var maximum_weight: int = 6
 
 
 func _ready() -> void:
@@ -20,7 +20,7 @@ func _on_Toggle_area_entered(area: Area2D) -> void:
 
 
 func change_sprite() -> void:
-	if $AnimatedSprite.animation == "on":
-		$AnimatedSprite.play("off")
+	if $AnimatedSprite2D.animation == "on":
+		$AnimatedSprite2D.play("off")
 	else:
-		$AnimatedSprite.play("on")
+		$AnimatedSprite2D.play("on")
