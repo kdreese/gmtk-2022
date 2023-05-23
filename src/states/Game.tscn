@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://cs4yr6oj0fo24"]
+[gd_scene load_steps=12 format=3 uid="uid://cs4yr6oj0fo24"]
 
 [ext_resource type="Script" path="res://src/states/Game.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://1h3vp4wec7uu" path="res://assets/ui/Russo_One.ttf" id="2"]
 [ext_resource type="Script" path="res://src/states/PauseMenu.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://wtkm7neh2jtu" path="res://assets/ui/legend.png" id="4"]
 [ext_resource type="Script" path="res://src/states/LevelComplete.gd" id="5"]
@@ -12,66 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://cyn40eyrssg4o" path="res://assets/ui/options_icon.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://ccyrohf4pm62" path="res://assets/tiles/background.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://c3m38tcnhjk64" path="res://assets/ui/perfect_score.png" id="12"]
-
-[sub_resource type="FontFile" id="3"]
-fallbacks = Array[Font]([ExtResource("2")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="2"]
-fallbacks = Array[Font]([ExtResource("2")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="1"]
-fallbacks = Array[Font]([ExtResource("2")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="4"]
-fallbacks = Array[Font]([ExtResource("2")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="5"]
-fallbacks = Array[Font]([ExtResource("2")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1")
@@ -95,14 +34,16 @@ layout_mode = 0
 anchor_right = 1.0
 offset_top = 30.0
 offset_bottom = 82.0
-theme_override_constants/separation = 5
+theme_override_constants/separation = 2
 
 [node name="LevelName" type="Label" parent="CanvasLayer/UI/V"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("3")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
 
 [node name="MoveCounter" type="Label" parent="CanvasLayer/UI/V"]
 layout_mode = 2
+horizontal_alignment = 1
 
 [node name="H" type="HBoxContainer" parent="CanvasLayer/UI/V"]
 layout_mode = 2
@@ -114,6 +55,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
+vertical_alignment = 1
 
 [node name="Star" type="TextureRect" parent="CanvasLayer/UI/V/H"]
 unique_name_in_owner = true
@@ -125,7 +67,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("12")
 expand_mode = 1
-stretch_mode = 1
 
 [node name="Legend" type="TextureRect" parent="CanvasLayer/UI"]
 texture_filter = 2
@@ -145,7 +86,7 @@ offset_top = 162.5
 offset_right = 350.0
 offset_bottom = 222.5
 theme_override_colors/font_color = Color(0.439216, 0.439216, 0.439216, 1)
-theme_override_fonts/font = SubResource("2")
+theme_override_font_sizes/font_size = 40
 text = "D"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -157,7 +98,7 @@ offset_top = 62.5
 offset_right = 150.0
 offset_bottom = 122.5
 theme_override_colors/font_color = Color(0.439216, 0.439216, 0.439216, 1)
-theme_override_fonts/font = SubResource("2")
+theme_override_font_sizes/font_size = 40
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -169,7 +110,7 @@ offset_top = 62.5
 offset_right = 347.5
 offset_bottom = 122.5
 theme_override_colors/font_color = Color(0.439216, 0.439216, 0.439216, 1)
-theme_override_fonts/font = SubResource("2")
+theme_override_font_sizes/font_size = 40
 text = "W"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -181,7 +122,7 @@ offset_top = 112.5
 offset_right = 247.5
 offset_bottom = 172.5
 theme_override_colors/font_color = Color(0.439216, 0.439216, 0.439216, 1)
-theme_override_fonts/font = SubResource("2")
+theme_override_font_sizes/font_size = 40
 text = "S"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -256,8 +197,9 @@ theme_override_constants/separation = 32
 
 [node name="PausedTitle" type="Label" parent="CanvasLayer/PauseMenu/C/V"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("1")
+theme_override_font_sizes/font_size = 32
 text = "Paused"
+horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="CanvasLayer/PauseMenu/C/V"]
 layout_mode = 2
@@ -304,14 +246,16 @@ theme_override_constants/separation = 32
 [node name="YouWinLabel" type="Label" parent="CanvasLayer/LevelComplete/C/V"]
 visible = false
 layout_mode = 2
-theme_override_fonts/font = SubResource("4")
+theme_override_font_sizes/font_size = 32
 text = "You win! Thanks for
 playing Unweighted!"
+horizontal_alignment = 1
 
 [node name="Congratulations" type="Label" parent="CanvasLayer/LevelComplete/C/V"]
 layout_mode = 2
 text = "Congratulations!
 You finished the level in 0 moves!"
+horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="CanvasLayer/LevelComplete/C/V"]
 layout_mode = 2
@@ -335,7 +279,7 @@ offset_left = 16.0
 offset_top = 72.0
 offset_right = 102.0
 offset_bottom = 100.0
-theme_override_fonts/font = SubResource("5")
+theme_override_font_sizes/font_size = 24
 text = "00.000"
 
 [node name="Background" type="CanvasLayer" parent="."]

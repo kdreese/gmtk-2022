@@ -1,20 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn147gfbi0b4c"]
+[gd_scene load_steps=3 format=3 uid="uid://cn147gfbi0b4c"]
 
 [ext_resource type="Texture2D" uid="uid://jddi32jr5lk4" path="res://assets/objects/arrow.png" id="1"]
-[ext_resource type="FontFile" uid="uid://1h3vp4wec7uu" path="res://assets/ui/Russo_One.ttf" id="2"]
 [ext_resource type="Script" path="res://src/objects/Indicator.gd" id="3"]
-
-[sub_resource type="FontFile" id="1"]
-fallbacks = Array[Font]([ExtResource("2")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="Indicator" type="Node2D" groups=["UI Elements"]]
 z_index = 5
@@ -30,7 +17,7 @@ size_flags_horizontal = 4
 [node name="Label" type="Label" parent="CenterContainer"]
 modulate = Color(1, 1, 1, 0.752941)
 layout_mode = 2
-theme_override_fonts/font = SubResource("1")
+theme_override_font_sizes/font_size = 32
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.752941)

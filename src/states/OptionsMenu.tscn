@@ -1,37 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmsmgwdkar4s4"]
+[gd_scene load_steps=2 format=3 uid="uid://dmsmgwdkar4s4"]
 
 [ext_resource type="Script" path="res://src/states/OptionsMenu.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://1h3vp4wec7uu" path="res://assets/ui/Russo_One.ttf" id="2"]
-
-[sub_resource type="FontFile" id="1"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-fallbacks = Array[Font]([ExtResource("2"), ExtResource("2")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="FontFile" id="2"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-fallbacks = Array[Font]([ExtResource("2"), ExtResource("2")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="OptionsMenu" type="ColorRect"]
 anchors_preset = 15
@@ -51,8 +20,9 @@ theme_override_constants/separation = 30
 
 [node name="Title" type="Label" parent="C/V"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("1")
+theme_override_font_sizes/font_size = 48
 text = "Options"
+horizontal_alignment = 1
 
 [node name="G" type="GridContainer" parent="C/V"]
 layout_mode = 2
@@ -129,12 +99,12 @@ layout_mode = 2
 [node name="SpeedrunLabel" type="Label" parent="C/V/V"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-theme_override_fonts/font = SubResource("2")
+theme_override_font_sizes/font_size = 24
 text = "Speedrun Settings"
+horizontal_alignment = 1
 
 [node name="V" type="VBoxContainer" parent="C/V/V"]
 layout_mode = 2
-theme_override_constants/separation = -5
 
 [node name="SpeedrunTimerCheck" type="CheckButton" parent="C/V/V/V"]
 unique_name_in_owner = true
