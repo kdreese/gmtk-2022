@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://dxromuk6o7uys"]
 
-[ext_resource type="PackedScene" uid="uid://lwy5y5jokgu6" path="res://src/objects/LevelEnd.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://cbb5m7jc12bfr" path="res://src/objects/Gate.tscn" id="2"]
-[ext_resource type="TileSet" uid="uid://dqydij0582jko" path="res://resouces/TileSet.tres" id="3"]
-[ext_resource type="TileSet" uid="uid://bkewpejsnoeiv" path="res://resouces/WireTileSet.tres" id="4"]
-[ext_resource type="Script" path="res://src/levels/OneDoorOpensLevel.gd" id="5"]
-[ext_resource type="PackedScene" uid="uid://bs6xla4hn1qd4" path="res://src/objects/Toggle.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://dybtco1hth3g" path="res://src/objects/LevelButton.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://lwy5y5jokgu6" path="res://src/objects/level_end.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cbb5m7jc12bfr" path="res://src/objects/gate.tscn" id="2"]
+[ext_resource type="TileSet" uid="uid://dqydij0582jko" path="res://resouces/tile_set.tres" id="3"]
+[ext_resource type="TileSet" uid="uid://bkewpejsnoeiv" path="res://resouces/wire_tile_set.tres" id="4"]
+[ext_resource type="Script" path="res://src/levels/one_door_opens_level.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://bs6xla4hn1qd4" path="res://src/objects/toggle.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://dybtco1hth3g" path="res://src/objects/level_button.tscn" id="7"]
 
 [node name="OneDoorOpensLevel" type="Node2D"]
 position = Vector2(-64, 64)

@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 func _on_PlayButton_pressed() -> void:
-	var error := get_tree().change_scene_to_file("res://src/states/Game.tscn")
+	var error := get_tree().change_scene_to_file("res://src/states/game.tscn")
 	assert(not error)
 	Autosplitter.run_start()
 

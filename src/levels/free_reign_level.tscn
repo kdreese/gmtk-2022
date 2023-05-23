@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6cuoei1mggf7"]
 
-[ext_resource type="TileSet" uid="uid://dqydij0582jko" path="res://resouces/TileSet.tres" id="1"]
-[ext_resource type="Script" path="res://src/levels/Level.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://lwy5y5jokgu6" path="res://src/objects/LevelEnd.tscn" id="3"]
+[ext_resource type="TileSet" uid="uid://dqydij0582jko" path="res://resouces/tile_set.tres" id="1"]
+[ext_resource type="Script" path="res://src/levels/level.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://lwy5y5jokgu6" path="res://src/objects/level_end.tscn" id="3"]
 
 [node name="FreeReignLevel" type="Node2D"]
 position = Vector2(0, -32)

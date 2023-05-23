@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bpm2738sy4hf5"]
 
-[ext_resource type="Script" path="res://src/states/Menu.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://dmsmgwdkar4s4" path="res://src/states/OptionsMenu.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://by61qf6b5oj1p" path="res://src/states/CreditsMenu.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://feb8h7bm5wmc" path="res://src/states/LevelSelect.tscn" id="5"]
+[ext_resource type="Script" path="res://src/states/menu.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://dmsmgwdkar4s4" path="res://src/states/options_menu.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://by61qf6b5oj1p" path="res://src/states/credits_menu.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://feb8h7bm5wmc" path="res://src/states/level_select.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://ccyrohf4pm62" path="res://assets/tiles/background.png" id="6"]
 
 [node name="Menu" type="CenterContainer"]

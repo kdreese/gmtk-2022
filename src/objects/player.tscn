@@ -1,6 +1,6 @@
 [gd_scene load_steps=92 format=3 uid="uid://bfk77xmmwqmyl"]
 
-[ext_resource type="Script" path="res://src/objects/Player.gd" id="1"]
+[ext_resource type="Script" path="res://src/objects/player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dib7g8m4sfyl1" path="res://assets/player/animations/rotate_neg_z/side_3.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://dtijxtn006nd" path="res://assets/player/animations/rotate_x/front_1.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://cnkdhub48cnwh" path="res://assets/player/animations/rotate_x/side_1.png" id="4"]
@@ -73,7 +73,7 @@
 [ext_resource type="Texture2D" uid="uid://6pqelnjk7bl7" path="res://assets/player/animations/rotate_z/top_3.png" id="71"]
 [ext_resource type="Texture2D" uid="uid://b5b7gnrp48f8p" path="res://assets/player/animations/rotate_z/top_6.png" id="72"]
 [ext_resource type="Texture2D" uid="uid://c0ui4avmndwfx" path="res://assets/player/animations/rotate_x/extra_6.png" id="73"]
-[ext_resource type="Shader" path="res://resouces/DieMaskShader.gdshader" id="74"]
+[ext_resource type="Shader" path="res://resouces/die_mask_shader.gdshader" id="74"]
 [ext_resource type="Gradient" uid="uid://dwaoqt35clmjh" path="res://resouces/palettes/2_1.tres" id="75"]
 [ext_resource type="Gradient" uid="uid://cp2y4y5i6sbik" path="res://resouces/palettes/3_2.tres" id="76"]
 [ext_resource type="Gradient" uid="uid://cjhvk2te46g5d" path="res://resouces/palettes/1.tres" id="77"]

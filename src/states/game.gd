@@ -28,7 +28,7 @@ func _ready() -> void:
 		var source := tile_map.tile_set.get_source(tile_source_id)
 		var tile_name := source.resource_name
 		if tile_name == "Start":
-			var player := preload("res://src/objects/Player.tscn").instantiate() as Node2D
+			var player := preload("res://src/objects/player.tscn").instantiate() as Node2D
 			error = player.connect("player_moved", Callable(self, "_on_player_move"))
 			assert(not error)
 			error = player.connect("should_update_z_index", Callable(self, "_on_player_should_update_z_index"))
@@ -142,7 +142,7 @@ func _on_OptionsMenu_options_exited() -> void:
 
 func _on_MenuButton_pressed() -> void:
 	Autosplitter.run_reset()
-	var error := get_tree().change_scene_to_file("res://src/states/Menu.tscn")
+	var error := get_tree().change_scene_to_file("res://src/states/menu.tscn")
 	assert(not error)
 
 

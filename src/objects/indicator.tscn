@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cn147gfbi0b4c"]
 
 [ext_resource type="Texture2D" uid="uid://jddi32jr5lk4" path="res://assets/objects/arrow.png" id="1"]
-[ext_resource type="Script" path="res://src/objects/Indicator.gd" id="3"]
+[ext_resource type="Script" path="res://src/objects/indicator.gd" id="3"]
 
 [node name="Indicator" type="Node2D" groups=["UI Elements"]]
 z_index = 5

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://feb8h7bm5wmc"]
 
-[ext_resource type="Script" path="res://src/states/LevelSelect.gd" id="2"]
+[ext_resource type="Script" path="res://src/states/level_select.gd" id="2"]
 
 [node name="LevelSelect" type="ColorRect"]
 anchors_preset = 15

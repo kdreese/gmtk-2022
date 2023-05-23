@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dmsmgwdkar4s4"]
 
-[ext_resource type="Script" path="res://src/states/OptionsMenu.gd" id="1"]
+[ext_resource type="Script" path="res://src/states/options_menu.gd" id="1"]
 
 [node name="OptionsMenu" type="ColorRect"]
 anchors_preset = 15

@@ -3,7 +3,7 @@ extends ColorRect
 
 signal level_select_exited
 
-const LevelSelectButton = preload("res://src/states/LevelSelectButton.tscn")
+const LevelSelectButton = preload("res://src/states/level_select_button.tscn")
 
 var page_idx := 0
 
@@ -65,7 +65,7 @@ func _on_level_button_pressed(idx: int) -> void:
 	Global.current_level_idx = 9 * page_idx + idx
 	if Global.current_level_idx == 0:
 		Autosplitter.run_start()
-	var error := get_tree().change_scene_to_file("res://src/states/Game.tscn")
+	var error := get_tree().change_scene_to_file("res://src/states/game.tscn")
 	assert(not error)
 
 

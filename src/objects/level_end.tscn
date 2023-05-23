@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://lwy5y5jokgu6"]
 
 [ext_resource type="Texture2D" uid="uid://dnr6wlqx5dsyc" path="res://assets/objects/finish_pad.png" id="1"]
-[ext_resource type="Script" path="res://src/objects/LevelEnd.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://cn147gfbi0b4c" path="res://src/objects/Indicator.tscn" id="3"]
+[ext_resource type="Script" path="res://src/objects/level_end.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://cn147gfbi0b4c" path="res://src/objects/indicator.tscn" id="3"]
 [ext_resource type="AudioStream" uid="uid://b7x3p24bgl8k" path="res://assets/sound/finish.wav" id="4"]
 
 [sub_resource type="RectangleShape2D" id="1"]

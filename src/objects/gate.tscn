@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cbb5m7jc12bfr"]
 
 [ext_resource type="Texture2D" uid="uid://bueriwldj70x7" path="res://assets/objects/gate_0.png" id="1"]
-[ext_resource type="Script" path="res://src/objects/Gate.gd" id="3"]
+[ext_resource type="Script" path="res://src/objects/gate.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://b8wlrxc44yhom" path="res://assets/objects/gate_1.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://cfyotcknvlc5m" path="res://assets/objects/gate_2.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://mtuejay4eym6" path="res://assets/objects/gate_3.png" id="6"]
