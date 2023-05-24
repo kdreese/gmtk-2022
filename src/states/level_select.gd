@@ -18,8 +18,7 @@ func create_menu() -> void:
 	for idx in range(num_buttons):
 		var button := LevelSelectButton.instantiate()
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		var error := button.connect("pressed", Callable(self, "_on_level_button_pressed").bind(idx))
-		assert(not error)
+		button.pressed.connect(self._on_level_button_pressed.bind(idx))
 		$G.add_child(button)
 
 	if Global.NUM_LEVELS <= 9:

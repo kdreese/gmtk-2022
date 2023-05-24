@@ -15,8 +15,7 @@ func _ready() -> void:
 	var tile_map := level.get_node("TileMap") as TileMap
 
 	add_child(level)
-	var error := level.get_node("LevelEnd").connect("exit_reached_success", Callable(self, "_on_LevelEnd_exit_reached_success"))
-	assert(not error)
+	level.get_node("LevelEnd").exit_reached_success.connect(self._on_LevelEnd_exit_reached_success)
 
 	$CanvasLayer/UI/V/LevelName.text = level_info["name"]
 	if "text" in level_info:
@@ -29,10 +28,8 @@ func _ready() -> void:
 		var tile_name := source.resource_name
 		if tile_name == "Start":
 			var player := preload("res://src/objects/player.tscn").instantiate() as Node2D
-			error = player.connect("player_moved", Callable(self, "_on_player_move"))
-			assert(not error)
-			error = player.connect("should_update_z_index", Callable(self, "_on_player_should_update_z_index"))
-			assert(not error)
+			player.player_moved.connect(self._on_player_move)
+			player.should_update_z_index.connect(self._on_player_should_update_z_index)
 			player.position = tile_map.map_to_local(coords)
 			player.grid_coords = coords
 			player.tile_map = tile_map
@@ -50,8 +47,7 @@ func _ready() -> void:
 		$CanvasLayer/UI/V/H.hide()
 
 	update_timer()
-	error = Autosplitter.connect("timer_updated", Callable(self, "update_timer"))
-	assert(not error)
+	Autosplitter.timer_updated.connect(self.update_timer)
 
 
 func _unhandled_input(event: InputEvent) -> void:

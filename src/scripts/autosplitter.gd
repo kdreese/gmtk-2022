@@ -14,14 +14,10 @@ var speedrun_time: float
 
 func _ready() -> void:
 	#server = WebSocketServer.new()
-	#var error := server.connect("client_close_request", Callable(self, "_on_server_client_close_request"))
-	#assert(not error)
-	#error = server.connect("client_connected", Callable(self, "_on_server_client_connected"))
-	#assert(not error)
-	#error = server.connect("client_disconnected", Callable(self, "_on_server_client_disconnected"))
-	#assert(not error)
-	#error = server.connect("data_received", Callable(self, "_on_server_data_received"))
-	#assert(not error)
+	#server.client_close_request.connect(self._on_server_client_close_request)
+	#server client_connected.connect(self._on_server_client_connected)
+	#server.client_disconnected.connect(self._on_server_client_disconnected)
+	#server.data_received.connect(self._on_server_data_received)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 
