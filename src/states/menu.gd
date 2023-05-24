@@ -2,7 +2,7 @@ extends CenterContainer
 
 
 func _ready() -> void:
-	if OS.get_name() == "HTML5":
+	if OS.has_feature("web"):
 		$V/Buttons/QuitButton.hide()
 	$V/Buttons/PlayButton.grab_focus()
 	Global.current_level_idx = 0

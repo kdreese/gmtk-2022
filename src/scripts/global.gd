@@ -119,7 +119,7 @@ var audio_stream: AudioStreamPlayer
 
 
 func _ready() -> void:
-	if OS.get_name() != "HTML5":
+	if not OS.has_feature("web"):
 		@warning_ignore("integer_division")
 		var window_size_multiplier := DisplayServer.screen_get_size().x / (2 * 640)
 		get_window().size *= window_size_multiplier
@@ -147,7 +147,7 @@ func _notification(what: int) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_fullscreen"):
-		if OS.get_name() == "HTML5":
+		if OS.has_feature("web"):
 			return
 		get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN if (not ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN))) else Window.MODE_WINDOWED
 		save_config()
@@ -245,7 +245,7 @@ func load_config() -> void:
 		if typeof(new_speedrun) == TYPE_BOOL:
 			speedrun_timer_enabled = new_speedrun
 
-	if OS.get_name() != "HTML5":
+	if not OS.has_feature("web"):
 		if "autosplitter_enabled" in config:
 			var new_autosplitter_enabled = config["autosplitter_enabled"]
 			if typeof(new_autosplitter_enabled) == TYPE_BOOL:
@@ -271,7 +271,7 @@ func save_config() -> void:
 		"speedrun_timer_enabled": speedrun_timer_enabled
 	}
 
-	if OS.get_name() != "HTML5":
+	if not OS.has_feature("web"):
 		config["autosplitter_enabled"] = autosplitter_enabled
 		config["autosplitter_port"] = autosplitter_port
 

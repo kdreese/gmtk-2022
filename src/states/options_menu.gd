@@ -31,7 +31,7 @@ func _ready() -> void:
 	animation_speed_slider.value = Global.animation_speed
 	fullscreen_option_button.select(1 if ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN)) else 0)
 	speedrun_timer_check.button_pressed = Global.speedrun_timer_enabled
-	if true: #OS.get_name() == "HTML5": # TODO: remove if true once websocket server is fixed
+	if true: #OS.has_feature("web"): # TODO: remove if true once websocket server is fixed
 		livesplit_settings.hide()
 	else:
 		autosplitter_enabled_check.button_pressed = Global.autosplitter_enabled
