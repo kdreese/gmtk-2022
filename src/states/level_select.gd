@@ -21,17 +21,18 @@ func create_menu() -> void:
 		button.pressed.connect(self._on_level_button_pressed.bind(idx))
 		$G.add_child(button)
 
-	if Global.NUM_LEVELS <= 9:
-		$NextButton.hide()
-
-	$PrevButton.hide()
-
 
 func show_menu() -> void:
 	page_idx = 0
 	display()
 	show()
 	$G.get_child(0).grab_focus()
+
+	$PrevButton.hide()
+	if Global.NUM_LEVELS <= 9:
+		$NextButton.hide()
+	else:
+		$NextButton.show()
 
 
 func display() -> void:
