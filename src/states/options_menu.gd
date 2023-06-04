@@ -5,21 +5,21 @@ signal options_exited
 
 var animation_speed_strings := ["Slow", "Normal", "Fast", "Very Fast", "Hyperspeed"]
 
-@onready var back_button: Button = $"%BackButton"
+@onready var back_button: Button = %BackButton
 
-@onready var sound_volume_slider: HSlider = $"%SoundVolumeSlider"
-@onready var music_volume_slider: HSlider = $"%MusicVolumeSlider"
-@onready var animation_speed_slider: HSlider = $"%AnimationSpeedSlider"
-@onready var fullscreen_option_button: OptionButton = $"%FullscreenOptionButton"
+@onready var sound_volume_slider: HSlider = %SoundVolumeSlider
+@onready var music_volume_slider: HSlider = %MusicVolumeSlider
+@onready var animation_speed_slider: HSlider = %AnimationSpeedSlider
+@onready var fullscreen_option_button: OptionButton = %FullscreenOptionButton
 
-@onready var sound_volume_label: Label = $"%SoundVolumeLabel"
-@onready var music_volume_label: Label = $"%MusicVolumeLabel"
-@onready var animation_speed_label: Label = $"%AnimationSpeedLabel"
+@onready var sound_volume_label: Label = %SoundVolumeLabel
+@onready var music_volume_label: Label = %MusicVolumeLabel
+@onready var animation_speed_label: Label = %AnimationSpeedLabel
 
-@onready var speedrun_timer_check: CheckButton = $"%SpeedrunTimerCheck"
-@onready var livesplit_settings: HBoxContainer = $"%LivesplitSettings"
-@onready var autosplitter_enabled_check: CheckButton = $"%AutosplitterEnabledCheck"
-@onready var autosplitter_port_spin_box: SpinBox = $"%AutosplitterPortSpinBox"
+@onready var speedrun_timer_check: CheckButton = %SpeedrunTimerCheck
+@onready var livesplit_settings: HBoxContainer = %LivesplitSettings
+@onready var autosplitter_enabled_check: CheckButton = %AutosplitterEnabledCheck
+@onready var autosplitter_port_spin_box: SpinBox = %AutosplitterPortSpinBox
 
 
 func _ready() -> void:

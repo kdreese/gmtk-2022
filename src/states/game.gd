@@ -6,7 +6,9 @@ var level: Level
 var moves: int
 var options_return_to_game: bool
 
-@onready var speedrun_timer: Label = $"%SpeedrunTimer"
+@onready var speedrun_timer: Label = %SpeedrunTimer
+@onready var best_move: Label = %BestMove
+@onready var star: TextureRect = %Star
 
 
 func _ready() -> void:
@@ -38,11 +40,11 @@ func _ready() -> void:
 	reset_move_counter()
 	var best_score = Global.best_scores[Global.current_level_idx]
 	if best_score != -1:
-		$"%BestMove".text = "Best: %d" % best_score
+		best_move.text = "Best: %d" % best_score
 		if best_score == Global.LEVELS[Global.current_level_idx]["perfect_score"]:
-			$"%Star".show()
+			star.show()
 		else:
-			$"%Star".hide()
+			star.hide()
 	else:
 		$CanvasLayer/UI/V/H.hide()
 
