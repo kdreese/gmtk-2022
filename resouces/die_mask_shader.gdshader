@@ -19,5 +19,5 @@ void fragment() {
 			break;
 		}
 	}
-	COLOR = sample;
+	COLOR.rgb = sample.rgb;
 }
