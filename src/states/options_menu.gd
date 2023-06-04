@@ -33,6 +33,8 @@ func _ready() -> void:
 	speedrun_timer_check.button_pressed = Global.speedrun_timer_enabled
 	if true: #OS.has_feature("web"): # TODO: remove if true once websocket server is fixed
 		livesplit_settings.hide()
+		speedrun_timer_check.focus_neighbor_bottom = back_button.get_path()
+		back_button.focus_neighbor_top = speedrun_timer_check.get_path()
 	else:
 		autosplitter_enabled_check.button_pressed = Global.autosplitter_enabled
 		autosplitter_port_spin_box.value = Global.autosplitter_port
