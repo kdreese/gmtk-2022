@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://lwy5y5jokgu6"]
+
+[ext_resource type="Texture2D" uid="uid://dnr6wlqx5dsyc" path="res://assets/objects/finish_pad.png" id="1"]
+[ext_resource type="Script" path="res://src/objects/level_end.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://cn147gfbi0b4c" path="res://src/objects/indicator.tscn" id="3"]
+[ext_resource type="AudioStream" uid="uid://b7x3p24bgl8k" path="res://assets/sound/finish.wav" id="4"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(5, 5)
+
+[node name="LevelEnd" type="Area2D"]
+script = ExtResource("2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("1")
+
+[node name="Indicator" parent="." instance=ExtResource("3")]
+texture_filter = 2
+position = Vector2(0, -75)
+
+[node name="FinishSound" type="AudioStreamPlayer" parent="."]
+process_mode = 2
+stream = ExtResource("4")
+bus = &"SoundsBus"
+
+[connection signal="area_entered" from="." to="." method="_on_LevelEnd_area_entered"]

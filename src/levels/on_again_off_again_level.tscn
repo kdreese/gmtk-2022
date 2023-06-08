@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqctx7eiy3krh"]
+
+[ext_resource type="PackedScene" uid="uid://lwy5y5jokgu6" path="res://src/objects/level_end.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cbb5m7jc12bfr" path="res://src/objects/gate.tscn" id="2"]
+[ext_resource type="TileSet" uid="uid://dqydij0582jko" path="res://resouces/tile_set.tres" id="3"]
+[ext_resource type="TileSet" uid="uid://bkewpejsnoeiv" path="res://resouces/wire_tile_set.tres" id="4"]
+[ext_resource type="PackedScene" uid="uid://bs6xla4hn1qd4" path="res://src/objects/toggle.tscn" id="5"]
+[ext_resource type="Script" path="res://src/levels/on_again_off_again_level.gd" id="6"]
+
+[node name="OnAgainOffAgainLevel" type="Node2D"]
+position = Vector2(-32, 0)
+script = ExtResource("6")
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("3")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(262155, 1, 0, 196619, 0, 0, 131083, 0, 0, 65547, 0, 0, 65548, 0, 0, 131084, 0, 0, 11, 0, 0, -65525, 0, 0, -131061, 0, 0, -196597, 0, 0, 196620, 2, 0, 12, 2, 1, 327691, 131074, 65536, 262156, 131074, 0, 131085, 131074, 0, 65549, 131074, 0, -65524, 131074, 0, -131060, 131074, 0, -196596, 131074, 0)
+
+[node name="WireTileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("4")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(11, 5, 0, -65525, 5, 0, 65547, 7, 65536, 65548, 13, 131072)
+
+[node name="Gate" parent="." instance=ExtResource("2")]
+position = Vector2(448, 152)
+
+[node name="Toggle" parent="." instance=ExtResource("5")]
+position = Vector2(384, 224)
+
+[node name="LevelEnd" parent="." instance=ExtResource("1")]
+position = Vector2(480, 128)
+minimum_weight = 6
+
+[connection signal="toggled" from="Toggle" to="." method="_on_Toggle_toggled"]

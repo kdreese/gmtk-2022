@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxy175bdf6s0s"]
+
+[ext_resource type="TileSet" uid="uid://dqydij0582jko" path="res://resouces/tile_set.tres" id="1"]
+[ext_resource type="PackedScene" uid="uid://dybtco1hth3g" path="res://src/objects/level_button.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://lwy5y5jokgu6" path="res://src/objects/level_end.tscn" id="3"]
+[ext_resource type="Script" path="res://src/levels/hail_mary_level.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://cbb5m7jc12bfr" path="res://src/objects/gate.tscn" id="5"]
+[ext_resource type="TileSet" uid="uid://bkewpejsnoeiv" path="res://resouces/wire_tile_set.tres" id="6"]
+
+[node name="HailMaryLevel" type="Node2D"]
+position = Vector2(-32, 0)
+script = ExtResource("4")
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("1")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(393228, 1, 0, 393227, 0, 0, 327691, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 327693, 0, 0, 393229, 0, 0, 327692, 0, 0, 196620, 0, 0, 131084, 0, 0, 65548, 0, 0, 12, 0, 0, -65524, 0, 0, -131060, 0, 0, -196596, 0, 0, -262132, 0, 0, -327668, 0, 0, 458763, 131074, 65536, 458764, 131074, 65536, 458765, 131074, 65536, 196621, 2, 1, 393230, 131074, 0, 327694, 131074, 0, 262158, 131074, 0, 131085, 131074, 0, 65549, 131074, 0, 13, 131074, 0, -65523, 131074, 0, -131059, 131074, 0, -196595, 131074, 0, -262131, 131074, 0, -327667, 131074, 0)
+
+[node name="WireTileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("6")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(131085, 5, 65536, 131086, 5, 65536, 65549, 5, 65536, 65551, 5, 0, 15, 5, 0, 14, 5, 0, -196595, 7, 0, -131058, 7, 0, -65521, 7, 0, -65522, 11, 0, -131059, 11, 0, -65523, 11, 0, 13, 14, 131072, 65550, 14, 131072, 131087, 14, 131072, 12, 13, 65536, 65548, 13, 65536, 131084, 13, 65536)
+
+[node name="LevelButton" parent="." instance=ExtResource("2")]
+position = Vector2(352, 240)
+maximum_weight = 1
+
+[node name="LevelButton2" parent="." instance=ExtResource("2")]
+position = Vector2(384, 224)
+minimum_weight = 2
+maximum_weight = 2
+
+[node name="LevelButton3" parent="." instance=ExtResource("2")]
+position = Vector2(416, 208)
+minimum_weight = 6
+
+[node name="LevelEnd" parent="." instance=ExtResource("3")]
+position = Vector2(576, 112)
+
+[node name="Gate" parent="." instance=ExtResource("5")]
+position = Vector2(512, 152)
+
+[node name="Gate2" parent="." instance=ExtResource("5")]
+position = Vector2(480, 168)
+is_open = true
+
+[node name="Gate3" parent="." instance=ExtResource("5")]
+position = Vector2(448, 184)
+
+[connection signal="button_pressed" from="LevelButton" to="." method="_on_LevelButton_button_pressed"]
+[connection signal="button_pressed" from="LevelButton2" to="." method="_on_LevelButton2_button_pressed"]
+[connection signal="button_pressed" from="LevelButton3" to="." method="_on_LevelButton3_button_pressed"]

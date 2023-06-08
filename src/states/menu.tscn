@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpm2738sy4hf5"]
+
+[ext_resource type="Script" path="res://src/states/menu.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://dmsmgwdkar4s4" path="res://src/states/options_menu.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://by61qf6b5oj1p" path="res://src/states/credits_menu.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://feb8h7bm5wmc" path="res://src/states/level_select.tscn" id="5"]
+[ext_resource type="Texture2D" uid="uid://ccyrohf4pm62" path="res://assets/tiles/background.png" id="6"]
+
+[node name="Menu" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2")
+
+[node name="V" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Title" type="Label" parent="V"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Unweighted"
+
+[node name="Buttons" type="VBoxContainer" parent="V"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PlayButton" type="Button" parent="V/Buttons"]
+layout_mode = 2
+text = "Play"
+
+[node name="LevelSelectButton" type="Button" parent="V/Buttons"]
+layout_mode = 2
+text = "Select Level"
+
+[node name="OptionsButton" type="Button" parent="V/Buttons"]
+layout_mode = 2
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="V/Buttons"]
+layout_mode = 2
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="V/Buttons"]
+layout_mode = 2
+text = "Quit"
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="OptionsMenu" parent="Canvas" instance=ExtResource("3")]
+visible = false
+
+[node name="CreditsMenu" parent="Canvas" instance=ExtResource("4")]
+visible = false
+
+[node name="LevelSelect" parent="Canvas" instance=ExtResource("5")]
+visible = false
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+texture_repeat = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("6")
+stretch_mode = 1
+
+[connection signal="pressed" from="V/Buttons/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="V/Buttons/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed"]
+[connection signal="pressed" from="V/Buttons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="V/Buttons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="V/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="options_exited" from="Canvas/OptionsMenu" to="." method="_on_OptionsMenu_options_exited"]
+[connection signal="credits_exiting" from="Canvas/CreditsMenu" to="." method="_on_CreditsMenu_credits_exiting"]
+[connection signal="level_select_exited" from="Canvas/LevelSelect" to="." method="_on_LevelSelect_level_select_exited"]

@@ -1,0 +1,629 @@
+[gd_scene load_steps=92 format=3 uid="uid://bfk77xmmwqmyl"]
+
+[ext_resource type="Script" path="res://src/objects/player.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dib7g8m4sfyl1" path="res://assets/player/animations/rotate_neg_z/side_3.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dtijxtn006nd" path="res://assets/player/animations/rotate_x/front_1.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cnkdhub48cnwh" path="res://assets/player/animations/rotate_x/side_1.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dmvp70rafo2qf" path="res://assets/player/animations/rotate_z/front_2.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://cn235o15g45bv" path="res://assets/player/animations/rotate_z/front_3.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://be7076uvgyu1y" path="res://assets/player/animations/rotate_neg_x/front_1.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://cok42pdq1jkb7" path="res://assets/player/animations/rotate_x/side_3.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://bfn52t54xblss" path="res://assets/player/animations/rotate_neg_x/side_1.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://d37s0fyp0wj4u" path="res://assets/player/animations/rotate_neg_z/side_1.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://bfxrlrs1bjbmd" path="res://assets/player/animations/rotate_x/top_1.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://dltjdxqa1qci4" path="res://assets/player/animations/rotate_neg_x/top_1.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://dm4hvpbuniprg" path="res://assets/player/animations/rotate_x/extra_4.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://cvcspgwrhn7ow" path="res://assets/player/animations/rotate_x/extra_5.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://b4stwat78pm1x" path="res://assets/player/animations/rotate_neg_x/extra_4.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://tiumgcru5d2f" path="res://assets/player/animations/rotate_neg_x/extra_5.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://diebcagtt3jnk" path="res://assets/player/animations/rotate_neg_x/extra_6.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://muwfwoj4td5h" path="res://assets/player/animations/rotate_neg_x/front_2.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://bb1ift3uk8srx" path="res://assets/player/animations/rotate_x/side_2.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://cxxxwldbied5q" path="res://assets/player/animations/rotate_z/front_1.png" id="20"]
+[ext_resource type="Texture2D" uid="uid://brwt8yfs3nyh0" path="res://assets/player/animations/rotate_z/extra_4.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://cu4otqtep58ue" path="res://assets/player/animations/rotate_x/top_2.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://flmarp1so5t0" path="res://assets/player/animations/rotate_neg_x/side_2.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://cl85odwqjfkaw" path="res://assets/player/animations/rotate_neg_x/side_3.png" id="24"]
+[ext_resource type="Texture2D" uid="uid://cf63q164xmat1" path="res://assets/player/animations/rotate_x/front_6.png" id="25"]
+[ext_resource type="Texture2D" uid="uid://b6yq301dcfgqc" path="res://assets/player/animations/rotate_x/side_5.png" id="26"]
+[ext_resource type="Texture2D" uid="uid://d1qidvlwhciyk" path="res://assets/player/animations/rotate_neg_x/side_4.png" id="27"]
+[ext_resource type="Texture2D" uid="uid://fo2cmmutyg1c" path="res://assets/player/animations/rotate_x/front_2.png" id="28"]
+[ext_resource type="Texture2D" uid="uid://ckkdwovmv0qxk" path="res://assets/player/animations/rotate_neg_z/front_2.png" id="29"]
+[ext_resource type="Texture2D" uid="uid://bc2dr0h0xm578" path="res://assets/player/animations/rotate_neg_x/front_3.png" id="30"]
+[ext_resource type="Texture2D" uid="uid://boxudn28x0vl" path="res://assets/player/animations/rotate_x/side_6.png" id="31"]
+[ext_resource type="Texture2D" uid="uid://d1ky6w5gfoc7g" path="res://assets/player/animations/rotate_neg_z/front_3.png" id="32"]
+[ext_resource type="Texture2D" uid="uid://c7wc7tbwf1dg2" path="res://assets/player/animations/rotate_z/front_6.png" id="33"]
+[ext_resource type="Texture2D" uid="uid://c8jmma0gwht8x" path="res://assets/player/animations/rotate_x/side_4.png" id="34"]
+[ext_resource type="Texture2D" uid="uid://pn5w87ett1dh" path="res://assets/player/animations/rotate_x/front_3.png" id="35"]
+[ext_resource type="Texture2D" uid="uid://bmc7jdms1yg0r" path="res://assets/player/animations/rotate_x/front_4.png" id="36"]
+[ext_resource type="Texture2D" uid="uid://chkbj6fcdw6vv" path="res://assets/player/animations/rotate_x/front_5.png" id="37"]
+[ext_resource type="Texture2D" uid="uid://23gwkedmnfr3" path="res://assets/player/animations/rotate_z/front_5.png" id="38"]
+[ext_resource type="Texture2D" uid="uid://dv6xu3x6kmr5l" path="res://assets/player/animations/rotate_z/front_4.png" id="39"]
+[ext_resource type="Texture2D" uid="uid://bq6fy2yvwrdy4" path="res://assets/player/animations/rotate_neg_z/front_4.png" id="40"]
+[ext_resource type="Texture2D" uid="uid://cnhgyrhyp8kdv" path="res://assets/player/animations/rotate_neg_z/front_1.png" id="41"]
+[ext_resource type="Texture2D" uid="uid://dufm7j0uyctm6" path="res://assets/player/animations/rotate_neg_x/top_4.png" id="42"]
+[ext_resource type="Texture2D" uid="uid://cgspf1rcbp74r" path="res://assets/player/animations/rotate_z/side_1.png" id="43"]
+[ext_resource type="Texture2D" uid="uid://bgunvndtkd41v" path="res://assets/player/animations/rotate_z/side_2.png" id="44"]
+[ext_resource type="Texture2D" uid="uid://dtclegqkx5yfv" path="res://assets/player/animations/rotate_z/side_3.png" id="45"]
+[ext_resource type="Texture2D" uid="uid://daimjfl530fgo" path="res://assets/player/animations/rotate_z/top_4.png" id="46"]
+[ext_resource type="Texture2D" uid="uid://db4yljy3xwr5j" path="res://assets/player/animations/rotate_neg_x/top_2.png" id="47"]
+[ext_resource type="Texture2D" uid="uid://bk6ja50h3ln4" path="res://assets/player/animations/rotate_x/top_3.png" id="48"]
+[ext_resource type="Texture2D" uid="uid://dvyrwtkgra7bt" path="res://assets/player/animations/rotate_neg_x/top_3.png" id="49"]
+[ext_resource type="Texture2D" uid="uid://d03k2gtjc25hk" path="res://assets/player/animations/rotate_neg_z/extra_4.png" id="50"]
+[ext_resource type="Texture2D" uid="uid://becghwdw5krtn" path="res://assets/player/animations/rotate_neg_z/side_4.png" id="51"]
+[ext_resource type="Texture2D" uid="uid://ci462jsepwju1" path="res://assets/player/animations/rotate_neg_z/side_5.png" id="52"]
+[ext_resource type="Texture2D" uid="uid://bx4nmj8itnjwe" path="res://assets/player/animations/rotate_neg_z/side_6.png" id="53"]
+[ext_resource type="Texture2D" uid="uid://behk70v2f3lue" path="res://assets/player/animations/rotate_z/top_5.png" id="54"]
+[ext_resource type="Texture2D" uid="uid://b5l8er4p6j3cg" path="res://assets/player/animations/rotate_neg_x/side_5.png" id="55"]
+[ext_resource type="Texture2D" uid="uid://bvwifeqbrxs28" path="res://assets/player/animations/rotate_neg_x/top_5.png" id="56"]
+[ext_resource type="Texture2D" uid="uid://dl671lu0s37s8" path="res://assets/player/animations/rotate_neg_x/side_6.png" id="57"]
+[ext_resource type="Texture2D" uid="uid://bx6ve1aam3sdg" path="res://assets/player/animations/rotate_neg_z/front_5.png" id="58"]
+[ext_resource type="Texture2D" uid="uid://bm6j6o048ahkm" path="res://assets/player/animations/rotate_neg_z/top_1.png" id="59"]
+[ext_resource type="Texture2D" uid="uid://duyr7mpni1uag" path="res://assets/player/animations/rotate_neg_z/front_6.png" id="60"]
+[ext_resource type="Texture2D" uid="uid://dlw30sq5eartp" path="res://assets/player/animations/rotate_neg_z/side_2.png" id="61"]
+[ext_resource type="Texture2D" uid="uid://d3iel7ahddmsc" path="res://assets/player/animations/rotate_neg_z/extra_6.png" id="62"]
+[ext_resource type="Texture2D" uid="uid://ljasr2pymu8n" path="res://assets/player/animations/rotate_z/extra_5.png" id="63"]
+[ext_resource type="Texture2D" uid="uid://7d1wo1x0uccs" path="res://assets/player/animations/rotate_z/top_1.png" id="64"]
+[ext_resource type="Texture2D" uid="uid://ma1c23jnm0jb" path="res://assets/player/animations/rotate_neg_x/top_6.png" id="65"]
+[ext_resource type="Texture2D" uid="uid://bs536v0rliv1s" path="res://assets/player/animations/rotate_z/extra_6.png" id="66"]
+[ext_resource type="Texture2D" uid="uid://coww5fvysem4f" path="res://assets/player/animations/rotate_neg_z/extra_5.png" id="67"]
+[ext_resource type="Texture2D" uid="uid://ctl2rc8dbifjo" path="res://assets/player/animations/rotate_z/top_2.png" id="68"]
+[ext_resource type="Texture2D" uid="uid://bt2w76krkdqfg" path="res://assets/player/animations/rotate_neg_z/top_2.png" id="69"]
+[ext_resource type="Texture2D" uid="uid://b3hb45iepjei3" path="res://assets/player/animations/rotate_neg_z/top_3.png" id="70"]
+[ext_resource type="Texture2D" uid="uid://6pqelnjk7bl7" path="res://assets/player/animations/rotate_z/top_3.png" id="71"]
+[ext_resource type="Texture2D" uid="uid://b5b7gnrp48f8p" path="res://assets/player/animations/rotate_z/top_6.png" id="72"]
+[ext_resource type="Texture2D" uid="uid://c0ui4avmndwfx" path="res://assets/player/animations/rotate_x/extra_6.png" id="73"]
+[ext_resource type="Shader" path="res://resouces/die_mask_shader.gdshader" id="74"]
+[ext_resource type="Gradient" uid="uid://dwaoqt35clmjh" path="res://resouces/palettes/2_1.tres" id="75"]
+[ext_resource type="Gradient" uid="uid://cp2y4y5i6sbik" path="res://resouces/palettes/3_2.tres" id="76"]
+[ext_resource type="Gradient" uid="uid://cjhvk2te46g5d" path="res://resouces/palettes/1.tres" id="77"]
+[ext_resource type="AudioStream" uid="uid://bng3568o8ryxb" path="res://assets/sound/move.wav" id="78"]
+
+[sub_resource type="GradientTexture2D" id="11"]
+gradient = ExtResource("75")
+width = 256
+
+[sub_resource type="ShaderMaterial" id="7"]
+shader = ExtResource("74")
+shader_parameter/palette = SubResource("11")
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"rotate_neg_x",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("41")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60")
+}],
+"loop": false,
+"name": &"rotate_neg_z",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25")
+}],
+"loop": false,
+"name": &"rotate_x",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33")
+}],
+"loop": false,
+"name": &"rotate_z",
+"speed": 5.0
+}]
+
+[sub_resource type="GradientTexture2D" id="13"]
+gradient = ExtResource("76")
+width = 256
+
+[sub_resource type="ShaderMaterial" id="8"]
+shader = ExtResource("74")
+shader_parameter/palette = SubResource("13")
+
+[sub_resource type="SpriteFrames" id="2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57")
+}],
+"loop": false,
+"name": &"rotate_neg_x",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53")
+}],
+"loop": false,
+"name": &"rotate_neg_z",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31")
+}],
+"loop": false,
+"name": &"rotate_x",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"rotate_z",
+"speed": 5.0
+}]
+
+[sub_resource type="GradientTexture2D" id="12"]
+gradient = ExtResource("77")
+width = 256
+
+[sub_resource type="ShaderMaterial" id="9"]
+shader = ExtResource("74")
+shader_parameter/palette = SubResource("12")
+
+[sub_resource type="SpriteFrames" id="3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65")
+}],
+"loop": false,
+"name": &"rotate_neg_x",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("59")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"rotate_neg_z",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"rotate_x",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72")
+}],
+"loop": false,
+"name": &"rotate_z",
+"speed": 5.0
+}]
+
+[sub_resource type="GradientTexture2D" id="14"]
+width = 256
+
+[sub_resource type="ShaderMaterial" id="10"]
+shader = ExtResource("74")
+shader_parameter/palette = SubResource("14")
+
+[sub_resource type="SpriteFrames" id="5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("73")
+}],
+"loop": false,
+"name": &"back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("62")
+}],
+"loop": false,
+"name": &"backside",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12")
+}],
+"loop": false,
+"name": &"bottom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17")
+}],
+"loop": false,
+"name": &"rotate_neg_x",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("50")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62")
+}],
+"loop": false,
+"name": &"rotate_neg_z",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73")
+}],
+"loop": false,
+"name": &"rotate_x",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66")
+}],
+"loop": false,
+"name": &"rotate_z",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(10, 7)
+
+[node name="Player" type="Area2D"]
+z_index = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("1")
+
+[node name="FrontFace" type="AnimatedSprite2D" parent="."]
+material = SubResource("7")
+position = Vector2(0, -16)
+sprite_frames = SubResource("1")
+animation = &"idle"
+offset = Vector2(0, -2)
+
+[node name="SideFace" type="AnimatedSprite2D" parent="."]
+material = SubResource("8")
+position = Vector2(0, -16)
+sprite_frames = SubResource("2")
+animation = &"idle"
+offset = Vector2(0, -2)
+
+[node name="TopFace" type="AnimatedSprite2D" parent="."]
+material = SubResource("9")
+position = Vector2(0, -16)
+sprite_frames = SubResource("3")
+animation = &"idle"
+offset = Vector2(0, -2)
+
+[node name="ExtraFace" type="AnimatedSprite2D" parent="."]
+z_index = -1
+material = SubResource("10")
+position = Vector2(0, -16)
+sprite_frames = SubResource("5")
+animation = &"idle"
+offset = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("4")
+
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("78")
+bus = &"SoundsBus"
+
+[node name="BackFace" type="Area2D" parent="."]
+position = Vector2(0, -16)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BackFace"]
+polygon = PackedVector2Array(0, -32, 32, -16, 32, 16, 0, 0)
+
+[node name="BackSideFace" type="Area2D" parent="."]
+position = Vector2(0, -16)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BackSideFace"]
+polygon = PackedVector2Array(0, -32, -32, -16, -32, 16, 0, 0)
+
+[node name="BottomFace" type="Area2D" parent="."]
+position = Vector2(0, -16)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BottomFace"]
+polygon = PackedVector2Array(0, 32, 32, 16, 0, 0, -32, 16)
+
+[connection signal="animation_finished" from="FrontFace" to="." method="_on_animation_finished"]
+[connection signal="mouse_entered" from="BackFace" to="." method="_on_BackFace_mouse_entered"]
+[connection signal="mouse_exited" from="BackFace" to="." method="_on_BackFace_mouse_exited"]
+[connection signal="mouse_entered" from="BackSideFace" to="." method="_on_BackSideFace_mouse_entered"]
+[connection signal="mouse_exited" from="BackSideFace" to="." method="_on_BackSideFace_mouse_exited"]
+[connection signal="mouse_entered" from="BottomFace" to="." method="_on_BottomFace_mouse_entered"]
+[connection signal="mouse_exited" from="BottomFace" to="." method="_on_BottomFace_mouse_exited"]

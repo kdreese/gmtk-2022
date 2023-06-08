@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn147gfbi0b4c"]
+
+[ext_resource type="Texture2D" uid="uid://jddi32jr5lk4" path="res://assets/objects/arrow.png" id="1"]
+[ext_resource type="Script" path="res://src/objects/indicator.gd" id="3"]
+
+[node name="Indicator" type="Node2D" groups=["UI Elements"]]
+z_index = 5
+script = ExtResource("3")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_left = -40.0
+offset_top = -25.0
+offset_right = 40.0
+offset_bottom = 15.0
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CenterContainer"]
+modulate = Color(1, 1, 1, 0.752941)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.752941)
+position = Vector2(0, 32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1")

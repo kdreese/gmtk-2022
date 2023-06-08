@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://feb8h7bm5wmc"]
+
+[ext_resource type="Script" path="res://src/states/level_select.gd" id="2"]
+
+[node name="LevelSelect" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.392157)
+script = ExtResource("2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Level Select"
+horizontal_alignment = 1
+
+[node name="G" type="GridContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+offset_left = 40.0
+offset_top = 80.0
+offset_right = -40.0
+size_flags_horizontal = 5
+size_flags_vertical = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="PrevButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_top = 400.0
+offset_right = -116.0
+offset_bottom = 425.0
+size_flags_horizontal = 6
+focus_neighbor_right = NodePath("../BackButton")
+text = "Prev"
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -49.0
+offset_top = 400.0
+offset_right = 51.0
+offset_bottom = 425.0
+size_flags_horizontal = 6
+focus_neighbor_left = NodePath("../PrevButton")
+focus_neighbor_right = NodePath("../NextButton")
+text = "Back"
+
+[node name="NextButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 120.0
+offset_top = 400.0
+offset_right = 220.0
+offset_bottom = 425.0
+size_flags_horizontal = 6
+focus_neighbor_left = NodePath("../BackButton")
+text = "Next"
+
+[connection signal="pressed" from="PrevButton" to="." method="_on_PrevButton_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="NextButton" to="." method="_on_NextButton_pressed"]

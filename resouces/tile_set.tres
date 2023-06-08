@@ -1,0 +1,46 @@
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dqydij0582jko"]
+
+[ext_resource type="Texture2D" uid="uid://dq45l34jae3fo" path="res://assets/tiles/base_tile.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://djjw7p6tf2ea0" path="res://assets/tiles/edges.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://57fgilevdwgm" path="res://assets/tiles/start_tile.png" id="3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cq206"]
+resource_name = "Base"
+texture = ExtResource("1")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1xklv"]
+resource_name = "Start"
+texture = ExtResource("3")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 8
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cipu8"]
+resource_name = "Edges"
+texture = ExtResource("2")
+texture_region_size = Vector2i(64, 32)
+0:0/next_alternative_id = 10
+0:0/0 = 0
+1:0/next_alternative_id = 2
+1:0/0 = 0
+1:0/1 = 1
+1:0/1/flip_h = true
+2:0/next_alternative_id = 2
+2:0/0 = 0
+2:0/1 = 1
+2:0/1/flip_h = true
+0:1/next_alternative_id = 2
+0:1/0 = 0
+0:1/1 = 1
+0:1/1/flip_h = true
+
+[resource]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(64, 32)
+sources/0 = SubResource("TileSetAtlasSource_cq206")
+sources/1 = SubResource("TileSetAtlasSource_1xklv")
+sources/2 = SubResource("TileSetAtlasSource_cipu8")
