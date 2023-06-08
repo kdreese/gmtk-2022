@@ -10,6 +10,8 @@ const INDICATOR_DEFAULT_STRING := "<default>"
 
 var total_time := 0.0
 
+@onready var label: Label = %Label
+
 @onready var starting_position := position
 
 
@@ -18,7 +20,7 @@ func _ready() -> void:
 	total_time = -global_position.x / 120.0
 	if indicator_string == INDICATOR_DEFAULT_STRING:
 		indicator_string = generate_indicator_string()
-	$CenterContainer/Label.text = indicator_string
+	label.text = indicator_string
 
 
 func _process(delta: float) -> void:
