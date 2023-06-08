@@ -4,7 +4,7 @@ Unweighted is our submission for the 48 hour [GMTK Game Jam 2022](https://itch.i
 
 ## Requirements
 
-This game was made with [Godot Engine](https://godotengine.org/) 3.5. To open the project, simply clone the project and import the folder in the Project Manager. The game can then be built using the export templates with all the default settings.
+This game was made with [Godot Engine](https://godotengine.org/) 4.0.3. To open the project, simply clone the project and import the folder in the Project Manager. The game can then be built using the export templates with all the default settings.
 
 ## Attribution
 
