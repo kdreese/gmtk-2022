@@ -31,7 +31,7 @@ func _ready() -> void:
 	animation_speed_slider.value = Global.animation_speed
 	fullscreen_option_button.select(1 if ((get_window().mode == Window.MODE_EXCLUSIVE_FULLSCREEN) or (get_window().mode == Window.MODE_FULLSCREEN)) else 0)
 	speedrun_timer_check.button_pressed = Global.speedrun_timer_enabled
-	if true: #OS.has_feature("web"): # TODO: remove if true once websocket server is fixed
+	if OS.has_feature("web"):
 		livesplit_settings.hide()
 		speedrun_timer_check.focus_neighbor_bottom = back_button.get_path()
 		back_button.focus_neighbor_top = speedrun_timer_check.get_path()

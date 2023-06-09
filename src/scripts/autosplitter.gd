@@ -3,9 +3,8 @@ extends Node
 
 signal timer_updated
 
-# TODO: Godot 4 remove WebSocketServer, and creating a WebSocket server is different now and not as documented
-#var server: WebSocketServer
-#var peers := []
+var server := TCPServer.new()
+var peers: Array[WebSocketPeer] = []
 
 var speedrun_is_running := false
 var run_started_time: int
@@ -13,44 +12,36 @@ var speedrun_time: float
 
 
 func _ready() -> void:
-	#server = WebSocketServer.new()
-	#server.client_close_request.connect(self._on_server_client_close_request)
-	#server client_connected.connect(self._on_server_client_connected)
-	#server.client_disconnected.connect(self._on_server_client_disconnected)
-	#server.data_received.connect(self._on_server_data_received)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 
 func start() -> void:
-	pass
-	#if server.is_listening():
-	#	return
-	#var error := server.listen(Global.autosplitter_port)
-	#if error:
-	#	print("Error starting websocket, autosplitter will not run")
-	#	return
-	#Global.autosplitter_enabled = true
-	#print("Websocket listening on %s:%d" % [server.bind_ip, Global.autosplitter_port])
+	if server.is_listening():
+		return
+	var error := server.listen(Global.autosplitter_port)
+	if error:
+		push_error("Error starting websocket server, autosplitter will not run!")
+		return
+	Global.autosplitter_enabled = true
+	print("Websocket server listening on port %d" % [server.get_local_port()])
 
 
 func stop() -> void:
-	pass
-	#if not server.is_listening():
-	#	return
-	#server.stop()
-	#peers = []
-	#Global.autosplitter_enabled = false
-	#print("Server stopped")
+	if not server.is_listening():
+		return
+	server.stop()
+	peers = []
+	Global.autosplitter_enabled = false
+	print("Websocket server stopped")
 
 
-func send_data(_data: String) -> void:
-	pass
-	#if not server.is_listening():
-	#	return
-	#for id in peers:
-	#	var error := server.get_peer(id).put_packet(data.to_ascii_buffer())
-	#	if error:
-	#		print("Error sending packet")
+func send_data(data: String) -> void:
+	if not server.is_listening():
+		return
+	for peer in peers:
+		var error := peer.send_text(data)
+		if error:
+			push_warning("Error sending \"%s\" to %s:%d" % [data, peer.get_connected_host(), peer.get_connected_port()])
 
 
 func run_start() -> void:
@@ -86,24 +77,19 @@ func _process(_delta: float) -> void:
 	if speedrun_is_running:
 		run_delta()
 		emit_signal("timer_updated")
-	#if server.is_listening():
-	#	server.poll()
-
-
-#func _on_server_client_close_request(id: int, code: int, reason: String) -> void:
-#	print("Received client close request: %d %d %s" % [id, code, reason])
-
-
-#func _on_server_client_connected(id: int, protocol: String) -> void:
-#	print("Client connected: %d %s" % [id, protocol])
-#	peers.append(id)
-#	server.get_peer(id).set_write_mode(WebSocketPeer.WRITE_MODE_TEXT)
-
-
-#func _on_server_client_disconnected(id: int, was_clean_close: bool) -> void:
-#	print("Client disconnected: %d %s" % [id, was_clean_close])
-#	peers.erase(id)
-
-
-#func _on_server_data_received(id: int) -> void:
-#	print("Data received: %d" % id)
+	if server.is_listening():
+		while server.is_connection_available():
+			var conn := server.take_connection()
+			var peer := WebSocketPeer.new()
+			var error := peer.accept_stream(conn)
+			if error:
+				push_warning("Incoming peer could not accept stream")
+			else:
+				print("Websocket connected: %s:%d" % [peer.get_connected_host(), peer.get_connected_port()])
+				peers.push_back(peer)
+		for i in range(peers.size() - 1, -1, -1): # Iterates through peers backwards, so they can be erased properly
+			var peer := peers[i]
+			peer.poll()
+			if peer.get_ready_state() == WebSocketPeer.STATE_CLOSED:
+				print("Websocket peer disconnected")
+				peers.erase(peer)
