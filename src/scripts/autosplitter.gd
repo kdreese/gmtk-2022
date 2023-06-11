@@ -87,9 +87,10 @@ func _process(_delta: float) -> void:
 			else:
 				print("Websocket connected: %s:%d" % [peer.get_connected_host(), peer.get_connected_port()])
 				peers.push_back(peer)
-		for i in range(peers.size() - 1, -1, -1): # Iterates through peers backwards, so they can be erased properly
-			var peer := peers[i]
+		var poll_and_filter = func(peer: WebSocketPeer) -> bool:
 			peer.poll()
 			if peer.get_ready_state() == WebSocketPeer.STATE_CLOSED:
 				print("Websocket peer disconnected")
-				peers.erase(peer)
+				return false
+			return true
+		peers = peers.filter(poll_and_filter)
