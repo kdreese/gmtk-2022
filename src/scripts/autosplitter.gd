@@ -21,6 +21,13 @@ func start() -> void:
 	var error := server.listen(Global.autosplitter_port)
 	if error:
 		push_error("Error starting websocket server, autosplitter will not run!")
+		Global.autosplitter_enabled = false
+		var dialog := AcceptDialog.new()
+		dialog.title = "Error"
+		dialog.dialog_text = "Could not create WebSocket server!\nCheck if port %d is open or choose another port." \
+				% Global.autosplitter_port
+		get_tree().get_root().add_child.call_deferred(dialog)
+		dialog.popup_centered.call_deferred()
 		return
 	Global.autosplitter_enabled = true
 	print("Websocket server listening on port %d" % [server.get_local_port()])
