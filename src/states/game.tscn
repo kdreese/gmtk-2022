@@ -202,6 +202,7 @@ text = "Paused"
 horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="CanvasLayer/PauseMenu/C/V"]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
@@ -258,6 +259,7 @@ You finished the level in 0 moves!"
 horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="CanvasLayer/LevelComplete/C/V"]
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
