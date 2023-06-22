@@ -591,6 +591,7 @@ shape = SubResource("4")
 [node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
 stream = ExtResource("78")
+panning_strength = 3.0
 bus = &"SoundsBus"
 
 [node name="BackFace" type="Area2D" parent="."]
