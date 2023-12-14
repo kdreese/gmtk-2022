@@ -14,7 +14,7 @@ As a Godot game, this game uses open source code that requires attribution, as w
 
 The code in this repository is licensed under the [MIT License](LICENSE), so if you'd like then you can go nuts with the code that's available.
 
-For the assets, we've created them ourselves (with the exception of `Russo_One.ttf`) and they're licenses under the following (pretty open) licenses.
+For the assets, we've created them ourselves (with the exception of `Russo_One.ttf`) and they're licensed under the following (pretty open) licenses.
 
 File | Author | License | Notes
 --- | --- | --- | ---
