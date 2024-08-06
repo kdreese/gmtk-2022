@@ -19,3 +19,5 @@ layer_0/tile_data = PackedInt32Array(262156, 1, 0, 262155, 0, 0, 196619, 0, 0, 1
 position = Vector2(448, 176)
 minimum_weight = 5
 maximum_weight = 5
+
+[node name="Objects" type="Node2D" parent="."]

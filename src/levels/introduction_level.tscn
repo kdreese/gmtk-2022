@@ -8,13 +8,16 @@
 position = Vector2(-32, -32)
 script = ExtResource("3")
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 tile_set = ExtResource("1")
 format = 2
 layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(327692, 1, 0, 262156, 0, 0, 196620, 0, 0, 65548, 0, 0, 131084, 0, 0, 12, 0, 0, -65524, 0, 0, 393228, 131074, 65536, 327693, 131074, 0, 262157, 131074, 0, 196621, 131074, 0, 131085, 131074, 0, 65549, 131074, 0, 13, 131074, 0, -65523, 131074, 0)
+layer_0/tile_data = PackedInt32Array(327692, 1, 0, 262156, 0, 0, 196620, 0, 0, 65548, 0, 0, 131084, 0, 0, 12, 0, 0, -65524, 0, 0, 393228, 131074, 268435456, 327693, 131074, 0, 262157, 131074, 0, 196621, 131074, 0, 131085, 131074, 0, 65549, 131074, 0, 13, 131074, 0, -65523, 131074, 0)
 
 [node name="LevelEnd" parent="." instance=ExtResource("2")]
 position = Vector2(448, 176)
+
+[node name="Objects" type="Node2D" parent="."]

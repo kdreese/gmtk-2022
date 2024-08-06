@@ -18,3 +18,5 @@ layer_0/tile_data = PackedInt32Array(262155, 1, 0, 262154, 0, 0, 196618, 0, 0, 1
 [node name="LevelEnd" parent="." instance=ExtResource("3")]
 position = Vector2(416, 224)
 minimum_weight = 6
+
+[node name="Objects" type="Node2D" parent="."]

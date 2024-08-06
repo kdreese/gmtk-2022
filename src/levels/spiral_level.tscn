@@ -17,3 +17,5 @@ layer_0/tile_data = PackedInt32Array(262154, 1, 0, 196618, 0, 0, 131082, 0, 0, 6
 
 [node name="LevelEnd" parent="." instance=ExtResource("2")]
 position = Vector2(352, 224)
+
+[node name="Objects" type="Node2D" parent="."]

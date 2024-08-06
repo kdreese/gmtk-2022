@@ -1,3 +1,4 @@
+class_name Gate
 extends Node2D
 
 
@@ -9,7 +10,7 @@ var grid_coords: Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_animation_speed()
-	tile_map = get_parent().get_node("TileMap")
+	tile_map = find_parent("*Level").get_node("TileMap")
 	grid_coords = tile_map.local_to_map(position)
 	if is_open:
 		$AnimatedSprite2D.play("opened")
@@ -18,6 +19,10 @@ func _ready() -> void:
 	else:
 		$AnimatedSprite2D.play("closed")
 		tile_map.set_cell(0, grid_coords, -1)
+
+
+func get_object_type() -> String:
+	return "Gate"
 
 
 func update_animation_speed() -> void:

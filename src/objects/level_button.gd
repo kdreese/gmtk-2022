@@ -18,6 +18,10 @@ func _ready() -> void:
 		$Indicator.queue_free()
 
 
+func get_object_type() -> String:
+	return "LevelButton"
+
+
 func set_pressed() -> void:
 	$Sprite2D.texture = pressed_texture
 
