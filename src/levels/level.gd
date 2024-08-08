@@ -41,6 +41,8 @@ var wire_sinks: Array = []
 
 func _ready() -> void:
 	var data := save_level_data()
+	print(len(data), len(Utils.b64_encode(data)))
+	print(Utils.b64_encode(data))
 	load_level_data(data)
 
 
@@ -314,7 +316,6 @@ func save_level_data() -> PackedByteArray:
 	if len(wire_nets) > 0:
 		var wire_tile_map: TileMap = $WireTileMap
 		for wire_net in wire_nets:
-			print(wire_net)
 			# 1 byte for the net length, 3 for each wire.
 			output.resize(output.size() + 1 + 3 * len(wire_net))
 			output.encode_s8(cursor, len(wire_net))
@@ -348,13 +349,11 @@ func save_level_data() -> PackedByteArray:
 			"LevelButton":
 				object = object as LevelButton
 				var coords := $TileMap.local_to_map(object.position) as Vector2i
-				print("Button at ", coords)
 				output.encode_s8(cursor, LEVEL_BUTTON)
 				output.encode_s8(cursor + 1, coords.x)
 				output.encode_s8(cursor + 2, coords.y)
 				var byte4 := object.minimum_weight as int
 				byte4 |= (object.maximum_weight & 0xF) << 4
-				print("0x%x" % byte4)
 				output.encode_u8(cursor + 3, byte4)
 			"Toggle":
 				object = object as Toggle
@@ -368,13 +367,15 @@ func save_level_data() -> PackedByteArray:
 			"Gate":
 				object = object as Gate
 				var coords := $TileMap.local_to_map(object.position + Vector2(0, 8)) as Vector2i
-				print("Gate at ", coords)
 				output.encode_s8(cursor, GATE)
 				output.encode_s8(cursor + 1, coords.x)
 				output.encode_s8(cursor + 2, coords.y)
 				output.encode_u8(cursor + 3, object.is_open)
 
 		cursor += 4
+
+	while output.size() % 3 != 0:
+		output.push_back(0)
 
 	return output
 
