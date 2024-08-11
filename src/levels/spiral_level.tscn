@@ -7,6 +7,10 @@
 [node name="SpiralLevel" type="Node2D"]
 position = Vector2(-32, 0)
 script = ExtResource("3")
+level_name = "Spiral"
+text = "You have been arrested on suspicion of violating Legal Code 1379.42, or the \"No Weighted Dice Rule.\""
+perfect_score = 10
+thumbnail = "res://assets/level_thumbnails/spiral.png"
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

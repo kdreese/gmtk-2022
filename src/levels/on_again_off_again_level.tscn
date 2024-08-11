@@ -10,6 +10,10 @@
 [node name="OnAgainOffAgainLevel" type="Node2D"]
 position = Vector2(-32, 0)
 script = ExtResource("1_yydak")
+level_name = "On Again Off Again"
+text = "This is a toggle. It can be hit multiple times."
+perfect_score = 9
+thumbnail = "res://assets/level_thumbnails/on_again_off_again.png"
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

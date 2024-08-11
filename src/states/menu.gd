@@ -9,8 +9,11 @@ func _ready() -> void:
 
 
 func _on_PlayButton_pressed() -> void:
-	var error := get_tree().change_scene_to_file("res://src/states/game.tscn")
-	assert(not error)
+	var game := preload("res://src/states/game.tscn").instantiate() as Game
+	get_tree().root.add_child(game)
+	get_tree().set_current_scene(game)
+	get_tree().root.remove_child(self)
+	game.play_campaign()
 	Autosplitter.run_start()
 
 

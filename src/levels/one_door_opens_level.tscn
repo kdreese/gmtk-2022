@@ -11,6 +11,9 @@
 [node name="OneDoorOpensLevel" type="Node2D"]
 position = Vector2(-64, 64)
 script = ExtResource("1_wg1rv")
+level_name = "One Door Opens"
+perfect_score = 24
+thumbnail = "res://assets/level_thumbnails/one_door_opens.png"
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

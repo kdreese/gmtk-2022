@@ -7,6 +7,12 @@
 [node name="IntroductionLevel" type="Node2D"]
 position = Vector2(-32, -32)
 script = ExtResource("3")
+level_name = "Introduction"
+text = "Mr. Pip?
+
+Good morning. Thank you for complying with this mandatory inspection. Please proceed to the ending pad."
+perfect_score = 6
+thumbnail = "res://assets/level_thumbnails/introduction.png"
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 

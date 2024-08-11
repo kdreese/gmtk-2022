@@ -10,6 +10,9 @@
 [node name="BetweenTwoPointsLevel" type="Node2D"]
 position = Vector2(-32, 0)
 script = ExtResource("1_uvm7i")
+level_name = "Between Two Points"
+perfect_score = 17
+thumbnail = "res://assets/level_thumbnails/between_two_points.png"
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

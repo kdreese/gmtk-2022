@@ -7,6 +7,12 @@
 [node name="FreeReignLevel" type="Node2D"]
 position = Vector2(0, -32)
 script = ExtResource("2")
+level_name = "Free Reign"
+text = "If you can pass all of our tests, you will prove that you are an unweighted die.
+
+For example, that arrow is telling you you need to have that face on top or the end pad won't let you through."
+perfect_score = 5
+thumbnail = "res://assets/level_thumbnails/free_reign.png"
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

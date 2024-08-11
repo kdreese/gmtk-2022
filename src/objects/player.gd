@@ -39,8 +39,7 @@ var grid_coords := Vector2.ZERO
 var tile_map: TileMap
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func reset_orientation() -> void:
 	# Initialize the state of the die to be 1 facing up, with 2 and 3 visible.
 	top_face = FaceState.FACE_1
 	front_face = FaceState.FACE_2_1
@@ -48,9 +47,14 @@ func _ready() -> void:
 	backside_face = FaceState.FACE_4
 	back_face = FaceState.FACE_5
 	bottom_face = FaceState.FACE_6_2
-	update_animation_speed()
 	update_palettes()
 	set_anim("idle")
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	reset_orientation()
+	update_animation_speed()
 
 
 func _process(_delta: float) -> void:

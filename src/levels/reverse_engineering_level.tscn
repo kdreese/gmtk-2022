@@ -7,6 +7,10 @@
 [node name="ReverseEngineeringLevel" type="Node2D"]
 position = Vector2(-32, 0)
 script = ExtResource("3")
+level_name = "Reverse Engineering"
+text = "If you're feeling disoriented, you can hover the mouse over yourself or use the right analog stick on the controller to view sides that are obscured from view."
+perfect_score = 15
+thumbnail = "res://assets/level_thumbnails/reverse_engineering.png"
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

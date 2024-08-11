@@ -10,6 +10,9 @@
 [node name="GreedLevel" type="Node2D"]
 position = Vector2(32, 64)
 script = ExtResource("1_gtn4g")
+level_name = "Greed"
+perfect_score = 26
+thumbnail = "res://assets/level_thumbnails/greed.png"
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

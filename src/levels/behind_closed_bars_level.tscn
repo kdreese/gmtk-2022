@@ -11,6 +11,9 @@
 [node name="BehindClosedBarsLevel" type="Node2D"]
 position = Vector2(-32, 32)
 script = ExtResource("1_i8wea")
+level_name = "Behind Closed Bars"
+perfect_score = 18
+thumbnail = "res://assets/level_thumbnails/behind_closed_bars.png"
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

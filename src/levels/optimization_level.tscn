@@ -10,6 +10,12 @@
 [node name="OptimizationLevel" type="Node2D"]
 position = Vector2(-32, -32)
 script = ExtResource("1_r8spu")
+level_name = "Optimization"
+text = "Here's a fun fact to distract you from your cruel and unusual punishment:
+
+Did you know that the opposite sides of a die add up to 7?"
+perfect_score = 16
+thumbnail = "res://assets/level_thumbnails/optimization.png"
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

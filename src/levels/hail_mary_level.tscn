@@ -10,6 +10,10 @@
 [node name="HailMaryLevel" type="Node2D"]
 position = Vector2(-32, 0)
 script = ExtResource("1_myvjc")
+level_name = "Hail Mary"
+text = "This is our last test for you. If you can pass it, you have truly proven yourself to be an unweighted die."
+perfect_score = 17
+thumbnail = "res://assets/level_thumbnails/hail_mary.png"
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

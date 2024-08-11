@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=20 format=3 uid="uid://cebef7ax6hl5m"]
+[gd_resource type="Theme" load_steps=23 format=3 uid="uid://cebef7ax6hl5m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii4vc"]
 content_margin_left = 4.0
@@ -110,6 +110,42 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7g33s"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.374272, 0.686826, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6d578"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0509804, 0.588235, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_edokc"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0.497259, 0.857866, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wiij"]
 content_margin_left = 4.0
@@ -250,6 +286,10 @@ CheckButton/styles/pressed = SubResource("StyleBoxEmpty_1f76o")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_h7poj")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_krdxq")
 HSlider/styles/slider = SubResource("StyleBoxFlat_ds3ip")
+HighlightButton/base_type = &"Button"
+HighlightButton/styles/hover = SubResource("StyleBoxFlat_7g33s")
+HighlightButton/styles/normal = SubResource("StyleBoxFlat_6d578")
+HighlightButton/styles/pressed = SubResource("StyleBoxFlat_edokc")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_nilo3")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_6wiij")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_ngy63")

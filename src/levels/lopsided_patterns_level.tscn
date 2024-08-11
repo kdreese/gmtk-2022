@@ -7,6 +7,10 @@
 [node name="LopsidedPatternsLevel" type="Node2D"]
 position = Vector2(-32, 0)
 script = ExtResource("3")
+level_name = "Lopsided Patterns"
+text = "Press R on keyboard or RB on controller to restart the current test. Escape or Start will bring up the pause menu."
+perfect_score = 13
+thumbnail = "res://assets/level_thumbnails/lopsided_patterns.png"
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

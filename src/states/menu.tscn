@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpm2738sy4hf5"]
+[gd_scene load_steps=7 format=3 uid="uid://bpm2738sy4hf5"]
 
 [ext_resource type="Script" path="res://src/states/menu.gd" id="2"]
+[ext_resource type="Theme" uid="uid://cebef7ax6hl5m" path="res://resouces/default_theme.tres" id="2_hrcv6"]
 [ext_resource type="PackedScene" uid="uid://dmsmgwdkar4s4" path="res://src/states/options_menu.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://by61qf6b5oj1p" path="res://src/states/credits_menu.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://feb8h7bm5wmc" path="res://src/states/level_select.tscn" id="5"]
@@ -14,32 +15,43 @@ script = ExtResource("2")
 
 [node name="V" type="VBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = 50
 
 [node name="Title" type="Label" parent="V"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 72
 text = "Unweighted"
 
 [node name="Buttons" type="VBoxContainer" parent="V"]
-custom_minimum_size = Vector2(130, 0)
+custom_minimum_size = Vector2(250, 2.08165e-12)
 layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="PlayButton" type="Button" parent="V/Buttons"]
+custom_minimum_size = Vector2(2.08165e-12, 75)
 layout_mode = 2
+theme = ExtResource("2_hrcv6")
+theme_type_variation = &"HighlightButton"
+theme_override_font_sizes/font_size = 36
 text = "Play"
 
 [node name="LevelSelectButton" type="Button" parent="V/Buttons"]
+custom_minimum_size = Vector2(2.08165e-12, 50)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Select Level"
 
-[node name="OptionsButton" type="Button" parent="V/Buttons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="V/Buttons"]
 layout_mode = 2
+
+[node name="OptionsButton" type="Button" parent="V/Buttons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Options"
 
-[node name="CreditsButton" type="Button" parent="V/Buttons"]
+[node name="CreditsButton" type="Button" parent="V/Buttons/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="V/Buttons"]
@@ -70,8 +82,8 @@ stretch_mode = 1
 
 [connection signal="pressed" from="V/Buttons/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="V/Buttons/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed"]
-[connection signal="pressed" from="V/Buttons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="pressed" from="V/Buttons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="V/Buttons/HBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="V/Buttons/HBoxContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="V/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="options_exited" from="Canvas/OptionsMenu" to="." method="_on_OptionsMenu_options_exited"]
 [connection signal="credits_exiting" from="Canvas/CreditsMenu" to="." method="_on_CreditsMenu_credits_exiting"]

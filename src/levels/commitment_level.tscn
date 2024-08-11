@@ -10,6 +10,9 @@
 [node name="CommitmentLevel" type="Node2D"]
 position = Vector2(-32, 0)
 script = ExtResource("1_shk34")
+level_name = "Commitment"
+perfect_score = 21
+thumbnail = "res://assets/level_thumbnails/commitment.png"
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

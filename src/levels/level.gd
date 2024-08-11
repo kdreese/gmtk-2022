@@ -1,7 +1,6 @@
 class_name Level
 extends Node2D
 
-
 enum {
 	X_ON = 0,
 	X_OFF,
@@ -32,6 +31,18 @@ const CLASS_TO_SCENE : Dictionary = {
 	TOGGLE: preload("res://src/objects/toggle.tscn"),
 	GATE: preload("res://src/objects/gate.tscn"),
 }
+
+@export
+var level_name: String = ""
+
+@export_multiline
+var text: String = ""
+
+@export
+var perfect_score: int = 0
+
+@export_file("*.png")
+var thumbnail: String = ""
 
 ## Array of arrays representing the wires for a single net.
 var level_wire_nets: Array = []
