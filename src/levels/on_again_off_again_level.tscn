@@ -29,10 +29,6 @@ format = 2
 layer_0/y_sort_enabled = true
 layer_0/tile_data = PackedInt32Array(11, 5, 0, -65525, 5, 0, 65547, 7, 65536, 65548, 13, 131072, -131061, 13, 0)
 
-[node name="LevelEnd" parent="." instance=ExtResource("1")]
-position = Vector2(480, 128)
-minimum_weight = 6
-
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="Gate" parent="Objects" instance=ExtResource("2")]
@@ -40,5 +36,9 @@ position = Vector2(448, 152)
 
 [node name="Toggle" parent="Objects" instance=ExtResource("5")]
 position = Vector2(384, 224)
+
+[node name="LevelEnd" parent="Objects" instance=ExtResource("1")]
+position = Vector2(480, 128)
+minimum_weight = 6
 
 [connection signal="toggled" from="Objects/Toggle" to="." method="_on_Toggle_toggled"]

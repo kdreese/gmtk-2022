@@ -29,9 +29,6 @@ format = 2
 layer_0/y_sort_enabled = true
 layer_0/tile_data = PackedInt32Array(131085, 5, 65536, 131086, 5, 65536, 65549, 5, 65536, 65551, 5, 0, 15, 5, 0, 14, 5, 0, -196595, 7, 0, -131058, 7, 0, -65521, 7, 0, -65522, 11, 0, -131059, 11, 0, -65523, 11, 0, 13, 14, 131072, 65550, 14, 131072, 131087, 14, 131072, 12, 13, 65536, 65548, 13, 65536, 131084, 13, 65536, -65524, 13, 65536, -131060, 13, 65536, -196596, 13, 65536)
 
-[node name="LevelEnd" parent="." instance=ExtResource("3")]
-position = Vector2(576, 112)
-
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="LevelButton" parent="Objects" instance=ExtResource("2")]
@@ -56,3 +53,6 @@ is_open = true
 
 [node name="Gate3" parent="Objects" instance=ExtResource("5")]
 position = Vector2(448, 184)
+
+[node name="LevelEnd" parent="Objects" instance=ExtResource("3")]
+position = Vector2(576, 112)

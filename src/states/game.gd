@@ -33,16 +33,46 @@ func play_single_level(level_idx: int):
 	show_best_score()
 
 
+func play_level_from_string(data: String):
+	single_level = true
+	Global.current_level_idx = -1
+	load_level_from_string(data)
+
+
+## Load a level from its exported data as a b64 encoded string.
+func load_level_from_string(data: String):
+	if level != null:
+		remove_child(level)
+		level.queue_free()
+
+	level = preload("res://src/levels/level.tscn").instantiate() as Level
+	add_child(level)
+	level.load_level_data(Utils.b64_decode(data))
+
+	_load_level_internal()
+
+
+## Load a particular level that has been saved as a scene.
 func load_level(level_scene: PackedScene):
 	if level != null:
 		remove_child(level)
 		level.queue_free()
 
-	level = level_scene.instantiate()
+	level = level_scene.instantiate() as Level
+	add_child(level)
+	# Reload the level data to hook up all the right signals.
+	var data := level.save_level_data()
+	level.load_level_data(data)
+	_load_level_internal()
+
+
+## Loads the level stored in the `level` node. Do not call directly
+func _load_level_internal():
+
 	var tile_map := level.get_node("TileMap") as TileMap
 
-	add_child(level)
-	level.get_node("LevelEnd").exit_reached_success.connect(self._on_LevelEnd_exit_reached_success)
+
+	level.get_node("Objects/LevelEnd").exit_reached_success.connect(self._on_LevelEnd_exit_reached_success)
 
 	$CanvasLayer/UI.show()
 

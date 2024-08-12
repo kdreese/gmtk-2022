@@ -29,10 +29,6 @@ format = 2
 layer_0/y_sort_enabled = true
 layer_0/tile_data = PackedInt32Array(13, 14, 0, 262157, 7, 65536, 65549, 5, 0, 131085, 5, 0, 196621, 5, 0, 14, 13, 131072, 262158, 13, 131072)
 
-[node name="LevelEnd" parent="." instance=ExtResource("4")]
-position = Vector2(320, 304)
-minimum_weight = 6
-
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="LevelButton" parent="Objects" instance=ExtResource("2")]
@@ -41,3 +37,7 @@ minimum_weight = 6
 
 [node name="Gate" parent="Objects" instance=ExtResource("5")]
 position = Vector2(352, 296)
+
+[node name="LevelEnd" parent="Objects" instance=ExtResource("4")]
+position = Vector2(320, 304)
+minimum_weight = 6

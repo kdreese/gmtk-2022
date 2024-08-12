@@ -49,12 +49,11 @@ var level_wire_nets: Array = []
 ## Array of arrays representing the objects controlled by each wire net.
 var wire_sinks: Array = []
 
+@onready var tile_map: TileMap = $TileMap
+## A reference to the wire tile map. Not guaranteed to exist.
+@onready var wire_tile_map: TileMap = get_node_or_null("WireTileMap")
 
-func _ready() -> void:
-	var data := save_level_data()
-	print(len(data), len(Utils.b64_encode(data)))
-	print(Utils.b64_encode(data))
-	load_level_data(data)
+@onready var objects: Node2D = $Objects
 
 
 func handle_player_move(grid_coords: Vector2) -> void:
@@ -68,7 +67,6 @@ func toggle_wire_net(index: int) -> void:
 
 
 func invert_wire(grid_coords: Vector2, on_bottom: bool = true) -> void:
-	var wire_tile_map = get_node("WireTileMap") as TileMap
 	if wire_tile_map == null:
 		return
 
@@ -145,10 +143,8 @@ func invert_wires_3(coords_list: Array) -> void:
 ##
 ## This will return a list of lists. Each sub-list corresponds to a single grouping of wire tiles.
 func get_wires() -> Array:
-	if not get_node_or_null("WireTileMap"):
+	if wire_tile_map == null:
 		return []
-
-	var wire_tile_map := get_node("WireTileMap") as TileMap
 
 	var wire_tiles := wire_tile_map.get_used_cells(0) as Array[Vector2i]
 
@@ -239,7 +235,7 @@ func get_wires() -> Array:
 				push_error("Invalid wire tile map source ID %d." % source_id)
 
 			for direction in directions:
-				var next_tile := get_wire(wire_tile_map, wire_tile, direction)
+				var next_tile := get_wire(wire_tile, direction)
 				if next_tile not in net and next_tile not in tiles_to_search:
 					var index := wires.find(next_tile)
 					if index != -1:
@@ -254,7 +250,7 @@ func get_wires() -> Array:
 ##
 ## This is only needed for cross tiles, as we need to make sure we only select the right part of
 ## the cross.
-func get_wire(wire_tile_map: TileMap, coords: Vector2i, direction: Vector2i) -> Vector3i:
+func get_wire(coords: Vector2i, direction: Vector2i) -> Vector3i:
 	var next_tile := coords + direction
 	var cross_tiles := [CROSS_BOTH_OFF, CROSS_BOTH_ON, CROSS_BOTTOM_ON, CROSS_TOP_ON]
 	if wire_tile_map.get_cell_source_id(0, next_tile) not in cross_tiles:
@@ -281,7 +277,7 @@ func save_level_data() -> PackedByteArray:
 	output.resize(6)
 	var cursor := 0
 
-	var start_tiles := $TileMap.get_used_cells_by_id(0, 1) as Array[Vector2i]
+	var start_tiles := tile_map.get_used_cells_by_id(0, 1) as Array[Vector2i]
 	if len(start_tiles) > 1:
 		push_error("Level has more than one start tile.")
 		return PackedByteArray()
@@ -291,19 +287,24 @@ func save_level_data() -> PackedByteArray:
 	output.encode_s8(cursor, start_tiles[0].y)
 	cursor += 1
 
-	var finish_tile := $TileMap.local_to_map($LevelEnd.position + Vector2(0, 16)) as Vector2i
+	var level_end := objects.get_node("LevelEnd")
+
+	var finish_tile := tile_map.local_to_map(level_end.position + Vector2(0, 16)) as Vector2i
 
 	output.encode_s8(cursor, finish_tile.x)
 	cursor += 1
 	output.encode_s8(cursor, finish_tile.y)
 	cursor += 1
 
-	output.encode_s8(cursor, $LevelEnd.minimum_weight)
+	output.encode_s8(cursor, level_end.minimum_weight)
 	cursor += 1
-	output.encode_s8(cursor, $LevelEnd.maximum_weight)
+	output.encode_s8(cursor, level_end.maximum_weight)
 	cursor += 1
 
-	var normal_tiles := $TileMap.get_used_cells_by_id(0, 0) as Array[Vector2i]
+	# Remove the level end from the objects to avoid processing it again later.
+	objects.remove_child(level_end)
+
+	var normal_tiles := tile_map.get_used_cells_by_id(0, 0) as Array[Vector2i]
 	# The finish tile always has a normal tile underneath it.
 	normal_tiles.remove_at(normal_tiles.find(finish_tile))
 
@@ -325,7 +326,6 @@ func save_level_data() -> PackedByteArray:
 	cursor += 1
 
 	if len(wire_nets) > 0:
-		var wire_tile_map: TileMap = $WireTileMap
 		for wire_net in wire_nets:
 			# 1 byte for the net length, 3 for each wire.
 			output.resize(output.size() + 1 + 3 * len(wire_net))
@@ -348,18 +348,18 @@ func save_level_data() -> PackedByteArray:
 				output.encode_u8(cursor + 2, byte3)
 				cursor += 3
 
-	var num_objects := $Objects.get_child_count()
+	var num_objects := objects.get_child_count()
 	# 1 byte for length, 4 for each object (x, y, 2 for state)
 	output.resize(output.size() + 1 + 4 * num_objects)
 
-	output.encode_s8(cursor, $Objects.get_child_count())
+	output.encode_s8(cursor, objects.get_child_count())
 	cursor += 1
 
-	for object in $Objects.get_children() as Array[Node]:
+	for object in objects.get_children() as Array[Node]:
 		match object.get_object_type():
 			"LevelButton":
 				object = object as LevelButton
-				var coords := $TileMap.local_to_map(object.position) as Vector2i
+				var coords := tile_map.local_to_map(object.position) as Vector2i
 				output.encode_s8(cursor, LEVEL_BUTTON)
 				output.encode_s8(cursor + 1, coords.x)
 				output.encode_s8(cursor + 2, coords.y)
@@ -368,7 +368,7 @@ func save_level_data() -> PackedByteArray:
 				output.encode_u8(cursor + 3, byte4)
 			"Toggle":
 				object = object as Toggle
-				var coords := $TileMap.local_to_map(object.position) as Vector2i
+				var coords := tile_map.local_to_map(object.position) as Vector2i
 				output.encode_s8(cursor, TOGGLE)
 				output.encode_s8(cursor + 1, coords.x)
 				output.encode_s8(cursor + 2, coords.y)
@@ -377,7 +377,7 @@ func save_level_data() -> PackedByteArray:
 				output.encode_u8(cursor + 3, byte4)
 			"Gate":
 				object = object as Gate
-				var coords := $TileMap.local_to_map(object.position + Vector2(0, 8)) as Vector2i
+				var coords := tile_map.local_to_map(object.position + Vector2(0, 8)) as Vector2i
 				output.encode_s8(cursor, GATE)
 				output.encode_s8(cursor + 1, coords.x)
 				output.encode_s8(cursor + 2, coords.y)
@@ -391,24 +391,32 @@ func save_level_data() -> PackedByteArray:
 	return output
 
 
-func place_tile(coords: Vector2i) -> void:
-	$TileMap.set_cell(0, coords, 0, Vector2i(0, 0))
+func place_tile(coords: Vector2i, layer: int = 0) -> void:
+	tile_map.set_cell(layer, coords, 0, Vector2i(0, 0))
 
 	var tile_bl := coords + Vector2i(0, 1)
-	if $TileMap.get_cell_source_id(0, tile_bl) == 2:
-		$TileMap.set_cell(0, tile_bl, 2, Vector2i(0, 0))
-	elif $TileMap.get_cell_source_id(0, tile_bl) == -1:
-		$TileMap.set_cell(0, tile_bl, 2, Vector2i(2, 0), 1)
+	if (tile_map.get_cell_source_id(0, tile_bl) == 2
+		and	tile_map.get_cell_atlas_coords(0, tile_bl) == Vector2i(2, 0)
+		and	tile_map.get_cell_alternative_tile(0, tile_bl) == 0):
+		tile_map.set_cell(layer, tile_bl, 2, Vector2i(0, 0))
+	elif tile_map.get_cell_source_id(0, tile_bl) == -1:
+		tile_map.set_cell(layer, tile_bl, 2, Vector2i(2, 0), 1)
 
 	var tile_br := coords + Vector2i(1, 0)
-	if $TileMap.get_cell_source_id(0, tile_br) == 2:
-		$TileMap.set_cell(0, tile_br, 2, Vector2i(0, 0))
-	elif $TileMap.get_cell_source_id(0, tile_br) == -1:
-		$TileMap.set_cell(0, tile_br, 2, Vector2i(2, 0), 0)
+	if (tile_map.get_cell_source_id(0, tile_br) == 2
+		and	tile_map.get_cell_atlas_coords(0, tile_br) == Vector2i(2, 0)
+		and	tile_map.get_cell_alternative_tile(0, tile_br) == 1):
+		tile_map.set_cell(layer, tile_br, 2, Vector2i(0, 0))
+	elif tile_map.get_cell_source_id(0, tile_br) == -1:
+		tile_map.set_cell(layer, tile_br, 2, Vector2i(2, 0), 0)
 
 
 func load_level_data(data: PackedByteArray) -> void:
-	$TileMap.clear()
+	tile_map.clear()
+	for child in objects.get_children():
+		objects.remove_child(child)
+		child.queue_free()
+
 	# We need 6 bytes for the requied params.
 	assert(data.size() >= 6)
 	var cursor := 0
@@ -417,17 +425,19 @@ func load_level_data(data: PackedByteArray) -> void:
 	cursor += 2
 
 	place_tile(start_tile)
-	$TileMap.set_cell(0, start_tile, 1, Vector2i(0, 0))
+	tile_map.set_cell(0, start_tile, 1, Vector2i(0, 0))
 
 	var end_tile := Vector2i(data.decode_s8(cursor), data.decode_s8(cursor + 1))
 	cursor += 2
 
 	place_tile(end_tile)
-	$LevelEnd.position = $TileMap.map_to_local(end_tile) - Vector2(0, 16)
+	var level_end := preload("res://src/objects/level_end.tscn").instantiate() as LevelEnd
+	objects.add_child(level_end)
+	level_end.position = tile_map.map_to_local(end_tile) - Vector2(0, 16)
 
-	$LevelEnd.minimum_weight = data.decode_s8(cursor)
+	level_end.minimum_weight = data.decode_s8(cursor)
 	cursor += 1
-	$LevelEnd.maximum_weight = data.decode_s8(cursor)
+	level_end.maximum_weight = data.decode_s8(cursor)
 	cursor += 1
 
 	var num_tiles := data.decode_s8(cursor)
@@ -441,7 +451,6 @@ func load_level_data(data: PackedByteArray) -> void:
 	wire_sinks.clear()
 	level_wire_nets.clear()
 
-	var wire_tile_map := get_node_or_null("WireTileMap")
 	if not wire_tile_map:
 		return
 
@@ -470,10 +479,6 @@ func load_level_data(data: PackedByteArray) -> void:
 		level_wire_nets.append(wire_net)
 		wire_sinks.append([])
 
-	for object in $Objects.get_children():
-		$Objects.remove_child(object)
-		object.queue_free()
-
 	var num_objects = data.decode_s8(cursor)
 	cursor += 1
 
@@ -495,24 +500,24 @@ func load_level_data(data: PackedByteArray) -> void:
 		match type:
 			LEVEL_BUTTON:
 				var button := CLASS_TO_SCENE[LEVEL_BUTTON].instantiate()
-				button.position = $TileMap.map_to_local(coords)
+				button.position = tile_map.map_to_local(coords)
 				button.minimum_weight = state & 0xF
 				button.maximum_weight = (state >> 4) & 0xF
 				button.button_pressed.connect(toggle_wire_net.bind(net_idx))
-				$Objects.add_child(button)
+				objects.add_child(button)
 			TOGGLE:
 				var toggle := CLASS_TO_SCENE[TOGGLE].instantiate()
-				toggle.position = $TileMap.map_to_local(coords)
+				toggle.position = tile_map.map_to_local(coords)
 				toggle.minimum_weight = state & 0xF
 				toggle.maximum_weight = (state >> 4) & 0xF
 				toggle.toggled.connect(toggle_wire_net.bind(net_idx))
-				$Objects.add_child(toggle)
+				objects.add_child(toggle)
 			GATE:
 				var gate := CLASS_TO_SCENE[GATE].instantiate()
-				gate.position = $TileMap.map_to_local(coords) - Vector2(0, 8)
+				gate.position = tile_map.map_to_local(coords) - Vector2(0, 8)
 				# Gates delete the tile under them if they're closed.
 				place_tile(coords)
 				gate.is_open = bool(state)
 				wire_sinks[net_idx].append(gate)
-				$Objects.add_child(gate)
+				objects.add_child(gate)
 

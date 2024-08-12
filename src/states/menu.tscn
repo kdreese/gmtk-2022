@@ -28,6 +28,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="PlayButton" type="Button" parent="V/Buttons"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(2.08165e-12, 75)
 layout_mode = 2
 theme = ExtResource("2_hrcv6")
@@ -36,25 +37,36 @@ theme_override_font_sizes/font_size = 36
 text = "Play"
 
 [node name="LevelSelectButton" type="Button" parent="V/Buttons"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(2.08165e-12, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Select Level"
 
+[node name="LevelEditorButton" type="Button" parent="V/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(2.08165e-12, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Level Editor"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="V/Buttons"]
 layout_mode = 2
 
 [node name="OptionsButton" type="Button" parent="V/Buttons/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Options"
 
 [node name="CreditsButton" type="Button" parent="V/Buttons/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="V/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
 
@@ -82,6 +94,7 @@ stretch_mode = 1
 
 [connection signal="pressed" from="V/Buttons/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="V/Buttons/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed"]
+[connection signal="pressed" from="V/Buttons/LevelEditorButton" to="." method="to_level_editor"]
 [connection signal="pressed" from="V/Buttons/HBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="V/Buttons/HBoxContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="V/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]

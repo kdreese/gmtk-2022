@@ -1,0 +1,164 @@
+[gd_scene load_steps=11 format=3 uid="uid://cl3b8d2i13e67"]
+
+[ext_resource type="Script" path="res://src/states/level_editor.gd" id="1_dmuef"]
+[ext_resource type="Texture2D" uid="uid://c3m38tcnhjk64" path="res://assets/ui/perfect_score.png" id="1_gwoyj"]
+[ext_resource type="Texture2D" uid="uid://cxsyfhqem7t84" path="res://assets/ui/exit_icon.png" id="3_f6rx2"]
+[ext_resource type="Texture2D" uid="uid://cyn40eyrssg4o" path="res://assets/ui/options_icon.png" id="4_y0bpk"]
+[ext_resource type="PackedScene" uid="uid://dmsmgwdkar4s4" path="res://src/states/options_menu.tscn" id="5_8fy68"]
+[ext_resource type="Texture2D" uid="uid://bob6r2wmu057x" path="res://assets/ui/restart_icon.png" id="5_wnxw5"]
+[ext_resource type="Texture2D" uid="uid://dq45l34jae3fo" path="res://assets/tiles/base_tile.png" id="6_87l6y"]
+[ext_resource type="Texture2D" uid="uid://ccyrohf4pm62" path="res://assets/tiles/background.png" id="6_h0qud"]
+[ext_resource type="Texture2D" uid="uid://57fgilevdwgm" path="res://assets/tiles/start_tile.png" id="8_aqdsn"]
+[ext_resource type="Texture2D" uid="uid://dnr6wlqx5dsyc" path="res://assets/objects/finish_pad.png" id="9_5lnbl"]
+
+[node name="LevelEditor" type="Node2D"]
+script = ExtResource("1_dmuef")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 240)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="V" type="VBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 82.0
+theme_override_constants/separation = 2
+
+[node name="LevelName" type="Label" parent="CanvasLayer/UI/V"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="MoveCounter" type="Label" parent="CanvasLayer/UI/V"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="H" type="HBoxContainer" parent="CanvasLayer/UI/V"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BestMove" type="Label" parent="CanvasLayer/UI/V/H"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+vertical_alignment = 1
+
+[node name="Star" type="TextureRect" parent="CanvasLayer/UI/V/H"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 2
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_gwoyj")
+expand_mode = 1
+
+[node name="H" type="HBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 84.0
+scale = Vector2(0.75, 0.75)
+
+[node name="MenuButton" type="TextureButton" parent="CanvasLayer/UI/H"]
+layout_mode = 2
+tooltip_text = "Quit to Menu"
+texture_normal = ExtResource("3_f6rx2")
+
+[node name="OptionsButton" type="TextureButton" parent="CanvasLayer/UI/H"]
+layout_mode = 2
+tooltip_text = "Options"
+texture_normal = ExtResource("4_y0bpk")
+
+[node name="PlayButton" type="TextureButton" parent="CanvasLayer/UI/H"]
+layout_mode = 2
+tooltip_text = "Play Level"
+texture_normal = ExtResource("5_wnxw5")
+
+[node name="TileSelector" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(2.08165e-12, 150)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="S" type="ScrollContainer" parent="CanvasLayer/TileSelector"]
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="CanvasLayer/TileSelector/S"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/TileSelector/S/H"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Floor"
+icon = ExtResource("6_87l6y")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Button2" type="Button" parent="CanvasLayer/TileSelector/S/H"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Start Tile"
+icon = ExtResource("8_aqdsn")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Button3" type="Button" parent="CanvasLayer/TileSelector/S/H"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "Floor"
+icon = ExtResource("9_5lnbl")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("5_8fy68")]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("6_h0qud")
+stretch_mode = 1
+
+[connection signal="pressed" from="CanvasLayer/UI/H/MenuButton" to="." method="go_to_menu"]
+[connection signal="pressed" from="CanvasLayer/UI/H/OptionsButton" to="." method="show_options"]
+[connection signal="pressed" from="CanvasLayer/UI/H/PlayButton" to="." method="play_level"]
+[connection signal="pressed" from="CanvasLayer/TileSelector/S/H/Button" to="." method="button_selected" binds= [1]]
+[connection signal="pressed" from="CanvasLayer/TileSelector/S/H/Button2" to="." method="button_selected" binds= [2]]
+[connection signal="pressed" from="CanvasLayer/TileSelector/S/H/Button3" to="." method="button_selected" binds= [3]]
+[connection signal="options_exited" from="CanvasLayer/OptionsMenu" to="." method="options_exited"]
