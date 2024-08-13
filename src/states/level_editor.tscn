@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cl3b8d2i13e67"]
+[gd_scene load_steps=12 format=3 uid="uid://cl3b8d2i13e67"]
 
 [ext_resource type="Script" path="res://src/states/level_editor.gd" id="1_dmuef"]
 [ext_resource type="Texture2D" uid="uid://c3m38tcnhjk64" path="res://assets/ui/perfect_score.png" id="1_gwoyj"]
@@ -8,8 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://bob6r2wmu057x" path="res://assets/ui/restart_icon.png" id="5_wnxw5"]
 [ext_resource type="Texture2D" uid="uid://dq45l34jae3fo" path="res://assets/tiles/base_tile.png" id="6_87l6y"]
 [ext_resource type="Texture2D" uid="uid://ccyrohf4pm62" path="res://assets/tiles/background.png" id="6_h0qud"]
+[ext_resource type="PackedScene" uid="uid://cfuoi46x5uk41" path="res://src/states/ui/tile_select_button.tscn" id="6_hbphg"]
+[ext_resource type="Texture2D" uid="uid://dgrlucsbwni0c" path="res://assets/objects/finish_pad_icon.png" id="8_8rank"]
 [ext_resource type="Texture2D" uid="uid://57fgilevdwgm" path="res://assets/tiles/start_tile.png" id="8_aqdsn"]
-[ext_resource type="Texture2D" uid="uid://dnr6wlqx5dsyc" path="res://assets/objects/finish_pad.png" id="9_5lnbl"]
 
 [node name="LevelEditor" type="Node2D"]
 script = ExtResource("1_dmuef")
@@ -90,9 +91,15 @@ layout_mode = 2
 tooltip_text = "Play Level"
 texture_normal = ExtResource("5_wnxw5")
 
+[node name="PopupPanel" type="AcceptDialog" parent="CanvasLayer/UI"]
+unique_name_in_owner = true
+title = "Error"
+initial_position = 2
+size = Vector2i(300, 200)
+
 [node name="TileSelector" type="MarginContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(2.08165e-12, 150)
+custom_minimum_size = Vector2(2.08165e-12, 120)
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -112,32 +119,20 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="CanvasLayer/TileSelector/S/H"]
-custom_minimum_size = Vector2(100, 100)
+[node name="TileSelectButton" parent="CanvasLayer/TileSelector/S/H" instance=ExtResource("6_hbphg")]
 layout_mode = 2
-text = "Floor"
-icon = ExtResource("6_87l6y")
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
+action_mode = 0
+texture = ExtResource("6_87l6y")
+button_text = "Floor"
 
-[node name="Button2" type="Button" parent="CanvasLayer/TileSelector/S/H"]
-custom_minimum_size = Vector2(100, 100)
+[node name="TileSelectButton2" parent="CanvasLayer/TileSelector/S/H" instance=ExtResource("6_hbphg")]
 layout_mode = 2
-text = "Start Tile"
-icon = ExtResource("8_aqdsn")
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
+texture = ExtResource("8_aqdsn")
 
-[node name="Button3" type="Button" parent="CanvasLayer/TileSelector/S/H"]
-custom_minimum_size = Vector2(100, 100)
+[node name="TileSelectButton3" parent="CanvasLayer/TileSelector/S/H" instance=ExtResource("6_hbphg")]
 layout_mode = 2
-text = "Floor"
-icon = ExtResource("9_5lnbl")
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
+texture = ExtResource("8_8rank")
+button_text = "Finish Tile"
 
 [node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("5_8fy68")]
 unique_name_in_owner = true
@@ -158,7 +153,7 @@ stretch_mode = 1
 [connection signal="pressed" from="CanvasLayer/UI/H/MenuButton" to="." method="go_to_menu"]
 [connection signal="pressed" from="CanvasLayer/UI/H/OptionsButton" to="." method="show_options"]
 [connection signal="pressed" from="CanvasLayer/UI/H/PlayButton" to="." method="play_level"]
-[connection signal="pressed" from="CanvasLayer/TileSelector/S/H/Button" to="." method="button_selected" binds= [1]]
-[connection signal="pressed" from="CanvasLayer/TileSelector/S/H/Button2" to="." method="button_selected" binds= [2]]
-[connection signal="pressed" from="CanvasLayer/TileSelector/S/H/Button3" to="." method="button_selected" binds= [3]]
+[connection signal="toggled" from="CanvasLayer/TileSelector/S/H/TileSelectButton" to="." method="button_toggled" binds= [1]]
+[connection signal="toggled" from="CanvasLayer/TileSelector/S/H/TileSelectButton2" to="." method="button_toggled" binds= [2]]
+[connection signal="toggled" from="CanvasLayer/TileSelector/S/H/TileSelectButton3" to="." method="button_toggled" binds= [3]]
 [connection signal="options_exited" from="CanvasLayer/OptionsMenu" to="." method="options_exited"]

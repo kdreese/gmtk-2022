@@ -11,7 +11,7 @@ enum {
 }
 
 ## The object that we are placing
-var object_to_place: int = NORMAL_TILE
+var object_to_place: int = NOTHING
 
 ## The level we are currently editing
 var level: Level = null
@@ -21,14 +21,21 @@ var mouseover_tile: Vector2i = Vector2i(0,0)
 
 ## The object we are placing, if not a tile.
 var current_object: Node2D = null
-
 ## The position offset from tile center of the current object.
 var current_object_offset: Vector2 = Vector2(0, 0)
+
+var tile_button_group: ButtonGroup
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level = preload("res://src/levels/level.tscn").instantiate() as Level
 	add_child(level)
+
+	tile_button_group = ButtonGroup.new()
+	tile_button_group.allow_unpress = true
+
+	for button in %TileSelector/S/H.get_children() as Array[TileSelectButton]:
+		button.button_group = tile_button_group
 
 
 func _input(event: InputEvent) -> void:
@@ -68,7 +75,11 @@ func preview_object(coords: Vector2i)-> void:
 		level.place_tile(coords, 1)
 		level.tile_map.set_cell(1, coords, 1, Vector2i(0, 0))
 	elif object_to_place == FINISH_PAD:
-		current_object.position = level.tile_map.map_to_local(coords) + current_object_offset
+		if level.tile_map.get_cell_source_id(0, coords) == 0:
+			current_object.modulate = Color(1.0, 1.0, 1.0, 0.75)
+			current_object.position = level.tile_map.map_to_local(coords) + current_object_offset
+		else:
+			current_object.modulate = Color.TRANSPARENT
 
 
 func place_object(coords: Vector2i) -> void:
@@ -77,12 +88,13 @@ func place_object(coords: Vector2i) -> void:
 	elif object_to_place == START_TILE:
 		level.place_tile(coords)
 		level.tile_map.set_cell(0, coords, 1, Vector2i(0, 0))
+		tile_button_group.get_pressed_button().button_pressed = false
 	elif object_to_place == FINISH_PAD:
-		current_object.position = level.tile_map.map_to_local(coords) + current_object_offset
-		current_object.modulate = Color.WHITE
-		current_object = preload("res://src/objects/level_end.tscn").instantiate() as LevelEnd
-		current_object.modulate = Color(1.0, 1.0, 1.0, 0.75)
-		level.objects.add_child(current_object)
+		if level.tile_map.get_cell_source_id(0, coords) == 0:
+			current_object.position = level.tile_map.map_to_local(coords) + current_object_offset
+			current_object.modulate = Color.WHITE
+			current_object = null
+			tile_button_group.get_pressed_button().button_pressed = false
 
 
 func free_current_object():
@@ -92,24 +104,32 @@ func free_current_object():
 		current_object = null
 
 
-func button_selected(idx: int) -> void:
+func button_toggled(toggled_on: bool, idx: int) -> void:
 	free_current_object()
 
-	object_to_place = idx
-	if object_to_place == FINISH_PAD:
-		current_object = preload("res://src/objects/level_end.tscn").instantiate() as LevelEnd
-		current_object_offset = Vector2(0, -16)
-		current_object.modulate = Color(1.0, 1.0, 1.0, 0.75)
-		level.objects.add_child(current_object)
+	if toggled_on:
+		object_to_place = idx
+		if object_to_place == FINISH_PAD:
+			current_object = preload("res://src/objects/level_end.tscn").instantiate() as LevelEnd
+			current_object_offset = Vector2(0, -16)
+			current_object.modulate = Color.TRANSPARENT
+			level.objects.add_child(current_object)
+	else:
+		object_to_place = NOTHING
+
 
 func play_level() -> void:
 	free_current_object()
-	var data := level.save_level_data()
+	var result := level.save_level_data()
+	if not result[0]:
+		%PopupPanel.dialog_text = result[1]
+		%PopupPanel.popup_centered()
+		return
 	var game := preload("res://src/states/game.tscn").instantiate() as Game
 	get_tree().get_root().add_child(game)
 	get_tree().set_current_scene(game)
 	get_tree().get_root().remove_child(self)
-	game.play_level_from_string(Utils.b64_encode(data))
+	game.play_level_from_string(Utils.b64_encode(result[1]))
 
 
 func show_options() -> void:

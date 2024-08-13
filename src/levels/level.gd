@@ -271,38 +271,52 @@ func get_wire(coords: Vector2i, direction: Vector2i) -> Vector3i:
 				return Vector3i()
 
 
-func save_level_data() -> PackedByteArray:
+## Save level data to a PackedByteArray
+## This function returns an array. The first element is a bool that is true if the function was
+## successful. If the value is true, then the second element in the array is the PackedByteArray
+## containing the level data.
+##
+## If the first element of the array is false, the second element is a String containing the reason
+## for the failure.
+func save_level_data() -> Array:
 	var output := PackedByteArray()
 	# Allocate 6 bytes for the start coord, end coord, and max/min values.
 	output.resize(6)
 	var cursor := 0
 
 	var start_tiles := tile_map.get_used_cells_by_id(0, 1) as Array[Vector2i]
+	if len(start_tiles) == 0:
+		return [false, "Level does not have a start tile."]
 	if len(start_tiles) > 1:
-		push_error("Level has more than one start tile.")
-		return PackedByteArray()
+		return [false, "Level has more than one start tile."]
 
 	output.encode_s8(cursor, start_tiles[0].x)
 	cursor += 1
 	output.encode_s8(cursor, start_tiles[0].y)
 	cursor += 1
 
-	var level_end := objects.get_node("LevelEnd")
+	var level_ends := objects.get_children().filter(
+		func is_level_end(x): return x.get_object_type() == "LevelEnd"
+	)
+	if len(level_ends) == 0:
+		return [false, "Level does not contain a finish tile."]
+	elif len(level_ends) > 1:
+		return [false, "Level has more than one finish tile."]
 
-	var finish_tile := tile_map.local_to_map(level_end.position + Vector2(0, 16)) as Vector2i
+	var finish_tile := tile_map.local_to_map(level_ends[0].position + Vector2(0, 16)) as Vector2i
 
 	output.encode_s8(cursor, finish_tile.x)
 	cursor += 1
 	output.encode_s8(cursor, finish_tile.y)
 	cursor += 1
 
-	output.encode_s8(cursor, level_end.minimum_weight)
+	output.encode_s8(cursor, level_ends[0].minimum_weight)
 	cursor += 1
-	output.encode_s8(cursor, level_end.maximum_weight)
+	output.encode_s8(cursor, level_ends[0].maximum_weight)
 	cursor += 1
 
 	# Remove the level end from the objects to avoid processing it again later.
-	objects.remove_child(level_end)
+	objects.remove_child(level_ends[0])
 
 	var normal_tiles := tile_map.get_used_cells_by_id(0, 0) as Array[Vector2i]
 	# The finish tile always has a normal tile underneath it.
@@ -388,7 +402,7 @@ func save_level_data() -> PackedByteArray:
 	while output.size() % 3 != 0:
 		output.push_back(0)
 
-	return output
+	return [true, output]
 
 
 func place_tile(coords: Vector2i, layer: int = 0) -> void:

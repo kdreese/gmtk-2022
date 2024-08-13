@@ -61,8 +61,12 @@ func load_level(level_scene: PackedScene):
 	level = level_scene.instantiate() as Level
 	add_child(level)
 	# Reload the level data to hook up all the right signals.
-	var data := level.save_level_data()
-	level.load_level_data(data)
+	var result := level.save_level_data()
+	if not result[0]:
+		push_error("Could not save level data.")
+		return
+
+	level.load_level_data(result[1])
 	_load_level_internal()
 
 

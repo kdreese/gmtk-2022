@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfuoi46x5uk41"]
+
+[ext_resource type="Theme" uid="uid://cebef7ax6hl5m" path="res://resouces/default_theme.tres" id="1_piuil"]
+[ext_resource type="Script" path="res://src/states/ui/tile_select_button.gd" id="1_whyu0"]
+[ext_resource type="Texture2D" uid="uid://bueriwldj70x7" path="res://assets/objects/gate_0.png" id="2_bqsjo"]
+
+[node name="TileSelectButton" type="Button"]
+custom_minimum_size = Vector2(100, 100)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_piuil")
+theme_type_variation = &"TileSelectButton"
+toggle_mode = true
+script = ExtResource("1_whyu0")
+texture = ExtResource("2_bqsjo")
+button_text = "Start Tile"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_bqsjo")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start Tile"
+horizontal_alignment = 1
+clip_text = true

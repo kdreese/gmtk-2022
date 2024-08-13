@@ -2,15 +2,19 @@ class_name Gate
 extends Node2D
 
 
-var tile_map: TileMap
+var tile_map: TileMap = null
 var grid_coords: Vector2
 
 @export var is_open: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if tile_map == null:
+		push_error("TileMap not set for gate '%s'" % name)
+		return
+
 	update_animation_speed()
-	tile_map = find_parent("*Level").get_node("TileMap")
+
 	grid_coords = tile_map.local_to_map(position)
 	if is_open:
 		$AnimatedSprite2D.play("opened")
