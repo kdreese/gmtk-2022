@@ -119,6 +119,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="TileSelectButton4" parent="CanvasLayer/TileSelector/S/H" instance=ExtResource("6_hbphg")]
+layout_mode = 2
+button_text = "Erase"
+
 [node name="TileSelectButton" parent="CanvasLayer/TileSelector/S/H" instance=ExtResource("6_hbphg")]
 layout_mode = 2
 action_mode = 0
@@ -153,7 +157,8 @@ stretch_mode = 1
 [connection signal="pressed" from="CanvasLayer/UI/H/MenuButton" to="." method="go_to_menu"]
 [connection signal="pressed" from="CanvasLayer/UI/H/OptionsButton" to="." method="show_options"]
 [connection signal="pressed" from="CanvasLayer/UI/H/PlayButton" to="." method="play_level"]
-[connection signal="toggled" from="CanvasLayer/TileSelector/S/H/TileSelectButton" to="." method="button_toggled" binds= [1]]
-[connection signal="toggled" from="CanvasLayer/TileSelector/S/H/TileSelectButton2" to="." method="button_toggled" binds= [2]]
-[connection signal="toggled" from="CanvasLayer/TileSelector/S/H/TileSelectButton3" to="." method="button_toggled" binds= [3]]
+[connection signal="toggled" from="CanvasLayer/TileSelector/S/H/TileSelectButton4" to="." method="button_toggled" binds= [1]]
+[connection signal="toggled" from="CanvasLayer/TileSelector/S/H/TileSelectButton" to="." method="button_toggled" binds= [2]]
+[connection signal="toggled" from="CanvasLayer/TileSelector/S/H/TileSelectButton2" to="." method="button_toggled" binds= [3]]
+[connection signal="toggled" from="CanvasLayer/TileSelector/S/H/TileSelectButton3" to="." method="button_toggled" binds= [4]]
 [connection signal="options_exited" from="CanvasLayer/OptionsMenu" to="." method="options_exited"]

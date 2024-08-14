@@ -1,5 +1,5 @@
 class_name Toggle
-extends Area2D
+extends LevelObject
 
 signal toggled
 
@@ -7,13 +7,17 @@ signal toggled
 @export var maximum_weight: int = 6
 
 
+func get_object_type() -> int:
+	return TOGGLE
+
+
+func get_position_offset() -> Vector2:
+	return Vector2.ZERO
+
+
 func _ready() -> void:
 	if minimum_weight == 1 and maximum_weight == 6:
 		$Indicator.queue_free()
-
-
-func get_object_type() -> String:
-	return "Toggle"
 
 
 func _on_Toggle_area_entered(area: Area2D) -> void:

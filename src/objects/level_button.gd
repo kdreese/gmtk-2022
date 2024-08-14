@@ -1,5 +1,5 @@
 class_name LevelButton
-extends Area2D
+extends LevelObject
 
 
 signal button_pressed
@@ -11,6 +11,14 @@ var pressed_texture = preload("res://assets/objects/button_pressed.png")
 @export var maximum_weight: int = 6
 
 
+func get_object_type() -> int:
+	return BUTTON
+
+
+func get_position_offset() -> Vector2:
+	return Vector2.ZERO
+
+
 func _ready() -> void:
 	# Set the initial state to unpressed.
 	$Sprite2D.texture = unpressed_texture
@@ -18,8 +26,7 @@ func _ready() -> void:
 		$Indicator.queue_free()
 
 
-func get_object_type() -> String:
-	return "LevelButton"
+
 
 
 func set_pressed() -> void:

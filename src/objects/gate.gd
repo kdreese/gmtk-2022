@@ -1,11 +1,20 @@
 class_name Gate
-extends Node2D
+extends LevelObject
 
 
 var tile_map: TileMap = null
 var grid_coords: Vector2
 
 @export var is_open: bool
+
+
+func get_object_type() -> int:
+	return GATE
+
+
+func get_position_offset() -> Vector2:
+	return Vector2(0, -8)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,8 +34,6 @@ func _ready() -> void:
 		tile_map.set_cell(0, grid_coords, -1)
 
 
-func get_object_type() -> String:
-	return "Gate"
 
 
 func update_animation_speed() -> void:

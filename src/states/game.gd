@@ -58,19 +58,25 @@ func load_level(level_scene: PackedScene):
 		remove_child(level)
 		level.queue_free()
 
+	# Instantiate the level, but don't add it to the tree.
 	level = level_scene.instantiate() as Level
-	add_child(level)
+	# Call our faux-ready function (see documentation).
+	level.post_init()
+
 	# Reload the level data to hook up all the right signals.
 	var result := level.save_level_data()
 	if not result[0]:
 		push_error("Could not save level data.")
 		return
-
 	level.load_level_data(result[1])
+
+	# Only now add the level to the scene tree.
+	add_child(level)
+
 	_load_level_internal()
 
 
-## Loads the level stored in the `level` node. Do not call directly
+## Loads the level stored in the `level` node. Do not call this function directly.
 func _load_level_internal():
 
 	var tile_map := level.get_node("TileMap") as TileMap

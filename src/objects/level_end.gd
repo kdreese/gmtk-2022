@@ -1,5 +1,5 @@
 class_name LevelEnd
-extends Area2D
+extends LevelObject
 
 
 signal exit_reached_success
@@ -9,12 +9,18 @@ signal exit_reached_incomplete
 @export var maximum_weight := 6
 
 
+func get_object_type() -> int:
+	return LEVEL_END
+
+
+func get_position_offset() -> Vector2:
+	return Vector2(0, -16)
+
+
 func _ready() -> void:
 	if minimum_weight == 1 and maximum_weight == 6:
 		$Indicator.queue_free()
 
-func get_object_type() -> String:
-	return "LevelEnd"
 
 func _on_LevelEnd_area_entered(area: Area2D) -> void:
 	if area.name != "Player":

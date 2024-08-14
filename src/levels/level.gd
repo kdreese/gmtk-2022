@@ -20,16 +20,10 @@ enum {
 	ELBOW_DOWN_ON,
 }
 
-enum {
-	LEVEL_BUTTON = 0,
-	TOGGLE,
-	GATE
-}
-
 const CLASS_TO_SCENE : Dictionary = {
-	LEVEL_BUTTON: preload("res://src/objects/level_button.tscn"),
-	TOGGLE: preload("res://src/objects/toggle.tscn"),
-	GATE: preload("res://src/objects/gate.tscn"),
+	LevelObject.BUTTON: preload("res://src/objects/level_button.tscn"),
+	LevelObject.TOGGLE: preload("res://src/objects/toggle.tscn"),
+	LevelObject.GATE: preload("res://src/objects/gate.tscn"),
 }
 
 @export
@@ -49,11 +43,27 @@ var level_wire_nets: Array = []
 ## Array of arrays representing the objects controlled by each wire net.
 var wire_sinks: Array = []
 
-@onready var tile_map: TileMap = $TileMap
+## Onready vars (see post_init()):
+## The tile map for the level.
+var tile_map: TileMap
 ## A reference to the wire tile map. Not guaranteed to exist.
-@onready var wire_tile_map: TileMap = get_node_or_null("WireTileMap")
+var wire_tile_map: TileMap
+## The node that is the parent of all LevelObjects.
+var objects: Node2D
 
-@onready var objects: Node2D = $Objects
+
+## Load some common references.
+## In order to be able to export level data from a PackedScene without having to add it to the tree,
+## and thus hook up some references to LevelObjects, you can call this function. Basically it acts
+## as a phony @onready decorator for tile_map, wire_tile_map, and objects.
+func post_init() -> void:
+	tile_map = $TileMap
+	wire_tile_map = get_node_or_null("WireTileMap")
+	objects = $Objects
+
+
+func _ready() -> void:
+	post_init()
 
 
 func handle_player_move(grid_coords: Vector2) -> void:
@@ -296,14 +306,14 @@ func save_level_data() -> Array:
 	cursor += 1
 
 	var level_ends := objects.get_children().filter(
-		func is_level_end(x): return x.get_object_type() == "LevelEnd"
+		func is_level_end(x): return x.get_object_type() == LevelObject.LEVEL_END
 	)
 	if len(level_ends) == 0:
 		return [false, "Level does not contain a finish tile."]
 	elif len(level_ends) > 1:
 		return [false, "Level has more than one finish tile."]
 
-	var finish_tile := tile_map.local_to_map(level_ends[0].position + Vector2(0, 16)) as Vector2i
+	var finish_tile := tile_map.local_to_map(level_ends[0].position - level_ends[0].get_position_offset()) as Vector2i
 
 	output.encode_s8(cursor, finish_tile.x)
 	cursor += 1
@@ -369,32 +379,24 @@ func save_level_data() -> Array:
 	output.encode_s8(cursor, objects.get_child_count())
 	cursor += 1
 
-	for object in objects.get_children() as Array[Node]:
+	for object in objects.get_children() as Array[LevelObject]:
+		var coords := tile_map.local_to_map(object.position - object.get_position_offset()) as Vector2i
+		output.encode_s8(cursor, object.get_object_type())
+		output.encode_s8(cursor + 1, coords.x)
+		output.encode_s8(cursor + 2, coords.y)
 		match object.get_object_type():
-			"LevelButton":
+			LevelObject.BUTTON:
 				object = object as LevelButton
-				var coords := tile_map.local_to_map(object.position) as Vector2i
-				output.encode_s8(cursor, LEVEL_BUTTON)
-				output.encode_s8(cursor + 1, coords.x)
-				output.encode_s8(cursor + 2, coords.y)
 				var byte4 := object.minimum_weight as int
 				byte4 |= (object.maximum_weight & 0xF) << 4
 				output.encode_u8(cursor + 3, byte4)
-			"Toggle":
+			LevelObject.TOGGLE:
 				object = object as Toggle
-				var coords := tile_map.local_to_map(object.position) as Vector2i
-				output.encode_s8(cursor, TOGGLE)
-				output.encode_s8(cursor + 1, coords.x)
-				output.encode_s8(cursor + 2, coords.y)
 				var byte4 := object.minimum_weight as int
 				byte4 |= (object.maximum_weight & 0xF) << 4
 				output.encode_u8(cursor + 3, byte4)
-			"Gate":
+			LevelObject.GATE:
 				object = object as Gate
-				var coords := tile_map.local_to_map(object.position + Vector2(0, 8)) as Vector2i
-				output.encode_s8(cursor, GATE)
-				output.encode_s8(cursor + 1, coords.x)
-				output.encode_s8(cursor + 2, coords.y)
 				output.encode_u8(cursor + 3, object.is_open)
 
 		cursor += 4
@@ -425,6 +427,38 @@ func place_tile(coords: Vector2i, layer: int = 0) -> void:
 		tile_map.set_cell(layer, tile_br, 2, Vector2i(2, 0), 0)
 
 
+func remove_tile(coords: Vector2i) -> void:
+	var tile_tl := coords + Vector2i(-1, 0)
+	var tile_tr := coords + Vector2i(0, -1)
+	if (tile_map.get_cell_source_id(0, tile_tl) in [0, 1]
+		and tile_map.get_cell_source_id(0, tile_tr) in [0, 1]):
+		tile_map.set_cell(0, coords, 2, Vector2i(0, 0))
+	elif tile_map.get_cell_source_id(0, tile_tl) in [0, 1]:
+		tile_map.set_cell(0, coords, 2, Vector2i(2, 0), 0)
+	elif tile_map.get_cell_source_id(0, tile_tr) in [0, 1]:
+		tile_map.set_cell(0, coords, 2, Vector2i(2, 0), 1)
+	else:
+		tile_map.set_cell(0, coords, -1)
+
+	var tile_bl := coords + Vector2i(0, 1)
+	if (tile_map.get_cell_source_id(0, tile_bl) == 2
+		and	tile_map.get_cell_atlas_coords(0, tile_bl) == Vector2i(2, 0)
+		and	tile_map.get_cell_alternative_tile(0, tile_bl) == 1):
+		tile_map.set_cell(0, tile_bl, -1, Vector2i(0, 0))
+	elif (tile_map.get_cell_source_id(0, tile_bl) == 2
+		  and tile_map.get_cell_atlas_coords(0, tile_bl) == Vector2i(0, 0)):
+		tile_map.set_cell(0, tile_bl, 2, Vector2i(2, 0), 0)
+
+	var tile_br := coords + Vector2i(1, 0)
+	if (tile_map.get_cell_source_id(0, tile_br) == 2
+		and	tile_map.get_cell_atlas_coords(0, tile_br) == Vector2i(2, 0)
+		and	tile_map.get_cell_alternative_tile(0, tile_br) == 0):
+		tile_map.set_cell(0, tile_br, -1, Vector2i(0, 0))
+	elif (tile_map.get_cell_source_id(0, tile_br) == 2
+		  and tile_map.get_cell_atlas_coords(0, tile_br) == Vector2i(0, 0)):
+		tile_map.set_cell(0, tile_br, 2, Vector2i(2, 0), 1)
+
+
 func load_level_data(data: PackedByteArray) -> void:
 	tile_map.clear()
 	for child in objects.get_children():
@@ -447,7 +481,7 @@ func load_level_data(data: PackedByteArray) -> void:
 	place_tile(end_tile)
 	var level_end := preload("res://src/objects/level_end.tscn").instantiate() as LevelEnd
 	objects.add_child(level_end)
-	level_end.position = tile_map.map_to_local(end_tile) - Vector2(0, 16)
+	level_end.position = tile_map.map_to_local(end_tile) + level_end.get_position_offset()
 
 	level_end.minimum_weight = data.decode_s8(cursor)
 	cursor += 1
@@ -511,27 +545,25 @@ func load_level_data(data: PackedByteArray) -> void:
 			push_error("Object not connected to a wire net. (coords = %d, %d)" % [coords.x, coords.y])
 			continue
 
+		var object = CLASS_TO_SCENE[type].instantiate() as LevelObject
+		object.position = tile_map.map_to_local(coords) + object.get_position_offset()
 		match type:
-			LEVEL_BUTTON:
-				var button := CLASS_TO_SCENE[LEVEL_BUTTON].instantiate()
-				button.position = tile_map.map_to_local(coords)
+			LevelObject.BUTTON:
+				var button := object as LevelButton
 				button.minimum_weight = state & 0xF
 				button.maximum_weight = (state >> 4) & 0xF
 				button.button_pressed.connect(toggle_wire_net.bind(net_idx))
-				objects.add_child(button)
-			TOGGLE:
-				var toggle := CLASS_TO_SCENE[TOGGLE].instantiate()
-				toggle.position = tile_map.map_to_local(coords)
+			LevelObject.TOGGLE:
+				var toggle := object as Toggle
 				toggle.minimum_weight = state & 0xF
 				toggle.maximum_weight = (state >> 4) & 0xF
 				toggle.toggled.connect(toggle_wire_net.bind(net_idx))
-				objects.add_child(toggle)
-			GATE:
-				var gate := CLASS_TO_SCENE[GATE].instantiate()
-				gate.position = tile_map.map_to_local(coords) - Vector2(0, 8)
+			LevelObject.GATE:
+				var gate := object as Gate
 				# Gates delete the tile under them if they're closed.
 				place_tile(coords)
+				gate.tile_map = tile_map
 				gate.is_open = bool(state)
 				wire_sinks[net_idx].append(gate)
-				objects.add_child(gate)
+		objects.add_child(object)
 
