@@ -27,9 +27,9 @@ func _on_LevelEnd_area_entered(area: Area2D) -> void:
 		return
 	var face_value = area.get_top_face_value()
 	if face_value >= minimum_weight and face_value <= maximum_weight:
-		emit_signal("exit_reached_success")
+		exit_reached_success.emit()
 		if get_node_or_null("Indicator") != null:
 			$Indicator.queue_free()
 		$FinishSound.play()
 	else:
-		emit_signal("exit_reached_incomplete")
+		exit_reached_incomplete.emit()

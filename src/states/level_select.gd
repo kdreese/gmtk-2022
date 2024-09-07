@@ -74,7 +74,7 @@ func _on_level_button_pressed(idx: int) -> void:
 
 func _on_BackButton_pressed() -> void:
 	hide()
-	emit_signal("level_select_exited")
+	level_select_exited.emit()
 
 
 func _on_NextButton_pressed() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxromuk6o7uys"]
+[gd_scene load_steps=8 format=4 uid="uid://dxromuk6o7uys"]
 
 [ext_resource type="PackedScene" uid="uid://lwy5y5jokgu6" path="res://src/objects/level_end.tscn" id="1"]
 [ext_resource type="Script" path="res://src/levels/level.gd" id="1_wg1rv"]
@@ -15,19 +15,20 @@ level_name = "One Door Opens"
 perfect_score = 24
 thumbnail = "res://assets/level_thumbnails/one_door_opens.png"
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="Node2D" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("3")
-format = 2
-layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(327691, 1, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 9, 0, 0, -65527, 0, 0, -131063, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 65549, 2, 0, 65550, 131074, 65536, 65551, 131074, 65536, 65552, 131074, 65536, 327692, 2, 0, 131085, 131074, 0, 196621, 131074, 0, 262157, 131074, 0, -65526, 2, 1, -131062, 131074, 0, 17, 131074, 0, 393227, 131074, 65536, 327690, 2, 65537, 65545, 2, 65537)
 
-[node name="WireTileMap" type="TileMap" parent="."]
+[node name="Ground" type="TileMapLayer" parent="TileMap"]
 y_sort_enabled = true
+use_parent_material = true
+tile_map_data = PackedByteArray("AAALAAUAAQAAAAAAAAAKAAQAAAAAAAAAAAALAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAAKAAIAAAAAAAAAAAALAAIAAAAAAAAAAAAMAAIAAAAAAAAAAAAKAAEAAAAAAAAAAAALAAEAAAAAAAAAAAAMAAEAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAJAP//AAAAAAAAAAAJAP7/AAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAANAAEAAgAAAAAAAAAOAAEAAgACAAAAAQAPAAEAAgACAAAAAQAQAAEAAgACAAAAAQAMAAUAAgAAAAAAAAANAAIAAgACAAAAAAANAAMAAgACAAAAAAANAAQAAgACAAAAAAAKAP//AgAAAAEAAAAKAP7/AgACAAAAAAARAAAAAgACAAAAAAALAAYAAgACAAAAAQAKAAUAAgAAAAEAAQAJAAEAAgAAAAEAAQA=")
+tile_set = ExtResource("3")
+
+[node name="Wires" type="TileMapLayer" parent="TileMap"]
+y_sort_enabled = true
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAJAP7/DQAAAAAAAQAKAP7/BQAAAAAAAQALAP7/BQAAAAAAAQAMAP7/BQAAAAAAAQANAP//BQAAAAAAAAAKAAEABQAAAAAAAAALAAIABQAAAAAAAQAMAAIABQAAAAAAAQAKAAAABwAAAAAAAAANAP7/BwAAAAAAAAAKAAIABwAAAAAAAQANAAIABQAAAAAAAQAOAAEABQAAAAAAAAAOAAIADgAAAAAAAgAOAAAADQAAAAAAAAANAAAADQAAAAAAAwAJAAAADQAAAAAAAQA=")
 tile_set = ExtResource("4")
-format = 2
-layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(-131063, 13, 65536, -131062, 5, 65536, -131061, 5, 65536, -131060, 5, 65536, -65523, 5, 0, 65546, 5, 0, 131083, 5, 65536, 131084, 5, 65536, 10, 7, 0, -131059, 7, 0, 131082, 7, 65536, 131085, 5, 65536, 65550, 5, 0, 131086, 14, 131072, 14, 13, 0, 13, 13, 196608, 9, 13, 65536)
 
 [node name="Objects" type="Node2D" parent="."]
 

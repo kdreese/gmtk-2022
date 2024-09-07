@@ -7,21 +7,23 @@
 [node name="Level" type="Node2D"]
 script = ExtResource("1_xh881")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="Node2D" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("1_r7g1r")
-format = 2
-layer_0/name = "Base"
-layer_0/y_sort_enabled = true
-layer_1/name = "Preview"
-layer_1/modulate = Color(1, 1, 1, 0.878431)
-layer_1/y_sort_enabled = true
-layer_1/tile_data = PackedInt32Array()
 
-[node name="WireTileMap" type="TileMap" parent="."]
+[node name="Ground" type="TileMapLayer" parent="TileMap"]
 y_sort_enabled = true
+use_parent_material = true
+tile_set = ExtResource("1_r7g1r")
+
+[node name="GroundPreview" type="TileMapLayer" parent="TileMap"]
+modulate = Color(1, 1, 1, 0.752941)
+y_sort_enabled = true
+use_parent_material = true
+tile_set = ExtResource("1_r7g1r")
+
+[node name="Wires" type="TileMapLayer" parent="TileMap"]
+y_sort_enabled = true
+use_parent_material = true
 tile_set = ExtResource("3_uiwh8")
-format = 2
-layer_0/y_sort_enabled = true
 
 [node name="Objects" type="Node2D" parent="."]

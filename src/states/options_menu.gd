@@ -60,7 +60,7 @@ func show_menu() -> void:
 
 func close_menu() -> void:
 	hide()
-	emit_signal("options_exited")
+	options_exited.emit()
 	Global.save_config()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3ioungev0amm"]
+[gd_scene load_steps=7 format=4 uid="uid://b3ioungev0amm"]
 
 [ext_resource type="TileSet" uid="uid://dqydij0582jko" path="res://resouces/tile_set.tres" id="1"]
 [ext_resource type="Script" path="res://src/levels/level.gd" id="1_3vg6h"]
@@ -15,19 +15,20 @@ text = "This button won't activate unless you're in the right orientation. Once 
 perfect_score = 17
 thumbnail = "res://assets/level_thumbnails/gate.png"
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="Node2D" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("1")
-format = 2
-layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(327691, 1, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 262158, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 327694, 0, 0, 131084, 0, 0, 131085, 0, 0, 65548, 0, 0, 65549, 0, 0, 13, 0, 0, 14, 0, 0, 15, 131074, 0, 131086, 2, 1, 196623, 131074, 0, 262159, 131074, 0, 327695, 131074, 0, 65550, 2, 0, 327692, 2, 0, 327693, 2, 65537, 393227, 131074, 65536, 393230, 131074, 65536)
 
-[node name="WireTileMap" type="TileMap" parent="."]
+[node name="Ground" type="TileMapLayer" parent="TileMap"]
 y_sort_enabled = true
+use_parent_material = true
+tile_map_data = PackedByteArray("AAALAAUAAQAAAAAAAAALAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAANAAQAAAAAAAAAAAAOAAQAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAANAAMAAAAAAAAAAAAOAAMAAAAAAAAAAAAOAAUAAAAAAAAAAAAMAAIAAAAAAAAAAAANAAIAAAAAAAAAAAAMAAEAAAAAAAAAAAANAAEAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAgACAAAAAAAOAAIAAgAAAAEAAAAPAAMAAgACAAAAAAAPAAQAAgACAAAAAAAPAAUAAgACAAAAAAAOAAEAAgAAAAAAAAAMAAUAAgAAAAAAAAANAAUAAgAAAAEAAQALAAYAAgACAAAAAQAOAAYAAgACAAAAAQA=")
+tile_set = ExtResource("1")
+
+[node name="Wires" type="TileMapLayer" parent="TileMap"]
+y_sort_enabled = true
+use_parent_material = true
+tile_map_data = PackedByteArray("AAANAAAADgAAAAAAAAANAAQABwAAAAAAAQANAAEABQAAAAAAAAANAAIABQAAAAAAAAANAAMABQAAAAAAAAAOAAAADQAAAAAAAgAOAAQADQAAAAAAAgA=")
 tile_set = ExtResource("6")
-format = 2
-layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(13, 14, 0, 262157, 7, 65536, 65549, 5, 0, 131085, 5, 0, 196621, 5, 0, 14, 13, 131072, 262158, 13, 131072)
 
 [node name="Objects" type="Node2D" parent="."]
 

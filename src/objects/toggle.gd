@@ -24,7 +24,7 @@ func _on_Toggle_area_entered(area: Area2D) -> void:
 	var face_value = area.get_top_face_value()
 	if face_value >= minimum_weight and face_value <= maximum_weight:
 		change_sprite()
-		emit_signal("toggled")
+		toggled.emit()
 		$PressedSound.play()
 
 

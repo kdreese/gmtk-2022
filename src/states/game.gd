@@ -79,7 +79,7 @@ func load_level(level_scene: PackedScene):
 ## Loads the level stored in the `level` node. Do not call this function directly.
 func _load_level_internal():
 
-	var tile_map := level.get_node("TileMap") as TileMap
+	var tile_map := level.get_node("TileMap/Ground") as TileMapLayer
 
 
 	level.get_node("Objects/LevelEnd").exit_reached_success.connect(self._on_LevelEnd_exit_reached_success)
@@ -91,7 +91,7 @@ func _load_level_internal():
 		$CanvasLayer/UI/Textbox/MessageText.text = level.text
 		$CanvasLayer/UI/Textbox.show()
 
-	var start_tiles := tile_map.get_used_cells_by_id(0, START_TILE_SOURCE_ID, Vector2i(0, 0))
+	var start_tiles := tile_map.get_used_cells_by_id(START_TILE_SOURCE_ID, Vector2i(0, 0))
 
 	assert(len(start_tiles) == 1)
 
@@ -108,8 +108,8 @@ func _load_level_internal():
 
 
 func reload_level():
-	var tile_map := level.get_node("TileMap") as TileMap
-	var start_tiles := tile_map.get_used_cells_by_id(0, START_TILE_SOURCE_ID, Vector2i(0, 0))
+	var tile_map := level.get_node("TileMap/Ground") as TileMapLayer
+	var start_tiles := tile_map.get_used_cells_by_id(START_TILE_SOURCE_ID, Vector2i(0, 0))
 
 	assert(len(start_tiles) == 1)
 
@@ -243,4 +243,3 @@ func to_next_level() -> void:
 		Global.current_level_idx += 1
 		var next_level := Global.LEVELS[Global.current_level_idx]
 		load_level(next_level)
-

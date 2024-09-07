@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxy175bdf6s0s"]
+[gd_scene load_steps=7 format=4 uid="uid://bxy175bdf6s0s"]
 
 [ext_resource type="TileSet" uid="uid://dqydij0582jko" path="res://resouces/tile_set.tres" id="1"]
 [ext_resource type="Script" path="res://src/levels/level.gd" id="1_myvjc"]
@@ -15,19 +15,20 @@ text = "This is our last test for you. If you can pass it, you have truly proven
 perfect_score = 17
 thumbnail = "res://assets/level_thumbnails/hail_mary.png"
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="Node2D" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("1")
-format = 2
-layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(393228, 1, 0, 393227, 0, 0, 327691, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 327693, 0, 0, 393229, 0, 0, 327692, 0, 0, 196620, 0, 0, 131084, 0, 0, 65548, 0, 0, 12, 0, 0, -65524, 0, 0, -131060, 0, 0, -196596, 0, 0, -262132, 0, 0, -327668, 0, 0, 458763, 131074, 65536, 458764, 131074, 65536, 458765, 131074, 65536, 196621, 2, 1, 393230, 131074, 0, 327694, 131074, 0, 262158, 131074, 0, 131085, 131074, 0, 65549, 131074, 0, 13, 131074, 0, -65523, 131074, 0, -131059, 131074, 0, -196595, 131074, 0, -262131, 131074, 0, -327667, 131074, 0)
 
-[node name="WireTileMap" type="TileMap" parent="."]
+[node name="Ground" type="TileMapLayer" parent="TileMap"]
 y_sort_enabled = true
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAMAAYAAQAAAAAAAAALAAYAAAAAAAAAAAALAAUAAAAAAAAAAAALAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAANAAQAAAAAAAAAAAANAAUAAAAAAAAAAAANAAYAAAAAAAAAAAAMAAUAAAAAAAAAAAAMAAMAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAEAAAAAAAAAAAAMAAAAAAAAAAAAAAAMAP//AAAAAAAAAAAMAP7/AAAAAAAAAAAMAP3/AAAAAAAAAAAMAPz/AAAAAAAAAAAMAPv/AAAAAAAAAAALAAcAAgACAAAAAQAMAAcAAgACAAAAAQANAAcAAgACAAAAAQANAAMAAgAAAAEAAAAOAAYAAgACAAAAAAAOAAUAAgACAAAAAAAOAAQAAgACAAAAAAANAAIAAgACAAAAAAANAAEAAgACAAAAAAANAAAAAgACAAAAAAANAP//AgACAAAAAAANAP7/AgACAAAAAAANAP3/AgACAAAAAAANAPz/AgACAAAAAAANAPv/AgACAAAAAAA=")
+tile_set = ExtResource("1")
+
+[node name="Wires" type="TileMapLayer" parent="TileMap"]
+y_sort_enabled = true
+use_parent_material = true
+tile_map_data = PackedByteArray("AAANAAIABQAAAAAAAQAOAAIABQAAAAAAAQANAAEABQAAAAAAAQAPAAEABQAAAAAAAAAPAAAABQAAAAAAAAAOAAAABQAAAAAAAAANAP3/BwAAAAAAAAAOAP7/BwAAAAAAAAAPAP//BwAAAAAAAAAOAP//CwAAAAAAAAANAP7/CwAAAAAAAAANAP//CwAAAAAAAAANAAAADgAAAAAAAgAOAAEADgAAAAAAAgAPAAIADgAAAAAAAgAMAAAADQAAAAAAAQAMAAEADQAAAAAAAQAMAAIADQAAAAAAAQAMAP//DQAAAAAAAQAMAP7/DQAAAAAAAQAMAP3/DQAAAAAAAQA=")
 tile_set = ExtResource("6")
-format = 2
-layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(131085, 5, 65536, 131086, 5, 65536, 65549, 5, 65536, 65551, 5, 0, 15, 5, 0, 14, 5, 0, -196595, 7, 0, -131058, 7, 0, -65521, 7, 0, -65522, 11, 0, -131059, 11, 0, -65523, 11, 0, 13, 14, 131072, 65550, 14, 131072, 131087, 14, 131072, 12, 13, 65536, 65548, 13, 65536, 131084, 13, 65536, -65524, 13, 65536, -131060, 13, 65536, -196596, 13, 65536)
 
 [node name="Objects" type="Node2D" parent="."]
 

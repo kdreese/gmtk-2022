@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cu40k3068s1es"]
+[gd_scene load_steps=4 format=4 uid="uid://cu40k3068s1es"]
 
 [ext_resource type="TileSet" uid="uid://dqydij0582jko" path="res://resouces/tile_set.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://lwy5y5jokgu6" path="res://src/objects/level_end.tscn" id="2"]
@@ -12,12 +12,14 @@ text = "You have been arrested on suspicion of violating Legal Code 1379.42, or 
 perfect_score = 10
 thumbnail = "res://assets/level_thumbnails/spiral.png"
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="Ground" type="TileMapLayer" parent="TileMap"]
+y_sort_enabled = true
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAKAAQAAQAAAAAAAAAKAAMAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAEAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAANAAEAAAAAAAAAAAANAAIAAAAAAAAAAAAMAAIAAAAAAAAAAAAKAAUAAgACAAAAAQALAAQAAgACAAAAAAALAAMAAgACAAAAAAALAAIAAgACAAAAAAALAAEAAgAAAAAAAAAMAAEAAgAAAAEAAQAOAAAAAgACAAAAAAAOAAEAAgACAAAAAAAOAAIAAgACAAAAAAAMAAMAAgACAAAAAQANAAMAAgACAAAAAQA=")
 tile_set = ExtResource("1")
-format = 2
-layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(262154, 1, 0, 196618, 0, 0, 131082, 0, 0, 65546, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 65549, 0, 0, 131085, 0, 0, 131084, 0, 0, 327690, 131074, 65536, 262155, 131074, 0, 196619, 131074, 0, 131083, 131074, 0, 65547, 2, 0, 65548, 2, 65537, 14, 131074, 0, 65550, 131074, 0, 131086, 131074, 0, 196620, 131074, 65536, 196621, 131074, 65536)
 
 [node name="Objects" type="Node2D" parent="."]
 

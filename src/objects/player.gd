@@ -36,7 +36,7 @@ var backside_visible := false
 var bottom_visible := false
 
 var grid_coords := Vector2.ZERO
-var tile_map: TileMap
+var tile_map: TileMapLayer
 
 
 func reset_orientation() -> void:
@@ -88,7 +88,7 @@ func _physics_process(_delta: float) -> void:
 			if move(Vector2(0, -1)):
 				$ExtraFace.material.get_shader_parameter("palette").gradient = PALETTES[bottom_face]
 				set_anim("rotate_x")
-				emit_signal("should_update_z_index", grid_coords)
+				should_update_z_index.emit(grid_coords)
 		elif Input.is_action_pressed("move_back"):
 			if move(Vector2(0, 1)):
 				$ExtraFace.material.get_shader_parameter("palette").gradient = PALETTES[back_face]
@@ -101,7 +101,7 @@ func _physics_process(_delta: float) -> void:
 			if move(Vector2(-1, 0)):
 				$ExtraFace.material.get_shader_parameter("palette").gradient = PALETTES[bottom_face]
 				set_anim("rotate_neg_z")
-				emit_signal("should_update_z_index", grid_coords)
+				should_update_z_index.emit(grid_coords)
 
 
 func show_bottom_face() -> void:
@@ -187,14 +187,14 @@ func move(offset: Vector2) -> bool:
 	var new_coords := grid_coords + offset
 	if is_movable(new_coords):
 		grid_coords = new_coords
-		emit_signal("player_moved")
+		player_moved.emit()
 		return true
 	return false
 
 
 # Check if the space attempting to be moved into is capable of being moved into
 func is_movable(coord: Vector2) -> bool:
-	var tile_source_id := tile_map.get_cell_source_id(0, coord)
+	var tile_source_id := tile_map.get_cell_source_id(coord)
 	if tile_source_id == -1:
 		return false
 	var tile_name = tile_map.tile_set.get_source(tile_source_id).resource_name
@@ -310,7 +310,7 @@ func _on_animation_finished() -> void:
 	$ExtraFace.play("idle")
 	update_palettes()
 	position = tile_map.map_to_local(grid_coords)
-	emit_signal("should_update_z_index", grid_coords)
+	should_update_z_index.emit(grid_coords)
 	$MoveSound.play()
 
 

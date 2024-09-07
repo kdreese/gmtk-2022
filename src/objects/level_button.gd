@@ -26,9 +26,6 @@ func _ready() -> void:
 		$Indicator.queue_free()
 
 
-
-
-
 func set_pressed() -> void:
 	$Sprite2D.texture = pressed_texture
 
@@ -45,5 +42,5 @@ func _on_area_entered(area: Area2D) -> void:
 		if get_node_or_null("Indicator") != null:
 			$Indicator.queue_free()
 		set_pressed()
-		emit_signal("button_pressed")
+		button_pressed.emit()
 		$PressedSound.play()
