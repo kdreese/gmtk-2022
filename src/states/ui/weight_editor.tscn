@@ -1,0 +1,156 @@
+[gd_scene load_steps=7 format=3 uid="uid://chme4uuaoc2he"]
+
+[ext_resource type="Texture2D" uid="uid://5pasroyfm4x3" path="res://assets/ui/weight_select_background.png" id="1_ra653"]
+[ext_resource type="Script" path="res://src/states/ui/weight_editor.gd" id="1_w6kjw"]
+[ext_resource type="Texture2D" uid="uid://c4hd0up5mx0k6" path="res://assets/ui/weight_select_arrow.png" id="2_0a8ee"]
+[ext_resource type="Theme" uid="uid://cebef7ax6hl5m" path="res://resouces/default_theme.tres" id="2_kehcn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i5ifm"]
+texture = ExtResource("1_ra653")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(0, 0, 20, 20)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_5a6f3"]
+allow_unpress = true
+
+[node name="WeightEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_w6kjw")
+bbox = Rect2(-1000, -1000, 2000, 2000)
+
+[node name="BackButton" type="Button" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1280, 960)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -480.0
+offset_right = 640.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+
+[node name="Panel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = -1
+offset_left = -70.0
+offset_top = 5.0
+offset_right = 70.0
+offset_bottom = 112.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_i5ifm")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Select Weight"
+
+[node name="ButtonGrid" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+
+[node name="Button1" type="Button" parent="Panel/MarginContainer/VBoxContainer/ButtonGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_kehcn")
+theme_type_variation = &"WeightSelectButton"
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_5a6f3")
+text = "1"
+
+[node name="Button2" type="Button" parent="Panel/MarginContainer/VBoxContainer/ButtonGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_kehcn")
+theme_type_variation = &"WeightSelectButton"
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_5a6f3")
+text = "2"
+
+[node name="Button3" type="Button" parent="Panel/MarginContainer/VBoxContainer/ButtonGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_kehcn")
+theme_type_variation = &"WeightSelectButton"
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_5a6f3")
+text = "3"
+
+[node name="Button4" type="Button" parent="Panel/MarginContainer/VBoxContainer/ButtonGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_kehcn")
+theme_type_variation = &"WeightSelectButton"
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_5a6f3")
+text = "4"
+
+[node name="Button5" type="Button" parent="Panel/MarginContainer/VBoxContainer/ButtonGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_kehcn")
+theme_type_variation = &"WeightSelectButton"
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_5a6f3")
+text = "5"
+
+[node name="Button6" type="Button" parent="Panel/MarginContainer/VBoxContainer/ButtonGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_kehcn")
+theme_type_variation = &"WeightSelectButton"
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_5a6f3")
+text = "6"
+
+[node name="Arrow" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_right = 10.0
+offset_bottom = 20.0
+grow_horizontal = 2
+texture = ExtResource("2_0a8ee")
+stretch_mode = 2
+
+[connection signal="pressed" from="BackButton" to="." method="on_back_button_pressed"]

@@ -31,6 +31,7 @@ func update_text(moves: int) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
+		hide()
 		get_tree().paused = false
 		owner.reload_level()
 		get_viewport().set_input_as_handled()
@@ -43,6 +44,7 @@ func _on_ContinueButton_pressed() -> void:
 
 
 func _on_RestartButton_pressed() -> void:
+	hide()
 	get_tree().paused = false
 	owner.reload_level()
 

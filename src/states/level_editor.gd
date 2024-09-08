@@ -3,6 +3,8 @@ extends Node2D
 
 const BUTTON_IGNORE_BOX := Rect2(0, 0, 200, 100)
 const OBJECT_PREVIEW_MODULATE := Color(1.0, 1.0, 1.0, 0.35)
+const LEVEL_BOUNDING_BOX := Rect2(0, 80, 640, 280)
+
 
 enum {
 	NOTHING = 0,
@@ -34,6 +36,9 @@ var current_object_offset: Vector2 = Vector2(0, 0)
 
 var tile_button_group: ButtonGroup
 
+@onready var weight_editor: WeightEditor = %WeightEditor
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	level = preload("res://src/levels/level.tscn").instantiate() as Level
@@ -52,7 +57,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var mouse_pos := get_local_mouse_position()
-		if BUTTON_IGNORE_BOX.has_point(mouse_pos) or %TileSelector.get_rect().has_point(mouse_pos):
+		if not LEVEL_BOUNDING_BOX.has_point(mouse_pos):
 			ground_preview_tile_map.clear()
 			return
 		var grid_coords = ground_tile_map.local_to_map(mouse_pos)
@@ -62,11 +67,17 @@ func _input(event: InputEvent) -> void:
 
 	elif event is InputEventMouseButton:
 		var mouse_pos := get_local_mouse_position()
-		if BUTTON_IGNORE_BOX.has_point(mouse_pos) or %TileSelector.get_rect().has_point(mouse_pos):
+		if not LEVEL_BOUNDING_BOX.has_point(mouse_pos):
 			ground_preview_tile_map.clear()
 			return
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			place_object(mouseover_tile)
+			if object_to_place == NOTHING and not %WeightEditor.visible:
+				var object = get_object_at_location(mouseover_tile)
+				if object != null:
+					current_object = object
+					show_weight_menu(mouseover_tile)
+			else:
+				place_object(mouseover_tile)
 
 
 func mouse_entered_tile(current: Vector2i, _prev: Vector2i) -> void:
@@ -74,6 +85,34 @@ func mouse_entered_tile(current: Vector2i, _prev: Vector2i) -> void:
 		place_object(current)
 	else:
 		preview_object(current)
+
+
+func get_object_at_location(coords: Vector2i) -> LevelObject:
+	for object in level.objects.get_children() as Array[LevelObject]:
+		if coords == object.get_grid_position(ground_tile_map):
+			return object
+
+	return null
+
+
+func show_weight_menu(coords: Vector2i) -> void:
+	# Set the mouse button as handled, so it doesn't close the menu.
+	get_viewport().set_input_as_handled()
+
+	if current_object.get_object_type() == LevelObject.GATE:
+		# Gates have no weight.
+		return
+
+	if current_object.minimum_weight == 1 and current_object.maximum_weight == 6:
+		weight_editor.set_selected(0)
+	else:
+		weight_editor.set_selected(current_object.maximum_weight)
+
+	weight_editor.position = ground_tile_map.map_to_local(coords)
+	var bbox = LEVEL_BOUNDING_BOX
+	bbox.position -= weight_editor.position
+	weight_editor.set_bounding_box(bbox)
+	weight_editor.show()
 
 
 func preview_object(coords: Vector2i)-> void:
@@ -87,7 +126,7 @@ func preview_object(coords: Vector2i)-> void:
 		level.place_tile(coords, true)
 		ground_preview_tile_map.set_cell(coords, 1, Vector2i(0, 0))
 	elif object_to_place == FINISH_PAD:
-		if ground_tile_map.get_cell_source_id(coords) == 0:
+		if ground_tile_map.get_cell_source_id(coords) == 0 and not get_object_at_location(coords):
 			current_object.modulate = OBJECT_PREVIEW_MODULATE
 			current_object.position = ground_tile_map.map_to_local(coords) + current_object.get_position_offset()
 		else:
@@ -106,7 +145,7 @@ func place_object(coords: Vector2i) -> void:
 		ground_preview_tile_map.clear()
 		tile_button_group.get_pressed_button().button_pressed = false
 	elif object_to_place == FINISH_PAD:
-		if ground_tile_map.get_cell_source_id(coords) == 0:
+		if ground_tile_map.get_cell_source_id(coords) == 0 and get_object_at_location(coords) == current_object:
 			current_object.position = ground_tile_map.map_to_local(coords) + current_object.get_position_offset()
 			current_object.modulate = Color.WHITE
 			current_object = null
@@ -131,11 +170,11 @@ func preview_erase(coords: Vector2i) -> void:
 	ground_preview_tile_map.clear()
 
 	# Check to see if there is an object on the tile we're on.
-	for object in level.objects.get_children() as Array[LevelObject]:
-		if ground_tile_map.local_to_map(object.position - object.get_position_offset()) == coords:
-			current_object = object
-			current_object.modulate = OBJECT_PREVIEW_MODULATE
-			return
+	var object = get_object_at_location(coords)
+	if object != null:
+		current_object = object
+		current_object.modulate = OBJECT_PREVIEW_MODULATE
+		return
 
 	var source_id = ground_tile_map.get_cell_source_id(coords)
 	if source_id in [0, 1]:
@@ -176,6 +215,25 @@ func button_toggled(toggled_on: bool, idx: int) -> void:
 			level.objects.add_child(current_object)
 	else:
 		object_to_place = NOTHING
+
+
+func weight_changed(new_weight: int) -> void:
+	if current_object == null or current_object.get_object_type() == LevelObject.GATE:
+		return
+
+	if new_weight == 0:
+		current_object.minimum_weight = 1
+		current_object.maximum_weight = 6
+	else:
+		current_object.minimum_weight = new_weight
+		current_object.maximum_weight = new_weight
+
+	current_object.update_weight_display()
+
+
+func weight_editor_exited() -> void:
+	# Set the current object to null to show that we're done editing it.
+	current_object = null
 
 
 func play_level() -> void:

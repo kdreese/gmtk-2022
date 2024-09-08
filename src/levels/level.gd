@@ -499,6 +499,7 @@ func load_level_data(data: PackedByteArray) -> void:
 	cursor += 1
 	level_end.maximum_weight = data.decode_s8(cursor)
 	cursor += 1
+	level_end.update_weight_display()
 
 	var num_tiles := data.decode_s8(cursor)
 	cursor += 1
@@ -512,7 +513,6 @@ func load_level_data(data: PackedByteArray) -> void:
 	level_wire_nets.clear()
 
 	if not wire_tile_map:
-		print("Bruh?")
 		return
 
 	var num_nets := data.decode_s8(cursor)

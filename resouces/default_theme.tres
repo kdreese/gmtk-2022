@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=26 format=3 uid="uid://cebef7ax6hl5m"]
+[gd_resource type="Theme" load_steps=29 format=3 uid="uid://cebef7ax6hl5m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii4vc"]
 content_margin_left = 4.0
@@ -297,6 +297,32 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gbivk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twy5v"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0509804, 0.588235, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccjtt"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.0509804, 0.588235, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [resource]
 Button/styles/disabled = SubResource("StyleBoxFlat_ii4vc")
 Button/styles/focus = SubResource("StyleBoxFlat_nilo3")
@@ -333,3 +359,7 @@ OptionButton/styles/pressed_mirrored = SubResource("StyleBoxFlat_2qiib")
 TileSelectButton/base_type = &"Button"
 TileSelectButton/styles/focus = SubResource("StyleBoxEmpty_34pkk")
 TileSelectButton/styles/pressed = SubResource("StyleBoxFlat_l0oii")
+WeightSelectButton/base_type = &"Button"
+WeightSelectButton/styles/focus = SubResource("StyleBoxEmpty_gbivk")
+WeightSelectButton/styles/hover_pressed = SubResource("StyleBoxFlat_twy5v")
+WeightSelectButton/styles/pressed = SubResource("StyleBoxFlat_ccjtt")

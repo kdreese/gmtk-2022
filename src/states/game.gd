@@ -118,6 +118,8 @@ func reload_level():
 	player.reset_orientation()
 
 	reset_move_counter()
+	$CanvasLayer/UI.show()
+
 
 func show_best_score():
 	var best_score = Global.best_scores[Global.current_level_idx]
