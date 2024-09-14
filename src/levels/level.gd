@@ -2,6 +2,11 @@ class_name Level
 extends Node2D
 
 enum {
+	FLOOR_TILE = 0,
+	START_TILE,
+}
+
+enum {
 	X_ON = 0,
 	X_OFF,
 	T_ON,
@@ -50,11 +55,14 @@ var ground_tile_map: TileMapLayer
 var ground_preview_tile_map: TileMapLayer
 ## A reference to the wire tile map. Not guaranteed to exist.
 var wire_tile_map: TileMapLayer
+## The preview layer for wires.
+var wire_preview_tile_map: TileMapLayer
 ## The node that is the parent of all LevelObjects.
 var objects: Node2D
 
 
 ## Load some common references.
+##
 ## In order to be able to export level data from a PackedScene without having to add it to the tree,
 ## and thus hook up some references to LevelObjects, you can call this function. Basically it acts
 ## as a phony @onready decorator for tile_map, wire_tile_map, and objects.
@@ -62,6 +70,7 @@ func post_init() -> void:
 	ground_tile_map = $TileMap.get_node("Ground")
 	ground_preview_tile_map = $TileMap.get_node_or_null("GroundPreview")
 	wire_tile_map = $TileMap.get_node_or_null("Wires")
+	wire_preview_tile_map = $TileMap.get_node_or_null("WiresPreview")
 	objects = $Objects
 
 
@@ -72,6 +81,7 @@ func _ready() -> void:
 func handle_player_move(grid_coords: Vector2) -> void:
 	for gate in get_tree().get_nodes_in_group("Gates"):
 		gate.update_z_index(grid_coords)
+
 
 func toggle_wire_net(index: int) -> void:
 	invert_wires_3(level_wire_nets[index])
@@ -152,6 +162,7 @@ func invert_wires_3(coords_list: Array) -> void:
 	for coords in coords_list:
 		invert_wire(Vector2(coords.x, coords.y), coords.z)
 
+
 ## Get a list of all wire groups in the level.
 ##
 ## This will return a list of lists. Each sub-list corresponds to a single grouping of wire tiles.
@@ -180,72 +191,8 @@ func get_wires() -> Array:
 			var wire_tile := Vector2i(wire.x, wire.y)
 			var wire_layer := wire.z
 			net.append(wire)
-			var source_id := wire_tile_map.get_cell_source_id(wire_tile)
-			var alternative_tile := wire_tile_map.get_cell_alternative_tile(wire_tile)
 
-			var directions: Array[Vector2i] = []
-
-			if source_id in [X_OFF, X_ON]:
-				directions.push_back(Vector2i.DOWN)
-				directions.push_back(Vector2i.RIGHT)
-				directions.push_back(Vector2i.LEFT)
-				directions.push_back(Vector2i.UP)
-			elif source_id in [T_OFF, T_ON]:
-				if alternative_tile == 0:
-					directions.push_back(Vector2i.DOWN)
-					directions.push_back(Vector2i.LEFT)
-					directions.push_back(Vector2i.UP)
-				elif alternative_tile == 1:
-					directions.push_back(Vector2i.RIGHT)
-					directions.push_back(Vector2i.LEFT)
-					directions.push_back(Vector2i.UP)
-				elif alternative_tile == 2:
-					directions.push_back(Vector2i.LEFT)
-					directions.push_back(Vector2i.DOWN)
-					directions.push_back(Vector2i.RIGHT)
-				else:
-					directions.push_back(Vector2i.UP)
-					directions.push_back(Vector2i.DOWN)
-					directions.push_back(Vector2i.RIGHT)
-			elif source_id in [STRAIGHT_OFF, STRAIGHT_ON]:
-				if alternative_tile == 0:
-					directions.push_back(Vector2i.DOWN)
-					directions.push_back(Vector2i.UP)
-				else:
-					directions.push_back(Vector2i.LEFT)
-					directions.push_back(Vector2i.RIGHT)
-			elif source_id in [ELBOW_SIDE_OFF, ELBOW_SIDE_ON]:
-				if alternative_tile == 0:
-					directions.push_back(Vector2i.DOWN)
-					directions.push_back(Vector2i.LEFT)
-				else:
-					directions.push_back(Vector2i.UP)
-					directions.push_back(Vector2i.RIGHT)
-			elif source_id in cross_tiles:
-				if wire_layer == alternative_tile:
-					directions.push_back(Vector2i.DOWN)
-					directions.push_back(Vector2i.UP)
-				else:
-					directions.push_back(Vector2i.LEFT)
-					directions.push_back(Vector2i.RIGHT)
-			elif source_id in [SPUR_OFF, SPUR_ON]:
-				if alternative_tile == 0:
-					directions.push_back(Vector2i.DOWN)
-				elif alternative_tile == 1:
-					directions.push_back(Vector2i.RIGHT)
-				elif alternative_tile == 2:
-					directions.push_back(Vector2i.LEFT)
-				else:
-					directions.push_back(Vector2i.UP)
-			elif source_id in [ELBOW_DOWN_OFF, ELBOW_DOWN_ON]:
-				if alternative_tile == 0:
-					directions.push_back(Vector2i.DOWN)
-					directions.push_back(Vector2i.RIGHT)
-				else:
-					directions.push_back(Vector2i.UP)
-					directions.push_back(Vector2i.LEFT)
-			else:
-				push_error("Invalid wire tile map source ID %d." % source_id)
+			var directions = get_wire_directions(wire_tile, wire_layer)
 
 			for direction in directions:
 				var next_tile := get_wire(wire_tile, direction)
@@ -258,6 +205,7 @@ func get_wires() -> Array:
 		nets.append(net)
 
 	return nets
+
 
 ## Gets the coordinates for the wire that makes a connection with this tile.
 ##
@@ -410,14 +358,19 @@ func save_level_data() -> Array:
 	return [true, output]
 
 
-func place_tile(coords: Vector2i, is_preview: bool = false) -> void:
+## Place a tile at the given grid position. This will edit the neighboring tiles if necessary to
+## add the correct edges. If is_preview is set to true, then the tile will be placed on the preview
+## layer. If is_start is set to true, the tile will be a start tile, otherwise it will be a normal
+## tile.
+func place_tile(coords: Vector2i, is_preview: bool = false, is_start: bool = false) -> void:
 	var tile_map: TileMapLayer
 	if is_preview:
 		tile_map = ground_preview_tile_map
 	else:
 		tile_map = ground_tile_map
 
-	tile_map.set_cell(coords, 0, Vector2i(0, 0))
+	var tile_source_id := START_TILE if is_start else FLOOR_TILE
+	tile_map.set_cell(coords, tile_source_id, Vector2i(0, 0))
 
 	var tile_bl := coords + Vector2i(0, 1)
 	# Check the surrounding tiles on the actual layer, even if this is a preview.
@@ -437,7 +390,164 @@ func place_tile(coords: Vector2i, is_preview: bool = false) -> void:
 		tile_map.set_cell(tile_br, 2, Vector2i(2, 0), 0)
 
 
+func place_wire(from: Vector2i, to: Vector2i) -> void:
+	var from_directions := get_wire_directions(from, -1)
+	var to_directions := get_wire_directions(to, -1)
+
+	# Ensure the tiles are adjacent.
+	var diff := from - to
+
+	if diff not in [Vector2i.LEFT, Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT]:
+		return
+
+	if (to - from) not in from_directions:
+		from_directions.append(to - from)
+	if (from - to) not in to_directions:
+		to_directions.append(from - to)
+
+	var from_params := get_wire_tile_params(from_directions)
+	var to_params := get_wire_tile_params(to_directions)
+
+	wire_tile_map.set_cell(from, from_params[0], Vector2i(0, 0), from_params[1])
+	wire_tile_map.set_cell(to, to_params[0], Vector2i(0, 0), to_params[1])
+
+
+## Get the directions that a wire tile points to. wire_layer specifies the layer for cross tiles.
+## If this value is set to -1 then the layer is ignored.
+func get_wire_directions(coords: Vector2i, wire_layer: int) -> Array[Vector2i]:
+	var directions: Array[Vector2i] = []
+	var source_id := wire_tile_map.get_cell_source_id(coords)
+	var alternative_tile := wire_tile_map.get_cell_alternative_tile(coords)
+	if source_id in [X_OFF, X_ON]:
+		directions.push_back(Vector2i.DOWN)
+		directions.push_back(Vector2i.RIGHT)
+		directions.push_back(Vector2i.LEFT)
+		directions.push_back(Vector2i.UP)
+	elif source_id in [T_OFF, T_ON]:
+		if alternative_tile == 0:
+			directions.push_back(Vector2i.DOWN)
+			directions.push_back(Vector2i.LEFT)
+			directions.push_back(Vector2i.UP)
+		elif alternative_tile == 1:
+			directions.push_back(Vector2i.RIGHT)
+			directions.push_back(Vector2i.LEFT)
+			directions.push_back(Vector2i.UP)
+		elif alternative_tile == 2:
+			directions.push_back(Vector2i.LEFT)
+			directions.push_back(Vector2i.DOWN)
+			directions.push_back(Vector2i.RIGHT)
+		else:
+			directions.push_back(Vector2i.UP)
+			directions.push_back(Vector2i.DOWN)
+			directions.push_back(Vector2i.RIGHT)
+	elif source_id in [STRAIGHT_OFF, STRAIGHT_ON]:
+		if alternative_tile == 0:
+			directions.push_back(Vector2i.DOWN)
+			directions.push_back(Vector2i.UP)
+		else:
+			directions.push_back(Vector2i.LEFT)
+			directions.push_back(Vector2i.RIGHT)
+	elif source_id in [ELBOW_SIDE_OFF, ELBOW_SIDE_ON]:
+		if alternative_tile == 0:
+			directions.push_back(Vector2i.DOWN)
+			directions.push_back(Vector2i.LEFT)
+		else:
+			directions.push_back(Vector2i.UP)
+			directions.push_back(Vector2i.RIGHT)
+	elif source_id in [CROSS_BOTH_OFF, CROSS_BOTH_ON, CROSS_BOTTOM_ON, CROSS_TOP_ON]:
+		if wire_layer == -1:
+			directions.push_back(Vector2i.DOWN)
+			directions.push_back(Vector2i.RIGHT)
+			directions.push_back(Vector2i.LEFT)
+			directions.push_back(Vector2i.UP)
+		elif wire_layer == alternative_tile:
+			directions.push_back(Vector2i.DOWN)
+			directions.push_back(Vector2i.UP)
+		else:
+			directions.push_back(Vector2i.LEFT)
+			directions.push_back(Vector2i.RIGHT)
+	elif source_id in [SPUR_OFF, SPUR_ON]:
+		if alternative_tile == 0:
+			directions.push_back(Vector2i.DOWN)
+		elif alternative_tile == 1:
+			directions.push_back(Vector2i.RIGHT)
+		elif alternative_tile == 2:
+			directions.push_back(Vector2i.LEFT)
+		else:
+			directions.push_back(Vector2i.UP)
+	elif source_id in [ELBOW_DOWN_OFF, ELBOW_DOWN_ON]:
+		if alternative_tile == 0:
+			directions.push_back(Vector2i.DOWN)
+			directions.push_back(Vector2i.RIGHT)
+		else:
+			directions.push_back(Vector2i.UP)
+			directions.push_back(Vector2i.LEFT)
+	elif source_id != -1:
+		push_error("Invalid wire tile map source ID %d." % source_id)
+
+	return directions
+
+
+## Get the wire tile params from a list of connected directions. Returns an Array containing the
+## source_id and alternative_tile of the tile. This assumes no cross tile.
+func get_wire_tile_params(directions: Array[Vector2i]) -> Array:
+	## Sort the directions so the match is always in the same order.
+	directions.sort()
+
+	var source_id := -1
+	var alternative_tile := 0
+
+	match directions:
+		[Vector2i.LEFT, Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT]:
+			source_id = X_OFF
+		[Vector2i.LEFT, Vector2i.UP, Vector2i.DOWN]:
+			source_id = T_OFF
+		[Vector2i.LEFT, Vector2i.UP, Vector2i.RIGHT]:
+			source_id = T_OFF
+			alternative_tile = 1
+		[Vector2i.LEFT, Vector2i.DOWN, Vector2i.RIGHT]:
+			source_id = T_OFF
+			alternative_tile = 2
+		[Vector2i.UP, Vector2i.DOWN, Vector2i.RIGHT]:
+			source_id = T_OFF
+			alternative_tile = 3
+		[Vector2i.UP, Vector2i.DOWN]:
+			source_id = STRAIGHT_OFF
+		[Vector2i.LEFT, Vector2i.RIGHT]:
+			source_id = STRAIGHT_OFF
+			alternative_tile = 1
+		[Vector2i.LEFT, Vector2i.DOWN]:
+			source_id = ELBOW_SIDE_OFF
+		[Vector2i.UP, Vector2i.RIGHT]:
+			source_id = ELBOW_SIDE_OFF
+			alternative_tile = 1
+		[Vector2i.DOWN]:
+			source_id = SPUR_OFF
+		[Vector2i.RIGHT]:
+			source_id = SPUR_OFF
+			alternative_tile = 1
+		[Vector2i.LEFT]:
+			source_id = SPUR_OFF
+			alternative_tile = 2
+		[Vector2i.UP]:
+			source_id = SPUR_OFF
+			alternative_tile = 3
+		[Vector2i.DOWN, Vector2i.RIGHT]:
+			source_id = ELBOW_DOWN_OFF
+		[Vector2i.LEFT, Vector2i.UP]:
+			source_id = ELBOW_DOWN_OFF
+			alternative_tile = 1
+		_:
+			push_error("Invalid wire directions: ", directions)
+
+	return [source_id, alternative_tile]
+
+
+## Remove a tile at the given grid position.
 func remove_tile(coords: Vector2i) -> void:
+	if ground_tile_map.get_cell_source_id(coords) not in [FLOOR_TILE, START_TILE]:
+		return
+
 	var tile_tl := coords + Vector2i(-1, 0)
 	var tile_tr := coords + Vector2i(0, -1)
 	if (ground_tile_map.get_cell_source_id(tile_tl) in [0, 1]

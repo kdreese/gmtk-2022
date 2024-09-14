@@ -11,7 +11,8 @@ enum {
 	ERASE,
 	NORMAL_TILE,
 	START_TILE,
-	FINISH_PAD
+	FINISH_PAD,
+	WIRES,
 }
 
 ## The object that we are placing
@@ -24,6 +25,10 @@ var level: Level = null
 var ground_tile_map: TileMapLayer = null
 ## The preview layer for ground tiles
 var ground_preview_tile_map: TileMapLayer = null
+## The wire tile map for the level we're editing
+var wire_tile_map: TileMapLayer = null
+## The preview layer for wires
+var wire_preview_tile_map: TileMapLayer = null
 
 
 ## The tile currently underneath the cursor.
@@ -46,6 +51,8 @@ func _ready() -> void:
 
 	ground_tile_map = level.ground_tile_map
 	ground_preview_tile_map = level.ground_preview_tile_map
+	wire_tile_map = level.wire_tile_map
+	wire_preview_tile_map = level.wire_preview_tile_map
 
 	tile_button_group = ButtonGroup.new()
 	tile_button_group.allow_unpress = true
@@ -59,6 +66,7 @@ func _input(event: InputEvent) -> void:
 		var mouse_pos := get_local_mouse_position()
 		if not LEVEL_BOUNDING_BOX.has_point(mouse_pos):
 			ground_preview_tile_map.clear()
+			wire_preview_tile_map.clear()
 			return
 		var grid_coords = ground_tile_map.local_to_map(mouse_pos)
 		if grid_coords != mouseover_tile:
@@ -69,6 +77,7 @@ func _input(event: InputEvent) -> void:
 		var mouse_pos := get_local_mouse_position()
 		if not LEVEL_BOUNDING_BOX.has_point(mouse_pos):
 			ground_preview_tile_map.clear()
+			wire_preview_tile_map.clear()
 			return
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			if object_to_place == NOTHING and not %WeightEditor.visible:
@@ -80,13 +89,18 @@ func _input(event: InputEvent) -> void:
 				place_object(mouseover_tile)
 
 
-func mouse_entered_tile(current: Vector2i, _prev: Vector2i) -> void:
+func mouse_entered_tile(current: Vector2i, prev: Vector2i) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		place_object(current)
+		if object_to_place == WIRES:
+			level.place_wire(prev, current)
+		else:
+			# If the mouse button is down when we enter the tile, treat it as a click.
+			place_object(current)
 	else:
 		preview_object(current)
 
 
+## Return the object at the specified grid position, or null if there is no object there.
 func get_object_at_location(coords: Vector2i) -> LevelObject:
 	for object in level.objects.get_children() as Array[LevelObject]:
 		if coords == object.get_grid_position(ground_tile_map):
@@ -123,14 +137,18 @@ func preview_object(coords: Vector2i)-> void:
 		level.place_tile(coords, true)
 	elif object_to_place == START_TILE:
 		ground_preview_tile_map.clear()
-		level.place_tile(coords, true)
-		ground_preview_tile_map.set_cell(coords, 1, Vector2i(0, 0))
+		level.place_tile(coords, true, true)
 	elif object_to_place == FINISH_PAD:
 		if ground_tile_map.get_cell_source_id(coords) == 0 and not get_object_at_location(coords):
 			current_object.modulate = OBJECT_PREVIEW_MODULATE
 			current_object.position = ground_tile_map.map_to_local(coords) + current_object.get_position_offset()
 		else:
 			current_object.modulate = Color.TRANSPARENT
+	elif object_to_place == WIRES:
+		wire_preview_tile_map.clear()
+		if wire_tile_map.get_cell_source_id(coords) == -1:
+			wire_preview_tile_map.set_cell(coords, 1, Vector2i(0, 0))
+
 
 
 func place_object(coords: Vector2i) -> void:
@@ -140,8 +158,7 @@ func place_object(coords: Vector2i) -> void:
 		level.place_tile(coords)
 		ground_preview_tile_map.clear()
 	elif object_to_place == START_TILE:
-		level.place_tile(coords)
-		ground_tile_map.set_cell(coords, 1, Vector2i(0, 0))
+		level.place_tile(coords, false, true)
 		ground_preview_tile_map.clear()
 		tile_button_group.get_pressed_button().button_pressed = false
 	elif object_to_place == FINISH_PAD:
@@ -150,8 +167,12 @@ func place_object(coords: Vector2i) -> void:
 			current_object.modulate = Color.WHITE
 			current_object = null
 			tile_button_group.get_pressed_button().button_pressed = false
+	elif object_to_place == WIRES:
+		wire_preview_tile_map.clear()
+		# TODO: if there is no tile here, maybe show a single dot?
 
 
+## Preview erasing whatever is on the tile beneath the cursor.
 func preview_erase(coords: Vector2i) -> void:
 	if current_object != null:
 		# We were previewing an erase somewhere else. Reset that modulate.
@@ -164,9 +185,8 @@ func preview_erase(coords: Vector2i) -> void:
 		# should only ever be 1 tile.
 		var tiles := ground_preview_tile_map.get_used_cells_by_id(source_id, Vector2(0,0))
 		for tile in tiles:
-			level.place_tile(tile)
-			if source_id == 1:
-				ground_tile_map.set_cell(tile, source_id, Vector2i(0, 0))
+			level.place_tile(tile, false, bool(source_id == 1))
+
 	ground_preview_tile_map.clear()
 
 	# Check to see if there is an object on the tile we're on.
@@ -179,14 +199,12 @@ func preview_erase(coords: Vector2i) -> void:
 	var source_id = ground_tile_map.get_cell_source_id(coords)
 	if source_id in [0, 1]:
 		level.remove_tile(coords)
-		level.place_tile(coords, true)
-		if source_id == 1:
-			ground_preview_tile_map.set_cell(coords, source_id, Vector2i(0, 0))
+		level.place_tile(coords, true, bool(source_id == 1))
 
 
 func erase(coords: Vector2i) -> void:
 	if current_object != null:
-		# We shoudl erase this object.
+		# We're selecting an object. Erase it.
 		level.objects.remove_child(current_object)
 		current_object.queue_free()
 		current_object = null
@@ -196,6 +214,7 @@ func erase(coords: Vector2i) -> void:
 	ground_preview_tile_map.clear()
 
 
+## Delete whatever is stored in current_object.
 func free_current_object():
 	if current_object:
 		level.objects.remove_child(current_object)
@@ -244,6 +263,8 @@ func play_level() -> void:
 		%PopupPanel.popup_centered()
 		return
 	var game := preload("res://src/states/game.tscn").instantiate() as Game
+	# This is a fake change_scene_to_file so that we can call play_level_from_string after the scene
+	# is changed.
 	get_tree().get_root().add_child(game)
 	get_tree().set_current_scene(game)
 	get_tree().get_root().remove_child(self)
