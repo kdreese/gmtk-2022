@@ -14,7 +14,6 @@ toggle_mode = true
 script = ExtResource("1_whyu0")
 texture = ExtResource("2_bqsjo")
 button_text = "Start Tile"
-button_idx = null
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(100, 100)

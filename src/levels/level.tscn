@@ -28,6 +28,7 @@ tile_set = ExtResource("3_uiwh8")
 
 [node name="WiresPreview" type="TileMapLayer" parent="TileMap"]
 modulate = Color(1, 1, 1, 0.752941)
+y_sort_enabled = true
 tile_set = ExtResource("3_uiwh8")
 
 [node name="Objects" type="Node2D" parent="."]

@@ -4,6 +4,7 @@ extends Node2D
 const BUTTON_IGNORE_BOX := Rect2(0, 0, 200, 100)
 const OBJECT_PREVIEW_MODULATE := Color(1.0, 1.0, 1.0, 0.35)
 const LEVEL_BOUNDING_BOX := Rect2(0, 80, 640, 280)
+const WIRE_DOT_SOURCE_ID := 16
 
 
 enum {
@@ -13,6 +14,9 @@ enum {
 	START_TILE,
 	FINISH_PAD,
 	WIRES,
+	BUTTON,
+	TOGGLE,
+	GATE,
 }
 
 ## The object that we are placing
@@ -57,7 +61,7 @@ func _ready() -> void:
 	tile_button_group = ButtonGroup.new()
 	tile_button_group.allow_unpress = true
 
-	for button in %TileSelector/S/H.get_children() as Array[TileSelectButton]:
+	for button in %TileSelector/S/M/H.get_children() as Array[TileSelectButton]:
 		button.button_group = tile_button_group
 
 
@@ -138,17 +142,17 @@ func preview_object(coords: Vector2i)-> void:
 	elif object_to_place == START_TILE:
 		ground_preview_tile_map.clear()
 		level.place_tile(coords, true, true)
-	elif object_to_place == FINISH_PAD:
+	elif object_to_place in [FINISH_PAD, BUTTON, TOGGLE, GATE]:
 		if ground_tile_map.get_cell_source_id(coords) == 0 and not get_object_at_location(coords):
 			current_object.modulate = OBJECT_PREVIEW_MODULATE
 			current_object.position = ground_tile_map.map_to_local(coords) + current_object.get_position_offset()
 		else:
 			current_object.modulate = Color.TRANSPARENT
+			current_object.position = Vector2(-20, -20)
 	elif object_to_place == WIRES:
 		wire_preview_tile_map.clear()
 		if wire_tile_map.get_cell_source_id(coords) == -1:
-			wire_preview_tile_map.set_cell(coords, 1, Vector2i(0, 0))
-
+			wire_preview_tile_map.set_cell(coords, WIRE_DOT_SOURCE_ID, Vector2i(0, 0))
 
 
 func place_object(coords: Vector2i) -> void:
@@ -161,15 +165,18 @@ func place_object(coords: Vector2i) -> void:
 		level.place_tile(coords, false, true)
 		ground_preview_tile_map.clear()
 		tile_button_group.get_pressed_button().button_pressed = false
-	elif object_to_place == FINISH_PAD:
+	elif object_to_place in [FINISH_PAD, BUTTON, TOGGLE, GATE]:
 		if ground_tile_map.get_cell_source_id(coords) == 0 and get_object_at_location(coords) == current_object:
 			current_object.position = ground_tile_map.map_to_local(coords) + current_object.get_position_offset()
 			current_object.modulate = Color.WHITE
 			current_object = null
 			tile_button_group.get_pressed_button().button_pressed = false
+			# TODO: placing gates needs to be done back to front or else the display is screwed up.
 	elif object_to_place == WIRES:
 		wire_preview_tile_map.clear()
-		# TODO: if there is no tile here, maybe show a single dot?
+		if wire_tile_map.get_cell_source_id(coords) == -1:
+			wire_tile_map.set_cell(coords, WIRE_DOT_SOURCE_ID, Vector2i(0, 0))
+
 
 
 ## Preview erasing whatever is on the tile beneath the cursor.
@@ -187,13 +194,28 @@ func preview_erase(coords: Vector2i) -> void:
 		for tile in tiles:
 			level.place_tile(tile, false, bool(source_id == 1))
 
+	# Un-preview-erase any existing wires.
+	for tile in wire_preview_tile_map.get_used_cells():
+		var wire_source_id := wire_preview_tile_map.get_cell_source_id(tile)
+		var alternative_tile := wire_preview_tile_map.get_cell_alternative_tile(tile)
+		wire_tile_map.set_cell(tile, wire_source_id, Vector2i(0, 0), alternative_tile)
+
 	ground_preview_tile_map.clear()
+	wire_preview_tile_map.clear()
 
 	# Check to see if there is an object on the tile we're on.
 	var object = get_object_at_location(coords)
 	if object != null:
 		current_object = object
 		current_object.modulate = OBJECT_PREVIEW_MODULATE
+		return
+
+	# If there is a wire, preview erase that.
+	if wire_tile_map.get_cell_source_id(coords) != -1:
+		var wire_source_id := wire_tile_map.get_cell_source_id(coords)
+		var alternative_tile := wire_tile_map.get_cell_alternative_tile(coords)
+		wire_preview_tile_map.set_cell(coords, wire_source_id, Vector2i(0, 0), alternative_tile)
+		wire_tile_map.set_cell(coords, -1)
 		return
 
 	var source_id = ground_tile_map.get_cell_source_id(coords)
@@ -208,6 +230,12 @@ func erase(coords: Vector2i) -> void:
 		level.objects.remove_child(current_object)
 		current_object.queue_free()
 		current_object = null
+		return
+
+	# If there is a wire, erase that.
+	if wire_tile_map.get_cell_source_id(coords) != -1 or wire_preview_tile_map.get_cell_source_id(coords) != -1:
+		wire_tile_map.set_cell(coords, -1)
+		wire_preview_tile_map.clear()
 		return
 
 	level.remove_tile(coords)
@@ -230,6 +258,16 @@ func button_toggled(toggled_on: bool, idx: int) -> void:
 		object_to_place = idx
 		if object_to_place == FINISH_PAD:
 			current_object = preload("res://src/objects/level_end.tscn").instantiate() as LevelEnd
+		elif object_to_place == BUTTON:
+			current_object = preload("res://src/objects/level_button.tscn").instantiate() as LevelButton
+		elif object_to_place == TOGGLE:
+			current_object = preload("res://src/objects/toggle.tscn").instantiate() as Toggle
+		elif object_to_place == GATE:
+			current_object = preload("res://src/objects/gate.tscn").instantiate() as Gate
+			current_object.is_open = false
+			current_object.tile_map = ground_tile_map
+
+		if current_object != null:
 			current_object.modulate = Color.TRANSPARENT
 			level.objects.add_child(current_object)
 	else:

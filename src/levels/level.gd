@@ -23,6 +23,7 @@ enum {
 	SPUR_OFF,
 	ELBOW_DOWN_OFF,
 	ELBOW_DOWN_ON,
+	DOT_OFF,
 }
 
 const CLASS_TO_SCENE : Dictionary = {
@@ -482,6 +483,8 @@ func get_wire_directions(coords: Vector2i, wire_layer: int) -> Array[Vector2i]:
 		else:
 			directions.push_back(Vector2i.UP)
 			directions.push_back(Vector2i.LEFT)
+	elif source_id == DOT_OFF:
+		pass
 	elif source_id != -1:
 		push_error("Invalid wire tile map source ID %d." % source_id)
 

@@ -17,6 +17,8 @@ var player: Player
 var moves: int
 var options_return_to_game: bool
 
+var current_level_data: PackedByteArray = []
+
 
 func play_campaign():
 	single_level = false
@@ -47,7 +49,8 @@ func load_level_from_string(data: String):
 
 	level = preload("res://src/levels/level.tscn").instantiate() as Level
 	add_child(level)
-	level.load_level_data(Utils.b64_decode(data))
+	current_level_data = Utils.b64_decode(data)
+	level.load_level_data(current_level_data)
 
 	_load_level_internal()
 
@@ -68,7 +71,8 @@ func load_level(level_scene: PackedScene):
 	if not result[0]:
 		push_error("Could not save level data.")
 		return
-	level.load_level_data(result[1])
+	current_level_data = result[1]
+	level.load_level_data(current_level_data)
 
 	# Only now add the level to the scene tree.
 	add_child(level)
@@ -116,6 +120,10 @@ func reload_level():
 	player.position = tile_map.map_to_local(start_tiles[0])
 	player.grid_coords = start_tiles[0]
 	player.reset_orientation()
+
+	level.load_level_data(current_level_data)
+	# Since the level end is technically a new object we have to reconnect the signal.
+	level.get_node("Objects/LevelEnd").exit_reached_success.connect(self._on_LevelEnd_exit_reached_success)
 
 	reset_move_counter()
 	$CanvasLayer/UI.show()
