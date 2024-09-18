@@ -11,6 +11,7 @@ const START_TILE_SOURCE_ID := 1
 
 
 var single_level: bool = false
+var from_level_editor: bool = false
 var level: Level
 var player: Player
 
@@ -37,6 +38,7 @@ func play_single_level(level_idx: int):
 
 func play_level_from_string(data: String):
 	single_level = true
+	from_level_editor = true
 	Global.current_level_idx = -1
 	load_level_from_string(data)
 
@@ -247,7 +249,12 @@ func _on_PauseMenu_OptionsButton_pressed() -> void:
 
 
 func to_next_level() -> void:
-	if single_level:
+	Global.level_to_load = []
+	if from_level_editor:
+		Global.level_to_load = current_level_data
+		var error := get_tree().change_scene_to_file("res://src/states/level_editor.tscn")
+		assert(not error)
+	elif single_level:
 		go_to_menu()
 	else:
 		Global.current_level_idx += 1

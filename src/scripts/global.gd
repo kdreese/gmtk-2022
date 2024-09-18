@@ -38,6 +38,8 @@ var autosplitter_port := 5678
 
 var audio_stream: AudioStreamPlayer
 
+var level_to_load: PackedByteArray = []
+
 
 func _ready() -> void:
 	if not OS.has_feature("web"):

@@ -53,6 +53,9 @@ func _ready() -> void:
 	level = preload("res://src/levels/level.tscn").instantiate() as Level
 	add_child(level)
 
+	if Global.level_to_load:
+		level.load_level_data(Global.level_to_load)
+
 	ground_tile_map = level.ground_tile_map
 	ground_preview_tile_map = level.ground_preview_tile_map
 	wire_tile_map = level.wire_tile_map
