@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://cxsyfhqem7t84" path="res://assets/ui/exit_icon.png" id="3_f6rx2"]
 [ext_resource type="Texture2D" uid="uid://cyn40eyrssg4o" path="res://assets/ui/options_icon.png" id="4_y0bpk"]
 [ext_resource type="PackedScene" uid="uid://dmsmgwdkar4s4" path="res://src/states/options_menu.tscn" id="5_8fy68"]
-[ext_resource type="Texture2D" uid="uid://bob6r2wmu057x" path="res://assets/ui/restart_icon.png" id="5_wnxw5"]
 [ext_resource type="PackedScene" uid="uid://chme4uuaoc2he" path="res://src/states/ui/weight_editor.tscn" id="6_4xh8i"]
 [ext_resource type="Texture2D" uid="uid://cjy2d8oygcyhc" path="res://assets/tiles/x_off.png" id="6_05gg7"]
 [ext_resource type="Texture2D" uid="uid://dq45l34jae3fo" path="res://assets/tiles/base_tile.png" id="6_87l6y"]
@@ -15,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dgrlucsbwni0c" path="res://assets/objects/finish_pad_icon.png" id="8_8rank"]
 [ext_resource type="Texture2D" uid="uid://57fgilevdwgm" path="res://assets/tiles/start_tile.png" id="8_aqdsn"]
 [ext_resource type="Texture2D" uid="uid://e2r00u8iv48j" path="res://assets/objects/toggle_off.png" id="8_iea75"]
+[ext_resource type="Texture2D" uid="uid://opmnyi4ucrc3" path="res://assets/ui/play_icon.png" id="12_qhjin"]
 
 [node name="LevelEditor" type="Node2D"]
 script = ExtResource("1_dmuef")
@@ -165,7 +165,7 @@ texture_normal = ExtResource("4_y0bpk")
 [node name="PlayButton" type="TextureButton" parent="CanvasLayer/UI/H"]
 layout_mode = 2
 tooltip_text = "Play Level"
-texture_normal = ExtResource("5_wnxw5")
+texture_normal = ExtResource("12_qhjin")
 
 [node name="PopupPanel" type="AcceptDialog" parent="CanvasLayer/UI"]
 unique_name_in_owner = true

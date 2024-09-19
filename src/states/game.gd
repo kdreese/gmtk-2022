@@ -36,7 +36,7 @@ func play_single_level(level_idx: int):
 	show_best_score()
 
 
-func play_level_from_string(data: String):
+func play_level_from_editor(data: String):
 	single_level = true
 	from_level_editor = true
 	Global.current_level_idx = -1
@@ -230,8 +230,15 @@ func _on_OptionsMenu_options_exited() -> void:
 
 
 func go_to_menu() -> void:
+	Global.level_to_load = []
 	Autosplitter.run_reset()
 	var error := get_tree().change_scene_to_file("res://src/states/menu.tscn")
+	assert(not error)
+
+
+func go_to_level_editor() -> void:
+	Global.level_to_load = current_level_data
+	var error := get_tree().change_scene_to_file("res://src/states/level_editor.tscn")
 	assert(not error)
 
 
@@ -249,11 +256,8 @@ func _on_PauseMenu_OptionsButton_pressed() -> void:
 
 
 func to_next_level() -> void:
-	Global.level_to_load = []
 	if from_level_editor:
-		Global.level_to_load = current_level_data
-		var error := get_tree().change_scene_to_file("res://src/states/level_editor.tscn")
-		assert(not error)
+		go_to_level_editor()
 	elif single_level:
 		go_to_menu()
 	else:

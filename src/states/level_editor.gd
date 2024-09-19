@@ -309,7 +309,7 @@ func play_level() -> void:
 	get_tree().get_root().add_child(game)
 	get_tree().set_current_scene(game)
 	get_tree().get_root().remove_child(self)
-	game.play_level_from_string(Utils.b64_encode(result[1]))
+	game.play_level_from_editor(Utils.b64_encode(result[1]))
 
 
 func show_options() -> void:
