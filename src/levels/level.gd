@@ -242,6 +242,7 @@ func get_wire(coords: Vector2i, direction: Vector2i) -> Vector3i:
 ## for the failure.
 func save_level_data() -> Array:
 	var output := PackedByteArray()
+
 	# Allocate 6 bytes for the start coord, end coord, and max/min values.
 	output.resize(6)
 	var cursor := 0
@@ -352,6 +353,8 @@ func save_level_data() -> Array:
 				output.encode_u8(cursor + 3, object.is_open)
 
 		cursor += 4
+
+	output.append_array(level_name.to_ascii_buffer())
 
 	while output.size() % 3 != 0:
 		output.push_back(0)
@@ -692,3 +695,5 @@ func load_level_data(data: PackedByteArray) -> void:
 				gate.is_open = bool(state)
 				wire_sinks[net_idx].append(gate)
 		objects.add_child(object)
+
+	level_name = data.slice(cursor).get_string_from_ascii()

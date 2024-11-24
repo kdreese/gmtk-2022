@@ -1,16 +1,38 @@
-[gd_scene load_steps=12 format=3 uid="uid://cs4yr6oj0fo24"]
+[gd_scene load_steps=16 format=3 uid="uid://cs4yr6oj0fo24"]
 
 [ext_resource type="Script" path="res://src/states/game.gd" id="1"]
 [ext_resource type="Script" path="res://src/states/pause_menu.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://wtkm7neh2jtu" path="res://assets/ui/legend.png" id="4"]
 [ext_resource type="Script" path="res://src/states/level_complete.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://d0w0dmi6ucm17" path="res://assets/ui/icons.png" id="5_hsj7n"]
 [ext_resource type="Texture2D" uid="uid://f3ea73gmvrmh" path="res://assets/ui/textbox.png" id="6"]
 [ext_resource type="PackedScene" uid="uid://dmsmgwdkar4s4" path="res://src/states/options_menu.tscn" id="7"]
-[ext_resource type="Texture2D" uid="uid://bob6r2wmu057x" path="res://assets/ui/restart_icon.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://cxsyfhqem7t84" path="res://assets/ui/exit_icon.png" id="9"]
-[ext_resource type="Texture2D" uid="uid://cyn40eyrssg4o" path="res://assets/ui/options_icon.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://ccyrohf4pm62" path="res://assets/tiles/background.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://c3m38tcnhjk64" path="res://assets/ui/perfect_score.png" id="12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc6mh"]
+atlas = ExtResource("5_hsj7n")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slw6s"]
+atlas = ExtResource("5_hsj7n")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tgrr"]
+atlas = ExtResource("5_hsj7n")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ve6ti"]
+atlas = ExtResource("5_hsj7n")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny8t5"]
+atlas = ExtResource("5_hsj7n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk6bp"]
+atlas = ExtResource("5_hsj7n")
+region = Rect2(32, 32, 32, 32)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1")
@@ -163,19 +185,28 @@ offset_bottom = 84.0
 scale = Vector2(0.75, 0.75)
 
 [node name="MenuButton" type="TextureButton" parent="CanvasLayer/UI/H"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Quit to Menu"
-texture_normal = ExtResource("9")
+texture_normal = SubResource("AtlasTexture_dc6mh")
+texture_pressed = SubResource("AtlasTexture_slw6s")
+stretch_mode = 5
 
 [node name="OptionsButton" type="TextureButton" parent="CanvasLayer/UI/H"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Options"
-texture_normal = ExtResource("10")
+texture_normal = SubResource("AtlasTexture_0tgrr")
+texture_pressed = SubResource("AtlasTexture_ve6ti")
+stretch_mode = 5
 
 [node name="RestartButton" type="TextureButton" parent="CanvasLayer/UI/H"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Restart Level"
-texture_normal = ExtResource("8")
+texture_normal = SubResource("AtlasTexture_ny8t5")
+texture_pressed = SubResource("AtlasTexture_vk6bp")
+stretch_mode = 5
 
 [node name="PauseMenu" type="ColorRect" parent="CanvasLayer"]
 process_mode = 2

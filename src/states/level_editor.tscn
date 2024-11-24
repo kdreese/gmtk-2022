@@ -1,9 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://cl3b8d2i13e67"]
+[gd_scene load_steps=21 format=3 uid="uid://cl3b8d2i13e67"]
 
 [ext_resource type="Script" path="res://src/states/level_editor.gd" id="1_dmuef"]
 [ext_resource type="Texture2D" uid="uid://c3m38tcnhjk64" path="res://assets/ui/perfect_score.png" id="1_gwoyj"]
-[ext_resource type="Texture2D" uid="uid://cxsyfhqem7t84" path="res://assets/ui/exit_icon.png" id="3_f6rx2"]
-[ext_resource type="Texture2D" uid="uid://cyn40eyrssg4o" path="res://assets/ui/options_icon.png" id="4_y0bpk"]
 [ext_resource type="PackedScene" uid="uid://dmsmgwdkar4s4" path="res://src/states/options_menu.tscn" id="5_8fy68"]
 [ext_resource type="PackedScene" uid="uid://chme4uuaoc2he" path="res://src/states/ui/weight_editor.tscn" id="6_4xh8i"]
 [ext_resource type="Texture2D" uid="uid://cjy2d8oygcyhc" path="res://assets/tiles/x_off.png" id="6_05gg7"]
@@ -14,9 +12,40 @@
 [ext_resource type="Texture2D" uid="uid://dgrlucsbwni0c" path="res://assets/objects/finish_pad_icon.png" id="8_8rank"]
 [ext_resource type="Texture2D" uid="uid://57fgilevdwgm" path="res://assets/tiles/start_tile.png" id="8_aqdsn"]
 [ext_resource type="Texture2D" uid="uid://e2r00u8iv48j" path="res://assets/objects/toggle_off.png" id="8_iea75"]
-[ext_resource type="Texture2D" uid="uid://opmnyi4ucrc3" path="res://assets/ui/play_icon.png" id="12_qhjin"]
+[ext_resource type="Texture2D" uid="uid://d0w0dmi6ucm17" path="res://assets/ui/icons.png" id="10_q4noe"]
+[ext_resource type="PackedScene" uid="uid://b70hul2wmev8v" path="res://src/states/ui/name_editor.tscn" id="12_3n826"]
 
-[node name="LevelEditor" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8wix"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gee8y"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8akjv"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8db1f"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqqp5"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee6pj"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(0, 32, 32, 32)
+
+[node name="LevelEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_dmuef")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -113,9 +142,17 @@ offset_bottom = 82.0
 theme_override_constants/separation = 2
 
 [node name="LevelName" type="Label" parent="CanvasLayer/UI/V"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
+text = "Untitled"
 horizontal_alignment = 1
+
+[node name="Rename Button" type="Button" parent="CanvasLayer/UI/V"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "Rename"
 
 [node name="MoveCounter" type="Label" parent="CanvasLayer/UI/V"]
 layout_mode = 2
@@ -153,19 +190,28 @@ offset_bottom = 84.0
 scale = Vector2(0.75, 0.75)
 
 [node name="MenuButton" type="TextureButton" parent="CanvasLayer/UI/H"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Quit to Menu"
-texture_normal = ExtResource("3_f6rx2")
+texture_normal = SubResource("AtlasTexture_y8wix")
+texture_pressed = SubResource("AtlasTexture_gee8y")
+stretch_mode = 5
 
 [node name="OptionsButton" type="TextureButton" parent="CanvasLayer/UI/H"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Options"
-texture_normal = ExtResource("4_y0bpk")
+texture_normal = SubResource("AtlasTexture_8akjv")
+texture_pressed = SubResource("AtlasTexture_8db1f")
+stretch_mode = 5
 
 [node name="PlayButton" type="TextureButton" parent="CanvasLayer/UI/H"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Play Level"
-texture_normal = ExtResource("12_qhjin")
+texture_normal = SubResource("AtlasTexture_sqqp5")
+texture_pressed = SubResource("AtlasTexture_ee6pj")
+stretch_mode = 5
 
 [node name="PopupPanel" type="AcceptDialog" parent="CanvasLayer/UI"]
 unique_name_in_owner = true
@@ -176,6 +222,11 @@ size = Vector2i(300, 200)
 [node name="WeightEditor" parent="CanvasLayer/UI" instance=ExtResource("6_4xh8i")]
 unique_name_in_owner = true
 visible = false
+
+[node name="NameEditor" parent="CanvasLayer/UI" instance=ExtResource("12_3n826")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("5_8fy68")]
 unique_name_in_owner = true
@@ -201,6 +252,7 @@ stretch_mode = 1
 [connection signal="button_toggled" from="CanvasLayer/TileSelector/S/M/H/TileSelectButton6" to="." method="button_toggled"]
 [connection signal="button_toggled" from="CanvasLayer/TileSelector/S/M/H/TileSelectButton8" to="." method="button_toggled"]
 [connection signal="button_toggled" from="CanvasLayer/TileSelector/S/M/H/TileSelectButton7" to="." method="button_toggled"]
+[connection signal="pressed" from="CanvasLayer/UI/V/Rename Button" to="." method="show_name_editor"]
 [connection signal="pressed" from="CanvasLayer/UI/H/MenuButton" to="." method="go_to_menu"]
 [connection signal="pressed" from="CanvasLayer/UI/H/OptionsButton" to="." method="show_options"]
 [connection signal="pressed" from="CanvasLayer/UI/H/PlayButton" to="." method="play_level"]

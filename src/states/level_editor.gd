@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 
 const BUTTON_IGNORE_BOX := Rect2(0, 0, 200, 100)
@@ -67,8 +67,12 @@ func _ready() -> void:
 	for button in %TileSelector/S/M/H.get_children() as Array[TileSelectButton]:
 		button.button_group = tile_button_group
 
+	if level.level_name:
+		%LevelName.text = level.level_name
+	%NameEditor.name_chosen.connect(name_editor_closed)
 
-func _input(event: InputEvent) -> void:
+
+func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var mouse_pos := get_local_mouse_position()
 		if not LEVEL_BOUNDING_BOX.has_point(mouse_pos):
@@ -294,6 +298,22 @@ func weight_changed(new_weight: int) -> void:
 func weight_editor_exited() -> void:
 	# Set the current object to null to show that we're done editing it.
 	current_object = null
+
+
+func show_name_editor() -> void:
+	level.wire_preview_tile_map.clear()
+	level.ground_preview_tile_map.clear()
+	free_current_object()
+	if tile_button_group.get_pressed_button():
+		tile_button_group.get_pressed_button().button_pressed = false
+	object_to_place = NOTHING
+	%NameEditor.open_window(%LevelName.text)
+
+
+func name_editor_closed(new_name: String) -> void:
+	if new_name != null:
+		level.level_name = new_name
+		%LevelName.text = new_name
 
 
 func play_level() -> void:
