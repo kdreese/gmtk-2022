@@ -109,6 +109,9 @@ func update_best_scores(new_score: int) -> void:
 
 
 func load_config() -> void:
+	if not DirAccess.dir_exists_absolute("user://levels"):
+		DirAccess.make_dir_absolute("user://levels")
+
 	var file := FileAccess.open(SAVE_FILE_PATH, FileAccess.READ)
 	var error := FileAccess.get_open_error()
 	if error == ERR_FILE_NOT_FOUND:

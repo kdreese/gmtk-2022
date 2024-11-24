@@ -47,6 +47,9 @@ var tile_button_group: ButtonGroup
 
 @onready var weight_editor: WeightEditor = %WeightEditor
 
+var save_data_temp: PackedByteArray = []
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -69,7 +72,11 @@ func _ready() -> void:
 
 	if level.level_name:
 		%LevelName.text = level.level_name
+	else:
+		level.level_name = "Untitled"
+
 	%NameEditor.name_chosen.connect(name_editor_closed)
+	%LoadCodeMenu.load_level.connect(load_level_from_code)
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -234,6 +241,7 @@ func preview_erase(coords: Vector2i) -> void:
 func erase(coords: Vector2i) -> void:
 	if current_object != null:
 		# We're selecting an object. Erase it.
+		# TODO: replace ground under closed gate tiles.
 		level.objects.remove_child(current_object)
 		current_object.queue_free()
 		current_object = null
@@ -252,6 +260,7 @@ func erase(coords: Vector2i) -> void:
 ## Delete whatever is stored in current_object.
 func free_current_object():
 	if current_object:
+		print("Freeing object ", current_object)
 		level.objects.remove_child(current_object)
 		current_object.queue_free()
 		current_object = null
@@ -330,6 +339,91 @@ func play_level() -> void:
 	get_tree().set_current_scene(game)
 	get_tree().get_root().remove_child(self)
 	game.play_level_from_editor(Utils.b64_encode(result[1]))
+
+
+func show_save_menu() -> void:
+	var result = level.save_level_data()
+	if not result[0]:
+		%PopupPanel.dialog_text = result[1]
+		%PopupPanel.popup_centered()
+		return
+
+	save_data_temp = result[1]
+
+	%SaveFileDialog.current_dir = "user://levels"
+
+	var line_edit: LineEdit = %SaveFileDialog.get_line_edit()
+	line_edit.text = %LevelName.text.to_lower().replace(" ", "_") + ".lvl"
+	line_edit.select(0, -4)
+
+	%FileDialogBackground.show()
+	%SaveFileDialog.popup_centered()
+
+
+func save_level() -> void:
+	var path = %SaveFileDialog.get_current_path()
+
+	print("Saving file to ", path)
+	var fp = FileAccess.open(path, FileAccess.WRITE)
+	if fp == null:
+		push_error("Could not open file.")
+		return
+
+	fp.store_buffer(save_data_temp)
+	fp.close()
+
+	%FileDialogBackground.hide()
+
+
+func show_load_menu() -> void:
+	%LoadFileDialog.current_dir = "user://levels"
+	%FileDialogBackground.show()
+	%LoadFileDialog.popup_centered()
+
+
+func load_level() -> void:
+	var path = %LoadFileDialog.get_current_path()
+
+	print("Loading data from ", path)
+
+	var data = FileAccess.get_file_as_bytes(path)
+	if not data:
+		print(FileAccess.get_open_error())
+		push_error("Could not open file.")
+		return
+
+	# TODO: error checking here.
+	level.load_level_data(data)
+	%LevelName.text = level.level_name
+
+	%FileDialogBackground.hide()
+
+
+func cancel_save_load() -> void:
+	%FileDialogBackground.hide()
+
+
+func show_save_code_menu() -> void:
+	var result = level.save_level_data()
+	if not result[0]:
+		%PopupPanel.dialog_text = result[1]
+		%PopupPanel.popup_centered()
+		return
+
+	var code = Utils.b64_encode(result[1])
+
+	%SaveCodeMenu.show_menu(code)
+
+
+func show_load_code_menu() -> void:
+	%LoadCodeMenu.show_menu()
+
+
+func load_level_from_code(code: String) -> void:
+	var data = Utils.b64_decode(code)
+
+	level.load_level_data(data)
+	%LevelName.text = level.level_name
 
 
 func show_options() -> void:

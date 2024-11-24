@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cl3b8d2i13e67"]
+[gd_scene load_steps=31 format=3 uid="uid://cl3b8d2i13e67"]
 
 [ext_resource type="Script" path="res://src/states/level_editor.gd" id="1_dmuef"]
 [ext_resource type="Texture2D" uid="uid://c3m38tcnhjk64" path="res://assets/ui/perfect_score.png" id="1_gwoyj"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://e2r00u8iv48j" path="res://assets/objects/toggle_off.png" id="8_iea75"]
 [ext_resource type="Texture2D" uid="uid://d0w0dmi6ucm17" path="res://assets/ui/icons.png" id="10_q4noe"]
 [ext_resource type="PackedScene" uid="uid://b70hul2wmev8v" path="res://src/states/ui/name_editor.tscn" id="12_3n826"]
+[ext_resource type="PackedScene" uid="uid://b7bxjplr4ocjx" path="res://src/states/ui/save_code_menu.tscn" id="13_38eik"]
+[ext_resource type="PackedScene" uid="uid://b4ogixa4tp7y3" path="res://src/states/ui/load_code_menu.tscn" id="14_i7afy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y8wix"]
 atlas = ExtResource("10_q4noe")
@@ -38,6 +40,38 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ee6pj"]
 atlas = ExtResource("10_q4noe")
 region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_weyfq"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axj77"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcf6o"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kulp"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(192, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw0rl"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfsi1"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(256, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ay2t7"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dlev"]
+atlas = ExtResource("10_q4noe")
+region = Rect2(256, 32, 32, 32)
 
 [node name="LevelEditor" type="Control"]
 layout_mode = 3
@@ -141,18 +175,18 @@ offset_top = 30.0
 offset_bottom = 82.0
 theme_override_constants/separation = 2
 
+[node name="Rename Button" type="Button" parent="CanvasLayer/UI/V"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "Rename"
+
 [node name="LevelName" type="Label" parent="CanvasLayer/UI/V"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Untitled"
 horizontal_alignment = 1
-
-[node name="Rename Button" type="Button" parent="CanvasLayer/UI/V"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 12
-text = "Rename"
 
 [node name="MoveCounter" type="Label" parent="CanvasLayer/UI/V"]
 layout_mode = 2
@@ -183,14 +217,15 @@ expand_mode = 1
 
 [node name="H" type="HBoxContainer" parent="CanvasLayer/UI"]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 220.0
-offset_bottom = 84.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 305.0
+offset_bottom = 69.0
 scale = Vector2(0.75, 0.75)
+theme_override_constants/separation = -5
 
 [node name="MenuButton" type="TextureButton" parent="CanvasLayer/UI/H"]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Quit to Menu"
 texture_normal = SubResource("AtlasTexture_y8wix")
@@ -198,7 +233,7 @@ texture_pressed = SubResource("AtlasTexture_gee8y")
 stretch_mode = 5
 
 [node name="OptionsButton" type="TextureButton" parent="CanvasLayer/UI/H"]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Options"
 texture_normal = SubResource("AtlasTexture_8akjv")
@@ -206,11 +241,43 @@ texture_pressed = SubResource("AtlasTexture_8db1f")
 stretch_mode = 5
 
 [node name="PlayButton" type="TextureButton" parent="CanvasLayer/UI/H"]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 tooltip_text = "Play Level"
 texture_normal = SubResource("AtlasTexture_sqqp5")
 texture_pressed = SubResource("AtlasTexture_ee6pj")
+stretch_mode = 5
+
+[node name="FileSaveButton" type="TextureButton" parent="CanvasLayer/UI/H"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Save to File"
+texture_normal = SubResource("AtlasTexture_weyfq")
+texture_pressed = SubResource("AtlasTexture_axj77")
+stretch_mode = 5
+
+[node name="FileLoadButton" type="TextureButton" parent="CanvasLayer/UI/H"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Load from File"
+texture_normal = SubResource("AtlasTexture_rcf6o")
+texture_pressed = SubResource("AtlasTexture_7kulp")
+stretch_mode = 5
+
+[node name="CodeSaveButton" type="TextureButton" parent="CanvasLayer/UI/H"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Export Level Code"
+texture_normal = SubResource("AtlasTexture_jw0rl")
+texture_pressed = SubResource("AtlasTexture_lfsi1")
+stretch_mode = 5
+
+[node name="CodeLoadButton" type="TextureButton" parent="CanvasLayer/UI/H"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+tooltip_text = "Load from Level Code"
+texture_normal = SubResource("AtlasTexture_ay2t7")
+texture_pressed = SubResource("AtlasTexture_8dlev")
 stretch_mode = 5
 
 [node name="PopupPanel" type="AcceptDialog" parent="CanvasLayer/UI"]
@@ -224,6 +291,48 @@ unique_name_in_owner = true
 visible = false
 
 [node name="NameEditor" parent="CanvasLayer/UI" instance=ExtResource("12_3n826")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="SaveFileDialog" type="FileDialog" parent="CanvasLayer/UI"]
+unique_name_in_owner = true
+canvas_item_default_texture_filter = 0
+title = "Save Level to File"
+size = Vector2i(560, 360)
+content_scale_size = Vector2i(560, 360)
+ok_button_text = "Save"
+mode_overrides_title = false
+access = 1
+filters = PackedStringArray("*.lvl")
+
+[node name="LoadFileDialog" type="FileDialog" parent="CanvasLayer/UI"]
+unique_name_in_owner = true
+canvas_item_default_texture_filter = 0
+title = "Open a File"
+size = Vector2i(560, 360)
+ok_button_text = "Open"
+file_mode = 0
+access = 1
+filters = PackedStringArray("*.lvl")
+
+[node name="FileDialogBackground" type="ColorRect" parent="CanvasLayer/UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="SaveCodeMenu" parent="CanvasLayer/UI" instance=ExtResource("13_38eik")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="LoadCodeMenu" parent="CanvasLayer/UI" instance=ExtResource("14_i7afy")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -256,6 +365,14 @@ stretch_mode = 1
 [connection signal="pressed" from="CanvasLayer/UI/H/MenuButton" to="." method="go_to_menu"]
 [connection signal="pressed" from="CanvasLayer/UI/H/OptionsButton" to="." method="show_options"]
 [connection signal="pressed" from="CanvasLayer/UI/H/PlayButton" to="." method="play_level"]
+[connection signal="pressed" from="CanvasLayer/UI/H/FileSaveButton" to="." method="show_save_menu"]
+[connection signal="pressed" from="CanvasLayer/UI/H/FileLoadButton" to="." method="show_load_menu"]
+[connection signal="pressed" from="CanvasLayer/UI/H/CodeSaveButton" to="." method="show_save_code_menu"]
+[connection signal="pressed" from="CanvasLayer/UI/H/CodeLoadButton" to="." method="show_load_code_menu"]
 [connection signal="closed" from="CanvasLayer/UI/WeightEditor" to="." method="weight_editor_exited"]
 [connection signal="weight_selected" from="CanvasLayer/UI/WeightEditor" to="." method="weight_changed"]
+[connection signal="canceled" from="CanvasLayer/UI/SaveFileDialog" to="." method="cancel_save_load"]
+[connection signal="confirmed" from="CanvasLayer/UI/SaveFileDialog" to="." method="save_level"]
+[connection signal="canceled" from="CanvasLayer/UI/LoadFileDialog" to="." method="cancel_save_load"]
+[connection signal="confirmed" from="CanvasLayer/UI/LoadFileDialog" to="." method="load_level"]
 [connection signal="options_exited" from="CanvasLayer/OptionsMenu" to="." method="options_exited"]

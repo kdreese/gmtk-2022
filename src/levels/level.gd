@@ -278,9 +278,6 @@ func save_level_data() -> Array:
 	output.encode_s8(cursor, level_ends[0].maximum_weight)
 	cursor += 1
 
-	# Remove the level end from the objects to avoid processing it again later.
-	objects.remove_child(level_ends[0])
-
 	var normal_tiles := ground_tile_map.get_used_cells_by_id(0) as Array[Vector2i]
 	# The finish tile always has a normal tile underneath it.
 	normal_tiles.remove_at(normal_tiles.find(finish_tile))
@@ -325,14 +322,17 @@ func save_level_data() -> Array:
 				output.encode_u8(cursor + 2, byte3)
 				cursor += 3
 
-	var num_objects := objects.get_child_count()
+	# Subtract 1 to account for the level end.
+	var num_objects := objects.get_child_count() - 1
 	# 1 byte for length, 4 for each object (x, y, 2 for state)
 	output.resize(output.size() + 1 + 4 * num_objects)
 
-	output.encode_s8(cursor, objects.get_child_count())
+	output.encode_s8(cursor, objects.get_child_count() - 1)
 	cursor += 1
 
 	for object in objects.get_children() as Array[LevelObject]:
+		if object.get_object_type() == LevelObject.LEVEL_END:
+			continue
 		var coords := ground_tile_map.local_to_map(object.position - object.get_position_offset()) as Vector2i
 		output.encode_s8(cursor, object.get_object_type())
 		output.encode_s8(cursor + 1, coords.x)
