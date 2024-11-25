@@ -105,6 +105,11 @@ func _gui_input(event: InputEvent) -> void:
 					show_weight_menu(mouseover_tile)
 			else:
 				place_object(mouseover_tile)
+		elif event.is_released():
+			# If we were dragging erase, and just erased an object or wire, the preview erase for
+			# what is belwo won't be activated unless we re-enter. This solves that by waiting for
+			# mouse release events.
+			preview_object(mouseover_tile)
 
 
 func mouse_entered_tile(current: Vector2i, prev: Vector2i) -> void:
@@ -172,6 +177,9 @@ func preview_object(coords: Vector2i)-> void:
 func place_object(coords: Vector2i) -> void:
 	if object_to_place == ERASE:
 		erase(coords)
+		# There might be something under what we just erased. Preview erase it.
+		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			preview_erase(coords)
 	elif object_to_place == NORMAL_TILE:
 		level.place_tile(coords)
 		ground_preview_tile_map.clear()
@@ -222,6 +230,9 @@ func preview_erase(coords: Vector2i) -> void:
 	if object != null:
 		current_object = object
 		current_object.modulate = OBJECT_PREVIEW_MODULATE
+		# Preview the tile underneath the gate.
+		if current_object.get_object_type() == LevelObject.GATE:
+			level.place_tile(coords, true)
 		return
 
 	# If there is a wire, preview erase that.
@@ -239,11 +250,23 @@ func preview_erase(coords: Vector2i) -> void:
 
 
 func erase(coords: Vector2i) -> void:
-	if current_object != null:
-		# We're selecting an object. Erase it.
-		# TODO: replace ground under closed gate tiles.
-		level.objects.remove_child(current_object)
-		current_object.queue_free()
+	if current_object != null or get_object_at_location(coords):
+		# We're selecting an object, or we dragged onto an object. Erase it.
+		var object := current_object
+		if object == null:
+			object = get_object_at_location(coords)
+
+		# There somehow is no longer an object???
+		if object == null:
+			push_error("Object no longer exists")
+			return
+
+		if object.get_object_type() == LevelObject.GATE:
+			# If we're erasing a gate, replace the ground tile that was underneath it, if necessary.
+			ground_preview_tile_map.clear()
+			level.place_tile(coords)
+		level.objects.remove_child(object)
+		object.queue_free()
 		current_object = null
 		return
 
