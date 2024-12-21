@@ -327,7 +327,7 @@ func save_level_data() -> Array:
 	# 1 byte for length, 4 for each object (x, y, 2 for state)
 	output.resize(output.size() + 1 + 4 * num_objects)
 
-	output.encode_s8(cursor, objects.get_child_count() - 1)
+	output.encode_s8(cursor, num_objects)
 	cursor += 1
 
 	for object in objects.get_children() as Array[LevelObject]:
@@ -670,9 +670,11 @@ func load_level_data(data: PackedByteArray) -> void:
 				if Vector2i(tile.x, tile.y) == coords:
 					net_idx = idx
 
+		var connect_to_wires := true
+
 		if net_idx == -1:
-			push_error("Object not connected to a wire net. (coords = %d, %d)" % [coords.x, coords.y])
-			continue
+			push_warning("Object not connected to a wire net. (coords = %d, %d)" % [coords.x, coords.y])
+			connect_to_wires = false
 
 		var object = CLASS_TO_SCENE[type].instantiate() as LevelObject
 		object.position = ground_tile_map.map_to_local(coords) + object.get_position_offset()
@@ -681,19 +683,39 @@ func load_level_data(data: PackedByteArray) -> void:
 				var button := object as LevelButton
 				button.minimum_weight = state & 0xF
 				button.maximum_weight = (state >> 4) & 0xF
-				button.button_pressed.connect(toggle_wire_net.bind(net_idx))
+				if connect_to_wires:
+					button.button_pressed.connect(toggle_wire_net.bind(net_idx))
 			LevelObject.TOGGLE:
 				var toggle := object as Toggle
 				toggle.minimum_weight = state & 0xF
 				toggle.maximum_weight = (state >> 4) & 0xF
-				toggle.toggled.connect(toggle_wire_net.bind(net_idx))
+				if connect_to_wires:
+					toggle.toggled.connect(toggle_wire_net.bind(net_idx))
 			LevelObject.GATE:
 				var gate := object as Gate
 				# Gates delete the tile under them if they're closed.
 				place_tile(coords)
 				gate.tile_map = ground_tile_map
 				gate.is_open = bool(state)
-				wire_sinks[net_idx].append(gate)
+				if connect_to_wires:
+					wire_sinks[net_idx].append(gate)
 		objects.add_child(object)
 
+	sort_objects()
+
 	level_name = data.slice(cursor).get_string_from_ascii()
+
+
+func sort_objects() -> void:
+	var sorted_objects := objects.get_children()
+	# Sort from top of window to botton, to preserve depth.
+	sorted_objects.sort_custom(func(lhs: LevelObject, rhs: LevelObject):
+		var lhs_grid := lhs.get_grid_position(ground_tile_map)
+		var rhs_grid := rhs.get_grid_position(ground_tile_map)
+		return lhs_grid.x + lhs_grid.y < rhs_grid.x + rhs_grid.y
+	)
+
+	var idx := 0
+	for object in sorted_objects:
+		objects.move_child(object, idx)
+		idx += 1

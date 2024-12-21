@@ -25,7 +25,6 @@ func play_campaign():
 	single_level = false
 	Global.current_level_idx = 0
 	load_level(Global.LEVELS[0])
-	show_best_score()
 	Autosplitter.timer_updated.connect(self.update_timer)
 
 
@@ -33,7 +32,6 @@ func play_single_level(level_idx: int):
 	single_level = true
 	Global.current_level_idx = level_idx
 	load_level(Global.LEVELS[level_idx])
-	show_best_score()
 
 
 func play_level_from_editor(data: String):
@@ -84,9 +82,7 @@ func load_level(level_scene: PackedScene):
 
 ## Loads the level stored in the `level` node. Do not call this function directly.
 func _load_level_internal():
-
 	var tile_map := level.get_node("TileMap/Ground") as TileMapLayer
-
 
 	level.get_node("Objects/LevelEnd").exit_reached_success.connect(self._on_LevelEnd_exit_reached_success)
 
@@ -94,8 +90,21 @@ func _load_level_internal():
 
 	$CanvasLayer/UI/V/LevelName.text = level.level_name
 	if level.text and not single_level:
-		$CanvasLayer/UI/Textbox/MessageText.text = level.text
-		$CanvasLayer/UI/Textbox.show()
+		%TextboxLabel.text = level.text
+		%Textbox.show()
+	else:
+		%Textbox.hide()
+
+	# Show the best score if this is not a user-created level.
+	if Global.current_level_idx != -1:
+		show_best_score()
+	else:
+		%BestMoveContainer.hide()
+
+	if single_level:
+		%EditButton.show()
+	else:
+		%EditButton.hide()
 
 	var start_tiles := tile_map.get_used_cells_by_id(START_TILE_SOURCE_ID, Vector2i(0, 0))
 
@@ -139,8 +148,9 @@ func show_best_score():
 			star.show()
 		else:
 			star.hide()
+		%BestMoveContainer.show()
 	else:
-		$CanvasLayer/UI/V/H.hide()
+		%BestMoveContainer.hide()
 
 
 func _unhandled_input(event: InputEvent) -> void:

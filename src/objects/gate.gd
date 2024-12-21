@@ -51,28 +51,30 @@ func update_z_index(player_position: Vector2):
 		z_index = 1
 
 
-func open() -> void:
+func open(visual_only: bool = false) -> void:
 	if is_open:
 		return
 	$AnimatedSprite2D.play("open")
-	var base_source_id := Global.find_source_id_by_name(tile_map.tile_set, "Base")
-	tile_map.set_cell(grid_coords, base_source_id, Vector2i.ZERO)
+	if not visual_only:
+		var base_source_id := Global.find_source_id_by_name(tile_map.tile_set, "Base")
+		tile_map.set_cell(grid_coords, base_source_id, Vector2i.ZERO)
 	is_open = true
 	while $AnimatedSprite2D.frame <= 4:
 		await $AnimatedSprite2D.frame_changed
 	z_index = 1
 
 
-func close() -> void:
+func close(visual_only: bool = false) -> void:
 	if not is_open:
 		return
 	$AnimatedSprite2D.play("close")
-	tile_map.set_cell(grid_coords, -1)
+	if not visual_only:
+		tile_map.set_cell(grid_coords, -1)
 	is_open = false
 
 
-func toggle() -> void:
+func toggle(visual_only: bool = false) -> void:
 	if not is_open:
-		open()
+		open(visual_only)
 	else:
-		close()
+		close(visual_only)

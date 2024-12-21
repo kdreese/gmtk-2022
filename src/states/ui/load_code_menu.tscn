@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4ogixa4tp7y3"]
+[gd_scene load_steps=3 format=3 uid="uid://b4ogixa4tp7y3"]
 
 [ext_resource type="Script" path="res://src/states/ui/load_code_menu.gd" id="1_nnblx"]
+[ext_resource type="StyleBox" uid="uid://cceccfpsr5xld" path="res://assets/ui/menu_background.tres" id="2_24lyn"]
 
 [node name="LoadCodeMenu" type="Control"]
 layout_mode = 3
@@ -41,6 +42,7 @@ mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("2_24lyn")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
 layout_mode = 2
@@ -71,7 +73,7 @@ size_flags_vertical = 8
 [node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
-text = "Back"
+text = "Cancel"
 
 [node name="LoadButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(75, 0)

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=29 format=3 uid="uid://cebef7ax6hl5m"]
+[gd_resource type="Theme" load_steps=31 format=3 uid="uid://cebef7ax6hl5m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii4vc"]
 content_margin_left = 4.0
@@ -152,7 +152,7 @@ content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.0253, 0.0351817, 0.11, 0.788235)
+bg_color = Color(0.39671, 0.559211, 0.833225, 0.788235)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -285,12 +285,51 @@ corner_detail = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_34pkk"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4iuc"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.47, 0.770333, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.866667, 0.866667, 0.866667, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1expf"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.533333, 0.533333, 0.533333, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.733333, 0.733333, 0.733333, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l0oii"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.0156863, 0.439216, 0.768627, 0.701961)
+bg_color = Color(0.0188, 0.540813, 0.94, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.4136, 0.711893, 0.94, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -358,6 +397,8 @@ OptionButton/styles/pressed = SubResource("StyleBoxFlat_qk6f8")
 OptionButton/styles/pressed_mirrored = SubResource("StyleBoxFlat_2qiib")
 TileSelectButton/base_type = &"Button"
 TileSelectButton/styles/focus = SubResource("StyleBoxEmpty_34pkk")
+TileSelectButton/styles/hover = SubResource("StyleBoxFlat_k4iuc")
+TileSelectButton/styles/normal = SubResource("StyleBoxFlat_1expf")
 TileSelectButton/styles/pressed = SubResource("StyleBoxFlat_l0oii")
 WeightSelectButton/base_type = &"Button"
 WeightSelectButton/styles/focus = SubResource("StyleBoxEmpty_gbivk")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7bxjplr4ocjx"]
+[gd_scene load_steps=3 format=3 uid="uid://b7bxjplr4ocjx"]
 
 [ext_resource type="Script" path="res://src/states/ui/save_code_menu.gd" id="1_i4gru"]
+[ext_resource type="StyleBox" uid="uid://cceccfpsr5xld" path="res://assets/ui/menu_background.tres" id="2_m166x"]
 
 [node name="SaveCodeMenu" type="Control"]
 layout_mode = 3
@@ -41,6 +42,7 @@ mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("2_m166x")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
 layout_mode = 2

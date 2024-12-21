@@ -23,7 +23,6 @@ func _ready() -> void:
 	var button := %ButtonGrid.get_child(0) as Button
 	button_group = button.button_group
 	button_group.pressed.connect(on_button_pressed)
-	#%BackButton.disabled = true
 
 
 func set_selected(weight: int) -> void:
@@ -37,9 +36,14 @@ func set_selected(weight: int) -> void:
 
 
 func on_button_pressed(button: BaseButton) -> void:
+	print("Button pressed")
 	var index = button_group.get_buttons().find(button)
-	# The 0th button has weight 1
-	weight_selected.emit(index + 1)
+	if button.button_pressed:
+		# The 0th button has weight 1
+		weight_selected.emit(index + 1)
+	else:
+		# This was an unselect, set the weight to 0.
+		weight_selected.emit(0)
 
 
 func on_back_button_pressed() -> void:
