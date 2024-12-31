@@ -241,11 +241,7 @@ func get_wire(coords: Vector2i, direction: Vector2i) -> Vector3i:
 ## If the first element of the array is false, the second element is a String containing the reason
 ## for the failure.
 func save_level_data() -> Array:
-	var output := PackedByteArray()
-
-	# Allocate 6 bytes for the start coord, end coord, and max/min values.
-	output.resize(6)
-	var cursor := 0
+	var output := StreamPeerBuffer.new()
 
 	var start_tiles := ground_tile_map.get_used_cells_by_id(1) as Array[Vector2i]
 	if len(start_tiles) == 0:
@@ -253,10 +249,8 @@ func save_level_data() -> Array:
 	if len(start_tiles) > 1:
 		return [false, "Level has more than one start tile."]
 
-	output.encode_s8(cursor, start_tiles[0].x)
-	cursor += 1
-	output.encode_s8(cursor, start_tiles[0].y)
-	cursor += 1
+	output.put_8(start_tiles[0].x)
+	output.put_8(start_tiles[0].y)
 
 	var level_ends := objects.get_children().filter(
 		func is_level_end(x): return x.get_object_type() == LevelObject.LEVEL_END
@@ -268,46 +262,32 @@ func save_level_data() -> Array:
 
 	var finish_tile := ground_tile_map.local_to_map(level_ends[0].position - level_ends[0].get_position_offset()) as Vector2i
 
-	output.encode_s8(cursor, finish_tile.x)
-	cursor += 1
-	output.encode_s8(cursor, finish_tile.y)
-	cursor += 1
+	output.put_8(finish_tile.x)
+	output.put_8(finish_tile.y)
 
-	output.encode_s8(cursor, level_ends[0].minimum_weight)
-	cursor += 1
-	output.encode_s8(cursor, level_ends[0].maximum_weight)
-	cursor += 1
+	output.put_u8(level_ends[0].minimum_weight)
+	output.put_u8(level_ends[0].maximum_weight)
 
 	var normal_tiles := ground_tile_map.get_used_cells_by_id(0) as Array[Vector2i]
 	# The finish tile always has a normal tile underneath it.
 	normal_tiles.remove_at(normal_tiles.find(finish_tile))
 
-	output.resize(output.size() + 1 + 2 * len(normal_tiles))
-	output.encode_s8(cursor, len(normal_tiles))
-	cursor += 1
+	output.put_u8(len(normal_tiles))
 
 	for tile in normal_tiles:
-		output.encode_s8(cursor, tile.x)
-		cursor += 1
-		output.encode_s8(cursor, tile.y)
-		cursor += 1
+		output.put_8(tile.x)
+		output.put_8(tile.y)
 
 	var wire_nets := get_wires()
 
-	# A bit inefficient but we don't know how much to allocate right away.
-	output.resize(output.size() + 1)
-	output.encode_s8(cursor, len(wire_nets))
-	cursor += 1
+	output.put_u8(len(wire_nets))
 
 	if len(wire_nets) > 0:
 		for wire_net in wire_nets:
-			# 1 byte for the net length, 3 for each wire.
-			output.resize(output.size() + 1 + 3 * len(wire_net))
-			output.encode_s8(cursor, len(wire_net))
-			cursor += 1
+			output.put_u8(len(wire_net))
 			for wire in wire_net as Array[Vector3i]:
-				output.encode_s8(cursor, wire.x)
-				output.encode_s8(cursor + 1, wire.y)
+				output.put_8(wire.x)
+				output.put_8(wire.y)
 
 				# The third byte can encode the source_id, alternative_tile and whether the net is on
 				# the top or bottom.
@@ -319,47 +299,37 @@ func save_level_data() -> Array:
 				if wire.z:
 					byte3 |= 0x80
 
-				output.encode_u8(cursor + 2, byte3)
-				cursor += 3
+				output.put_u8(byte3)
 
 	# Subtract 1 to account for the level end.
 	var num_objects := objects.get_child_count() - 1
-	# 1 byte for length, 4 for each object (x, y, 2 for state)
-	output.resize(output.size() + 1 + 4 * num_objects)
-
-	output.encode_s8(cursor, num_objects)
-	cursor += 1
+	output.put_u8(num_objects)
 
 	for object in objects.get_children() as Array[LevelObject]:
 		if object.get_object_type() == LevelObject.LEVEL_END:
 			continue
 		var coords := ground_tile_map.local_to_map(object.position - object.get_position_offset()) as Vector2i
-		output.encode_s8(cursor, object.get_object_type())
-		output.encode_s8(cursor + 1, coords.x)
-		output.encode_s8(cursor + 2, coords.y)
+		output.put_u8(object.get_object_type())
+		output.put_8(coords.x)
+		output.put_8(coords.y)
 		match object.get_object_type():
 			LevelObject.BUTTON:
 				object = object as LevelButton
 				var byte4 := object.minimum_weight as int
 				byte4 |= (object.maximum_weight & 0xF) << 4
-				output.encode_u8(cursor + 3, byte4)
+				output.put_u8(byte4)
 			LevelObject.TOGGLE:
 				object = object as Toggle
 				var byte4 := object.minimum_weight as int
 				byte4 |= (object.maximum_weight & 0xF) << 4
-				output.encode_u8(cursor + 3, byte4)
+				output.put_u8(byte4)
 			LevelObject.GATE:
 				object = object as Gate
-				output.encode_u8(cursor + 3, object.is_open)
+				output.put_u8(object.is_open)
 
-		cursor += 4
+	output.put_string(level_name)
 
-	output.append_array(level_name.to_ascii_buffer())
-
-	while output.size() % 3 != 0:
-		output.push_back(0)
-
-	return [true, output]
+	return [true, output.get_data_array()]
 
 
 ## Place a tile at the given grid position. This will edit the neighboring tiles if necessary to
@@ -593,36 +563,31 @@ func load_level_data(data: PackedByteArray) -> void:
 		objects.remove_child(child)
 		child.queue_free()
 
+	var input = StreamPeerBuffer.new()
+	input.set_data_array(data)
 	# We need 6 bytes for the requied params.
-	assert(data.size() >= 6)
-	var cursor := 0
+	assert(input.get_size() >= 6)
 
-	var start_tile := Vector2i(data.decode_s8(cursor), data.decode_s8(cursor + 1))
-	cursor += 2
+	var start_tile := Vector2i(input.get_8(), input.get_8())
 
 	place_tile(start_tile)
 	ground_tile_map.set_cell(start_tile, 1, Vector2i(0, 0))
 
-	var end_tile := Vector2i(data.decode_s8(cursor), data.decode_s8(cursor + 1))
-	cursor += 2
+	var end_tile := Vector2i(input.get_8(), input.get_8())
 
 	place_tile(end_tile)
 	var level_end := preload("res://src/objects/level_end.tscn").instantiate() as LevelEnd
 	objects.add_child(level_end)
 	level_end.position = ground_tile_map.map_to_local(end_tile) + level_end.get_position_offset()
 
-	level_end.minimum_weight = data.decode_s8(cursor)
-	cursor += 1
-	level_end.maximum_weight = data.decode_s8(cursor)
-	cursor += 1
+	level_end.minimum_weight = input.get_u8()
+	level_end.maximum_weight = input.get_u8()
 	level_end.update_weight_display()
 
-	var num_tiles := data.decode_s8(cursor)
-	cursor += 1
+	var num_tiles := input.get_u8()
 
 	for _idx in range(num_tiles):
-		var tile := Vector2i(data.decode_s8(cursor), data.decode_s8(cursor + 1))
-		cursor += 2
+		var tile := Vector2i(input.get_8(), input.get_8())
 		place_tile(tile)
 
 	wire_sinks.clear()
@@ -631,20 +596,17 @@ func load_level_data(data: PackedByteArray) -> void:
 	if not wire_tile_map:
 		return
 
-	var num_nets := data.decode_s8(cursor)
-	cursor += 1
+	var num_nets := input.get_u8()
 
 	wire_tile_map = wire_tile_map as TileMapLayer
 	wire_tile_map.clear()
 	for _idx in num_nets:
-		var num_wires := data.decode_s8(cursor)
-		cursor += 1
+		var num_wires := input.get_u8()
 
 		var wire_net: Array[Vector3i] = []
 		for _idx2 in num_wires:
-			var coords := Vector2i(data.decode_s8(cursor), data.decode_s8(cursor + 1))
-			var byte3 := data.decode_u8(cursor + 2)
-			cursor += 3
+			var coords := Vector2i(input.get_8(), input.get_8())
+			var byte3 := input.get_u8()
 
 			var source_id := byte3 & 0xF
 			var alt_tile := (byte3 & 0x30) >> 4
@@ -656,14 +618,12 @@ func load_level_data(data: PackedByteArray) -> void:
 		level_wire_nets.append(wire_net)
 		wire_sinks.append([])
 
-	var num_objects = data.decode_s8(cursor)
-	cursor += 1
+	var num_objects = input.get_u8()
 
 	for _idx in num_objects:
-		var type := data.decode_s8(cursor)
-		var coords := Vector2i(data.decode_s8(cursor + 1), data.decode_s8(cursor + 2))
-		var state := data.decode_u8(cursor + 3)
-		cursor += 4
+		var type := input.get_u8()
+		var coords := Vector2i(input.get_8(), input.get_8())
+		var state := input.get_u8()
 		var net_idx := -1
 		for idx in range(len(level_wire_nets)):
 			for tile in level_wire_nets[idx]:
@@ -703,7 +663,7 @@ func load_level_data(data: PackedByteArray) -> void:
 
 	sort_objects()
 
-	level_name = data.slice(cursor).get_string_from_ascii()
+	level_name = input.get_string()
 
 
 func sort_objects() -> void:

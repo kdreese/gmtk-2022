@@ -49,7 +49,7 @@ func load_level_from_string(data: String):
 
 	level = preload("res://src/levels/level.tscn").instantiate() as Level
 	add_child(level)
-	current_level_data = Utils.b64_decode(data)
+	current_level_data = Marshalls.base64_to_raw(data)
 	level.load_level_data(current_level_data)
 
 	_load_level_internal()

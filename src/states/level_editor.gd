@@ -413,7 +413,7 @@ func play_level() -> void:
 	get_tree().get_root().add_child(game)
 	get_tree().set_current_scene(game)
 	get_tree().get_root().remove_child(self)
-	game.play_level_from_editor(Utils.b64_encode(result[1]))
+	game.play_level_from_editor(Marshalls.raw_to_base64(result[1]))
 
 
 func show_save_menu() -> void:
@@ -499,7 +499,7 @@ func show_save_code_menu() -> void:
 		%PopupPanel.popup_centered()
 		return
 
-	var code = Utils.b64_encode(result[1])
+	var code = Marshalls.raw_to_base64(result[1])
 
 	%SaveCodeMenu.show_menu(code)
 
@@ -509,7 +509,7 @@ func show_load_code_menu() -> void:
 
 
 func load_level_from_code(code: String) -> void:
-	var data = Utils.b64_decode(code)
+	var data = Marshalls.base64_to_raw(code)
 
 	level.load_level_data(data)
 	fix_gate_tiles()

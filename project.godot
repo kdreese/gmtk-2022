@@ -23,7 +23,6 @@ buses/default_bus_layout="res://resouces/default_bus_layout.tres"
 
 Global="*res://src/scripts/global.gd"
 Autosplitter="*res://src/scripts/autosplitter.gd"
-Utils="*res://src/scripts/utils.gd"
 
 [debug]
 
