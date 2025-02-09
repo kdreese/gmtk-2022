@@ -332,10 +332,9 @@ func save_level_data() -> Array:
 	return [true, output.get_data_array()]
 
 
-## Place a tile at the given grid position. This will edit the neighboring tiles if necessary to
-## add the correct edges. If is_preview is set to true, then the tile will be placed on the preview
-## layer. If is_start is set to true, the tile will be a start tile, otherwise it will be a normal
-## tile.
+## Place a tile at the given grid position. If is_preview is set to true, then the tile will be
+## placed on the preview layer. If is_start is set to true, the tile will be a start tile, otherwise
+## it will be a normal tile.
 func place_tile(coords: Vector2i, is_preview: bool = false, is_start: bool = false) -> void:
 	var tile_map: TileMapLayer
 	if is_preview:
@@ -345,23 +344,6 @@ func place_tile(coords: Vector2i, is_preview: bool = false, is_start: bool = fal
 
 	var tile_source_id := START_TILE if is_start else FLOOR_TILE
 	tile_map.set_cell(coords, tile_source_id, Vector2i(0, 0))
-
-	var tile_bl := coords + Vector2i(0, 1)
-	# Check the surrounding tiles on the actual layer, even if this is a preview.
-	if (ground_tile_map.get_cell_source_id(tile_bl) == 2
-		and ground_tile_map.get_cell_atlas_coords(tile_bl) == Vector2i(2, 0)
-		and ground_tile_map.get_cell_alternative_tile(tile_bl) == 0):
-		tile_map.set_cell(tile_bl, 2, Vector2i(0, 0))
-	elif ground_tile_map.get_cell_source_id(tile_bl) == -1:
-		tile_map.set_cell(tile_bl, 2, Vector2i(2, 0), 1)
-
-	var tile_br := coords + Vector2i(1, 0)
-	if (ground_tile_map.get_cell_source_id(tile_br) == 2
-		and ground_tile_map.get_cell_atlas_coords(tile_br) == Vector2i(2, 0)
-		and ground_tile_map.get_cell_alternative_tile(tile_br) == 1):
-		tile_map.set_cell(tile_br, 2, Vector2i(0, 0))
-	elif ground_tile_map.get_cell_source_id(tile_br) == -1:
-		tile_map.set_cell(tile_br, 2, Vector2i(2, 0), 0)
 
 
 func place_wire(from: Vector2i, to: Vector2i) -> void:
