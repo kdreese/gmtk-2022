@@ -506,35 +506,7 @@ func remove_tile(coords: Vector2i) -> void:
 	if ground_tile_map.get_cell_source_id(coords) not in [FLOOR_TILE, START_TILE]:
 		return
 
-	var tile_tl := coords + Vector2i(-1, 0)
-	var tile_tr := coords + Vector2i(0, -1)
-	if (ground_tile_map.get_cell_source_id(tile_tl) in [0, 1]
-		and ground_tile_map.get_cell_source_id(tile_tr) in [0, 1]):
-		ground_tile_map.set_cell(coords, 2, Vector2i(0, 0))
-	elif ground_tile_map.get_cell_source_id(tile_tl) in [0, 1]:
-		ground_tile_map.set_cell(coords, 2, Vector2i(2, 0), 0)
-	elif ground_tile_map.get_cell_source_id(tile_tr) in [0, 1]:
-		ground_tile_map.set_cell(coords, 2, Vector2i(2, 0), 1)
-	else:
-		ground_tile_map.set_cell(coords, -1)
-
-	var tile_bl := coords + Vector2i(0, 1)
-	if (ground_tile_map.get_cell_source_id(tile_bl) == 2
-		and ground_tile_map.get_cell_atlas_coords(tile_bl) == Vector2i(2, 0)
-		and ground_tile_map.get_cell_alternative_tile(tile_bl) == 1):
-		ground_tile_map.set_cell(tile_bl, -1, Vector2i(0, 0))
-	elif (ground_tile_map.get_cell_source_id(tile_bl) == 2
-		  and ground_tile_map.get_cell_atlas_coords(tile_bl) == Vector2i(0, 0)):
-		ground_tile_map.set_cell(tile_bl, 2, Vector2i(2, 0), 0)
-
-	var tile_br := coords + Vector2i(1, 0)
-	if (ground_tile_map.get_cell_source_id(tile_br) == 2
-		and ground_tile_map.get_cell_atlas_coords(tile_br) == Vector2i(2, 0)
-		and ground_tile_map.get_cell_alternative_tile(tile_br) == 0):
-		ground_tile_map.set_cell(tile_br, -1, Vector2i(0, 0))
-	elif (ground_tile_map.get_cell_source_id(tile_br) == 2
-		  and ground_tile_map.get_cell_atlas_coords(tile_br) == Vector2i(0, 0)):
-		ground_tile_map.set_cell(tile_br, 2, Vector2i(2, 0), 1)
+	ground_tile_map.set_cell(coords, -1)
 
 
 func load_level_data(data: PackedByteArray) -> void:

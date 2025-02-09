@@ -109,7 +109,7 @@ func _gui_input(event: InputEvent) -> void:
 				place_object(mouseover_tile)
 		elif event.is_released():
 			# If we were dragging erase, and just erased an object or wire, the preview erase for
-			# what is belwo won't be activated unless we re-enter. This solves that by waiting for
+			# what is below won't be activated unless we re-enter. This solves that by waiting for
 			# mouse release events.
 			preview_object(mouseover_tile)
 
