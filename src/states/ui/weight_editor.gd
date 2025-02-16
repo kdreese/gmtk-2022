@@ -36,7 +36,6 @@ func set_selected(weight: int) -> void:
 
 
 func on_button_pressed(button: BaseButton) -> void:
-	print("Button pressed")
 	var index = button_group.get_buttons().find(button)
 	if button.button_pressed:
 		# The 0th button has weight 1
@@ -52,7 +51,6 @@ func on_back_button_pressed() -> void:
 
 
 func enable_back_button() -> void:
-	print("Enabling!")
 	%BackButton.disabled = false
 
 

@@ -162,7 +162,7 @@ func show_weight_menu(coords: Vector2i) -> void:
 	weight_editor.show()
 
 
-func preview_object(coords: Vector2i)-> void:
+func preview_object(coords: Vector2i) -> void:
 	if object_to_place == ERASE:
 		preview_erase(coords)
 	elif object_to_place == NORMAL_TILE:
