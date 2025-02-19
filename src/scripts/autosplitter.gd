@@ -71,7 +71,7 @@ func run_split() -> void:
 
 
 func run_finish() -> void:
-	emit_signal("timer_updated", true)
+	timer_updated.emit(true)
 	speedrun_is_running = false
 
 
@@ -83,7 +83,7 @@ func run_delta() -> void:
 func _process(_delta: float) -> void:
 	if speedrun_is_running:
 		run_delta()
-		emit_signal("timer_updated")
+		timer_updated.emit()
 	if server.is_listening():
 		while server.is_connection_available():
 			var conn := server.take_connection()

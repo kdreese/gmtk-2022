@@ -27,4 +27,4 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_BackButton_pressed() -> void:
 	hide()
-	emit_signal("credits_exiting")
+	credits_exiting.emit()

@@ -28,6 +28,10 @@ func _process(delta: float) -> void:
 	total_time += (delta * FREQUENCY)
 
 
+func set_text(text: String) -> void:
+	%Label.text = text
+
+
 func generate_indicator_string() -> String:
 	var button = get_parent()
 	if button.minimum_weight == button.maximum_weight:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvtpb3upcvyvk"]
+[gd_scene load_steps=4 format=4 uid="uid://dvtpb3upcvyvk"]
 
 [ext_resource type="TileSet" uid="uid://dqydij0582jko" path="res://resouces/tile_set.tres" id="1"]
 [ext_resource type="PackedScene" uid="uid://lwy5y5jokgu6" path="res://src/objects/level_end.tscn" id="2"]
@@ -7,15 +7,23 @@
 [node name="LopsidedPatternsLevel" type="Node2D"]
 position = Vector2(-32, 0)
 script = ExtResource("3")
+level_name = "Lopsided Patterns"
+text = "Press R on keyboard or RB on controller to restart the current test. Escape or Start will bring up the pause menu."
+perfect_score = 13
+thumbnail = "res://assets/level_thumbnails/lopsided_patterns.png"
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="Node2D" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("1")
-format = 2
-layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(262156, 1, 0, 262155, 0, 0, 196619, 0, 0, 196620, 0, 0, 131084, 0, 0, 65548, 0, 0, 12, 0, 0, 13, 0, 0, 65549, 0, 0, -65524, 0, 0, -65523, 2, 1, 14, 131074, 0, 65550, 131074, 0, 131085, 2, 0, 196621, 131074, 0, 262157, 131074, 0, 327691, 131074, 65536, 327692, 131074, 65536)
 
-[node name="LevelEnd" parent="." instance=ExtResource("2")]
+[node name="Ground" type="TileMapLayer" parent="TileMap"]
+y_sort_enabled = true
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAMAAQAAQAAAAAAAAALAAQAAAAAAAAAAAALAAMAAAAAAAAAAAAMAAMAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAEAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAANAAEAAAAAAAAAAAAMAP//AAAAAAAAAAA=")
+tile_set = ExtResource("1")
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="LevelEnd" parent="Objects" instance=ExtResource("2")]
 position = Vector2(448, 176)
 minimum_weight = 5
 maximum_weight = 5

@@ -49,12 +49,14 @@ func display() -> void:
 				button.find_child("PerfectScore").hide()
 			else:
 				button.disabled = false
-				texture = load(Global.LEVELS[level_idx]["thumbnail"])
-				button.find_child("Title").text = Global.LEVELS[level_idx]["name"]
-				if Global.best_scores[level_idx] <= Global.LEVELS[level_idx]["perfect_score"] and Global.best_scores[level_idx] >= 0:
+				var level := Global.LEVELS[level_idx].instantiate()
+				texture = load(level.thumbnail)
+				button.find_child("Title").text = level.level_name
+				if Global.best_scores[level_idx] <= level.perfect_score and Global.best_scores[level_idx] >= 0:
 					button.find_child("PerfectScore").show()
 				else:
 					button.find_child("PerfectScore").hide()
+				level.queue_free()
 			button.find_child("Thumbnail").texture = texture
 			button.visible = true
 		else:
@@ -63,15 +65,16 @@ func display() -> void:
 
 func _on_level_button_pressed(idx: int) -> void:
 	Global.current_level_idx = 9 * page_idx + idx
-	if Global.current_level_idx == 0:
-		Autosplitter.run_start()
-	var error := get_tree().change_scene_to_file("res://src/states/game.tscn")
-	assert(not error)
+	var game := preload("res://src/states/game.tscn").instantiate() as Game
+	get_tree().root.add_child(game)
+	get_tree().set_current_scene(game)
+	get_tree().root.remove_child(self.owner)
+	game.play_single_level(Global.current_level_idx)
 
 
 func _on_BackButton_pressed() -> void:
 	hide()
-	emit_signal("level_select_exited")
+	level_select_exited.emit()
 
 
 func _on_NextButton_pressed() -> void:

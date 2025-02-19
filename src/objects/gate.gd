@@ -1,23 +1,39 @@
-extends Node2D
+class_name Gate
+extends LevelObject
 
 
-var tile_map: TileMap
+var tile_map: TileMapLayer = null
 var grid_coords: Vector2
 
 @export var is_open: bool
 
+
+func get_object_type() -> int:
+	return GATE
+
+
+func get_position_offset() -> Vector2:
+	return Vector2(0, -8)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if tile_map == null:
+		push_error("TileMap not set for gate '%s'" % name)
+		return
+
 	update_animation_speed()
-	tile_map = get_parent().get_node("TileMap")
+
 	grid_coords = tile_map.local_to_map(position)
 	if is_open:
 		$AnimatedSprite2D.play("opened")
 		var base_source_id := Global.find_source_id_by_name(tile_map.tile_set, "Base")
-		tile_map.set_cell(0, grid_coords, base_source_id, Vector2i.ZERO)
+		tile_map.set_cell(grid_coords, base_source_id, Vector2i.ZERO)
 	else:
 		$AnimatedSprite2D.play("closed")
-		tile_map.set_cell(0, grid_coords, -1)
+		tile_map.set_cell(grid_coords, -1)
+
+
 
 
 func update_animation_speed() -> void:
@@ -35,29 +51,30 @@ func update_z_index(player_position: Vector2):
 		z_index = 1
 
 
-func open() -> void:
+func open(visual_only: bool = false) -> void:
 	if is_open:
 		return
 	$AnimatedSprite2D.play("open")
-	var base_source_id := Global.find_source_id_by_name(tile_map.tile_set, "Base")
-	tile_map.set_cell(0, grid_coords, base_source_id, Vector2i.ZERO)
+	if not visual_only:
+		var base_source_id := Global.find_source_id_by_name(tile_map.tile_set, "Base")
+		tile_map.set_cell(grid_coords, base_source_id, Vector2i.ZERO)
 	is_open = true
 	while $AnimatedSprite2D.frame <= 4:
 		await $AnimatedSprite2D.frame_changed
 	z_index = 1
 
 
-func close() -> void:
+func close(visual_only: bool = false) -> void:
 	if not is_open:
 		return
 	$AnimatedSprite2D.play("close")
-	tile_map.set_cell(0, grid_coords, -1)
+	if not visual_only:
+		tile_map.set_cell(grid_coords, -1)
 	is_open = false
 
 
-func toggle() -> void:
+func toggle(visual_only: bool = false) -> void:
 	if not is_open:
-		open()
+		open(visual_only)
 	else:
-		close()
-
+		close(visual_only)
