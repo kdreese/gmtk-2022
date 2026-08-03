@@ -143,3 +143,4 @@ textures/canvas_textures/default_texture_filter=0
 textures/vram_compression/import_s3tc_bptc=true
 environment/defaults/default_environment="res://resouces/default_env.tres"
 textures/vram_compression/import_s3tc_bptc.macos=true
+textures/vram_compression/import_etc2_astc.macos=true
