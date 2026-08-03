@@ -1,15 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://feb8h7bm5wmc"]
+[gd_scene format=3 uid="uid://feb8h7bm5wmc"]
 
-[ext_resource type="Script" path="res://src/states/level_select.gd" id="2"]
+[ext_resource type="Script" uid="uid://dx56bics346vu" path="res://src/states/level_select.gd" id="2"]
 
-[node name="LevelSelect" type="ColorRect"]
+[node name="LevelSelect" type="ColorRect" unique_id=1879837710]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 0.392157)
 script = ExtResource("2")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1150110106]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -20,7 +20,7 @@ theme_override_font_sizes/font_size = 32
 text = "Level Select"
 horizontal_alignment = 1
 
-[node name="G" type="GridContainer" parent="."]
+[node name="G" type="GridContainer" parent="." unique_id=158970462]
 layout_mode = 0
 anchor_right = 1.0
 offset_left = 40.0
@@ -32,7 +32,7 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 3
 
-[node name="PrevButton" type="Button" parent="."]
+[node name="PrevButton" type="Button" parent="." unique_id=1165592772]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 0
 anchor_left = 0.5
@@ -45,7 +45,7 @@ size_flags_horizontal = 6
 focus_neighbor_right = NodePath("../BackButton")
 text = "Prev"
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=1580950611]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 0
 anchor_left = 0.5
@@ -59,7 +59,7 @@ focus_neighbor_left = NodePath("../PrevButton")
 focus_neighbor_right = NodePath("../NextButton")
 text = "Back"
 
-[node name="NextButton" type="Button" parent="."]
+[node name="NextButton" type="Button" parent="." unique_id=1288470025]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 0
 anchor_left = 0.5

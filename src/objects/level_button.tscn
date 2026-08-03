@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dybtco1hth3g"]
+[gd_scene format=3 uid="uid://dybtco1hth3g"]
 
-[ext_resource type="Script" path="res://src/objects/level_button.gd" id="1"]
+[ext_resource type="Script" uid="uid://de8rwf3yiu3ya" path="res://src/objects/level_button.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bgbfqa5ugcx4a" path="res://assets/objects/button.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://cn147gfbi0b4c" path="res://src/objects/indicator.tscn" id="3"]
 [ext_resource type="AudioStream" uid="uid://bl3ji50fjw5cb" path="res://assets/sound/button.wav" id="4"]
@@ -8,22 +8,22 @@
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(5.5, 4.5)
 
-[node name="LevelButton" type="Area2D"]
+[node name="LevelButton" type="Area2D" unique_id=1168618973]
 collision_layer = 0
 monitorable = false
 script = ExtResource("1")
 
-[node name="Indicator" parent="." instance=ExtResource("3")]
+[node name="Indicator" parent="." unique_id=394287529 instance=ExtResource("3")]
 position = Vector2(0, -75)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1296038864]
 texture = ExtResource("2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=940446321]
 position = Vector2(0, -0.5)
 shape = SubResource("1")
 
-[node name="PressedSound" type="AudioStreamPlayer2D" parent="."]
+[node name="PressedSound" type="AudioStreamPlayer2D" parent="." unique_id=1107638439]
 process_mode = 3
 stream = ExtResource("4")
 bus = &"SoundsBus"

@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=33 format=3 uid="uid://bkewpejsnoeiv"]
+[gd_resource type="TileSet" format=3 uid="uid://bkewpejsnoeiv"]
 
 [ext_resource type="Texture2D" uid="uid://r4s5tbbfaxvs" path="res://assets/tiles/elbow_side_off.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://b5wublpyhb855" path="res://assets/tiles/x_on.png" id="2"]

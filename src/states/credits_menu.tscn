@@ -1,15 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://by61qf6b5oj1p"]
+[gd_scene format=3 uid="uid://by61qf6b5oj1p"]
 
-[ext_resource type="Script" path="res://src/states/credits_menu.gd" id="2"]
+[ext_resource type="Script" uid="uid://clfadpdb68u33" path="res://src/states/credits_menu.gd" id="2"]
 
-[node name="CreditsMenu" type="ColorRect"]
+[node name="CreditsMenu" type="ColorRect" unique_id=2087481457]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 0.392157)
 script = ExtResource("2")
 
-[node name="V" type="VBoxContainer" parent="."]
+[node name="V" type="VBoxContainer" parent="." unique_id=358749483]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,54 +19,54 @@ offset_right = -8.0
 offset_bottom = -8.0
 size_flags_vertical = 3
 
-[node name="Title" type="Label" parent="V"]
+[node name="Title" type="Label" parent="V" unique_id=1585389819]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 48
 text = "Credits"
 horizontal_alignment = 1
 
-[node name="S" type="ScrollContainer" parent="V"]
+[node name="S" type="ScrollContainer" parent="V" unique_id=111570023]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
-[node name="V" type="VBoxContainer" parent="V/S"]
+[node name="V" type="VBoxContainer" parent="V/S" unique_id=228991525]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 24
 
-[node name="Spacer1" type="Control" parent="V/S/V"]
+[node name="Spacer1" type="Control" parent="V/S/V" unique_id=1734128214]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="Us" type="GridContainer" parent="V/S/V"]
+[node name="Us" type="GridContainer" parent="V/S/V" unique_id=1951264681]
 layout_mode = 2
 columns = 3
 
-[node name="HearstName" type="Label" parent="V/S/V/Us"]
+[node name="HearstName" type="Label" parent="V/S/V/Us" unique_id=444196907]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Terry Hearst"
 horizontal_alignment = 1
 
-[node name="MooreName" type="Label" parent="V/S/V/Us"]
+[node name="MooreName" type="Label" parent="V/S/V/Us" unique_id=468682052]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Andrew Moore"
 horizontal_alignment = 1
 
-[node name="ReeseName" type="Label" parent="V/S/V/Us"]
+[node name="ReeseName" type="Label" parent="V/S/V/Us" unique_id=1053071994]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "Kyle Reese"
 horizontal_alignment = 1
 
-[node name="HearstCredits" type="Label" parent="V/S/V/Us"]
+[node name="HearstCredits" type="Label" parent="V/S/V/Us" unique_id=519519007]
 layout_mode = 2
 text = "Programming
 Puzzle Design
@@ -74,7 +74,7 @@ Sound Effects
 Writing"
 horizontal_alignment = 1
 
-[node name="MooreCredits" type="Label" parent="V/S/V/Us"]
+[node name="MooreCredits" type="Label" parent="V/S/V/Us" unique_id=1762030568]
 layout_mode = 2
 text = "Programming
 Puzzle Design
@@ -83,34 +83,34 @@ Music
 Writing"
 horizontal_alignment = 1
 
-[node name="ReeseCredits" type="Label" parent="V/S/V/Us"]
+[node name="ReeseCredits" type="Label" parent="V/S/V/Us" unique_id=879592255]
 layout_mode = 2
 text = "Programming
 Puzzle Design
 Art/Graphics"
 horizontal_alignment = 1
 
-[node name="Spacer2" type="Control" parent="V/S/V"]
+[node name="Spacer2" type="Control" parent="V/S/V" unique_id=375571191]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="LicensesTitle" type="Label" parent="V/S/V"]
+[node name="LicensesTitle" type="Label" parent="V/S/V" unique_id=1201317727]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Licenses"
 horizontal_alignment = 1
 
-[node name="Godot" type="VBoxContainer" parent="V/S/V"]
+[node name="Godot" type="VBoxContainer" parent="V/S/V" unique_id=1380045493]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Title" type="Label" parent="V/S/V/Godot"]
+[node name="Title" type="Label" parent="V/S/V/Godot" unique_id=1490964139]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Godot Engine"
 horizontal_alignment = 1
 
-[node name="Description" type="Label" parent="V/S/V/Godot"]
+[node name="Description" type="Label" parent="V/S/V/Godot" unique_id=1516171898]
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "This game uses Godot Engine, available under the following license:
@@ -124,33 +124,33 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
 autowrap_mode = 2
 
-[node name="FreeType" type="VBoxContainer" parent="V/S/V"]
+[node name="FreeType" type="VBoxContainer" parent="V/S/V" unique_id=905179301]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Title" type="Label" parent="V/S/V/FreeType"]
+[node name="Title" type="Label" parent="V/S/V/FreeType" unique_id=698475203]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "FreeType"
 horizontal_alignment = 1
 
-[node name="Description" type="Label" parent="V/S/V/FreeType"]
+[node name="Description" type="Label" parent="V/S/V/FreeType" unique_id=463875895]
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Portions of this software are copyright © 1996-2022 The FreeType Project (www.freetype.org). All rights reserved."
 autowrap_mode = 2
 
-[node name="ENet" type="VBoxContainer" parent="V/S/V"]
+[node name="ENet" type="VBoxContainer" parent="V/S/V" unique_id=42931826]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Title" type="Label" parent="V/S/V/ENet"]
+[node name="Title" type="Label" parent="V/S/V/ENet" unique_id=1614907063]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "ENet"
 horizontal_alignment = 1
 
-[node name="Description" type="Label" parent="V/S/V/ENet"]
+[node name="Description" type="Label" parent="V/S/V/ENet" unique_id=549479006]
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Copyright (c) 2002-2020 Lee Salzman
@@ -162,17 +162,17 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
 autowrap_mode = 2
 
-[node name="MbedTLS" type="VBoxContainer" parent="V/S/V"]
+[node name="MbedTLS" type="VBoxContainer" parent="V/S/V" unique_id=1468689284]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Title" type="Label" parent="V/S/V/MbedTLS"]
+[node name="Title" type="Label" parent="V/S/V/MbedTLS" unique_id=950161272]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Mbed TLS"
 horizontal_alignment = 1
 
-[node name="Description" type="Label" parent="V/S/V/MbedTLS"]
+[node name="Description" type="Label" parent="V/S/V/MbedTLS" unique_id=1303596617]
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Copyright The Mbed TLS Contributors
@@ -184,17 +184,17 @@ http://www.apache.org/licenses/LICENSE-2.0
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."
 autowrap_mode = 2
 
-[node name="RussoOne" type="VBoxContainer" parent="V/S/V"]
+[node name="RussoOne" type="VBoxContainer" parent="V/S/V" unique_id=1115006920]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Title" type="Label" parent="V/S/V/RussoOne"]
+[node name="Title" type="Label" parent="V/S/V/RussoOne" unique_id=1034323855]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Russo One"
 horizontal_alignment = 1
 
-[node name="Description" type="Label" parent="V/S/V/RussoOne"]
+[node name="Description" type="Label" parent="V/S/V/RussoOne" unique_id=1737768005]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "Copyright (c) 2011-2012, Jovanny Lemonad (jovanny.ru), with Reserved Font Name \"Russo\"
@@ -244,7 +244,7 @@ DISCLAIMER
 THE FONT SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE FONT SOFTWARE."
 autowrap_mode = 2
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=118724599]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 0
 offset_left = 12.0
