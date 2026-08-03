@@ -125,8 +125,10 @@ func _ready() -> void:
 		get_window().size *= window_size_multiplier
 		#OS.center_window() # the lines below do this
 		var screen_id := get_window().current_screen
+		@warning_ignore("integer_division")
 		var screen_center := DisplayServer.screen_get_position(screen_id) \
 				+ DisplayServer.screen_get_size(screen_id) / 2
+		@warning_ignore("integer_division")
 		get_window().position = screen_center - get_window().size / 2
 	for _idx in range(NUM_LEVELS):
 		best_scores.append(-1)

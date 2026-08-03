@@ -60,8 +60,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		$CanvasLayer/PauseMenu/C/V/Buttons/ResumeButton.grab_focus()
 		get_viewport().set_input_as_handled()
 	elif event.is_action_pressed("restart"):
-		restart()
 		get_viewport().set_input_as_handled()
+		restart()
 
 
 func update_move_counter() -> void:

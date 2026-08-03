@@ -1,6 +1,6 @@
-[gd_scene load_steps=92 format=3 uid="uid://bfk77xmmwqmyl"]
+[gd_scene format=3 uid="uid://bfk77xmmwqmyl"]
 
-[ext_resource type="Script" path="res://src/objects/player.gd" id="1"]
+[ext_resource type="Script" uid="uid://c3i6iqbm88d6v" path="res://src/objects/player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dib7g8m4sfyl1" path="res://assets/player/animations/rotate_neg_z/side_3.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://dtijxtn006nd" path="res://assets/player/animations/rotate_x/front_1.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://cnkdhub48cnwh" path="res://assets/player/animations/rotate_x/side_1.png" id="4"]
@@ -73,7 +73,7 @@
 [ext_resource type="Texture2D" uid="uid://6pqelnjk7bl7" path="res://assets/player/animations/rotate_z/top_3.png" id="71"]
 [ext_resource type="Texture2D" uid="uid://b5b7gnrp48f8p" path="res://assets/player/animations/rotate_z/top_6.png" id="72"]
 [ext_resource type="Texture2D" uid="uid://c0ui4avmndwfx" path="res://assets/player/animations/rotate_x/extra_6.png" id="73"]
-[ext_resource type="Shader" path="res://resouces/die_mask_shader.gdshader" id="74"]
+[ext_resource type="Shader" uid="uid://ccwr2vhhfk70s" path="res://resouces/die_mask_shader.gdshader" id="74"]
 [ext_resource type="Gradient" uid="uid://dwaoqt35clmjh" path="res://resouces/palettes/2_1.tres" id="75"]
 [ext_resource type="Gradient" uid="uid://cp2y4y5i6sbik" path="res://resouces/palettes/3_2.tres" id="76"]
 [ext_resource type="Gradient" uid="uid://cjhvk2te46g5d" path="res://resouces/palettes/1.tres" id="77"]
@@ -93,7 +93,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3")
 }],
-"loop": false,
+"loop": 0,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -116,7 +116,7 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_neg_x",
 "speed": 5.0
 }, {
@@ -139,7 +139,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("60")
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_neg_z",
 "speed": 5.0
 }, {
@@ -162,7 +162,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("25")
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_x",
 "speed": 5.0
 }, {
@@ -185,7 +185,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("33")
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_z",
 "speed": 5.0
 }]
@@ -204,7 +204,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4")
 }],
-"loop": false,
+"loop": 0,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -227,7 +227,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("57")
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_neg_x",
 "speed": 5.0
 }, {
@@ -250,7 +250,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("53")
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_neg_z",
 "speed": 5.0
 }, {
@@ -273,7 +273,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("31")
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_x",
 "speed": 5.0
 }, {
@@ -296,7 +296,7 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_z",
 "speed": 5.0
 }]
@@ -315,7 +315,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11")
 }],
-"loop": false,
+"loop": 0,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -338,7 +338,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("65")
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_neg_x",
 "speed": 5.0
 }, {
@@ -361,7 +361,7 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_neg_z",
 "speed": 5.0
 }, {
@@ -384,7 +384,7 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_x",
 "speed": 5.0
 }, {
@@ -407,7 +407,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("72")
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_z",
 "speed": 5.0
 }]
@@ -425,7 +425,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("73")
 }],
-"loop": false,
+"loop": 0,
 "name": &"back",
 "speed": 5.0
 }, {
@@ -433,7 +433,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("62")
 }],
-"loop": false,
+"loop": 0,
 "name": &"backside",
 "speed": 5.0
 }, {
@@ -441,7 +441,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("12")
 }],
-"loop": false,
+"loop": 0,
 "name": &"bottom",
 "speed": 5.0
 }, {
@@ -449,7 +449,7 @@ animations = [{
 "duration": 1.0,
 "texture": null
 }],
-"loop": false,
+"loop": 0,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -472,7 +472,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("17")
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_neg_x",
 "speed": 5.0
 }, {
@@ -495,7 +495,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("62")
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_neg_z",
 "speed": 5.0
 }, {
@@ -518,7 +518,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("73")
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_x",
 "speed": 5.0
 }, {
@@ -541,7 +541,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("66")
 }],
-"loop": false,
+"loop": 0,
 "name": &"rotate_z",
 "speed": 5.0
 }]
@@ -549,34 +549,34 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="4"]
 size = Vector2(10, 7)
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="Area2D" unique_id=702317941]
 z_index = 2
 collision_mask = 0
 monitoring = false
 script = ExtResource("1")
 
-[node name="FrontFace" type="AnimatedSprite2D" parent="."]
+[node name="FrontFace" type="AnimatedSprite2D" parent="." unique_id=1203044738]
 material = SubResource("7")
 position = Vector2(0, -16)
 sprite_frames = SubResource("1")
 animation = &"idle"
 offset = Vector2(0, -2)
 
-[node name="SideFace" type="AnimatedSprite2D" parent="."]
+[node name="SideFace" type="AnimatedSprite2D" parent="." unique_id=1396627119]
 material = SubResource("8")
 position = Vector2(0, -16)
 sprite_frames = SubResource("2")
 animation = &"idle"
 offset = Vector2(0, -2)
 
-[node name="TopFace" type="AnimatedSprite2D" parent="."]
+[node name="TopFace" type="AnimatedSprite2D" parent="." unique_id=1642046029]
 material = SubResource("9")
 position = Vector2(0, -16)
 sprite_frames = SubResource("3")
 animation = &"idle"
 offset = Vector2(0, -2)
 
-[node name="ExtraFace" type="AnimatedSprite2D" parent="."]
+[node name="ExtraFace" type="AnimatedSprite2D" parent="." unique_id=816692195]
 z_index = -1
 material = SubResource("10")
 position = Vector2(0, -16)
@@ -584,41 +584,41 @@ sprite_frames = SubResource("5")
 animation = &"idle"
 offset = Vector2(0, -2)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1512742162]
 position = Vector2(0, 1)
 shape = SubResource("4")
 
-[node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="." unique_id=249777542]
 process_mode = 3
 stream = ExtResource("78")
 panning_strength = 3.0
 bus = &"SoundsBus"
 
-[node name="BackFace" type="Area2D" parent="."]
+[node name="BackFace" type="Area2D" parent="." unique_id=1218357951]
 position = Vector2(0, -16)
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BackFace"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BackFace" unique_id=961296389]
 polygon = PackedVector2Array(0, -32, 32, -16, 32, 16, 0, 0)
 
-[node name="BackSideFace" type="Area2D" parent="."]
+[node name="BackSideFace" type="Area2D" parent="." unique_id=240201813]
 position = Vector2(0, -16)
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BackSideFace"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BackSideFace" unique_id=1981851575]
 polygon = PackedVector2Array(0, -32, -32, -16, -32, 16, 0, 0)
 
-[node name="BottomFace" type="Area2D" parent="."]
+[node name="BottomFace" type="Area2D" parent="." unique_id=2026404836]
 position = Vector2(0, -16)
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BottomFace"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BottomFace" unique_id=1681590261]
 polygon = PackedVector2Array(0, 32, 32, 16, 0, 0, -32, 16)
 
 [connection signal="animation_finished" from="FrontFace" to="." method="_on_animation_finished"]

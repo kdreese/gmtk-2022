@@ -1,66 +1,66 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpm2738sy4hf5"]
+[gd_scene format=3 uid="uid://bpm2738sy4hf5"]
 
-[ext_resource type="Script" path="res://src/states/menu.gd" id="2"]
+[ext_resource type="Script" uid="uid://cncq2oje70234" path="res://src/states/menu.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://dmsmgwdkar4s4" path="res://src/states/options_menu.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://by61qf6b5oj1p" path="res://src/states/credits_menu.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://feb8h7bm5wmc" path="res://src/states/level_select.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://ccyrohf4pm62" path="res://assets/tiles/background.png" id="6"]
 
-[node name="Menu" type="CenterContainer"]
+[node name="Menu" type="CenterContainer" unique_id=1260414366]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("2")
 
-[node name="V" type="VBoxContainer" parent="."]
+[node name="V" type="VBoxContainer" parent="." unique_id=567900462]
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Title" type="Label" parent="V"]
+[node name="Title" type="Label" parent="V" unique_id=1250498948]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Unweighted"
 
-[node name="Buttons" type="VBoxContainer" parent="V"]
+[node name="Buttons" type="VBoxContainer" parent="V" unique_id=698939642]
 custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="PlayButton" type="Button" parent="V/Buttons"]
+[node name="PlayButton" type="Button" parent="V/Buttons" unique_id=122843584]
 layout_mode = 2
 text = "Play"
 
-[node name="LevelSelectButton" type="Button" parent="V/Buttons"]
+[node name="LevelSelectButton" type="Button" parent="V/Buttons" unique_id=943648748]
 layout_mode = 2
 text = "Select Level"
 
-[node name="OptionsButton" type="Button" parent="V/Buttons"]
+[node name="OptionsButton" type="Button" parent="V/Buttons" unique_id=1336369083]
 layout_mode = 2
 text = "Options"
 
-[node name="CreditsButton" type="Button" parent="V/Buttons"]
+[node name="CreditsButton" type="Button" parent="V/Buttons" unique_id=287366475]
 layout_mode = 2
 text = "Credits"
 
-[node name="QuitButton" type="Button" parent="V/Buttons"]
+[node name="QuitButton" type="Button" parent="V/Buttons" unique_id=851173018]
 layout_mode = 2
 text = "Quit"
 
-[node name="Canvas" type="CanvasLayer" parent="."]
+[node name="Canvas" type="CanvasLayer" parent="." unique_id=1883203233]
 
-[node name="OptionsMenu" parent="Canvas" instance=ExtResource("3")]
+[node name="OptionsMenu" parent="Canvas" unique_id=1048355679 instance=ExtResource("3")]
 visible = false
 
-[node name="CreditsMenu" parent="Canvas" instance=ExtResource("4")]
+[node name="CreditsMenu" parent="Canvas" unique_id=1160664005 instance=ExtResource("4")]
 visible = false
 
-[node name="LevelSelect" parent="Canvas" instance=ExtResource("5")]
+[node name="LevelSelect" parent="Canvas" unique_id=404730923 instance=ExtResource("5")]
 visible = false
 
-[node name="Background" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="." unique_id=1369807910]
 layer = -1
 
-[node name="TextureRect" type="TextureRect" parent="Background"]
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1814375824]
 texture_repeat = 2
 anchors_preset = 15
 anchor_right = 1.0

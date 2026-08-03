@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cbb5m7jc12bfr"]
+[gd_scene format=3 uid="uid://cbb5m7jc12bfr"]
 
 [ext_resource type="Texture2D" uid="uid://bueriwldj70x7" path="res://assets/objects/gate_0.png" id="1"]
-[ext_resource type="Script" path="res://src/objects/gate.gd" id="3"]
+[ext_resource type="Script" uid="uid://fsrmkcrbrr1k" path="res://src/objects/gate.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://b8wlrxc44yhom" path="res://assets/objects/gate_1.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://cfyotcknvlc5m" path="res://assets/objects/gate_2.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://mtuejay4eym6" path="res://assets/objects/gate_3.png" id="6"]
@@ -41,7 +41,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1")
 }],
-"loop": false,
+"loop": 0,
 "name": &"close",
 "speed": 20.0
 }, {
@@ -49,7 +49,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1")
 }],
-"loop": true,
+"loop": 1,
 "name": &"closed",
 "speed": 5.0
 }, {
@@ -81,7 +81,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11")
 }],
-"loop": false,
+"loop": 0,
 "name": &"open",
 "speed": 20.0
 }, {
@@ -89,15 +89,15 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11")
 }],
-"loop": true,
+"loop": 1,
 "name": &"opened",
 "speed": 5.0
 }]
 
-[node name="Gate" type="Node2D" groups=["Gates"]]
+[node name="Gate" type="Node2D" unique_id=1298057361 groups=["Gates"]]
 z_index = 1
 script = ExtResource("3")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1236014259]
 sprite_frames = SubResource("1")
 animation = &"opened"

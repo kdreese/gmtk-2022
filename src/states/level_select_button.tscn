@@ -1,13 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://06qfr8581awl"]
+[gd_scene format=3 uid="uid://06qfr8581awl"]
 
 [ext_resource type="Texture2D" uid="uid://c3m38tcnhjk64" path="res://assets/ui/perfect_score.png" id="1"]
 
-[node name="LevelSelectButton" type="Button"]
+[node name="LevelSelectButton" type="Button" unique_id=1918747025]
 custom_minimum_size = Vector2(128, 96)
 offset_right = 128.0
 offset_bottom = 48.0
 
-[node name="Thumbnail" type="TextureRect" parent="."]
+[node name="Thumbnail" type="TextureRect" parent="." unique_id=400315850]
 texture_filter = 2
 layout_mode = 0
 anchor_right = 1.0
@@ -19,7 +19,7 @@ offset_bottom = -25.0
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=1303210697]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 0
 anchor_top = 1.0
@@ -28,7 +28,7 @@ anchor_bottom = 1.0
 offset_top = -19.0
 horizontal_alignment = 1
 
-[node name="PerfectScore" type="TextureRect" parent="."]
+[node name="PerfectScore" type="TextureRect" parent="." unique_id=725904866]
 visible = false
 layout_mode = 0
 anchor_left = 1.0
